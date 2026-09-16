@@ -1,0 +1,68 @@
+{
+  "registrations": [
+    {
+      "id": "bupt",
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "cuc",
+      "translation": [
+        10,
+        10
+      ]
+    },
+    {
+      "id": "activity",
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "hall",
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "sports",
+      "translation": [
+        25,
+        -15
+      ]
+    },
+    {
+      "id": "dorm3",
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "incubator",
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "minzu",
+      "translation": [
+        -10,
+        0
+      ]
+    },
+    {
+      "id": "blcu",
+      "translation": [
+        0,
+        0
+      ]
+    }
+  ],
+  "overlaps": []
+}

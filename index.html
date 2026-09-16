@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#183f3b" />
+    <title>黎安 · 校园总图</title>
+  </head>
+  <body>
+    <a class="skip" href="#map-panel">跳到校园总图</a>
+    <header>
+      <a class="brand" href="./"
+        ><b>L<span>·</span>A</b>
+        <div>黎安 · 校园总图<small>LI'AN CAMPUS ATLAS</small></div></a
+      >
+      <nav aria-label="总图视图">
+        <button class="active" data-view="map">位置总图</button
+        ><button data-view="3d">连续漫游</button
+        ><button data-view="region">两期关系</button>
+      </nav>
+      <a class="detail-link" href="./world.html">进入全园连续漫游 ↗</a>
+    </header>
+    <div class="workspace">
+      <aside class="directory">
+        <div class="section-top">
+          <span>01 / 地点索引</span><b id="place-count">33</b>
+        </div>
+        <h1>先看清，<br />校园在哪里。</h1>
+        <p class="intro">
+          沿道路连续游览学校、宿舍与公共设施。<br />点击地点，查看它与周边的关系。
+        </p>
+        <label for="search">查找学校、设施或地块</label
+        ><input id="search" type="search" placeholder="如：北邮、宿舍、A-64" />
+        <div id="filters" aria-label="地点分类"></div>
+        <div id="place-list" class="place-list"></div>
+        <details class="unplaced">
+          <summary>尚未定位的项目</summary>
+          <ul id="unplaced-list"></ul>
+          <p>没有可靠位置依据的项目暂不放置。</p>
+        </details>
+        <button id="source-open" class="source-button">
+          图纸来源与精度说明 ↗
+        </button>
+      </aside>
+      <main id="map-panel" tabindex="-1">
+        <div class="map-heading">
+          <div>
+            <span id="map-kicker">一期 · 北向朝上</span>
+            <h2 id="map-title">校园位置关系</h2>
+          </div>
+          <span class="map-status">地块级总图 <i></i></span>
+        </div>
+        <div id="map-wrap">
+          <svg
+            id="atlas"
+            role="group"
+            aria-label="校园地块位置总图，可选择地点并比较方位距离"
+            viewBox="185 485 610 580"
+          >
+            <defs>
+              <pattern
+                id="grid"
+                width="25"
+                height="25"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 25 0 L 0 0 0 25"
+                  fill="none"
+                  stroke="#abc9c1"
+                  stroke-width=".3"
+                  opacity=".25"
+                />
+              </pattern>
+              <marker
+                id="arrow"
+                markerWidth="9"
+                markerHeight="9"
+                refX="7"
+                refY="4.5"
+                orient="auto"
+              >
+                <path
+                  d="M0,0 L9,4.5 L0,9"
+                  fill="none"
+                  stroke="#d47742"
+                  stroke-width="1.5"
+                />
+              </marker>
+            </defs>
+            <g id="map-content"></g></svg
+          ><canvas
+            id="world"
+            aria-label="校园地块立体总览，拖动旋转，滚轮缩放"
+            hidden
+          ></canvas>
+          <div id="three-labels" hidden></div>
+        </div>
+        <div class="north" id="north"><b>↑</b><span>N</span></div>
+        <div class="map-tools" id="map-tools">
+          <button id="zoom-in" aria-label="放大">+</button
+          ><button id="zoom-out" aria-label="缩小">−</button
+          ><button id="reset-map">校园核心</button
+          ><button id="full-map">一期全域</button
+          ><button id="underlay" aria-pressed="false">原图对照</button>
+        </div>
+        <div class="map-foot">
+          <span id="map-hint">拖动平移 · 滚轮缩放 · 点击标记选址</span
+          ><span id="scale">比例尺估算 · 500m</span>
+        </div>
+        <section id="region" hidden>
+          <div class="region-intro">
+            <span>先分清两期，再统一坐标</span>
+            <h2>隔山牛港展开的两片校园</h2>
+            <p>
+              一期在山牛港西侧，二期在东侧至黎安港南岸一带。两期主要通过周边道路联系。
+            </p>
+          </div>
+          <div class="relation-diagram">
+            <div>
+              <small>西侧 · 新村港东岸</small>
+              <h3>一期校园</h3>
+              <p>当前学校、宿舍与公共设施总图</p>
+              <button id="back-phase1">查看一期位置 →</button>
+            </div>
+            <div class="water-label">
+              山牛港<br /><span>两侧地理关系示意</span>
+            </div>
+            <div>
+              <small>东侧 · 黎安港南岸</small>
+              <h3>二期规划区</h3>
+              <p>以规划道路、片区开发为主</p>
+              <a href="./overall/phase2.png" target="_blank"
+                >打开二期交通原图 ↗</a
+              >
+            </div>
+          </div>
+          <img
+            src="./overall/phase2.png"
+            alt="二期公众版交通规划图，标出至试验区一期方向和内部公交、慢行系统"
+          />
+          <p class="region-note">
+            来源：二期公众版第18页。上方关系图不按比例；二期尚未与一期配准，暂不计算跨期距离。图中公交与慢行线是规划方案，不代表现行线路。
+          </p>
+        </section>
+      </main>
+      <aside class="inspector">
+        <div class="section-top">
+          <span>02 / 位置关系</span><span id="selected-code">A-64</span>
+        </div>
+        <div class="selected-title">
+          <span id="selected-category">学校</span>
+          <h2 id="selected-name">电子科技大学</h2>
+          <span id="selected-status" class="tag">实建资料</span>
+        </div>
+        <p id="selected-note"></p>
+        <a id="selected-source" target="_blank" rel="noopener"
+          >查看定位依据 ↗</a
+        ><a id="walk-link" class="primary" href="./detail.html"
+          >从此处进入全园漫游 ↗</a
+        >
+        <div class="compare">
+          <h3>与另一处比较</h3>
+          <label for="compare-place">选择比较地点</label
+          ><select id="compare-place"></select>
+          <div class="relation-result" aria-live="polite">
+            <span id="direction">西南</span><b id="distance">约350m</b>
+            <p id="relation-sentence"></p>
+          </div>
+          <p class="caveat">地块中心直线距离；按图面比例尺估算，非步行里程。</p>
+          <button id="fit-pair">同时查看这两处</button>
+        </div>
+        <div class="neighbours">
+          <h3>附近的地点</h3>
+          <div id="nearby"></div>
+        </div>
+        <button id="source-open-mobile" class="source-button">
+          图纸来源与精度说明 ↗
+        </button>
+        <div class="roads-near">
+          <h3>附近规划道路</h3>
+          <div id="near-roads"></div>
+          <p>按图上位置判断，并非建筑实际出入口。</p>
+        </div>
+      </aside>
+    </div>
+    <dialog id="sources">
+      <button id="source-close" aria-label="关闭来源说明">×</button
+      ><span class="eyebrow">DATA & ACCURACY</span>
+      <h2>这张总图能说明什么</h2>
+      <p>
+        总图明确地块之间的方位、相邻关系与尺度。彩色面是人工描绘的地块示意；连续漫游中的建筑另外区分图纸轮廓与示意灰模。
+      </p>
+      <ul>
+        <li>
+          位置骨架：你提供的一期控规草案第11页“开发单元及地块编码图”；道路参考第6页。
+        </li>
+        <li>
+          设施对应：2025一期批后控规正文与各项目2023—2026年公告。点击地点可查看具体依据。
+        </li>
+        <li>
+          校名未对应、历史项目改名、同一地块分期等情况均保留说明，不重复摆放。
+        </li>
+        <li>
+          量距基于原图比例尺，点位是地块级中心；取整到50米。不用于施工、导航或精确地形。
+        </li>
+        <li>二期单列关系示意与原图，尚未做统一坐标配准。</li>
+      </ul>
+      <a
+        href="https://wap.study-hn.cn/upload/file/2025/08/04/c79e22845456490194e173abbcfa8c9f.pdf"
+        target="_blank"
+        rel="noopener"
+        >2025一期批后控规原件 ↗</a
+      >
+      <p>
+        当前共33个地点、15条道路示意；“实建资料”表示取得该项目实建文件，不表示本总图就是实测模型。
+      </p>
+    </dialog>
+    <div id="error" role="alert" hidden></div>
+    <script type="module" src="/src/atlas.ts"></script>
+  </body>
+</html>

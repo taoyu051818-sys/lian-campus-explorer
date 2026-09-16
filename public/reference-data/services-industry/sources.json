@@ -1,0 +1,40 @@
+{
+  "checked": "2026-09-16",
+  "discovery": "Images embedded inside official social risk assessment DOCX attachments; HTML body omitted these images.",
+  "services": {
+    "notice": "https://www.study-hn.cn/NewsDetail/91587f3fcb484aca916e9d37ab44aeac/MjAyNC0wOC0zMA==/1?nav=%5B%5D",
+    "attachment": "https://wap.study-hn.cn/upload/file/2025/08/04/b75cdc7b71b54bdd9cf79d05709542eb.docx",
+    "finding": "2026-09-16官网复核：2024-08-30综合服务中心社稳公示Word附件内含项目用地范围图及彩色总平面，已提取核对。A-28为西北侧大弧形合院综合服务中心（图标8F/1D、H=44.9m）及北侧1F展馆；与A-29分界已可辨认。原“缺总图”原因解除；下一步按图描绘外轮廓，校准全园道路对应并制作外部模型。仍为规划图，非竣工测绘。"
+  },
+  "industry": {
+    "notice": "https://www.study-hn.cn/NewsDetail/cd91fe2ffe5b41cea018385d4ce1d7dd/MjAyNC0wOC0zMA==/1?nav=%5B%5D",
+    "attachment": "https://wap.study-hn.cn/upload/file/2025/08/04/42b0e5808b8844e9ae28545aa53071c7.docx",
+    "finding": "2026-09-16官网复核：2024-08-30产教融合中心一期社稳公示Word附件内含明确用地范围和彩色总平面。项目在A-29南部，为东南侧半环形产教融合中心（图标8F/2D、H=44.9m）；A-29北侧4405平方米已建派出所被明确排除。原“缺分区总图”原因解除；下一步按图建模，保留派出所现有独立模型，不重复。仍为规划图，非竣工测绘。"
+  },
+  "files": [
+    {
+      "name": "services.docx",
+      "sha256": "ae4047a72478c0fb64696d1d02e86267321f73b0f2fe90425c5f93eceab41db4"
+    },
+    {
+      "name": "services-image1.png",
+      "sha256": "cb84da2c2fa1843f0503e6144f23aee6fced14553f29af35ba08bff83bfbb6c8"
+    },
+    {
+      "name": "services-image2.png",
+      "sha256": "769bb0afdaab88da1c3a8f5af3f4b94a7cc1098e05308af581adf30a9f6881d5"
+    },
+    {
+      "name": "industry.docx",
+      "sha256": "13fe11c7154612211177fa86add065710ff5163fd75c47d7954c3d6bad8f5454"
+    },
+    {
+      "name": "industry-image1.png",
+      "sha256": "3cb0af886f1313b60b5f85f05536e0e8b68fbe6dded7b7168875800e0f1b8c13"
+    },
+    {
+      "name": "industry-image2.jpeg",
+      "sha256": "0ccb0770b9833cb6bfc2787d99419ac71ba11c41d5ac62001a81a182430b7a33"
+    }
+  ]
+}

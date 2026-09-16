@@ -1,0 +1,23 @@
+{
+  "version": "0.25.0",
+  "sourcePlan": "plan.pdf",
+  "status": "game adaptation, not construction detail",
+  "a75AnchorPixel": [
+    707,
+    725
+  ],
+  "a79AnchorPixel": [
+    592,
+    995
+  ],
+  "stairWidth": 3,
+  "riserMaximum": 0.16,
+  "tread": 0.34,
+  "flightsEach": 4,
+  "groundPathWidths": {
+    "A75": 1.8,
+    "A79": 2.8
+  },
+  "physicalRepresentation": "Visible stair treads, continuous invisible flight slopes, physical landings and balustrades.",
+  "implementation": "src/teaching-access.ts"
+}

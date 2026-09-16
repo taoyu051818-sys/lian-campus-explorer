@@ -1,0 +1,42 @@
+{
+  "version": "0.20.0",
+  "date": "2026-09-16",
+  "feature": "canteen-photo",
+  "sourceFootprint": "OpenStreetMap way 1223487854 (previously retrieved regional API dataset)",
+  "sourceVertexCount": 11,
+  "heightMetresEstimate": 11.2,
+  "floorsEstimate": 2,
+  "registrationTranslation": [
+    -5,
+    -5
+  ],
+  "surveyedRegistration": false,
+  "parcelCorrespondenceVerified": false,
+  "complete": false,
+  "checks": {
+    "typescriptAndVite": true,
+    "allBodyRoadLandAndOverlapChecks": true,
+    "all33SpawnsClear": true,
+    "finiteFacadeMeshes": true,
+    "landscapeAvoidance": true,
+    "A79Regression": true,
+    "browserBirdEye": true,
+    "browserFirstPersonArrival": true,
+    "browserSourceLinkValidURL": true,
+    "consoleErrors": 0,
+    "observedFPS": [
+      56,
+      60
+    ],
+    "fullWalkingRouteTested": false
+  },
+  "counts": {
+    "bodyVolumes": 230,
+    "completedRefinementLocations": 26,
+    "pendingLocations": 7,
+    "partialExteriorLocations": [
+      "canteen",
+      "teaching"
+    ]
+  }
+}

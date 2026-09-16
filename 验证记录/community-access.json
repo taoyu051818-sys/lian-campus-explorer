@@ -1,0 +1,31 @@
+{
+  "version": "0.17.0",
+  "paths": 14,
+  "totalPathLengthIncludingSharedSegments": 3076.60303840078,
+  "samples": 18903,
+  "minimumPavementToBuildingClearance": 0.30211054123010084,
+  "maximumSimulatedGrade": 0.031706017485814406,
+  "connected": true,
+  "entrances": [
+    {
+      "name": "北入口",
+      "roadDistance": 0.30928039067393004
+    },
+    {
+      "name": "西入口",
+      "roadDistance": 0.46442577868586504
+    },
+    {
+      "name": "东入口连接",
+      "roadDistance": 0.6302427821611138
+    },
+    {
+      "name": "南入口",
+      "roadDistance": 0.7545863563806913
+    }
+  ],
+  "allSpawnsClear": true,
+  "buildingCount": 230,
+  "refinedLocations": 26,
+  "limits": "Estimated game paths based on the community scope plan, adjusted around model buildings. Pavement uses existing terrain collision; not surveyed road alignment or elevation."
+}

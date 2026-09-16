@@ -1,0 +1,27 @@
+{
+  "version": "0.24.0",
+  "bodyCount": 262,
+  "newExteriorBodies": 6,
+  "preservedPoliceBodies": 6,
+  "walkways": 11,
+  "roadConnectedPaths": 11,
+  "samples": 6800,
+  "roadClearance": 8.229884150602672,
+  "minPortalClearance": 3.993218439587352,
+  "maxSimulatedPathGrade": 0.003874209755103336,
+  "transportSamples": 3849,
+  "spawnsChecked": 33,
+  "finiteMeshes": true,
+  "validIndices": true,
+  "upwardRoofsChecked": 6,
+  "registration": {
+    "translation": [
+      30,
+      -15
+    ],
+    "metresPerPixel": 0.2970279979683439,
+    "method": "A28 red-line polygon area normalized to the announced 24899.92 square metres; approximate scale, not survey control points"
+  },
+  "source": "public/reference-data/services-industry/digitization.json",
+  "limitations": "Manual planning trace; scale estimated by red-line area; schematic registration; facade/roof/portal and pavilion height approximate. Outdoor game model, no interiors or survey accuracy."
+}

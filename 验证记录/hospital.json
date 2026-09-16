@@ -1,0 +1,23 @@
+{
+  "version": "0.12.0",
+  "boundaryArea": 5835.9944104999995,
+  "documentArea": 5836,
+  "buildingCount": 172,
+  "hospitalBodies": 5,
+  "refinedLocations": 22,
+  "approximateFootprintArea": 1441.9968696100404,
+  "hospitalInsideBoundary": true,
+  "neighborConflicts": [],
+  "allSpawnsClear": true,
+  "registration": {
+    "id": "hospital",
+    "translation": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "source": "https://wap.study-hn.cn/upload/file/2025/08/04/dd3bdbb92da74593aaaf2793b5b6ef5a.pdf",
+    "method": "2025.06 A21/A22技术修正报告第3页明确A-22为已建校医院，第6页界址坐标用于地块形状；全园只做锚点平移，未经投影坐标配准。建筑参考2023单页效果图，主楼、临街低区、入口附楼及两座配套房均为估算轮廓，5层/21.2米主楼为外观估算，不将45米控规限高当楼高。"
+  },
+  "limitations": "Building dimensions are estimates; this is not a planning-compliance review. Boundary dimensions are copied, global CRS is not registered."
+}

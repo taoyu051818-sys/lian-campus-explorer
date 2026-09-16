@@ -1,0 +1,26 @@
+{
+  "version": "0.26.0",
+  "bodyCount": 262,
+  "refinedPhotoBodies": 25,
+  "dormitoryFloors": 6,
+  "sharedGalleryFloors": 3,
+  "photoDetails": {
+    "roofModules": 191,
+    "mechanicalUnits": 4,
+    "roofDepthEstimate": 35.80000000000002,
+    "roofBasis": [
+      0.7917830260532606,
+      -0.6108024555074594,
+      -0.6108024555074594,
+      -0.7917830260532606
+    ]
+  },
+  "samples": 5813,
+  "minimumRoadClearance": 6.5614551708558615,
+  "finiteMeshes": true,
+  "validIndices": true,
+  "spawnsChecked": 33,
+  "meshes": 25,
+  "vertices": 384580,
+  "limitations": "Visible floor counts/photo motifs corrected. 3.6m floor height, dimensions, placement, balcony modules and roof equipment remain estimates; no floor plan or cadastral correspondence newly obtained."
+}

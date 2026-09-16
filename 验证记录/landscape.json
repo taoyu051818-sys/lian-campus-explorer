@@ -1,0 +1,15 @@
+{
+  "treeCount": 0,
+  "hedgeBeds": 1237,
+  "shrubIslands": 477,
+  "leafSprigs": 64123,
+  "maximumShrubHeight": 1.16,
+  "bodyTiles": 180,
+  "leafTiles": 180,
+  "checkedBedPoints": 584474,
+  "roadBuildingEntryFieldChecks": "passed",
+  "finiteMeshes": true,
+  "upwardNormals": true,
+  "meshCount": 360,
+  "vertices": 470261
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.22.0",
+  "feature": "canteen exterior access",
+  "buildPassed": true,
+  "accessCheck": "canteen-access.json",
+  "landscapeCheck": "landscape.json",
+  "browserModelRendered": true,
+  "firstPersonArrival": true,
+  "browserConsoleErrors": 0,
+  "observedFPS": [
+    55,
+    60
+  ],
+  "fullWalkingRouteTested": false,
+  "parcelCorrespondenceVerified": false,
+  "complete": false
+}

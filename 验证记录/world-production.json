@@ -1,0 +1,11 @@
+{
+  "build": true,
+  "productionDebugDisabled": true,
+  "atlasEntry": true,
+  "selectedParcelEntry": "bupt",
+  "modes": true,
+  "sourceDialog": true,
+  "localDetailPreserved": true,
+  "mobileNoOverflow": true,
+  "errors": []
+}

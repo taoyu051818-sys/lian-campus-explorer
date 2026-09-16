@@ -1,0 +1,23 @@
+{
+  "version": "0.14.0",
+  "buildingCount": 183,
+  "policeBodies": 6,
+  "refinedLocations": 24,
+  "approximateFootprintArea": 1383.2017777338624,
+  "policeInsideBoundary": true,
+  "neighborConflicts": [],
+  "allSpawnsClear": true,
+  "registration": {
+    "id": "police",
+    "translation": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "source": "https://wap.study-hn.cn/upload/file/2025/08/04/33b804ba6d7a4fb1bba3b8ff2d1602ea.pdf",
+    "method": "2025派出所规划核实PDF第3页实际建设位置图、第9页实建照片，2025一期控规正文确认A-29-01。1335×1888参考图按三个可读建筑角点坐标仿射校准，楼翼与庭院线人工近似提取，13.8/10.2米为图注；低区5.5米暂沿报建图估算。全园仍按地块关系锚定，不表示完成投影坐标配准，室内未建。"
+  },
+  "limitations": "Building dimensions are estimates; this is not a planning-compliance review. Parcel redline and building outlines are approximate image traces, calibrated with three building corner coordinates; global CRS is not registered.",
+  "openCourtyards": 2,
+  "sourcePrecision": "Three readable building corners calibrate approximate image tracing; ground-level courtyard positions checked, interiors not modelled."
+}

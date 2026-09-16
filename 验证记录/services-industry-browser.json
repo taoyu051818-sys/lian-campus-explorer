@@ -1,0 +1,15 @@
+{
+  "version": "0.24.0",
+  "browser": "Codex In-app Browser",
+  "url": "http://127.0.0.1:4173/world.html",
+  "checked": [
+    "A28 overview and exhibition hall",
+    "A29 overview and courtyard",
+    "A28 first-person arrival",
+    "A29 first-person arrival",
+    "roof lighting after normal correction"
+  ],
+  "consoleErrors": 0,
+  "walkedEntireNetwork": false,
+  "limitations": "Browser checks cover arrival and visual inspection; path connectivity/collision coverage is from automated geometry checks."
+}

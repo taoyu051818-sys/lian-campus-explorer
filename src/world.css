@@ -1,0 +1,424 @@
+:root {
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #193e37;
+  background: #b5cbd0;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+button,
+a,
+select {
+  font: inherit;
+}
+button,
+select {
+  min-height: 40px;
+  border: 1px solid #bccdc2;
+  background: #fffdf5;
+  color: #214a40;
+  border-radius: 8px;
+  padding: 7px 12px;
+}
+button {
+  cursor: pointer;
+}
+button:hover,
+a:hover {
+  background: #dce9df;
+}
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+  outline: 3px solid #cf763d;
+  outline-offset: 3px;
+}
+button[aria-pressed="true"] {
+  background: #1b5143;
+  color: #fff;
+}
+a {
+  color: #235f4e;
+  text-decoration: none;
+}
+#scene {
+  width: 100vw;
+  height: 100dvh;
+  display: block;
+  touch-action: none;
+  outline: none;
+}
+.glass {
+  background: rgba(255, 253, 242, 0.94);
+  border: 1px solid #d3dfd3;
+  box-shadow: 0 8px 30px #14382b16;
+  border-radius: 13px;
+}
+header {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  gap: 24px;
+}
+header div {
+  margin-right: auto;
+}
+header b {
+  font-size: 20px;
+}
+small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-top: 5px;
+  color: #718778;
+}
+.modes {
+  position: absolute;
+  top: 108px;
+  left: 18px;
+  padding: 5px;
+  display: flex;
+  gap: 4px;
+}
+.modes button {
+  border: 0;
+}
+.destination {
+  position: absolute;
+  top: 174px;
+  left: 18px;
+  width: 295px;
+  padding: 17px;
+}
+.destination label {
+  font-size: 12px;
+  color: #6a7d70;
+}
+.destination > div {
+  display: flex;
+  gap: 7px;
+  margin: 10px 0;
+}
+.destination select {
+  width: 201px;
+  min-width: 0;
+}
+.destination p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 9px 0;
+}
+.destination a {
+  font-size: 12px;
+}
+.destination #orient {
+  display: block;
+  margin-top: 12px;
+  width: 100%;
+}
+.minimap {
+  position: absolute;
+  right: 18px;
+  bottom: 99px;
+  width: 250px;
+  padding: 13px;
+}
+.minimap > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+.minimap canvas {
+  display: block;
+  width: 100%;
+  height: 193px;
+  margin-top: 8px;
+  border-radius: 7px;
+  background: #e8eee1;
+}
+.minimap p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 7px 0 0;
+}
+footer {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  right: 18px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 12px;
+}
+#stats {
+  margin-left: auto;
+  color: #708074;
+  font-variant-numeric: tabular-nums;
+}
+#labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.world-label {
+  position: absolute;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  background: #fdfbefec;
+  border: 1px solid #c9d7ca;
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px #173b3522;
+}
+.world-label small {
+  letter-spacing: 0;
+  margin: 3px 0 0;
+  font-size: 10px;
+}
+.world-label.active {
+  border-color: #c97740;
+  border-width: 2px;
+}
+#crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 0 0 3px #123;
+  pointer-events: none;
+}
+dialog {
+  max-width: 630px;
+  width: calc(100% - 32px);
+  max-height: 85dvh;
+  border: 1px solid #d2ddcc;
+  border-radius: 18px;
+  background: #fffdf4;
+  padding: 30px;
+  line-height: 1.8;
+  color: #244b3e;
+}
+dialog::backdrop {
+  background: #102c28a8;
+}
+dialog h1 {
+  font-size: 25px;
+}
+dialog li {
+  margin: 12px 0;
+}
+#about-close {
+  float: right;
+}
+#loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #e9eee0;
+  z-index: 20;
+}
+#loading b {
+  font-size: 48px;
+}
+#loading h1 {
+  font-size: 22px;
+}
+#toast {
+  position: absolute;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%);
+  background: #183f35;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  max-width: 90%;
+  font-size: 13px;
+}
+#touch {
+  display: none;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 800px) {
+  header {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 12px;
+    padding: 10px;
+  }
+  header b {
+    font-size: 16px;
+  }
+  header a {
+    font-size: 12px;
+  }
+  header small {
+    display: none;
+  }
+  .modes {
+    top: 78px;
+    left: 8px;
+  }
+  .destination {
+    top: 139px;
+    left: 8px;
+    width: 230px;
+    padding: 10px;
+  }
+  .destination #orient,
+  .destination a {
+    display: none;
+  }
+  .destination p {
+    max-height: 40px;
+    overflow: hidden;
+  }
+  .destination select {
+    width: 153px;
+  }
+  .minimap {
+    width: 163px;
+    right: 8px;
+    bottom: 85px;
+    padding: 8px;
+  }
+  .minimap canvas {
+    height: 122px;
+  }
+  .minimap p {
+    font-size: 10px;
+  }
+  footer {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 8px;
+    gap: 6px;
+  }
+  #hint {
+    max-width: 170px;
+    font-size: 10px;
+  }
+  #stats {
+    display: none;
+  }
+  #speed {
+    font-size: 11px;
+    padding: 6px;
+  }
+  #labels .world-label {
+    font-size: 10px;
+  }
+  .world-label small {
+    display: none;
+  }
+}
+@media (pointer: coarse) {
+  #touch {
+    display: flex;
+    position: absolute;
+    bottom: 93px;
+    left: 14px;
+    gap: 15px;
+    align-items: end;
+  }
+  #touch button {
+    width: 43px;
+    height: 43px;
+    touch-action: none;
+    background: #fffdf4dd;
+  }
+  .pad {
+    display: grid;
+    grid-template-columns: repeat(3, 43px);
+    gap: 4px;
+  }
+  .pad button:first-child {
+    grid-column: 2;
+  }
+  .pad button:nth-child(2) {
+    grid-column: 1;
+  }
+  #hint {
+    font-size: 10px;
+  }
+  .destination {
+    top: 134px;
+  }
+  .minimap {
+    bottom: 246px;
+    width: 150px;
+  }
+}
+
+.destination #travel {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.destination select {
+  flex: 1;
+}
+header,
+.modes,
+.destination,
+.minimap,
+footer,
+#touch {
+  z-index: 2;
+}
+#crosshair {
+  z-index: 1;
+}
+#toast {
+  z-index: 3;
+}
+#toast {
+  pointer-events: none;
+}
+@media (pointer: coarse) {
+  #toast {
+    bottom: auto;
+    top: 280px;
+  }
+}
+.immersive header,
+.immersive .modes,
+.immersive .destination,
+.immersive .minimap,
+.immersive #hint {
+  display: none;
+}
+#focus-view {
+  white-space: nowrap;
+}
+@media (max-width: 800px) {
+  #hint {
+    max-width: 120px;
+  }
+  #focus-view {
+    font-size: 11px;
+    padding: 6px;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "version": "0.22.0",
+  "paths": 1,
+  "totalPathLengthIncludingSharedSegments": 15.20016425793115,
+  "samples": 102,
+  "minimumPavementToBuildingClearance": 2.3994990491505352,
+  "maximumSimulatedGrade": 0.0034280065110679396,
+  "connected": true,
+  "entrances": [
+    {
+      "name": "食堂照片参考入口道路步道",
+      "roadDistance": 0.00017516848314711356
+    }
+  ],
+  "allSpawnsClear": true,
+  "buildingCount": 245,
+  "refinedLocations": 26,
+  "limits": "Photo-reference candidate canteen with estimated exterior paths. Parcel correspondence remains unverified. Pavement uses existing terrain collision; not surveyed road alignment or elevation."
+}

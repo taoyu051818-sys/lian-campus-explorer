@@ -1,0 +1,26 @@
+{
+  "version": "0.13.0",
+  "buildingCount": 177,
+  "fireBodies": 5,
+  "refinedLocations": 23,
+  "approximateFootprintArea": 1152.655069240005,
+  "fireInsideBoundary": true,
+  "neighborConflicts": [],
+  "allSpawnsClear": true,
+  "registration": {
+    "id": "fire",
+    "translation": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "source": "https://wap.study-hn.cn/upload/file/2025/08/04/2468752f3a444613b6baf09f235265f1.docx",
+    "method": "2025消防站规划核实附件：image2实建位置图、image4/6/8/10实建楼层及屋顶图、image13/14实建照片。按J1/J8/J13界址点近似配准图内轮廓，主体总宽45.95米；8.9/11.9/7.5/7.2米采用屋顶图注，局部阶梯轮廓简化，训练塔20米为照片估算。全园在A-85与A-87之间地块级定位，不代表CRS配准。"
+  },
+  "limitations": "Building dimensions are estimates; this is not a planning-compliance review. Boundary coordinates and building width/roof levels are copied, global CRS is not registered.",
+  "forecourtMesh": {
+    "vertices": 1612,
+    "finite": true,
+    "upwardNormals": true
+  }
+}

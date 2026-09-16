@@ -1,0 +1,50 @@
+{
+  "version": "0.18.0",
+  "courtyardAccess": [
+    {
+      "point": [
+        709.0235922448938,
+        -97.74408154927409
+      ],
+      "pathDistance": 4.783006352940657
+    },
+    {
+      "point": [
+        792.6821965642418,
+        -13.69727024932587
+      ],
+      "pathDistance": 2.1487978486918418
+    },
+    {
+      "point": [
+        680.6844826610776,
+        10.953873018788272
+      ],
+      "pathDistance": 1.1740486571212103
+    }
+  ],
+  "paths": 14,
+  "totalPathLengthIncludingSharedSegments": 2238.196161735668,
+  "samples": 13743,
+  "minimumPavementToBuildingClearance": 0.3143415657306476,
+  "maximumSimulatedGrade": 0.0010892339521286858,
+  "connected": true,
+  "entrances": [
+    {
+      "name": "生活一区西侧入口",
+      "roadDistance": 0.09237629443480556
+    },
+    {
+      "name": "生活一区东侧入口",
+      "roadDistance": 0.30965934498902525
+    },
+    {
+      "name": "生活一区南侧入口",
+      "roadDistance": 0.15694722450764792
+    }
+  ],
+  "allSpawnsClear": true,
+  "buildingCount": 230,
+  "refinedLocations": 26,
+  "limits": "Estimated game paths based on the living area one planning roof diagram, adjusted around model buildings. Pavement uses existing terrain collision; not surveyed road alignment or elevation."
+}

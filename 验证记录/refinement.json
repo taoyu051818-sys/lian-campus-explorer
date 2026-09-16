@@ -1,0 +1,301 @@
+{
+  "buildingCount": 245,
+  "refinedLocations": [
+    "community",
+    "dorm56",
+    "police",
+    "fire",
+    "hospital",
+    "hub30",
+    "hub87",
+    "youth",
+    "school",
+    "law",
+    "energy",
+    "dorm62",
+    "workshop",
+    "geology",
+    "incubator",
+    "minzu",
+    "blcu",
+    "uestc",
+    "bupt",
+    "cuc",
+    "library",
+    "sports",
+    "activity",
+    "hall",
+    "dorm3",
+    "stadium"
+  ],
+  "registrations": [
+    {
+      "id": "bupt",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/502f538dc40e40ea9b18acc0508914af.pdf",
+      "method": "Manual trace of actual-built image; affine fit to six red-line coordinates; heights estimated 3.9m/storey. Smaller low-rise links omitted."
+    },
+    {
+      "id": "cuc",
+      "translation": [
+        10,
+        10
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/21b98b42b54d42ad9621d3f424b945ec.pdf",
+      "method": "Manual simplified roof-outline trace from planning total plan, 1888x1335 review frame. Approximate scale from 50m bar; planning geometry, not as-built. Heights estimated 3.9m/storey pending per-wing verification."
+    },
+    {
+      "id": "activity",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/0ab6120f7fe041eab515bee73ddf7ab0.docx",
+      "method": "实建测量图 image2；5 个红线控制点仿射拟合，人工描绘简化外轮廓。H=21.8 m、四层来自实建图；立面依据实建照片简化。"
+    },
+    {
+      "id": "hall",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/bffa53c4f2b84bebae05ea11f4793733.docx",
+      "method": "实建测量图 image2 顺时针旋转 90°至北向上；6 个红线控制点仿射拟合，椭圆主厅与低区外轮廓人工描绘。总高19.70 m来自实建图；低区高5.2 m为照片比例估算。"
+    },
+    {
+      "id": "sports",
+      "translation": [
+        25,
+        -15
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/594775550c264ea39e5dda6616583998.pdf",
+      "method": "第1–2页实建图尺寸约束的简化圆角体块：游泳馆85.31×96.78 m，体育馆79.00×121.40 m；游泳馆高23.9 m，体育馆实建图高29.9 m，附馆17.4 m。双馆相对位置及转角按图近似，未完成共同坐标配准；表皮纹样依据第15页照片抽象表达。"
+    },
+    {
+      "id": "dorm3",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/04/08/1775652498576096054.pdf",
+      "method": "2026年公示附件第2页变更后总平面，按图示50 m比例尺约125 px换算；人工描绘9个住宅主体外轮廓。楼层数和高度来自右侧表。A栋首两层变更不据此推定室内；立面采用通用宿舍窗格。邻接A65食堂不归入本地块。"
+    },
+    {
+      "id": "incubator",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/09/23/1758593138960022228.docx",
+      "method": "2025实建测量图image2，六个界址点仿射拟合并描绘主体外包轮廓。按实建分层图五层，层高暂估4.5 m（总高22.5 m）。采用image20实建照片的深色玻璃、上部铜色表皮与白色屋顶构架，不沿用image19绿色报建外观；立面分格、局部退让和屋顶构架尺寸为近似。"
+    },
+    {
+      "id": "minzu",
+      "translation": [
+        -10,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/14654a9b0cc646fb9e87c3fd46497bb2.pdf",
+      "method": "仅有2024滨海方向鸟瞰效果图。根据三组可见体量搭建开放合院与两组折翼楼，深灰缓坡屋顶、浅色墙面及红色局部构件为图像参考。全部平面尺寸、朝向、楼层及楼高为原型估算；未取得可量取总平面，不代表实建。画面半透明的相邻建筑不重复建入本地块。"
+    },
+    {
+      "id": "blcu",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/5baffd3c19ea4562b8f57f986dd9860c.pdf",
+      "method": "仅有2024鸟瞰效果图。S形连贯楼翼、圆角独立楼及小型方形配楼，白色水平带、绿色立面条和屋顶绿化据图简化。所有平面尺寸、朝向、楼层及楼高为估算，尚无可量取总平面，不代表实建。 v0.8：圆角配楼向东22米、向南30米平移，避让新接入A-20图纸轮廓及本校楼翼；该配楼仍为位置估算。"
+    },
+    {
+      "id": "dorm62",
+      "translation": [
+        0,
+        -5
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/01/22/1769072522990055759.pdf",
+      "method": "2026四区/五区批前总平面，共用底图去重。按1400×990预览图50米比例尺（117像素）量取，北向按图；分离1-1至6号等11个主体，弧线为轮廓近似，保留三组开放庭院。高度/最高层数依据图注与指标表，局部台阶退层、连廊、地下室和门洞未还原。食堂只提取本项目6号，不代表A-38-02配套食堂。立面和蓝色屋顶构件参考效果图，非实建测量。"
+    },
+    {
+      "id": "workshop",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/01/22/1769072450996033400.pdf",
+      "method": "2026批前A-70总平面，1400×990预览图50米比例尺（238像素），北向按图。圆角三角外包轮廓及中庭按图近似描绘，拆为三翼保留露天中庭；5层、规划高度28.10米。效果图参考浅色竖向窗格和蓝灰屋面；三角中庭台阶、局部架空入口及地下室尚未还原，不代表实建。"
+    },
+    {
+      "id": "geology",
+      "translation": [
+        -20,
+        -45
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/06/12/1781253668211085643.pdf",
+      "method": "2026 A-20批前总平面第4页，1800×1273栅格按三个红线坐标控制点作仿射换算（原图X为北坐标、Y为东坐标），保留图中斜北方向。按主体轮廓拆为北侧长翼及两组弧形实践翼，庭院留空。规划最大高度28.4米；3/4层段暂估17.2/22.4米，局部2层退台、屋面三角采光井与曲面渐变待补。白色窗带、低矮屋顶花池参考效果图。相邻北语建筑不重复纳入。"
+    },
+    {
+      "id": "law",
+      "translation": [
+        15,
+        -15
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/06/12/1781254066943007216.pdf",
+      "method": "2026一期/二期第5页总平面，各期分别1—3号及4—6号楼，共用底图只提取一次。1800×1273预览按50米/152像素比例尺、北向向上描绘六栋楼的8个分翼主体，开放庭院不填实。最高层数13/5/6/11/4/5及规划高60.00/25.30/30.10/51.40/20.80/25.30米来自图注；4号9层侧翼42.2米为按主翼层高估算，其他局部2—5层退台未完整恢复。立面参考两份效果图的红褐/白色分区、窗格及屋顶构架；非实建测量。第4页残留东北林业旧名不作为另一套建筑再建。"
+    },
+    {
+      "id": "energy",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/09/15/1757938006931091142.pdf",
+      "method": "采用2025外立面调整附件第7—10页“改造后”效果图；附件标注为1号能源站项目中的2号楼，不误写成2号能源站。双折翼高低分区、玻璃横窗带、白色屋顶折线格栅及屋顶设备为效果图参考。平面113×92米范围、5/3层、23.5/14.1米主体高度与屋顶屏风3—6米均为游戏原型估算，无可量取总平面或实测坐标；尚不代表整个A-44范围或能源站完整楼栋清单。未使用第2—5页改造前立面。"
+    },
+    {
+      "id": "youth",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/09/07/1788750847077099148.pdf",
+      "method": "2026-09批前总平面第1页，2400×1698图按50米/202像素比例尺，北向按图。只描绘A-85本项目红线内1—9号公寓及6号餐饮低区，不把相邻A-85-01/02等合院重复纳入。楼层与高度按可读图注；印章遮挡的4号、8号局部轮廓根据相邻线段和效果图近似，转角、阳台与屋顶设备简化。总图位置仍为地块锚定，非实建测量。"
+    },
+    {
+      "id": "school",
+      "translation": [
+        -10,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2026/06/12/1781254144902098471.pdf",
+      "method": "采用2026附件2“变更后”第1页总平面，非附件1旧方案。转正缩略图1335×1888，按50米/155像素及斜北箭头约27.5度换算；局部尺寸与朝向有人工读图误差。01—07号教学、宿舍、食堂、体育馆按图简化，05号拆翼保留院落；高度采用图注H2值23.00/23.70/20.30/23.95/19.80/23.50/44.80米。层数按效果图估算，部分架空、连廊、逐层退台、屋顶球场与楼内空间未还原。运动场位置与轮廓据图描绘；地形仍为模拟，不是实测标高。"
+    },
+    {
+      "id": "hub30",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/880d1cf69e6f4a338541a37f55114ee4.pdf",
+      "method": "2024公告单页鸟瞰效果图外形参考，无比例尺。场地、朝向、站房与车棚尺寸均为游戏估算；只建本交通设施，排除背景综合楼。车辆为静态场景陈设，非运营数量。"
+    },
+    {
+      "id": "hub87",
+      "translation": [
+        15,
+        -25
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/9b1412a6ce9741f49efd7e8043c927a3.pdf",
+      "method": "2024公告单页鸟瞰效果图外形参考，无比例尺。场地、朝向、站房与车棚尺寸均为游戏估算；只建本交通设施，排除背景综合楼。车辆为静态场景陈设，非运营数量。"
+    },
+    {
+      "id": "hospital",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/dd3bdbb92da74593aaaf2793b5b6ef5a.pdf",
+      "method": "2025.06 A21/A22技术修正报告第3页明确A-22为已建校医院，第6页界址坐标用于地块形状；全园只做锚点平移，未经投影坐标配准。建筑参考2023单页效果图，主楼、临街低区、入口附楼及两座配套房均为估算轮廓，5层/21.2米主楼为外观估算，不将45米控规限高当楼高。"
+    },
+    {
+      "id": "fire",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/2468752f3a444613b6baf09f235265f1.docx",
+      "method": "2025消防站规划核实附件：image2实建位置图、image4/6/8/10实建楼层及屋顶图、image13/14实建照片。按J1/J8/J13界址点近似配准图内轮廓，主体总宽45.95米；8.9/11.9/7.5/7.2米采用屋顶图注，局部阶梯轮廓简化，训练塔20米为照片估算。全园在A-85与A-87之间地块级定位，不代表CRS配准。"
+    },
+    {
+      "id": "police",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/33b804ba6d7a4fb1bba3b8ff2d1602ea.pdf",
+      "method": "2025派出所规划核实PDF第3页实际建设位置图、第9页实建照片，2025一期控规正文确认A-29-01。1335×1888参考图按三个可读建筑角点坐标仿射校准，楼翼与庭院线人工近似提取，13.8/10.2米为图注；低区5.5米暂沿报建图估算。全园仍按地块关系锚定，不表示完成投影坐标配准，室内未建。"
+    },
+    {
+      "id": "dorm56",
+      "translation": [
+        25,
+        -25
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/25debde2816b4d37a9c0f72000a7847c.docx",
+      "method": "生活一区核实DOCX实建图S=54477.7平方米，与2025控规A-56面积54478平方米及建二路/南湾路、地块形状交叉对应，属于有依据的对应推断。实建小图不够清晰，轮廓与退台主要描绘image1报建屋顶图，照片参考水平阳台带。按实建地块面积校准图上红线近似比例，北向约45度；层数简化、层高估算，全园仍为地块级定位，不是实建测绘模型。"
+    },
+    {
+      "id": "community",
+      "translation": [
+        0,
+        0
+      ],
+      "scale": 1,
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/17b821afeeec4048bbf4b3e0a79eb447.pdf",
+      "method": "A06分期规划核实区域示意图支持地块和楼群排列。人工简化1400×1050图中的可见屋顶，按整地块轮廓与2025控规78746平方米作面积比例估算；不能把印刷1:500套用到重采样图。北向依建一路/文黎大道/规二路/规三路对应近似，未全园测绘配准。高低住宅按11层/3层作游戏体量假设，立面通用估算；仅红线圈定六栋为本次核实范围，背景楼群不作竣工证明。"
+    },
+    {
+      "id": "canteen",
+      "translation": [
+        -5,
+        -5
+      ],
+      "scale": 1,
+      "source": "https://www.openstreetmap.org/way/1223487854",
+      "method": "OSM geographic footprint converted to local metres without rescaling. A-38-02 placement is a candidate inferred from neighbouring sports centre and atlas land use, not a surveyed registration. Two floors, 11.2 m height, facade modules and rooftop equipment are photo-based estimates. Back facade is simplified."
+    },
+    {
+      "id": "dorm52",
+      "translation": [
+        0,
+        -5
+      ],
+      "scale": 1,
+      "source": "https://admission.blcu.edu.cn/en/2024/0819/c1643a2810/page.htm",
+      "method": "BLCU official guide aerial and Hainan Daily 2022 aerial support four courtyards around a circular shared low-rise. OSM living-area-two boundary is about 55109 sqm versus A-52 control-plan 56187 sqm; this is supporting evidence only, not parcel proof. Courtyard sizes, seven floors/25.2m, two-storey shared ring, orientation, gaps and outdoor paths are game estimates. No interiors or unrelated background buildings."
+    }
+  ],
+  "facadeStats": {
+    "facadeBuildings": 245,
+    "decorativeMeshes": 246,
+    "landmarks": [
+      "library",
+      "stadium",
+      "sports",
+      "hall",
+      "activity",
+      "dorm3"
+    ]
+  },
+  "standCollisionMeshes": 43,
+  "finiteMeshPositions": true,
+  "roadConflicts": [],
+  "allSpawnsClear": true,
+  "meshCount": 291,
+  "vertices": 1580527
+}

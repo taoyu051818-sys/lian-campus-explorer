@@ -1,0 +1,20 @@
+{
+  "version": "0.15.0",
+  "buildingCount": 204,
+  "livingAreaOneBodies": 33,
+  "refinedLocations": 25,
+  "approximateFootprintArea": 13295.089734056472,
+  "neighborConflicts": [],
+  "allSpawnsClear": true,
+  "registration": {
+    "id": "dorm56",
+    "translation": [
+      25,
+      -25
+    ],
+    "scale": 1,
+    "source": "https://wap.study-hn.cn/upload/file/2025/08/04/25debde2816b4d37a9c0f72000a7847c.docx",
+    "method": "生活一区核实DOCX实建图S=54477.7平方米，与2025控规A-56面积54478平方米及建二路/南湾路、地块形状交叉对应，属于有依据的对应推断。实建小图不够清晰，轮廓与退台主要描绘image1报建屋顶图，照片参考水平阳台带。按实建地块面积校准图上红线近似比例，北向约45度；层数简化、层高估算，全园仍为地块级定位，不是实建测绘模型。"
+  },
+  "limitations": "A-56 correspondence is inferred from area and surrounding roads. Planning roof diagram supplies approximate silhouettes; floor heights are estimated. Building dimensions are estimates; this is not a planning-compliance review. Scale comes from the approximate planning redline area matched to the actual survey parcel area; global CRS is not registered."
+}

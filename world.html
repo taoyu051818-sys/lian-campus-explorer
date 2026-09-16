@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#183f3b" />
+    <title>黎安 · 全园连续漫游</title>
+  </head>
+  <body>
+    <canvas
+      id="scene"
+      aria-label="可连续行走的三维校园，WASD移动，拖动转向"
+      tabindex="0"
+    ></canvas>
+    <header class="glass">
+      <a href="./">← 位置总图</a>
+      <div><b>黎安 · 全园漫游</b><small>一期连续场景 / 01</small></div>
+      <button id="about-open">模型说明</button>
+    </header>
+    <nav class="glass modes" aria-label="视角">
+      <button data-mode="third" aria-pressed="true">第三人称</button
+      ><button data-mode="first" aria-pressed="false">第一人称</button
+      ><button data-mode="orbit" aria-pressed="false">鸟瞰总图</button>
+    </nav>
+    <section class="glass destination">
+      <label for="destination">前往学校与设施</label>
+      <div>
+        <select id="destination"></select
+        ><button id="travel">前往</button>
+      </div>
+      <p id="destination-note"></p>
+      <a id="evidence" target="_blank" rel="noopener">查看该地块资料 ↗</a
+      ><button id="orient">朝向此地</button>
+    </section>
+    <div id="labels" aria-hidden="true"></div>
+    <div id="crosshair" hidden>＋</div>
+    <aside class="glass minimap">
+      <div><b>位置与朝向</b><span>↑ 北</span></div>
+      <canvas
+        id="mini"
+        width="300"
+        height="260"
+        aria-label="实时位置小地图"
+      ></canvas>
+      <p id="location">正在进入校园…</p>
+    </aside>
+    <footer class="glass">
+      <span id="hint"
+        >WASD 移动 · 拖动转向 · Shift 奔跑 · 空格跳跃 · V 切换视角</span
+      ><button id="speed" aria-pressed="false">快速穿行：关</button
+      ><button id="focus-view" aria-pressed="false">沉浸查看</button
+      ><span id="stats"></span>
+    </footer>
+    <div id="touch">
+      <div class="pad">
+        <button data-key="KeyW" aria-label="前进">↑</button
+        ><button data-key="KeyA" aria-label="左移">←</button
+        ><button data-key="KeyS" aria-label="后退">↓</button
+        ><button data-key="KeyD" aria-label="右移">→</button>
+      </div>
+      <button id="jump">跳跃</button>
+    </div>
+    <dialog id="about">
+      <button id="about-close" aria-label="关闭">×</button
+      ><small>GEOMETRY & SOURCES</small>
+      <h1>从灰模到可辨认的建筑</h1>
+      <p>
+        33 个地点和 15
+        条规划道路进入同一个米制三维场景。可以沿道路跨地块连续行走，也可以从索引快速前往各处。
+      </p>
+      <ul>
+        <li>
+          电子科大：沿用规划核实图描绘的 8
+          个建筑体块，朝北方向和米制尺寸保持一致；在总图中的平移定位仍为地块级估算，楼高按层数估算。
+        </li>
+        <li>
+          北邮：规划核实第4页的实建合院轮廓，参考附件照片补水平遮阳板、窗带和屋顶栏架；小体量连廊尚未完整描绘。
+        </li>
+        <li>
+          中传：规划总平面的四栋主体简化轮廓，非实建复原。北邮与中传的楼高、逐窗开间仍有估算；全园配准为地块级。
+        </li>
+        <li>
+          图书馆与体育场：依据720云全景与用户截图建立可辨认的外形。图书馆采用19层塔楼、4层退台裙楼；跑道、看台和尺寸均为近似，未取得对应单体CAD。
+        </li>
+        <li>
+          体育中心、活动中心、会堂：参考实建核实图与照片；生活三区：参考变更总平面。局部细节和全园位置仍有简化。
+        </li>
+        <li>
+          孵化中心：实建图外包轮廓与照片参考表皮，高度暂估。民大、北语：仅效果图参考外形，尺寸、层数与朝向均待图纸校准。
+        </li>
+        <li>
+          四区/五区宿舍、产教协同工坊、地质资源中心：参考2026规划总平面，保留弧形楼翼与中庭；宿舍两期共用底图已去重。局部退台和入口外观待补，立面细节仍有近似，不代表建成现状。
+        </li>
+        <li>
+          法务中心：两期总平面合成六栋楼，保留庭院与高低楼翼；局部退层及立面简化。1号能源站：采用2号楼改造后效果图，玻璃窗带、屋顶格栅与设备为参考，尺寸和楼高暂估。
+        </li>
+        <li>
+          青年文化基地：按2026红线提取公寓及餐饮低区，相邻地块不重复建入。外国语高中：采用变更后总平面，补校舍、庭院与蓝色跑道；立面和部分层数简化，操场地面为模拟平整标高。
+        </li>
+        <li>
+          综合服务中心与产教融合中心的现有附件使用同一幅效果图，需补分区总平面再建，当前保留各自定位与示意体量。
+        </li>
+        <li>
+          其余地块：按地块范围、道路避让和设施类别生成示意建筑。轮廓、数量、高度与出入口待逐栋图纸校核，不表示实际建成形态。
+        </li>
+        <li>
+          道路：沿现有总图示意中心线铺设连续路面，宽度为漫游原型设定，路口与入口未做工程级校准。
+        </li>
+        <li>
+          地形：连续的平缓模拟地面与岸线过渡，未接入 DEM
+          或实测高程。浅色地块为定位范围，不是建筑基底。
+        </li>
+        <li>范围：当前为一期。二期尚未配准，仍在位置总图中单独查看。</li>
+        <li>
+          A-30换乘停车场、A-87车辆蓄车场：参考各自2024效果图，补折板/椭圆光伏屋顶站房、车棚、静态车辆、标线与场内入口；尺寸和朝向估算，不含背景综合楼，不代表实际车位数量。
+        </li>
+        <li>
+          校区医院：2025修正报告明确对应A-22，地块按五个界址点恢复形状。参考2023效果图补主楼、低区花园、入口和配套房；建筑尺寸与5层楼高估算，未做全园投影坐标配准。
+        </li>
+        <li>
+          消防站：新增A-86独立地点，北临南湾路，邻A-85与A-87。参考2025实建测量图、楼层图及照片，补阶梯楼翼、六开间车库门面、训练塔与前场；训练塔高度和场内铺装估算，室内未建。
+        </li>
+        <li>
+          派出所：新增A-29-01独立地点，采用2025实建位置图和照片，保留蓝白楼翼与两处庭院。13.8/10.2米楼高取图注，低区高度和立面开间仍有估算；全园地块级定位，室内未建。
+        </li>
+      </ul>
+      <p id="model-count"></p>
+      <p>
+        A-52候选外景：生活二区两组航拍参考四个合院与中央环形共享外廊，补七条相连室外步道和低灌木。7层/25.2米、尺寸及朝向估算，地块对应待复核；未建室内。
+      </p>
+      <p>
+        学生生活一区：核实图用地54477.7平方米与A-56控规54478平方米相符，结合道路和形状作对应推断。按报建屋顶图与实景照片细化1—11号楼，补退台、白色阳台带与配套楼；层高和比例有估算，楼群为避让示意道路东移25米、南移25米。
+        本版补14组相连步道、三处道路入口连接、3/6/8号楼露天庭院通道和低灌木；路径与宽度为游戏近似。
+      </p>
+      <p>
+        龙光国际社区：A06范围图参考楼群排列，补高层及低层联排外形、窗面与屋顶边框。11层/3层及尺寸为游戏估算；仅8、24、27、28、31、34号楼属于该附件本次核实范围，背景楼群不代表全部已验收。
+        本版补相连步道、四向道路连接和庭院低灌木；路径与铺装宽度为游戏近似，未取得道路竣工图。
+      </p>
+      <p>
+        食堂：开源轮廓与官方照片参考外观，A-38-02对应待复核；两层、11.2米楼高和屋顶设备为估算。轮廓
+        ©
+        <a
+          href="https://www.openstreetmap.org/copyright"
+          target="_blank"
+          rel="noopener"
+          >OpenStreetMap contributors · ODbL</a
+        >。
+      </p>
+      <details>
+        <summary id="pending-count">查看仍待细化的地点</summary>
+        <ul id="pending-buildings"></ul>
+        <p>
+          后续仅完善建筑外观与室外环境。已做外形细化的建筑仍需补精确尺寸、入口、背面立面与屋顶；效果图参考模型不等于实建复原。
+        </p>
+      </details>
+      <p>
+        绿化参考鸟瞰图：以低矮灌木、绿篱和开敞草地为主；具体种植位置与品种为近似。
+      </p>
+      <p>
+        <a
+          href="https://www.720yun.com/vr/5dejtgefzu6"
+          target="_blank"
+          rel="noopener"
+          >查看720云全景参考 ↗</a
+        >
+      </p>
+      <a href="./detail.html">电子科大局部图纸漫游 ↗</a>
+    </dialog>
+    <div id="loading">
+      <b>L · A</b>
+      <h1>连接校园、道路与地块</h1>
+      <p id="loading-text">正在生成连续场景…</p>
+    </div>
+    <div id="toast" role="status" hidden></div>
+    <script type="module" src="/src/world.ts"></script>
+  </body>
+</html>

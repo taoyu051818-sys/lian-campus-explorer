@@ -1,0 +1,19 @@
+{
+  "version": "0.21.0",
+  "paths": 7,
+  "totalPathLengthIncludingSharedSegments": 517.3817979712447,
+  "samples": 3156,
+  "minimumPavementToBuildingClearance": 1.0755412817818868,
+  "maximumSimulatedGrade": 0.0006806222114882596,
+  "connected": true,
+  "entrances": [
+    {
+      "name": "生活二区候选道路连接",
+      "roadDistance": 0.0000940014100569161
+    }
+  ],
+  "allSpawnsClear": true,
+  "buildingCount": 245,
+  "refinedLocations": 26,
+  "limits": "Photo-reference candidate courtyards with estimated exterior paths. Parcel correspondence remains unverified. Pavement uses existing terrain collision; not surveyed road alignment or elevation."
+}

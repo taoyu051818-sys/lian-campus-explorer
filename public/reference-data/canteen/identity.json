@@ -1,0 +1,17 @@
+{
+  "confirmedBy": "user",
+  "date": "2026-09-16",
+  "currentName": "8号食堂",
+  "formerName": "一号食堂",
+  "image": "user-confirmed-aerial.png",
+  "locationEvidence": "Annotated aerial: across the road from the blue running track at comprehensive sports centre, toward Dadun.",
+  "parcelMatch": "A-38-02 supported by planning function and relative location; not geodetic registration.",
+  "separateCurrentCanteens": {
+    "1": "生活一区",
+    "2": "生活二区",
+    "3": "生活三区"
+  },
+  "limitations": "v0.26 preserves footprint and estimated 2F/11.2m envelope; roof array and equipment layout follow aerial appearance. Model counts and entrance dimensions are estimates; back elevation and precise registration remain unverified.",
+  "modelRoofModules": 191,
+  "modelMechanicalUnits": 4
+}

@@ -1,0 +1,10 @@
+{
+  "places": 31,
+  "comparison": true,
+  "sharedParcel": true,
+  "threeD": true,
+  "regionalRelation": true,
+  "mobileOverflow": false,
+  "detailScene": true,
+  "errors": []
+}

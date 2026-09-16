@@ -1,0 +1,174 @@
+{
+  "initial": {
+    "mode": "third",
+    "position": [
+      -50.79820259571552,
+      14.845688472141083,
+      90.71094114640275
+    ],
+    "selected": "uestc",
+    "travelled": 0.00007453386271538464,
+    "buildings": 178,
+    "roads": 15,
+    "fps": 60.00000000000002
+  },
+  "geometry": {
+    "places": 31,
+    "buildings": 178,
+    "traced": 8,
+    "roadConflicts": 0,
+    "minimumRoadElevation": 6.345663680676816
+  },
+  "spawns": [
+    {
+      "id": "uestc",
+      "clearance": 1.042774997724182
+    },
+    {
+      "id": "bupt",
+      "clearance": 1.0427750004299838
+    },
+    {
+      "id": "cuc",
+      "clearance": 1.0427750187952576
+    },
+    {
+      "id": "minzu",
+      "clearance": 1.0427749893405043
+    },
+    {
+      "id": "blcu",
+      "clearance": 1.0427749951688767
+    },
+    {
+      "id": "law",
+      "clearance": 1.0427749998230738
+    },
+    {
+      "id": "geology",
+      "clearance": 1.042775000951373
+    },
+    {
+      "id": "library",
+      "clearance": 1.0427749971546323
+    },
+    {
+      "id": "stadium",
+      "clearance": 1.0427749963941793
+    },
+    {
+      "id": "sports",
+      "clearance": 1.0427750010875414
+    },
+    {
+      "id": "activity",
+      "clearance": 1.04277498818022
+    },
+    {
+      "id": "hall",
+      "clearance": 1.0427749976493779
+    },
+    {
+      "id": "incubator",
+      "clearance": 1.0427749913845528
+    },
+    {
+      "id": "dorm62",
+      "clearance": 1.0427749942035547
+    },
+    {
+      "id": "dorm3",
+      "clearance": 1.0427749985106622
+    },
+    {
+      "id": "dorm52",
+      "clearance": 1.042774999999999
+    },
+    {
+      "id": "dorm56",
+      "clearance": 1.0427749998007272
+    },
+    {
+      "id": "dorm72",
+      "clearance": 1.0427749982142132
+    },
+    {
+      "id": "canteen",
+      "clearance": 1.0427750141802505
+    },
+    {
+      "id": "hospital",
+      "clearance": 1.042774998493467
+    },
+    {
+      "id": "services",
+      "clearance": 1.0427749998660971
+    },
+    {
+      "id": "industry",
+      "clearance": 1.0427749901430658
+    },
+    {
+      "id": "hub30",
+      "clearance": 1.0427749983291719
+    },
+    {
+      "id": "hub87",
+      "clearance": 1.0427750008834735
+    },
+    {
+      "id": "energy",
+      "clearance": 1.0427749975675908
+    },
+    {
+      "id": "workshop",
+      "clearance": 1.0427750053912863
+    },
+    {
+      "id": "teaching",
+      "clearance": 1.0427750046930324
+    },
+    {
+      "id": "youth",
+      "clearance": 1.0427749993016917
+    },
+    {
+      "id": "school",
+      "clearance": 1.0427750072433675
+    },
+    {
+      "id": "community",
+      "clearance": 1.0427750028574359
+    },
+    {
+      "id": "village",
+      "clearance": 1.0427750002888843
+    }
+  ],
+  "walkDistance": 5.8199806501209626,
+  "jumpHeight": 1.0727500000000028,
+  "wallCollision": {
+    "wall": {
+      "start": [
+        1328.685404585766,
+        1193.2410213133378
+      ],
+      "mid": [
+        1330.0590102252527,
+        1198.048641051542
+      ]
+    },
+    "end": [
+      1329.9379892244244,
+      20.14540400930081,
+      1197.625554023328
+    ]
+  },
+  "modalPauses": true,
+  "continuousRouteMetres": 909.2847503026962,
+  "mobile": {
+    "overflow": false,
+    "distance": 2.51999162170186
+  },
+  "errors": []
+}

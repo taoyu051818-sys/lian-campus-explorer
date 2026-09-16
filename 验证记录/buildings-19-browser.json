@@ -1,0 +1,16 @@
+{
+  "version": "0.19.0",
+  "url": "http://127.0.0.1:4173/world.html",
+  "browserTabId": "7",
+  "orbitDestination": "teaching",
+  "outdoorTrackCourtsAndPathsVisible": true,
+  "firstPersonMode": true,
+  "travelToTeachingRoad": true,
+  "observedFps": [
+    56,
+    60
+  ],
+  "consoleErrors": [],
+  "fullWalkingRouteTested": false,
+  "captureLimitation": "Known CUA compositor displays page in top-left quarter; not application CSS."
+}

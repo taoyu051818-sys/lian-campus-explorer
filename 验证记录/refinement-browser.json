@@ -1,0 +1,19 @@
+{
+  "version": "0.4.0",
+  "productionSceneLoaded": true,
+  "checkedViews": [
+    "UESTC third person",
+    "library orbit and immersive",
+    "BUPT orbit",
+    "stadium orbit and immersive"
+  ],
+  "observedFPS": 60,
+  "viewport": "existing in-app portrait viewport",
+  "fixedIssues": [
+    "merged mesh UV mismatch",
+    "stadium ground surface normals",
+    "model focus camera target",
+    "panel occlusion via immersive toggle"
+  ],
+  "notes": "Browser inspection and NullEngine geometry tests; original v0.3 movement tests remain historical, not re-run as a 909m route this version."
+}

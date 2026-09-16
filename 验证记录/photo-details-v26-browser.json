@@ -1,0 +1,16 @@
+{
+  "version": "0.26.0",
+  "date": "2026-09-16",
+  "url": "http://127.0.0.1:4173/world.html",
+  "browser": "Codex In-app Browser",
+  "checked": [
+    "生活二区鸟瞰、拉近立面与第一人称到达视角",
+    "8号食堂鸟瞰屋顶板阵列及后侧设备区",
+    "8号食堂第一人称入口雨棚视角",
+    "两处目的地选择和前往交互"
+  ],
+  "consoleErrors": [],
+  "observedFPS": "46–60 during view changes, 60 in settled overview",
+  "limitations": "Browser checked arrival and appearance only; no full walking route traversal this version. Geometry and landscape checks recorded separately.",
+  "previewRecovery": "Old preview process had stopped; restarted Vite on 4173, HTTP 200, fresh tab loaded final build."
+}

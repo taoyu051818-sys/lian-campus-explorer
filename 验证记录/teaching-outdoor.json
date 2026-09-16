@@ -1,0 +1,15 @@
+{
+  "version": "0.21.0",
+  "bodyCount": 245,
+  "refinedLocations": 26,
+  "pendingLocations": 7,
+  "teachingCompletion": "partial exterior only; A-75 teaching building remains schematic",
+  "outdoorSurfaces": 13,
+  "walkways": 8,
+  "samples": 11692,
+  "conflicts": [],
+  "finiteMeshPositions": true,
+  "allSpawnsClear": true,
+  "source": "https://wap.study-hn.cn/upload/file/2025/08/04/638b7bfe28a2419cb2d13f680a489108.pdf",
+  "limitations": "Earlier detailed-plan inset reproduced in 2024 risk assessment. Field scale, colours, markings, paths and registration estimated; not latest as-built. A-80 background omitted."
+}

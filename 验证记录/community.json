@@ -1,0 +1,20 @@
+{
+  "version": "0.16.0",
+  "buildingCount": 245,
+  "communityBodies": 38,
+  "refinedLocations": 26,
+  "approximateFootprintArea": 22061.34689012915,
+  "neighborConflicts": [],
+  "allSpawnsClear": true,
+  "registration": {
+    "id": "community",
+    "translation": [
+      0,
+      0
+    ],
+    "scale": 1,
+    "source": "https://wap.study-hn.cn/upload/file/2025/08/04/17b821afeeec4048bbf4b3e0a79eb447.pdf",
+    "method": "A06分期规划核实区域示意图支持地块和楼群排列。人工简化1400×1050图中的可见屋顶，按整地块轮廓与2025控规78746平方米作面积比例估算；不能把印刷1:500套用到重采样图。北向依建一路/文黎大道/规二路/规三路对应近似，未全园测绘配准。高低住宅按11层/3层作游戏体量假设，立面通用估算；仅红线圈定六栋为本次核实范围，背景楼群不作竣工证明。"
+  },
+  "limitations": "A-06 is explicitly named in the scope diagram. Only six red-highlighted buildings belong to this verification submission; background outlines do not prove completion. Footprints are simplified image traces with area-based scale estimates; heights and facade modules are estimates. Global CRS is not registered."
+}

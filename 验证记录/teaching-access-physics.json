@@ -1,0 +1,57 @@
+{
+  "version": "0.25.0",
+  "engine": "Babylon Havok, same capsule/step/speed/gravity integration as world.ts",
+  "totalFrames": 14270,
+  "routes": [
+    {
+      "name": "A75 up",
+      "completed": 106,
+      "total": 106,
+      "minY": 14.706955491709977,
+      "maxY": 29.54703013496007,
+      "failed": null
+    },
+    {
+      "name": "bridge A75 to A79",
+      "completed": 9,
+      "total": 9,
+      "minY": 29.51310953860187,
+      "maxY": 29.51310953860187,
+      "failed": null
+    },
+    {
+      "name": "A79 down",
+      "completed": 82,
+      "total": 82,
+      "minY": 18.639820055785595,
+      "maxY": 29.51310953860187,
+      "failed": null
+    },
+    {
+      "name": "A79 up",
+      "completed": 82,
+      "total": 82,
+      "minY": 18.639820055785595,
+      "maxY": 29.55077342008551,
+      "failed": null
+    },
+    {
+      "name": "bridge A79 to A75",
+      "completed": 9,
+      "total": 9,
+      "minY": 29.519164781510923,
+      "maxY": 29.519166157114597,
+      "failed": null
+    },
+    {
+      "name": "A75 down",
+      "completed": 106,
+      "total": 106,
+      "minY": 14.69541201163215,
+      "maxY": 29.519166157114597,
+      "failed": null
+    }
+  ],
+  "passed": true,
+  "terrainNote": "2m mesh sampled from the existing rendered terrain height function; tests the full stair and bridge physical meshes, not a teleport between ends."
+}

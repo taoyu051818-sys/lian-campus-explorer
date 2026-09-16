@@ -1,0 +1,97 @@
+{
+  "updated": "2026-09-16",
+  "automationId": "automation-2",
+  "goalStatus": "blocked",
+  "interiors": false,
+  "refinedLocations": 29,
+  "pendingLocations": 4,
+  "locations": [
+    {
+      "id": "dorm52",
+      "name": "学生宿舍地块",
+      "parcel": "A-52",
+      "status": "partial-exterior",
+      "complete": false,
+      "reason": "四个候选合院、中央共享外廊及7条步道已建；v0.26依据管理局实景照片，将宿舍主楼修正为6层、共享外廊3层，补白色阳台网格、玻璃栏板、百叶、蓝色双层框、红砖楼梯墙及院落低灌木。21.6米/10.8米高度按3.6米层高估算，尺寸、朝向和A52地块对应仍待核。生活二区独立食堂照片已归档，但缺可靠位置未另建。"
+    },
+    {
+      "id": "dorm72",
+      "name": "学生宿舍地块",
+      "parcel": "A-72",
+      "status": "needs-evidence",
+      "complete": false,
+      "reason": "2025控规A-72宿舍用地20499平方米，配洗衣房与商业；尚无可靠运营名称或对应总平面。"
+    },
+    {
+      "id": "canteen",
+      "name": "8号食堂（原一号食堂）",
+      "parcel": "A-38-02",
+      "status": "partial-exterior",
+      "complete": false,
+      "reason": "用户确认现8号食堂即原一号食堂，在综合体育中心蓝色跑道隔路一侧、靠大墩方向；与生活一区、二区、三区食堂分别记录。v0.26按用户航拍补密集深色屋顶板阵列、后侧设备区与入口雨棚；模型191块板和4组设备仅为视觉近似，不是实测数量。2层/11.2米、背面、入口尺寸及A38-02精确配准仍待核，不计整处完成。"
+    },
+    {
+      "id": "services",
+      "name": "综合服务中心规划项目",
+      "parcel": "A-28",
+      "status": "planning-exterior-complete",
+      "complete": true,
+      "reason": "按2024-08-30社稳公示内嵌总图和2024批前效果图制作A-28弧形合院、沿分界直翼、1F展馆及室外步道。8F和规划高度44.9米来自图注；主体36米、波浪屋面、展馆5.8米及通道为外观近似。红线面积24899.92平方米用于估计图面比例，整组适配示意道路东移30米、南移15米，非测绘配准。2026同名办事大厅在A-59，不代表此规划项目竣工。"
+    },
+    {
+      "id": "industry",
+      "name": "产教融合中心一期",
+      "parcel": "A-29",
+      "status": "planning-exterior-complete",
+      "complete": true,
+      "reason": "按2024-08-30社稳公示总图制作A-29南部半环形楼、开放庭院、相连步道及低灌木。8F/2D、H44.9米来自图注，仅建地上外景；保留A-29北部派出所为独立模型，不重复。与A-28共用同一比例和变换，门窗、屋顶曲线和入口为游戏近似，非竣工测绘。"
+    },
+    {
+      "id": "teaching",
+      "name": "公共教学服务中心及配套",
+      "parcel": "A-75 / A-79",
+      "status": "planning-exterior-complete",
+      "complete": true,
+      "reason": "教学楼、体育场和连廊的规划参考外景已接通。v0.25补A75/A79两组室外折返楼梯、平台、透明护栏及地面接入，A75 96级、A79 72级，每级约0.15米、净宽3米；为游戏通行估算，不来自楼梯施工详图。Havok同参数人物完成上楼、过桥、下楼及反向返回，不需要跳跃或传送。建筑逐层退台、立面尺寸、地形和整体坐标仍为简化或估算，非竣工测绘；未建室内。"
+    },
+    {
+      "id": "village",
+      "name": "大墩村及周边",
+      "parcel": "A-39 / A-41",
+      "status": "needs-evidence",
+      "complete": false,
+      "reason": "A-39为现状农村宅基地；A-41在2025控规中为九年一贯制学校用地，不能把整个合并范围铺满住宅。当前村落体量为示意，缺逐栋位置、尺寸与村道测绘。"
+    }
+  ],
+  "version": "0.26.0",
+  "partialLocations": [
+    "canteen",
+    "dorm52"
+  ],
+  "bodyCount": 262,
+  "automationStatus": "PAUSED",
+  "blockReason": "当前手动建模已完成A28/A29及A75/A79规划参考外景，尚余生活二区A52候选、A72、8号食堂和大墩四处。目标工具blocked与自动跟进PAUSED为历史状态，不代表本轮未推进。",
+  "evidenceRechecked": "2026-09-16",
+  "newEvidenceAvailable": [
+    "services",
+    "industry",
+    "teaching"
+  ],
+  "userLocationClarification": {
+    "date": "2026-09-16",
+    "source": "user confirmation in current task",
+    "confirmed": [
+      "生活二区与生活一区相邻",
+      "大墩附近带麦当劳、瑞幸的独立食堂对应运营8号食堂"
+    ],
+    "notConfirmed": [
+      "A-38-02与8号食堂的精确地块对应",
+      "建筑测绘坐标"
+    ]
+  },
+  "completedThisVersion": [],
+  "refinedThisVersion": [
+    "dorm52",
+    "canteen"
+  ]
+}

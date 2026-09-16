@@ -1,0 +1,16 @@
+{
+  "version": "0.25.0",
+  "url": "http://127.0.0.1:4173/world.html",
+  "overviewVisible": true,
+  "firstPersonArrival": true,
+  "consoleErrors": 0,
+  "observedFps": 60,
+  "checked": [
+    "two exterior stair towers and bridge",
+    "transparent balustrades",
+    "ground approach visible after parcel-overlay correction",
+    "first-person road arrival"
+  ],
+  "fullBrowserWalk": false,
+  "physicsTraversal": "Six continuous bidirectional route legs passed in Havok; see teaching-access-physics.json."
+}

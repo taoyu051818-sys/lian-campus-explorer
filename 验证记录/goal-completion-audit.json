@@ -1,0 +1,48 @@
+{
+  "version": "0.26.0",
+  "scopePreserved": true,
+  "completionProven": false,
+  "sameEvidenceBlockerRecurringSince": "v0.19, also recorded in v0.20 and v0.21",
+  "independentWorkCompleted": [
+    "canteen candidate envelope and entrance path",
+    "A52 candidate courtyards, paths and shrubs",
+    "A75/A79 official scheme building exterior, stadium and elevated bridge; ground routes; bridge stair access pending",
+    "A28/A29 planning-reference exteriors, shared registration, preserved police, outdoor courtyard paths and shrubs",
+    "A75/A79 exterior stair access and safe bridge crossing; bidirectional Havok character traversal passed",
+    "v0.26 photo-based six-storey dormitory facade, three-storey shared gallery, canteen roof array and entrance canopy"
+  ],
+  "remaining": [
+    {
+      "id": "dorm52",
+      "complete": false,
+      "missingEvidence": "四个候选合院、中央共享外廊及7条步道已建；v0.26依据管理局实景照片，将宿舍主楼修正为6层、共享外廊3层，补白色阳台网格、玻璃栏板、百叶、蓝色双层框、红砖楼梯墙及院落低灌木。21.6米/10.8米高度按3.6米层高估算，尺寸、朝向和A52地块对应仍待核。生活二区独立食堂照片已归档，但缺可靠位置未另建。"
+    },
+    {
+      "id": "dorm72",
+      "complete": false,
+      "missingEvidence": "2025控规A-72宿舍用地20499平方米，配洗衣房与商业；尚无可靠运营名称或对应总平面。"
+    },
+    {
+      "id": "canteen",
+      "complete": false,
+      "missingEvidence": "用户确认现8号食堂即原一号食堂，在综合体育中心蓝色跑道隔路一侧、靠大墩方向；与生活一区、二区、三区食堂分别记录。v0.26按用户航拍补密集深色屋顶板阵列、后侧设备区与入口雨棚；模型191块板和4组设备仅为视觉近似，不是实测数量。2层/11.2米、背面、入口尺寸及A38-02精确配准仍待核，不计整处完成。",
+      "name": "8号食堂（原一号食堂）",
+      "reason": "用户确认现8号食堂即原一号食堂，在综合体育中心蓝色跑道隔路一侧、靠大墩方向；与生活一区、二区、三区食堂分别记录。v0.26按用户航拍补密集深色屋顶板阵列、后侧设备区与入口雨棚；模型191块板和4组设备仅为视觉近似，不是实测数量。2层/11.2米、背面、入口尺寸及A38-02精确配准仍待核，不计整处完成。"
+    },
+    {
+      "id": "village",
+      "complete": false,
+      "missingEvidence": "A-39为现状农村宅基地；A-41在2025控规中为九年一贯制学校用地，不能把整个合并范围铺满住宅。当前村落体量为示意，缺逐栋位置、尺寸与村道测绘。"
+    }
+  ],
+  "goalStatus": "blocked",
+  "automationStatus": "PAUSED",
+  "updated": "2026-09-16",
+  "evidenceRechecked": "2026-09-16",
+  "newEvidenceAvailable": [
+    "services",
+    "industry",
+    "teaching"
+  ],
+  "pendingLocations": 4
+}

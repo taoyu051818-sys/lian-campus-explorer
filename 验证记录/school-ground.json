@@ -1,0 +1,8 @@
+{
+  "vertices": 4524,
+  "upwardNormals": true,
+  "finiteMesh": true,
+  "clearRoadAndBuildings": true,
+  "terrainHeightRange": 0.00010866045137092328,
+  "syntheticFieldElevation": 20.2
+}

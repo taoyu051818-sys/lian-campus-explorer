@@ -1,0 +1,53 @@
+{
+  "version": "0.21.0",
+  "date": "2026-09-16",
+  "placeId": "dorm52",
+  "status": "partial-exterior",
+  "parcelCorrespondenceVerified": false,
+  "complete": false,
+  "sourceURLs": [
+    "https://admission.blcu.edu.cn/en/2024/0819/c1643a2810/page.htm",
+    "https://res.hndaily.cn/file/news/20220530/cid_14_302711.html"
+  ],
+  "photoObservedLayout": "four courtyards and central circular shared low rise",
+  "estimates": {
+    "courtWidth": 58,
+    "courtDepth": 60,
+    "dormFloors": 7,
+    "dormHeight": 25.2,
+    "sharedFloors": 2,
+    "sharedHeight": 7.2,
+    "orientationDegrees": 32,
+    "translation": [
+      0,
+      -5
+    ]
+  },
+  "checks": {
+    "typescriptViteBuild": true,
+    "allBodyRoadLandOverlap": true,
+    "finiteFacadeMeshes": true,
+    "pathsConnected": true,
+    "pathPavementSamples": 3156,
+    "courtyardEntriesClear": true,
+    "roadConnection": true,
+    "all33SpawnsClear": true,
+    "lowShrubsAvoidance": true,
+    "browserBirdEye": true,
+    "browserFirstPersonArrival": true,
+    "consoleErrors": 0,
+    "observedFPS": [
+      53,
+      55
+    ],
+    "fullWalkingRouteTested": false
+  },
+  "counts": {
+    "bodyVolumes": 245,
+    "candidateDormVolumes": 24,
+    "candidateWalkways": 7,
+    "establishedRefinementLocations": 26,
+    "pendingLocations": 7
+  },
+  "limitations": "Candidate A-52 location only. Dimensions, heights, orientation, facade bays and path openings estimated. Not a measured footprint or as-built model. No interiors; background dormitories and side canteen omitted."
+}

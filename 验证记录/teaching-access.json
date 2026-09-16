@@ -1,0 +1,29 @@
+{
+  "version": "0.25.0",
+  "stairs": [
+    {
+      "id": "A75",
+      "risers": 96,
+      "rise": 0.15428072394188266,
+      "width": 3,
+      "ground": 13.664180491709974,
+      "top": 28.47512999013071
+    },
+    {
+      "id": "A79",
+      "risers": 72,
+      "rise": 0.15113602811875357,
+      "width": 3,
+      "ground": 17.593335965580454,
+      "top": 28.47512999013071
+    }
+  ],
+  "samples": 2317,
+  "minRoadClearance": 6.052542071841447,
+  "groundConnections": 2,
+  "physicalCollisionFlights": 8,
+  "slabFragments": 180,
+  "bodyCount": 262,
+  "bridgeDeckTop": 28.47512999013071,
+  "limitations": "Exterior access designed for game traversal. Stair dimensions and upper approach are estimates, not detailed construction drawings. Synthetic terrain retained."
+}

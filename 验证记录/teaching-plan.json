@@ -1,0 +1,15 @@
+{
+  "version": "0.23.0",
+  "bodyCount": 261,
+  "teachingBodies": 19,
+  "outdoorSurfaces": 1,
+  "walkways": 8,
+  "probes": 6495,
+  "roadClearance": 2.3263450497145968,
+  "bridgeClearance": 14.194009560777758,
+  "invalid": 0,
+  "spawns": [],
+  "conflicts": [],
+  "source": "public/reference-data/teaching/plan.pdf",
+  "limitations": "Digitized planning outline; translated onto schematic atlas; facade and elevations simplified; ground routes supported, bridge deck has no ground-to-deck stairs yet; not as-built."
+}

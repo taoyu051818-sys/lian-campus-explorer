@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#173e40" />
+    <title>黎安 · 校园漫游</title>
+  </head>
+  <body>
+    <canvas
+      id="scene"
+      tabindex="0"
+      aria-label="校园三维场景，进入漫游后使用WASD移动，鼠标转向，Esc退出"
+    ></canvas>
+    <div id="loading">
+      <div class="loading-mark">L<span>·</span>A</div>
+      <h1>走进黎安</h1>
+      <p id="loading-text">正在搭建校园场景…</p>
+      <div class="loading-line"></div>
+    </div>
+    <header class="topbar">
+      <a class="brand" href="#" id="home"
+        ><span class="brand-symbol">L<span>·</span>A</span
+        ><span
+          >黎安<span class="brand-sub">校园漫游 / CAMPUS EXPLORER</span></span
+        ></a
+      >
+      <div class="top-actions">
+        <a
+          id="back-to-atlas"
+          href="./"
+          style="
+            font-size: 12px;
+            padding: 10px;
+            background: #fbfcf7;
+            border-radius: 6px;
+          "
+          >← 总图</a
+        >
+        <span class="version">图纸灰模 · 01</span
+        ><button id="library-btn">
+          资料库 <span class="count" id="doc-count">…</span></button
+        ><button id="help-btn" aria-label="操作说明">?</button>
+      </div>
+    </header>
+    <main class="welcome" id="welcome">
+      <div class="eyebrow"><span></span>海南陵水 · 黎安国际教育创新试验区</div>
+      <h1>校园，从这里<br />开始探索<span>。</span></h1>
+      <p>
+        从图纸走进空间。沿着小路，探索<br />电子科大海南国际学院的两个院落。
+      </p>
+      <button class="primary" id="start">进入校园 <span>↗</span></button>
+      <div class="welcome-meta">
+        <span>01 <small>电子科大片区</small></span
+        ><span>1 : 1 <small>米制场景</small></span>
+      </div>
+    </main>
+    <aside class="location-card" id="location-card">
+      <span class="eyebrow">当前片区 / 01</span>
+      <h2>电子科大海南国际学院</h2>
+      <p>学院楼一 · 学院楼二 · 中庭</p>
+      <div class="card-bottom">
+        <span class="status-dot"></span>根据公开实建图建立的局部灰模<button
+          id="source-btn"
+          aria-label="查看建模依据"
+        >
+          ↗
+        </button>
+      </div>
+    </aside>
+    <div class="view-switch" role="group" aria-label="相机视角">
+      <button data-mode="orbit" class="selected">鸟瞰</button
+      ><button data-mode="first">第一人称</button
+      ><button data-mode="third">第三人称</button>
+    </div>
+    <div class="crosshair" id="crosshair" hidden></div>
+    <aside class="minimap">
+      <div class="map-title"><span>片区地图</span><span>↑ N</span></div>
+      <canvas
+        id="map"
+        width="240"
+        height="200"
+        aria-label="电子科大片区位置示意图"
+      ></canvas>
+      <div class="map-foot">
+        <span id="position">鸟瞰模式</span
+        ><button id="reset" title="回到入口">回到入口</button>
+      </div>
+    </aside>
+    <footer>
+      <span id="controls">拖动旋转 · 滚轮缩放</span><span id="fps">准备中</span>
+    </footer>
+    <div id="toast" role="status" hidden></div>
+    <div id="touch-controls" hidden>
+      <div class="touch-dpad">
+        <button data-key="KeyW" aria-label="向前">↑</button>
+        <div>
+          <button data-key="KeyA" aria-label="向左">←</button
+          ><button data-key="KeyS" aria-label="向后">↓</button
+          ><button data-key="KeyD" aria-label="向右">→</button>
+        </div>
+      </div>
+      <button id="touch-jump" aria-label="跳跃">跳跃</button>
+    </div>
+    <dialog id="help">
+      <button class="close" data-close aria-label="关闭">×</button>
+      <div class="eyebrow">HOW TO EXPLORE</div>
+      <h2>在校园里走一走</h2>
+      <div class="help-grid">
+        <kbd>W A S D</kbd><span>移动</span><kbd>鼠标</kbd><span>转动视角</span
+        ><kbd>Shift</kbd><span>跑步</span><kbd>Space</kbd><span>跳跃</span
+        ><kbd>V</kbd><span>切换第一／第三人称</span><kbd>Esc</kbd
+        ><span>释放鼠标，再次点击场景继续</span>
+      </div>
+      <p>触屏设备使用左下角方向键，拖动场景转向。</p>
+      <button class="primary" data-close>知道了</button>
+      <button class="secondary" id="help-source">建模依据</button>
+      <button class="secondary" id="help-reset">回到入口</button>
+    </dialog>
+    <dialog id="sources">
+      <button class="close" data-close aria-label="关闭">×</button>
+      <div class="eyebrow">BUILDING FROM EVIDENCE</div>
+      <h2>这片校园如何建成</h2>
+      <p>
+        建筑平面轮廓依据电子科大项目2025年规划核实附件第4页人工描绘，使用界址点坐标校准为米制。两组建筑的层数取自图面。
+      </p>
+      <ul>
+        <li>已校准：场地界址、平面比例、两个建筑组团的相对位置。</li>
+        <li>仍为近似：轮廓细部、层高、立面、场地曲面、景观和道路宽度。</li>
+        <li>当前开放建筑外部；室内与其他学校尚未建模。</li>
+      </ul>
+      <a
+        class="source-link"
+        href="https://wap.study-hn.cn/upload/file/2025/08/04/a8a440f163b84513bc2628a0b16455a7.pdf"
+        target="_blank"
+        rel="noopener"
+        >打开官方实建图纸 ↗</a
+      ><label class="check"
+        ><input id="show-plan" type="checkbox" />显示校准参考底图</label
+      >
+    </dialog>
+    <dialog id="library">
+      <button class="close" data-close aria-label="关闭">×</button>
+      <div class="eyebrow">CAMPUS ARCHIVE</div>
+      <h2>校园资料库</h2>
+      <p>已找到的学校与设施原始公告。资料收录不表示建筑已完成建模。</p>
+      <label for="search-docs" class="sr-only">搜索学校或设施</label
+      ><input
+        id="search-docs"
+        type="search"
+        placeholder="搜索学校、宿舍、食堂…"
+      />
+      <div id="documents"></div>
+    </dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
