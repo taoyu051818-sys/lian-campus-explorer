@@ -72,6 +72,9 @@ async function boot() {
   progress("正在编译体积云、FFT 海浪与光照…");
   await nextFrame();
   const environment = createEnvironment(renderer, scene, camera, campus);
+  progress("正在生成地表、建筑与植物的 PBR 纹理…");
+  await nextFrame();
+  campus.materialSystem.bake(renderer);
   const avatar = new THREE.Group();
   scene.add(avatar);
   const green = new THREE.MeshStandardNodeMaterial({
@@ -609,6 +612,7 @@ async function boot() {
       controls.dispose();
       player.dispose();
       environment.dispose();
+      campus.materialSystem.dispose();
       const geometries = new Set(),
         materials = new Set();
       scene.traverse((o) => {

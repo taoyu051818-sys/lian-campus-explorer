@@ -3,23 +3,30 @@ import * as THREE from "three/webgpu";
 import {
   Fn,
   vec2,
-  vec3,
   vec4,
   float,
   texture,
-  positionWorld,
-  cameraPosition,
-  normalize,
-  dot,
-  reflect,
-  max,
   mix,
+  max,
+  abs,
   smoothstep,
-  pow,
-  log2,
-  pass,
+  screenUV,
+  rtt,
   uniform,
 } from "three/tsl";
+import { ShoreWaves } from "../vendor/tidewater/ocean/ShoreWaves.js";
+import { WaterSurface } from "../vendor/tidewater/ocean/WaterSurface.js";
+import { WaterMaterial } from "../vendor/tidewater/ocean/WaterMaterial.js";
+import { createFoamTexture } from "../vendor/tidewater/ocean/FoamTexture.js";
+import { SeaDetail } from "../vendor/tidewater/ocean/SeaDetail.js";
+import { Caustics } from "../vendor/tidewater/ocean/Caustics.js";
+import { installUnderwaterLighting } from "../vendor/tidewater/ocean/UnderwaterLighting.js";
+import {
+  SceneRenderer,
+  LAYERS,
+} from "../vendor/tidewater/core/SceneRenderer.js";
+import { updateCameraVelocity } from "../vendor/tidewater/post/CameraVelocity.js";
+import { createTerrainMaterialData } from "./terrain-material-data.js";
 import { CSMShadowNode } from "three/addons/csm/CSMShadowNode.js";
 import { ao } from "three/addons/tsl/display/GTAONode.js";
 import { bloom } from "three/addons/tsl/display/BloomNode.js";
@@ -51,6 +58,7 @@ export function createEnvironment(renderer, scene, camera, campus) {
   scene.fog = new THREE.FogExp2(0xb8d4db, 0.000035);
   const sun = new THREE.DirectionalLight(0xfff1df, 8);
   sun.castShadow = true;
+  sun.layers.enableAll();
   sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.camera.near = 1;
   sun.shadow.camera.far = 4000;
@@ -64,35 +72,19 @@ export function createEnvironment(renderer, scene, camera, campus) {
   csm.fade = true;
   sun.shadow.shadowNode = csm;
   scene.add(sun, sun.target);
-  const env = new Environment(renderer, scene, sky, 64);
+  const env = new Environment(renderer, scene, sky, 128);
   const fft = new OceanFFT(renderer, { choppiness: 0.8 });
   G.seaLevel.value = -0.8;
 
-  // The source terrain is a regular 20 m grid. Share its heights with the water
-  // shader so wave amplitude and colour follow this campus's actual shoreline.
-  const terrain = campus.colliders.find((m) => m.name === "continuous terrain");
-  const h = new Uint16Array(261 * 301);
-  for (let i = 0; i < h.length; i++)
-    h[i] = THREE.DataUtils.toHalfFloat(terrain.position[i * 3 + 1]);
-  const heightTex = new THREE.DataTexture(
-    h,
-    261,
-    301,
-    THREE.RedFormat,
-    THREE.HalfFloatType,
+  G.cameraWaterHeight.value = G.seaLevel.value;
+  const terrain = createTerrainMaterialData(
+    campus.colliders.find((m) => m.name === "continuous terrain").position,
   );
-  heightTex.minFilter = heightTex.magFilter = THREE.LinearFilter;
-  heightTex.needsUpdate = true;
-  const heightNode = texture(heightTex);
-  const seaDepth = (xz) => {
-    const uv = xz.sub(vec2(-1840, -2100)).div(vec2(5200, 6000));
-    const inside = uv.x
-      .greaterThanEqual(0)
-      .and(uv.x.lessThanEqual(1))
-      .and(uv.y.greaterThanEqual(0))
-      .and(uv.y.lessThanEqual(1));
-    return inside.select(G.seaLevel.sub(heightNode.sample(uv).r), float(100));
-  };
+  const sceneRenderer = new SceneRenderer(renderer, scene, camera);
+  const foamTexture = createFoamTexture(renderer);
+  const seaDetail = new SeaDetail();
+  const caustics = new Caustics(renderer, fft);
+  caustics.detail = seaDetail;
   const cdlod = new CDLOD({
     gridSize: 32,
     leafSize: 16,
@@ -101,99 +93,87 @@ export function createEnvironment(renderer, scene, camera, campus) {
     minY: -5,
     maxY: 5,
   });
-  const dispTex = texture(fft.displacementTexture),
-    derivTex = texture(fft.derivativeTexture);
-  const waterMaterial = new THREE.MeshBasicNodeMaterial({
-    name: "Tidewater FFT ocean",
-    side: THREE.FrontSide,
+  const surface = new WaterSurface({ fft, cdlod, foamTexture });
+  const shore = new ShoreWaves(terrain);
+  surface.terrain = terrain;
+  surface.shore = shore;
+  // Same run-up phase for the water sheet and the beach's wet sheen.
+  campus.materialSystem.setShoreWetness(
+    Fn(([xz, h]) => {
+      const phase = shore.phaseAt(xz);
+      const sw = shore._swashRunup(phase.sh, phase.along, h);
+      const wet = smoothstep(-0.8, 0.5, sw.Rt.sub(sw.inland));
+      const damp = smoothstep(-0.2, 2.0, sw.RhMax.sub(sw.inland)).mul(0.38);
+      return max(wet, damp);
+    }).setLayout({
+      name: "campusSwashWetness",
+      type: "float",
+      inputs: [
+        { name: "xz", type: "vec2" },
+        { name: "h", type: "float" },
+      ],
+    }),
+  );
+  surface.detail = seaDetail;
+  const waterMaterial = new WaterMaterial({
+    surface,
+    sky,
+    sceneCopy: sceneRenderer.opaqueCopy,
   });
-  waterMaterial.positionNode = Fn(() => {
-    const { worldXZ, spacing } = cdlod.vertexNodes();
-    const depth = seaDepth(worldXZ).toVar(),
-      disp = vec3(0).toVar();
-    for (let c = 0; c < fft.cascades; c++) {
-      const level = max(log2(spacing.div(fft.sizes[c] / 256)).add(0.7), 0);
-      const attenuation = smoothstep(
-        0,
-        Math.min(8, fft.sizes[c] * 0.015),
-        depth,
-      );
-      disp.addAssign(
-        dispTex
-          .sample(worldXZ.div(fft.sizes[c]))
-          .depth(c)
-          .level(level)
-          .xyz.mul(attenuation),
-      );
-    }
-    return vec3(
-      worldXZ.x.add(disp.x),
-      G.seaLevel.add(disp.y),
-      worldXZ.y.add(disp.z),
-    );
-  })();
-  waterMaterial.colorNode = Fn(() => {
-    const xz = positionWorld.xz,
-      depth = seaDepth(xz).max(0).toVar();
-    const slope = vec2(0).toVar(),
-      foam = float(0).toVar();
-    for (let c = 0; c < fft.cascades; c++) {
-      const att = smoothstep(0, Math.min(8, fft.sizes[c] * 0.015), depth);
-      slope.addAssign(
-        derivTex.sample(xz.div(fft.sizes[c])).depth(c).xy.mul(att),
-      );
-      foam.addAssign(dispTex.sample(xz.div(fft.sizes[c])).depth(c).w.mul(0.24));
-    }
-    const n = normalize(vec3(slope.x.negate(), 1, slope.y.negate()));
-    const view = normalize(cameraPosition.sub(positionWorld));
-    const reflected = reflect(view.negate(), n);
-    const fresnel = pow(float(1).sub(dot(n, view).max(0)), 5)
-      .mul(0.98)
-      .add(0.02);
-    const base = mix(
-      vec3(0.045, 0.39, 0.31),
-      vec3(0.005, 0.08, 0.105),
-      smoothstep(0, 12, depth),
-    );
-    const reflection = sky.reflectionRadiance(reflected);
-    const half = normalize(view.add(G.sunDir));
-    const glint = pow(max(dot(n, half), 0), 320)
-      .mul(G.sunColor)
-      .mul(1.4);
-    const water = mix(
-      base.mul(G.skyIrradiance.add(0.4)),
-      reflection,
-      fresnel,
-    ).add(glint);
-    const shore = smoothstep(0.8, 0.04, depth).mul(smoothstep(0, 0.15, depth));
-    return mix(
-      water,
-      vec3(0.83, 0.91, 0.87).mul(G.skyIrradiance.add(0.6)),
-      foam.add(shore.mul(0.35)).clamp(0, 0.7),
-    );
-  })();
+  waterMaterial.clouds = clouds;
+  waterMaterial.name = "Tidewater water / refraction / SSR / absorption";
+  installUnderwaterLighting({ fft, caustics, clouds, terrain, surface });
   const water = new THREE.Mesh(cdlod.geometry, waterMaterial);
   water.name = "FFT ocean";
   water.frustumCulled = false;
+  water.layers.set(LAYERS.WATER);
+  water.receiveShadow = true;
   scene.add(water);
 
-  const pipeline = new THREE.RenderPipeline(renderer),
-    scenePass = pass(scene, camera);
-  const color = scenePass.getTextureNode("output"),
-    depth = scenePass.getTextureNode("depth");
+  const pipeline = new THREE.RenderPipeline(renderer);
+  const color = texture(sceneRenderer.sceneRT.texture);
+  const depth = texture(sceneRenderer.opaqueCopy.depthTexture);
+  const finalDepth = texture(sceneRenderer.sceneRT.depthTexture);
   const aoPass = ao(depth, null, camera);
   aoPass.resolutionScale = 0.5;
   aoPass.radius.value = 1.8;
   aoPass.thickness.value = 1.8;
   aoPass.samples.value = 8;
+  // Tidewater's separable, depth-aware filter prevents grain and dark edge halos.
+  const blur = (src, dx, dy) =>
+    rtt(
+      Fn(() => {
+        const size = vec2(src.size()),
+          dc = depth.sample(screenUV).x;
+        const sum = float(0).toVar(),
+          weights = float(0).toVar();
+        for (let k = -2; k <= 2; k++) {
+          const st = screenUV.add(vec2(dx * k, dy * k).div(size));
+          const rel = abs(depth.sample(st).x.sub(dc)).div(max(dc, 1e-7));
+          const w = float(1).div(rel.mul(40).add(1).pow2());
+          sum.addAssign(src.sample(st).r.mul(w));
+          weights.addAssign(w);
+        }
+        return vec4(sum.div(weights), 0, 0, 1);
+      })(),
+      null,
+      null,
+      { type: THREE.HalfFloatType, resolutionScale: 0.5 },
+    );
+  const blurX = blur(aoPass.getTextureNode(), 1, 0),
+    blurY = blur(blurX, 0, 1);
   const aoAmount = uniform(0.45),
-    bloomPass = bloom(color, 0.08, 0.35, 1.3);
-  const graded = vec4(
-    color.rgb
-      .mul(mix(1, aoPass.getTextureNode().r, aoAmount))
-      .add(bloomPass.rgb),
-    color.a,
-  );
+    bloomPass = bloom(color, 0.06, 0.35, 1.3);
+  const graded = Fn(() => {
+    const d = depth.sample(screenUV).r,
+      df = finalDepth.sample(screenUV).r;
+    // Reversed depth: water in front of an opaque floor has a larger value.
+    const k = d
+      .lessThan(1e-7)
+      .or(df.greaterThan(d.add(1e-7)))
+      .select(float(0), aoAmount);
+    return vec4(color.rgb.mul(mix(1, blurY.r, k)).add(bloomPass.rgb), 1);
+  })();
   pipeline.outputNode = fxaa(graded);
   function preset(name) {
     const p = PRESETS[name] || PRESETS.tropical;
@@ -204,12 +184,17 @@ export function createEnvironment(renderer, scene, camera, campus) {
     atmosphere.mieScale.value = p.haze;
     atmosphere.invalidate();
     renderer.toneMappingExposure = p.exposure;
+    G.windSpeed.value = p.wind;
     fft.local.windSpeed = p.wind;
     fft.updateSpectrumUniforms();
     env.timer = 0;
   }
   preset("tropical");
+  let causticInterval = 2,
+    updateFrame = 0;
   function quality(name) {
+    causticInterval = name === "high" ? 1 : name === "low" ? 4 : 2;
+    waterMaterial.params.ssr.value = name === "low" ? 0 : 1;
     const scale = name === "high" ? 1 : name === "low" ? 0.65 : 0.85;
     renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5) * scale);
     clouds.resolutionScale = name === "high" ? 0.7 : name === "low" ? 0.3 : 0.5;
@@ -244,14 +229,35 @@ export function createEnvironment(renderer, scene, camera, campus) {
       clouds.update(dt, camera);
       env.update(dt);
       fft.update(dt);
+      seaDetail.update(dt);
+      if (updateFrame++ % causticInterval === 0) caustics.update();
       cdlod.update(camera);
     },
     render() {
+      updateCameraVelocity(camera);
+      sceneRenderer.render();
       pipeline.render();
     },
     dispose() {
       pipeline.dispose();
-      heightTex.dispose();
+      terrain.dispose();
+      foamTexture.dispose();
+      seaDetail.texture.dispose();
+      for (const layer of [caustics.fine, caustics.broad]) {
+        layer.target.dispose();
+        layer.meshes.forEach((mesh) => {
+          mesh.geometry.dispose();
+          mesh.material.dispose();
+        });
+      }
+      sceneRenderer.sceneRT.dispose();
+      sceneRenderer.opaqueCopy.dispose();
+      sceneRenderer.hullMaskRT.dispose();
+      sceneRenderer.hullMaskMaterial.dispose();
+      aoPass.dispose();
+      blurX.dispose();
+      blurY.dispose();
+      bloomPass.dispose();
       cdlod.geometry.dispose();
       waterMaterial.dispose();
       env.target.dispose();

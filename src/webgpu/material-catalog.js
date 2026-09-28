@@ -1,0 +1,134 @@
+// Explicit assignments for the authored campus, reviewed against campus.json.
+// New materials must be assigned here: silently falling back to flat grey hides omissions.
+const families = {
+  terrain: ["terrain"],
+  asphalt: ["roads", "transport yard asphalt"],
+  paving: [
+    "walkways",
+    "terrace paving",
+    "residential path paving",
+    "fire forecourt paving",
+  ],
+  paint: [
+    "road markings",
+    "hospital entrance sign",
+    "police blue identity band",
+    "school field lines",
+    "fire training lane marks",
+    "transport lane markings",
+    "field line",
+    "outdoor stair edge markers",
+  ],
+  plaster: [
+    "traced UESTC",
+    "facade ivory",
+    "schematic blocks",
+    "planned ivory frames",
+    "school warm facade panels",
+    "transport ivory",
+    "hospital warm white fins",
+    "fire station ivory frame",
+    "police pale facade",
+    "canteen pale side wing",
+    "living two ivory concrete grid",
+    "teaching pale terrace fascia",
+    "teaching warm fins",
+    "service continuous ivory slab",
+  ],
+  concrete: [
+    "roofs",
+    "hospital pale plinth",
+    "hospital roof grey",
+    "fire station flat roof",
+    "police roof concrete",
+    "living two flat roof",
+    "outdoor stair pale concrete",
+    "default material",
+  ],
+  ceramic: [
+    "terracotta accents",
+    "law terracotta cladding",
+    "fire station brick red",
+    "canteen terracotta screen",
+  ],
+  stone: ["auditorium limestone", "community estimated stone facade"],
+  glass: [
+    "recessed glazing",
+    "incubator copper glass",
+    "incubator silver glass",
+    "incubator dark glass",
+    "planned blue grey glazing",
+    "transport glazing",
+    "hospital recessed glazing",
+    "fire station blue glazing",
+    "police recessed glazing",
+    "canteen shaded glazing",
+    "living two shaded window recess",
+    "living two balcony glass",
+    "teaching continuous shaded glazing",
+    "service recessed blue glazing",
+    "exterior glass balustrade",
+    "transport vehicle glass",
+  ],
+  metal: [
+    "metal screen",
+    "blcu green ribbons",
+    "energy equipment metal",
+    "cooling fan recess",
+    "transport roof seams",
+    "fire station garage doors",
+    "fire station blue fascia",
+    "police inset grey panels",
+    "canteen panel joints",
+    "canteen silver panel frame",
+    "living two cyan frames",
+    "living two bronze privacy louvers",
+    "living two slim balcony rails",
+    "teaching roof perforations",
+    "service fine roof ribs",
+    "transport canopy frames",
+    "transport bus ivory",
+  ],
+  roofMetal: [
+    "sports standing seam roof",
+    "minzu charcoal roof",
+    "canteen rooftop metal",
+    "service curved metal roof",
+    "transport canopy roof",
+  ],
+  solar: [
+    "transport photovoltaic roof",
+    "hospital roof blue panels",
+    "canteen dark solar modules",
+  ],
+  foliage: [
+    "roof planting",
+    "hospital planted terrace",
+    "hospital low terrace foliage",
+    "teaching low roof planting",
+    "exhibition planted roof",
+    "low mixed shrub foliage",
+  ],
+  turf: ["school sports turf", "football turf"],
+  rubber: [
+    "school blue running track",
+    "fire training lane surface",
+    "coastal blue track",
+    "transport tires",
+  ],
+  plastic: ["teaching stadium seats", "blue stands"],
+};
+
+export const MATERIAL_CATALOG = Object.freeze(
+  Object.fromEntries(
+    Object.entries(families).flatMap(([family, names]) =>
+      names.map((name) => [name, family]),
+    ),
+  ),
+);
+
+export function materialFamily(name) {
+  const family = MATERIAL_CATALOG[name];
+  if (!family) throw new Error(`尚未映射的校园材质：${name}`);
+  return family;
+}
