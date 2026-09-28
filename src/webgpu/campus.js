@@ -1,5 +1,6 @@
 import * as THREE from "three/webgpu";
-import { positionWorld, mix, color, sin, cos, smoothstep } from "three/tsl";
+import { createCampusMaterialSystem } from "./materials.js";
+import { LAYERS } from "../vendor/tidewater/core/SceneRenderer.js";
 
 export async function loadCampus(progress) {
   const base = import.meta.env.BASE_URL;
@@ -20,38 +21,8 @@ export async function loadCampus(progress) {
     lodMeshes = [],
     renderMeshes = [];
   root.name = "黎安校园";
-  const materials = meta.materials.map((entry) => {
-    const glass = /glass|glaz|玻璃/i.test(entry.name),
-      metal = /metal|steel|alumin|金属/i.test(entry.name);
-    const material = new THREE.MeshStandardNodeMaterial({
-      name: entry.name,
-      color: new THREE.Color().setRGB(...entry.color, THREE.SRGBColorSpace),
-      roughness: glass ? 0.16 : metal ? 0.4 : 0.87,
-      metalness: glass ? 0.25 : metal ? 0.6 : 0,
-      side: entry.doubleSide ? THREE.DoubleSide : THREE.FrontSide,
-      transparent: entry.alpha < 1,
-      opacity: entry.alpha,
-      depthWrite: entry.alpha >= 1,
-    });
-    if (glass) {
-      material.color.lerp(new THREE.Color("#517b88"), 0.38);
-      material.envMapIntensity = 0.85;
-    }
-    if (entry.name === "terrain") {
-      const p = positionWorld;
-      const variation = sin(p.x.mul(0.027))
-        .mul(cos(p.z.mul(0.019)))
-        .mul(0.5)
-        .add(0.5);
-      const grass = mix(color("#526b32"), color("#849858"), variation);
-      const sand = color("#c9b58a");
-      material.colorNode = mix(sand, grass, smoothstep(0.5, 7, p.y));
-      material.roughness = 1;
-    }
-    if (/roads|road markings|walkways|paving/i.test(entry.name))
-      material.roughness = 0.98;
-    return material;
-  });
+  const materialSystem = createCampusMaterialSystem();
+  const materials = meta.materials.map(materialSystem.create);
   function attr(record, size, index = false) {
     return new THREE.BufferAttribute(
       index
@@ -81,26 +52,14 @@ export async function loadCampus(progress) {
             c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
         }
       geometry.setAttribute("color", new THREE.BufferAttribute(colorArray, 4));
-      mats = mats.map((m) => {
-        const copy = m.clone();
-        copy.vertexColors = true;
-        return copy;
-      });
+      mats = mats.map(materialSystem.vertexColored);
     }
+    mats = mats.map((m) => materialSystem.forMesh(m, entry, geometry));
     entry.groups.forEach((g) =>
       geometry.addGroup(g.start, g.count, g.materialIndex),
     );
     geometry.computeBoundingSphere();
     geometry.computeBoundingBox();
-    const mesh = new THREE.Mesh(geometry, mats.length === 1 ? mats[0] : mats);
-    mesh.name = entry.name;
-    mesh.userData.placeId = entry.placeId;
-    mesh.visible = entry.visible;
-    mesh.receiveShadow = true;
-    mesh.castShadow =
-      entry.visible && entry.collision && entry.name !== "continuous terrain";
-    mesh.matrixAutoUpdate = false;
-    mesh.updateMatrix();
     if (entry.collision)
       colliders.push({
         name: entry.name,
@@ -108,16 +67,45 @@ export async function loadCampus(progress) {
         position: geometry.attributes.position.array,
         index: geometry.index.array,
       });
-    if (entry.visible) {
+    // A baked building can contain both concrete and glass groups. Separate their
+    // draw lists so balcony glass is composited AFTER the ocean refraction pass.
+    for (const transparent of [false, true]) {
+      const groups = entry.groups.filter(
+        (g) => mats[g.materialIndex].transparent === transparent,
+      );
+      if (!groups.length || !entry.visible) continue;
+      const drawGeometry = new THREE.BufferGeometry();
+      drawGeometry.attributes = geometry.attributes;
+      drawGeometry.setIndex(geometry.index);
+      drawGeometry.boundingBox = geometry.boundingBox;
+      drawGeometry.boundingSphere = geometry.boundingSphere;
+      groups.forEach((g) =>
+        drawGeometry.addGroup(g.start, g.count, g.materialIndex),
+      );
+      const mesh = new THREE.Mesh(drawGeometry, mats);
+      mesh.name = entry.name + (transparent ? " · glazing" : "");
+      mesh.userData.placeId = entry.placeId;
+      mesh.receiveShadow = true;
+      mesh.castShadow = !transparent && entry.name !== "continuous terrain";
+      mesh.layers.set(transparent ? LAYERS.TRANSPARENT : LAYERS.OPAQUE);
+      mesh.matrixAutoUpdate = false;
+      mesh.updateMatrix();
       root.add(mesh);
       renderMeshes.push(mesh);
+      if (entry.lod) lodMeshes.push({ mesh, distance: entry.lod });
     }
-    if (entry.lod && entry.visible)
-      lodMeshes.push({ mesh, distance: entry.lod });
     if (i % 100 === 0) {
       progress(`正在装配校园模型 ${i} / ${meta.meshes.length}…`);
       await new Promise(requestAnimationFrame);
     }
   }
-  return { root, meta, colliders, renderMeshes, materials, lodMeshes };
+  return {
+    root,
+    meta,
+    colliders,
+    renderMeshes,
+    materials,
+    lodMeshes,
+    materialSystem,
+  };
 }

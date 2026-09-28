@@ -1,0 +1,68 @@
+{
+  "version": "0.28.0",
+  "date": "2026-09-28",
+  "baseCommit": "6a4342e9098c3f815ceb7a5081d62a64a8db86b2",
+  "tidewaterCommit": "d9fcc35bf81ec4d49b8a64b611c94f4f225cbe6a",
+  "materials": {
+    "mapped": 98,
+    "usedByVisibleMeshes": 97,
+    "families": 16,
+    "upstreamFilesVerifiedBySHA256": 27,
+    "gpuCompiledAndDrawn": 98,
+    "gpuValidationErrors": 0
+  },
+  "geometry": {
+    "sourceMeshes": 1530,
+    "triangles": 1832925,
+    "buildingBodyFragments": 262,
+    "collisionMeshes": 381,
+    "terrainVerticesRegistered": 78561,
+    "changed": false
+  },
+  "checks": {
+    "typescript": "passed",
+    "productionBuild": "passed",
+    "materialCatalogProvenanceHeightfield": "passed",
+    "gitDiffCheck": "passed"
+  },
+  "physics": {
+    "engine": "Rapier 0.19.3",
+    "destinationsSettledJumpedLandedWalked": 33,
+    "continuousStairAndBridgeLegs": 6,
+    "invisibleAccessSurfaces": 51,
+    "passed": true
+  },
+  "browser": {
+    "backend": "Three.js 0.186.0 WebGPU",
+    "productionConsoleErrors": 0,
+    "destinationTravelSmokeChecks": 33,
+    "visuallyInspected": [
+      "UESTC street / ground",
+      "Minzu metal roof",
+      "Dorm52 glazing / plaster / roof",
+      "Stadium turf / coast / sea"
+    ],
+    "lightingPresets": [
+      "tropical",
+      "morning",
+      "sunset"
+    ],
+    "qualityPresets": [
+      "balanced",
+      "high",
+      "low"
+    ],
+    "observedDesktopFPS": "roughly 35–53 balanced, around 39 high, around 60 low in sampled views; not a benchmark",
+    "viewport": "1280x720",
+    "narrowViewportRetest": "not completed: browser viewport override did not change screenshot dimensions",
+    "fullCampusManualWalk": false,
+    "physicalTouchDeviceTest": false
+  },
+  "notes": [
+    "Original source geometry, collisions and campus colors preserved.",
+    "Village wood/thatch/rope/net factories are vendored but not assigned to unrelated campus objects.",
+    "Shore wetness is analytically synchronized with run-up; full 2D foam transport / spray and TAA are not integrated.",
+    "Coastline detail remains limited by the original 20 m terrain grid.",
+    "Rapier initialization deprecation and Vite large chunk warnings remain."
+  ]
+}

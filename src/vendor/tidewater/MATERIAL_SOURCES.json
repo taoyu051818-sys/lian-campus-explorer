@@ -1,0 +1,32 @@
+{
+  "revision": "d9fcc35bf81ec4d49b8a64b611c94f4f225cbe6a",
+  "files": {
+    "core/Globals.js": "62a6661b6fc55bf0e495039f123bc9b610956d74792d8a9685b880457aa7ad3e",
+    "core/SceneRenderer.js": "d282e63e1d3016e0a58487f5912a400e464f96f51a29a259a2167d457ad5f37f",
+    "materials/LODFade.js": "e2ff0e9605d163c558236a40636380043e293cd963762575cfc7bbafe31656ed",
+    "materials/Materials.js": "a021f0ba99042bf2dda90b42a83910ce3ed7bc2994031005eb8e8355dca8c732",
+    "materials/SceneLighting.js": "be663e01521115dc757d9d145d756a030ff55c1b789fffe9e70b857003eee94b",
+    "ocean/Caustics.js": "258c947dc48a923baab563589fafeb62a518888a1eb3a36cbb1baada2d3fa354",
+    "ocean/FoamTexture.js": "2d53758baacf5fa05070a70c07b2716c679011b0ce530e515eaf5055bc36d69b",
+    "ocean/OceanFFT.js": "59cb1c4a7c35ba3cf4f14b313a111dfd323f18eaca33281c737e64f812a5de7e",
+    "ocean/SeaDetail.js": "d45290c3aa1b0774d23b5d4c8b020a5af5201ad5d4d71c4999dd178d0b4db385",
+    "ocean/ShoreWaves.js": "e0ebe6c2524ef5affd33445a5cb32db803e46588111eab3ab232a2688844fb5d",
+    "ocean/UnderwaterLighting.js": "9eeb058ea75853fdfe8b17410a6c511e4d75099c3f6c33bb29395e102fad7465",
+    "ocean/WaterMaterial.js": "5d790f2592cced08e1aaefa8d21a6a9302fbc9da3f7268915acb378e01f817b3",
+    "ocean/WaterSurface.js": "6a6516056f689592606e8d465f3508d3ea8f8d499c67da675808e17cf328c460",
+    "ocean/WhaleWater.js": "ea85f73eda7f7f14202aa9225c9eb84d5203f00fbc57cbb95cdec4cdc381df04",
+    "post/CameraVelocity.js": "4281b8e60eb57ada9305d06c4f35e012f77479cad767ec5355e7910c83896f1f",
+    "util/Noise.js": "3f12e6968b085bdb4674481480b279b5110848c70999141d6116a3f22626b0b0",
+    "world/ShoreField.js": "bcc6caaf75c58566fc6e69387896b8e8728b7711fa22af1f80ced0f900e18aaf",
+    "world/terrain/DetailTextures.js": "43a2b0c500d8ff4ec0ce963c1644c43bf0751ed1f0f5967035fb0387d83f8df3",
+    "world/terrain/TerrainNoise.js": "bbc9e37ab0167ef2444678da359f6ed00a90ef5f839200e9a8817eeb3a1da2f7",
+    "world/terrain/TerrainShading.js": "312a52f6ae6d4f3c5715150ab087a6bdafc517d2c25cd4dbe257e1468ea08ed4",
+    "world/vegetation/GeoBuilder.js": "3bc380003b3f9d4bce5ed6788d987164ecc72630a7ad57b31850fa9b921c48cf",
+    "world/vegetation/LeafTextures.js": "a8c0741ddd4688be521f4b2f3e5dcae5d403778b9cbdbbefb4a14c90a4934cd6",
+    "world/vegetation/PlantGeometry.js": "21e60c618ade82928d38d31a2d38e98a74f618f933e20ad5a8b89bcdab072d6b",
+    "world/vegetation/VegMaterials.js": "439ecc500569c0d72f4ea26e843e5d463f5899dc92b061d83cee70bb9acf4656",
+    "world/vegetation/VegNodes.js": "f11237a608d22d8f2c86c25d9db8fcb49cdaeb7214b6a10087540e2b62553cef",
+    "world/village/TextureBaker.js": "f6eef9b4a82b86691692a09504a45f384f06999b5e693f3d852bce45e2dd5b70",
+    "world/village/VillageMaterials.js": "7b46526f91f7cca988407404d608698871ae58083426a7203d279f7733526a9b"
+  }
+}
