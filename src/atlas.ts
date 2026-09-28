@@ -45,10 +45,6 @@ let data: AtlasData,
   view = "map",
   underlay = false;
 let box = [185, 485, 610, 580];
-let model:
-    | Awaited<ReturnType<(typeof import("./overall3d"))["createOverall"]>>
-    | undefined,
-  modelPromise: Promise<void> | undefined;
 const major = new Set([
   "uestc",
   "bupt",
@@ -177,7 +173,6 @@ function renderInspector() {
       compared = p.id;
       renderInspector();
       drawMap();
-      model?.select(selected, compared);
     };
     nearby.append(button);
   }
@@ -203,7 +198,6 @@ function select(id: string, focus = false) {
   renderList();
   renderInspector();
   drawMap();
-  model?.select(selected, compared);
   if (focus && view === "map") {
     const p = find(id);
     if (
@@ -343,21 +337,6 @@ async function setView(next: string) {
     next === "3d"
       ? "拖动旋转 · 滚轮缩放 · 点击地块选择"
       : "拖动平移 · 滚轮缩放 · 点击标记选址";
-  if (next === "3d") {
-    if (!modelPromise)
-      modelPromise = import("./overall3d").then(async (m) => {
-        model = await m.createOverall(
-          $<HTMLCanvasElement>("world"),
-          $("three-labels"),
-          data,
-          (id) => select(id),
-        );
-        model.select(selected, compared);
-        model.setVisible(view === "3d");
-      });
-    await modelPromise;
-    model?.setVisible(view === "3d");
-  } else model?.setVisible(false);
 }
 async function boot() {
   const r = await fetch("./overall/data.json");
@@ -396,7 +375,6 @@ async function boot() {
     compared = (e.target as HTMLSelectElement).value;
     renderInspector();
     drawMap();
-    model?.select(selected, compared);
   });
   $("fit-pair").onclick = () => {
     setView("map");

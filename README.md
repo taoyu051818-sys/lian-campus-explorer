@@ -1,10 +1,10 @@
-# 黎安校园外景 · 当前 v0.26
+# 黎安校园外景 · 当前 v0.27 WebGPU
 
-海南陵水黎安国际教育创新试验区的浏览器校园漫游原型，使用 Babylon.js、Havok、TypeScript 和 Vite。当前包含连续地形、道路、建筑外景与低灌木，支持第一人称、第三人称和鸟瞰；不建室内。模型依据规划图、官方照片与用户确认航拍，部分位置和尺寸为游戏估算，并非测绘数字孪生。
+海南陵水黎安国际教育创新试验区的浏览器校园漫游原型，使用 Three.js WebGPU、Rapier、TypeScript 和 Vite。当前包含连续地形、道路、建筑外景与低灌木，支持第一人称、第三人称和鸟瞰；不建室内。模型依据规划图、官方照片与用户确认航拍，部分位置和尺寸为游戏估算，并非测绘数字孪生。
 
 ## 从仓库运行
 
-需要 Node.js 22.12+（本次构建环境为 Node.js 26.7.0）。在项目目录运行：
+需要 Node.js 22.12+（本次构建环境为 Node.js 24.19.0）。在项目目录运行：
 
 ```sh
 npm ci
@@ -14,13 +14,28 @@ npm run preview -- --port 4173
 
 浏览器打开 [连续校园场景](http://127.0.0.1:4173/world.html)。开发时使用 `npm run dev`。
 
-Git 仓库保存源码、锁文件、参考资料和验证记录；`dist/` 由构建生成。要直接使用已构建版本，请下载 [v0.26.0 发布附件](https://github.com/taoyu051818-sys/lian-campus-explorer/releases/tag/v0.26.0) 中的“黎安校园总图_源码与运行版.zip”，解压后运行 `启动漫游.command`，或在解压目录执行：
+`npm run dev` 和 `npm run build` 会先自动生成校园模型（首次约十余秒，压缩网格约 27 MB）。需要支持 WebGPU 的浏览器和 HTTPS 或 localhost；不支持时会显示说明并保留返回二维总图的入口。
+
+Git 仓库保存源码、锁文件、参考资料和验证记录；`dist/` 由构建生成。历史 v0.26 运行包仍可从 [v0.26.0 发布附件](https://github.com/taoyu051818-sys/lian-campus-explorer/releases/tag/v0.26.0) 下载，但不包含本次 WebGPU 迁移。当前版本请从源码构建，或使用本次交付的运行包。运行包解压后运行 `启动漫游.command`，或在解压目录执行：
 
 ```sh
 python3 -m http.server 5175 --bind 127.0.0.1 --directory dist
 ```
 
 然后访问 [运行包校园场景](http://127.0.0.1:5175/world.html)。请通过本地 HTTP 服务打开，不要直接双击 HTML 文件。
+
+## v0.27 Three.js WebGPU 迁移
+
+- 所有公开三维入口统一到 `world.html`；`detail.html` 保留电子科大入口并自动跳转。二维位置总图、搜索和资料链接保留。
+- 浏览器渲染使用固定版本 Three.js 0.186.0 的 WebGPU 后端，不静默回退 WebGL。Babylon.js 仅用于构建时运行既有建筑生成器，浏览器不加载 Babylon 或 Havok。
+- 保留 33 个地点、262 个建筑体块和 381 组碰撞网格。Rapier 接管胶囊行走、跳跃、阶梯、坡道及相机避障。
+- 接入 Tidewater 的大气散射 LUT、体积云、动态天空环境、四级 FFT 海浪和连续 LOD 海面。校园海面材质按原地形岸线调整浪高、颜色与泡沫；保留米制坐标与原地块定位。
+- 新增三级联阳光阴影、PBR 玻璃／金属、GTAO、轻量泛光、FXAA，提供晴日、清晨、落日与三档画质。
+- Tidewater 模块遵循 MIT，来源及完整许可证见 [第三方声明](THIRD_PARTY_NOTICES.md)。这次移植覆盖校园需要的天空与海洋视觉系统，不含 Tidewater 的船舶、水下、游泳、SSR 或 TAA 系统。
+
+模型生成：`npm run bake`。碰撞回归：`npm run test:physics`。完整编译：`npm run build`。
+生成物位于 `public/generated/`（不进入 Git）。修改建筑生成器后重新执行 bake。
+可通过 `world.html?place=uestc&view=orbit` 分享指定建筑的鸟瞰视角。
 
 ## 当前范围
 
