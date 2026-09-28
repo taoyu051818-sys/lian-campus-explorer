@@ -14,7 +14,9 @@
     ></canvas>
     <header class="glass">
       <a href="./">← 位置总图</a>
-      <div><b>黎安 · 全园漫游</b><small>一期连续场景 / 01</small></div>
+      <div>
+        <b>黎安 · 海风校园</b><small>THREE.JS · WEBGPU · TIDEWATER SKY</small>
+      </div>
       <button id="about-open">模型说明</button>
     </header>
     <nav class="glass modes" aria-label="视角">
@@ -31,6 +33,21 @@
       <p id="destination-note"></p>
       <a id="evidence" target="_blank" rel="noopener">查看该地块资料 ↗</a
       ><button id="orient">朝向此地</button>
+    </section>
+    <section class="glass visual-settings" aria-label="视觉设置">
+      <span class="engine">TIDEWATER / WEBGPU</span>
+      <label for="weather">光影时刻</label>
+      <select id="weather">
+        <option value="tropical">海岛晴日 · 14:48</option>
+        <option value="morning">清晨薄雾 · 07:06</option>
+        <option value="sunset">落日暖光 · 17:30</option>
+      </select>
+      <label for="quality">画面质量</label>
+      <select id="quality">
+        <option value="balanced">均衡</option>
+        <option value="high">高画质</option>
+        <option value="low">流畅</option>
+      </select>
     </section>
     <div id="labels" aria-hidden="true"></div>
     <div id="crosshair" hidden>＋</div>
@@ -98,7 +115,7 @@
           青年文化基地：按2026红线提取公寓及餐饮低区，相邻地块不重复建入。外国语高中：采用变更后总平面，补校舍、庭院与蓝色跑道；立面和部分层数简化，操场地面为模拟平整标高。
         </li>
         <li>
-          综合服务中心与产教融合中心的现有附件使用同一幅效果图，需补分区总平面再建，当前保留各自定位与示意体量。
+          综合服务中心与产教融合中心：依据分区总平面与效果图建立弧形合院、半环楼及室外通道；尺寸与立面仍有近似。
         </li>
         <li>
           其余地块：按地块范围、道路避让和设施类别生成示意建筑。轮廓、数量、高度与出入口待逐栋图纸校核，不表示实际建成形态。
@@ -108,7 +125,7 @@
         </li>
         <li>
           地形：连续的平缓模拟地面与岸线过渡，未接入 DEM
-          或实测高程。浅色地块为定位范围，不是建筑基底。
+          或实测高程。建筑位置保持原有配准。
         </li>
         <li>范围：当前为一期。二期尚未配准，仍在位置总图中单独查看。</li>
         <li>
@@ -126,7 +143,7 @@
       </ul>
       <p id="model-count"></p>
       <p>
-        A-52候选外景：生活二区两组航拍参考四个合院与中央环形共享外廊，补七条相连室外步道和低灌木。7层/25.2米、尺寸及朝向估算，地块对应待复核；未建室内。
+        A-52候选外景：生活二区两组航拍参考四个合院与中央环形共享外廊，补七条相连室外步道和低灌木。6层/21.6米、尺寸及朝向估算，地块对应待复核；未建室内。
       </p>
       <p>
         学生生活一区：核实图用地54477.7平方米与A-56控规54478平方米相符，结合道路和形状作对应推断。按报建屋顶图与实景照片细化1—11号楼，补退台、白色阳台带与配套楼；层高和比例有估算，楼群为避让示意道路东移25米、南移25米。
@@ -164,12 +181,22 @@
           >查看720云全景参考 ↗</a
         >
       </p>
-      <a href="./detail.html">电子科大局部图纸漫游 ↗</a>
+      <p>
+        渲染采用 Three.js WebGPU；天空、大气、体积云、FFT 海浪与海面网格改编自
+        <a
+          href="https://github.com/zzzhengqi/tidewater"
+          target="_blank"
+          rel="noopener"
+          >Tidewater</a
+        >（MIT）。<a href="./THIRD_PARTY_NOTICES.txt" target="_blank"
+          >开源声明 ↗</a
+        >
+      </p>
     </dialog>
     <div id="loading">
       <b>L · A</b>
-      <h1>连接校园、道路与地块</h1>
-      <p id="loading-text">正在生成连续场景…</p>
+      <h1>让海风，穿过校园</h1>
+      <p id="loading-text">正在连接 WebGPU…</p>
     </div>
     <div id="toast" role="status" hidden></div>
     <script type="module" src="/src/world.ts"></script>

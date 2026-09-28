@@ -1,0 +1,37 @@
+{
+  "version": "0.27.0",
+  "date": "2026-09-28",
+  "baseCommit": "84f8dd6a64a1fc77444ccfae7bd12e33104c8004",
+  "tidewaterCommit": "d9fcc35bf81ec4d49b8a64b611c94f4f225cbe6a",
+  "build": "TypeScript + Vite production build passed",
+  "physics": {
+    "engine": "Rapier 0.19.3",
+    "destinationsSettledJumpedLandedWalked": 33,
+    "collisionMeshes": 381,
+    "invisibleAccessSurfaces": 51,
+    "continuousStairAndBridgeLegs": 6,
+    "passed": true
+  },
+  "browser": {
+    "backend": "Three.js 0.186.0 WebGPU",
+    "testedURL": "http://127.0.0.1:4197/world.html",
+    "productionConsoleErrors": 0,
+    "observedFPS": "approximately 57–61 in this test environment; not a cross-device benchmark",
+    "checked": [
+      "first and third person",
+      "orbit, drag and zoom",
+      "UESTC and teaching destinations",
+      "tropical, morning and sunset presets",
+      "low, balanced and high quality",
+      "390x844 narrow layout",
+      "map library search and generated walk link"
+    ],
+    "fullCampusManualWalk": false,
+    "physicalTouchDeviceTest": false
+  },
+  "knownWarnings": [
+    "Rapier 0.19.3 emits an upstream WASM initialization deprecation warning.",
+    "Vite reports a large world chunk (~3.25 MB before HTTP gzip, ~1.13 MB gzip)."
+  ],
+  "scope": "Existing campus geometry and references preserved. Tidewater atmosphere, clouds, environment, FFT and CDLOD are integrated; no boat, underwater, SSR or TAA systems."
+}

@@ -1,0 +1,165 @@
+:root {
+  color: #e0e8e3;
+  background: #142b30;
+}
+.glass {
+  color: #e0e8e3;
+  background: rgba(18, 36, 39, 0.78);
+  border: 1px solid #cadfd626;
+  box-shadow: 0 12px 40px #071a2529;
+  backdrop-filter: blur(22px);
+}
+button,
+select {
+  color: #e0e8e3;
+  background: #ffffff09;
+  border: 1px solid #cee5dc29;
+  border-radius: 7px;
+}
+select option {
+  color: #e0e8e3;
+  background: #183438;
+}
+button:hover,
+a:hover {
+  background: #ffffff14;
+}
+button[aria-pressed="true"] {
+  background: #c8dccb;
+  color: #183d38;
+}
+a {
+  color: #bddacf;
+}
+small,
+.destination label,
+.destination p,
+#stats {
+  color: #aec3bb;
+}
+header {
+  border-radius: 12px;
+}
+header b {
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+header small {
+  letter-spacing: 2px;
+}
+.visual-settings {
+  position: absolute;
+  z-index: 2;
+  right: 18px;
+  top: 108px;
+  width: 214px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+}
+.visual-settings label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #b5cbc1;
+}
+.visual-settings select {
+  width: 100%;
+  font-size: 12px;
+}
+.visual-settings .engine {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #d2bd8c;
+  padding-bottom: 5px;
+}
+.world-label {
+  background: #1b343cd4;
+  border: 1px solid #bdd7c846;
+  color: #eff4eb;
+  font-size: 11px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px #15272333;
+}
+.world-label small {
+  color: #adc4b9;
+}
+.world-label.active {
+  border: 1px solid #e6c58b;
+  color: #fbe3b7;
+}
+#loading {
+  color: #dbe5d9;
+  background: radial-gradient(ellipse at 45% 45%, #325851, #142b33 70%);
+  gap: 10px;
+}
+#loading b {
+  color: #d2bd8c;
+  font-weight: 300;
+  letter-spacing: 14px;
+}
+#loading h1 {
+  font-weight: 400;
+  letter-spacing: 4px;
+}
+#loading p {
+  color: #b0c7ba;
+  font-size: 13px;
+  max-width: 90%;
+  line-height: 1.8;
+}
+#touch button {
+  background: #193833d9;
+  color: #dbe5d9;
+}
+.immersive .visual-settings {
+  display: none;
+}
+@media (max-width: 800px) {
+  .visual-settings {
+    right: 8px;
+    top: 78px;
+    width: 142px;
+    padding: 9px;
+    gap: 5px;
+  }
+  .visual-settings select {
+    min-height: 33px;
+    padding: 5px;
+    font-size: 11px;
+  }
+  .visual-settings .engine {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .visual-settings label {
+    font-size: 10px;
+  }
+}
+@media (max-width: 560px) {
+  .visual-settings {
+    top: auto;
+    bottom: 84px;
+    right: 8px;
+    width: 140px;
+  }
+  .minimap {
+    display: none;
+  }
+  .destination {
+    width: 220px;
+  }
+  header div {
+    margin-right: 0;
+  }
+  header a {
+    font-size: 10px;
+  }
+  header b {
+    font-size: 14px;
+  }
+  #about-open {
+    font-size: 11px;
+    padding: 6px;
+  }
+}
