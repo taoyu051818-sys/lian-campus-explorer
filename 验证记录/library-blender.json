@@ -1,0 +1,221 @@
+{
+  "version": "0.29.1",
+  "date": "2026-09-29",
+  "scope": "Photo correction: separate tower glazing/spandrels/champagne fins; broad solid podium ribbons, glass slots and bounded screen panels; curved entrance",
+  "authoring": {
+    "blender": "4.5.9 LTS",
+    "sourceReopened": true,
+    "editableMeshObjects": 183,
+    "lodCollections": 3,
+    "externalFonts": 0,
+    "screenTexturePacked": true
+  },
+  "assets": {
+    "status": "passed",
+    "lods": [
+      {
+        "file": "library-lod0.glb",
+        "triangles": 660774,
+        "meshes": 66,
+        "bytes": 5812484,
+        "bounds": [
+          [
+            -67.25540161132812,
+            -0.0002114676532780635,
+            -56.49260711669922
+          ],
+          [
+            85.39391159726065,
+            83.72915649414062,
+            50.50747299194336
+          ]
+        ],
+        "facadeChecks": {
+          "screenVertices": 484720,
+          "spandrelVertices": 6912,
+          "entranceVertices": 120
+        }
+      },
+      {
+        "file": "library-lod1.glb",
+        "triangles": 312922,
+        "meshes": 59,
+        "bytes": 3083140,
+        "bounds": [
+          [
+            -67.2620620727539,
+            -0.0003069369787187526,
+            -56.49397659301758
+          ],
+          [
+            85.38169388177758,
+            83.72811889648438,
+            50.50569152832031
+          ]
+        ],
+        "facadeChecks": {
+          "screenVertices": 290832,
+          "spandrelVertices": 3456,
+          "entranceVertices": 120
+        }
+      },
+      {
+        "file": "library-lod2.glb",
+        "triangles": 57834,
+        "meshes": 58,
+        "bytes": 506280,
+        "bounds": [
+          [
+            -66.9124984741211,
+            -0.00039655193729615235,
+            -56.50543212890625
+          ],
+          [
+            85.31814717022425,
+            83.72811889648438,
+            50.47649002075195
+          ]
+        ],
+        "facadeChecks": {
+          "screenVertices": 4060,
+          "spandrelVertices": 1728,
+          "entranceVertices": 72
+        }
+      }
+    ],
+    "independentCollisionVolumes": 40
+  },
+  "checks": {
+    "productionBuild": "passed; existing large-chunk warning",
+    "materials": {
+      "materials": 98,
+      "families": {
+        "terrain": 1,
+        "paving": 4,
+        "asphalt": 2,
+        "paint": 8,
+        "plaster": 14,
+        "concrete": 8,
+        "glass": 16,
+        "metal": 17,
+        "ceramic": 4,
+        "stone": 2,
+        "roofMetal": 5,
+        "foliage": 6,
+        "solar": 3,
+        "plastic": 2,
+        "rubber": 4,
+        "turf": 2
+      },
+      "upstreamFiles": 27,
+      "registeredHeightVertices": 78561,
+      "shoreField": "finite",
+      "status": "passed"
+    },
+    "physics": "using deprecated parameters for the initialization function; pass a single object instead\nPASS: 33 destinations settle, jump, land and walk; 91 invisible access surfaces preserved; 411 collision meshes; six continuous bidirectional stair/bridge route legs.",
+    "facadeZones": "Decoded vertex checks pass on all three LODs: screens respect plain glass and solid-ribbon zones; garden wing ground floor stays clear; spandrels stay outside tower window bands.",
+    "gltfValidator": "Three LODs: no errors or warnings. Validator reports unsupported EXT_meshopt_compression and unused objects as info; test:library separately decodes every compressed view."
+  },
+  "visualReview": {
+    "method": "Blender Cycles renders from saved source",
+    "views": [
+      "overall",
+      "entrance",
+      "tower-facade"
+    ],
+    "corrections": [
+      "removed atrium obstruction at entrance",
+      "offset entrance fascia to eliminate coplanar glass overlap",
+      "welded/smoothed curved solid ribbons while retaining sharp edges",
+      "Chinese lettering converted from available CJK font"
+    ]
+  },
+  "browser": {
+    "status": "not rerun for 0.29.1",
+    "reason": "No browser interaction tool is available in this turn. Opening a preview is not counted as a browser rendering test."
+  },
+  "previousVersionBrowserCheck": {
+    "version": "0.29.0",
+    "note": "Historical runtime integration evidence only; does not validate the revised assets.",
+    "result": {
+      "engine": "Codex in-app browser / Three.js r186 WebGPU",
+      "build": "production preview",
+      "campus": [
+        "library orbit",
+        "first-person arrival and look direction",
+        "afternoon and morning lighting",
+        "automatic LOD 0/1/2 by camera distance",
+        "model detail link visible at 687px window width"
+      ],
+      "campusObservedFPS": [
+        51,
+        61
+      ],
+      "modelPage": [
+        "near/mid/far manual selection",
+        "overall/front/screen/roof views"
+      ],
+      "errorsObserved": 0,
+      "warnings": [
+        "Existing Rapier deprecated initialization parameters warning"
+      ],
+      "notes": [
+        "Multiple simultaneous GPU preview windows encountered startup stalls. Final single-window production preview completed and rendered normally. Added cleanup on navigation during boot.",
+        "Chrome returned no WebGPU adapter on this machine; it is not counted as a passing browser.",
+        "FPS is a local observation, not a mobile-device performance guarantee."
+      ]
+    }
+  },
+  "accuracy": {
+    "confirmed": [
+      "19-storey tower; podium up to four storeys",
+      "five petal-shaped volumes",
+      "curved tower crown",
+      "white geometric screens in front of glazing",
+      "horizontal tower sunshades",
+      "roof terraces and forest-reading courtyard",
+      "tower has blue-grey glazing, grey spandrel panels and champagne horizontal fins, without geometric lattice",
+      "podium uses projecting solid cream ribbons, recessed glass slots and partial lattice panels",
+      "recessed curved glazed entrance with solid sign fascia and glass door canopy",
+      "low garden wing includes continuous clear glazing at its base"
+    ],
+    "estimated": [
+      "all horizontal dimensions and floor heights",
+      "individual petal placement, rotation and setback",
+      "screen module dimensions and roof crest curves",
+      "campus registration against the existing schematic terrain",
+      "entrance connector and skylight dimensions; position of the low garden wing inferred from aerial view",
+      "angular extents of clear glazing and unphotographed rear facades"
+    ],
+    "scope": "Photo-referenced exterior reconstruction; no interior or measured survey claim. Local +Z is toward the rear in glTF; source Blender uses Z-up."
+  },
+  "photoObservations": [
+    {
+      "reference": "User photo 1: entrance close-up, received 2026-09-29",
+      "features": [
+        "unpatterned tower curtain wall",
+        "grey spandrels",
+        "champagne fins",
+        "thick cream podium bands",
+        "curved glazed entrance and solid signage"
+      ]
+    },
+    {
+      "reference": "User photo 2: frontal aerial, received 2026-09-29",
+      "features": [
+        "clear glass slots under ribbons",
+        "low garden wing at the side of the entrance pair",
+        "white roof terraces",
+        "central pitched glass skylight"
+      ]
+    },
+    {
+      "reference": "User photo 3: low-angle entrance panorama, received 2026-09-29",
+      "features": [
+        "tower and podium use different facade systems",
+        "projecting cream slab edges",
+        "recessed glazing between lattice panels and ribbons"
+      ]
+    }
+  ]
+}

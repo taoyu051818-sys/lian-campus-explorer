@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "PingFang SC",
+    sans-serif;
+  color: #263f43;
+  background: #dce3e5;
+}
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  touch-action: none;
+}
+header {
+  position: fixed;
+  inset: 25px 28px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+header a {
+  color: inherit;
+  font-size: 13px;
+  text-decoration: none;
+}
+header div {
+  margin-right: auto;
+}
+header span,
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #617479;
+}
+h1 {
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin: 7px 0;
+}
+button,
+select {
+  font: inherit;
+  color: inherit;
+  border: 1px solid #82979560;
+  background: #f5f8f5bd;
+  border-radius: 7px;
+  padding: 10px 13px;
+  cursor: pointer;
+}
+button:hover,
+button[aria-pressed="true"] {
+  background: #244b4d;
+  color: #fff;
+}
+aside {
+  position: fixed;
+  left: 28px;
+  top: 135px;
+  width: 268px;
+  padding: 23px;
+  background: #f7f9f4e6;
+  border: 1px solid #ffffffa0;
+  border-radius: 12px;
+  box-shadow: 0 18px 48px #30474e10;
+  backdrop-filter: blur(16px);
+}
+h2 {
+  font-size: 22px;
+  margin: 12px 0;
+}
+aside p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #627473;
+}
+.view-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin: 21px 0;
+}
+label {
+  font-size: 12px;
+  display: block;
+  margin: 17px 0 8px;
+}
+select {
+  width: 100%;
+  font-size: 12px;
+}
+.check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+details {
+  border-top: 1px solid #a9b5ac55;
+  padding-top: 16px;
+  margin-top: 22px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+details a {
+  color: #365d58;
+}
+footer {
+  position: fixed;
+  inset: auto 28px 22px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: #536c70;
+}
+footer span:last-child {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+@media (max-width: 650px) {
+  header {
+    inset: 16px;
+    gap: 12px;
+  }
+  header span {
+    display: none;
+  }
+  h1 {
+    font-size: 17px;
+  }
+  header a {
+    font-size: 11px;
+  }
+  header button {
+    font-size: 11px;
+    padding: 8px;
+  }
+  aside {
+    left: 16px;
+    top: 85px;
+    width: 205px;
+    padding: 15px;
+  }
+  aside p {
+    font-size: 11px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  footer {
+    inset: auto 16px 16px;
+  }
+  footer span:last-child {
+    display: none;
+  }
+  .view-buttons {
+    margin: 12px 0;
+  }
+  button {
+    font-size: 12px;
+  }
+}
