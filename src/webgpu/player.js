@@ -86,7 +86,7 @@ export async function createPlayer(meshes, progress = () => {}) {
       world.step();
       return delta;
     },
-    ray(origin, direction, distance) {
+    ray(origin, direction, distance, predicate) {
       return world.castRay(
         new RAPIER.Ray(origin, direction),
         distance,
@@ -95,6 +95,7 @@ export async function createPlayer(meshes, progress = () => {}) {
         undefined,
         capsule,
         body,
+        predicate,
       );
     },
     dispose() {

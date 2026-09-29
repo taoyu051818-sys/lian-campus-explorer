@@ -1,0 +1,1461 @@
+{
+  "version": "0.31.0",
+  "date": "2026-09-29",
+  "scope": "Student activity center, open arcade, galleries, exterior stairs and planted courtyard",
+  "reference": {
+    "url": "https://wap.study-hn.cn/upload/file/2025/08/04/0ab6120f7fe041eab515bee73ddf7ab0.docx",
+    "imagesInspected": [
+      "image2.png",
+      "image6.png",
+      "image8.png",
+      "image10.png",
+      "image12.png",
+      "image14.png",
+      "image16.png",
+      "image17.jpeg",
+      "image18.jpeg"
+    ],
+    "builtPhotos": [
+      "image17.jpeg",
+      "image18.jpeg"
+    ],
+    "designRenderOnly": [
+      "image16.png"
+    ],
+    "downloadSHA256": "44ee3489544700898add63a4d3a48a19e830dc1a167442b4c95f551e461bfcc4",
+    "tourStatus": "720yun retry timed out; not reviewed in this revision"
+  },
+  "authoring": {
+    "sourceReopened": true,
+    "blender": "4.5.9 LTS",
+    "meshObjects": 69,
+    "lodCollections": 3,
+    "externalFonts": 0,
+    "externalImages": 0,
+    "previewFloorSeparate": true
+  },
+  "assets": {
+    "status": "passed",
+    "trees": 7,
+    "beds": 4,
+    "shrubs": 51,
+    "treeSamples": 224,
+    "bedSamples": 174,
+    "buildingSamples": 911,
+    "squareApertureLODs": 3,
+    "collisionVolumes": 63,
+    "collisionMeshes": 18,
+    "lods": [
+      {
+        "file": "activity-lod0.glb",
+        "triangles": 86708,
+        "meshes": 24,
+        "bytes": 917932,
+        "bounds": [
+          [
+            -20.742692087750726,
+            -0.38036596058078376,
+            -33.6142578125
+          ],
+          [
+            30.34558591709643,
+            21.590685747881036,
+            36.75503921508789
+          ]
+        ],
+        "nodes": [
+          {
+            "name": "branching tree trunks | bark",
+            "bounds": [
+              [
+                1.150002301932581,
+                -0.16233864530503084,
+                -31.210824966430664
+              ],
+              [
+                22.68368989109873,
+                7.479750619377487,
+                22.15838623046875
+              ]
+            ],
+            "triangles": 3804
+          },
+          {
+            "name": "brick coursing | brick mortar",
+            "bounds": [
+              [
+                -17.076920009552147,
+                -0.11614193170423714,
+                -24.341630935668945
+              ],
+              [
+                27.812540508209374,
+                4.383625203362658,
+                34.75410842895508
+              ]
+            ],
+            "triangles": 7424
+          },
+          {
+            "name": "brick ground rooms and piers | brick",
+            "bounds": [
+              [
+                -17.076920009552147,
+                -0.2694214325171167,
+                -24.341630935668945
+              ],
+              [
+                27.812540508209374,
+                4.619904701016491,
+                34.75410842895508
+              ]
+            ],
+            "triangles": 736
+          },
+          {
+            "name": "connected planted lawns | lawn",
+            "bounds": [
+              [
+                -6.288912068579847,
+                -0.13962502621923045,
+                -33.549259185791016
+              ],
+              [
+                27.621075879309828,
+                0.05651243620429593,
+                31.36827850341797
+              ]
+            ],
+            "triangles": 174
+          },
+          {
+            "name": "continuous curved bands | white warm ceramic",
+            "bounds": [
+              [
+                -18.72226404624946,
+                -0.26933729824810193,
+                -25.833385467529297
+              ],
+              [
+                29.858660454330515,
+                21.52981993732243,
+                36.64850616455078
+              ]
+            ],
+            "triangles": 8596
+          },
+          {
+            "name": "continuous low hedges | hedge",
+            "bounds": [
+              [
+                -4.588017986761361,
+                -0.38036596058078376,
+                -33.113868713378906
+              ],
+              [
+                25.88376240585926,
+                0.7945792007274207,
+                29.79369354248047
+              ]
+            ],
+            "triangles": 5100
+          },
+          {
+            "name": "courtyard circular path | walkway",
+            "bounds": [
+              [
+                1.5191622972488403,
+                -0.03299115359474845,
+                -0.21268716436656554
+              ],
+              [
+                17.719161987304688,
+                0.04512402176548667,
+                15.587343051851116
+              ]
+            ],
+            "triangles": 96
+          },
+          {
+            "name": "elongated frosted glass motifs | frosted diamonds",
+            "bounds": [
+              [
+                -17.81084295308277,
+                5.72005133087934,
+                -23.503864288330078
+              ],
+              [
+                23.84147687947437,
+                19.860431152030817,
+                30.210235595703125
+              ]
+            ],
+            "triangles": 416
+          },
+          {
+            "name": "enclosed floor shadow | reveal shadow",
+            "bounds": [
+              [
+                -17.73606245552729,
+                4.990565075830525,
+                -23.483951568603516
+              ],
+              [
+                24.01765768562983,
+                20.209917769475872,
+                30.40545082092285
+              ]
+            ],
+            "triangles": 2876
+          },
+          {
+            "name": "exterior gallery floors | pale paving",
+            "bounds": [
+              [
+                -18.54243412533558,
+                4.60977801661192,
+                -25.658695220947266
+              ],
+              [
+                29.8154310278014,
+                20.530704409077778,
+                36.63901138305664
+              ]
+            ],
+            "triangles": 4108
+          },
+          {
+            "name": "exterior stair handrails | rail",
+            "bounds": [
+              [
+                -14.33085863808826,
+                -0.2697583734989166,
+                31.153171652600395
+              ],
+              [
+                -6.901013443668331,
+                16.35845947265625,
+                35.46868312950409
+              ]
+            ],
+            "triangles": 1152
+          },
+          {
+            "name": "gallery railings | rail",
+            "bounds": [
+              [
+                -18.316708238436195,
+                5.460642845334433,
+                -25.447612762451172
+              ],
+              [
+                29.77495065481803,
+                16.43234011441288,
+                36.643856048583984
+              ]
+            ],
+            "triangles": 10152
+          },
+          {
+            "name": "ground doors | blue glazing",
+            "bounds": [
+              [
+                -14.408017446615911,
+                -0.1699080735596914,
+                -19.493305206298828
+              ],
+              [
+                18.467910101034857,
+                3.2303912311944263,
+                28.656049728393555
+              ]
+            ],
+            "triangles": 32
+          },
+          {
+            "name": "layered leaf canopy | leaf light",
+            "bounds": [
+              [
+                0.5710783920349716,
+                3.4033216336323036,
+                -31.83773422241211
+              ],
+              [
+                23.297837463849582,
+                7.92403017491567,
+                22.722139358520508
+              ]
+            ],
+            "triangles": 5196
+          },
+          {
+            "name": "layered leaf canopy | leaf shadow",
+            "bounds": [
+              [
+                0.29864444729700956,
+                3.099718031875381,
+                -32.00397491455078
+              ],
+              [
+                23.44452193978414,
+                7.952669444092026,
+                22.962032318115234
+              ]
+            ],
+            "triangles": 13608
+          },
+          {
+            "name": "planting curbs | white warm ceramic",
+            "bounds": [
+              [
+                -6.349684386605961,
+                -0.1693386318437271,
+                -33.6142578125
+              ],
+              [
+                27.68375363862012,
+                0.15622622094075012,
+                31.433202743530273
+              ]
+            ],
+            "triangles": 1986
+          },
+          {
+            "name": "roof membrane | roof",
+            "bounds": [
+              [
+                -18.54243412533558,
+                20.529797650556464,
+                -25.658695220947266
+              ],
+              [
+                29.8154310278014,
+                21.590685747881036,
+                36.63901138305664
+              ]
+            ],
+            "triangles": 1080
+          },
+          {
+            "name": "roof seams and panel joints | roof joints",
+            "bounds": [
+              [
+                -18.59645813606582,
+                4.519790964196147,
+                -25.126970291137695
+              ],
+              [
+                26.97460526130996,
+                21.040692014624653,
+                36.65576934814453
+              ]
+            ],
+            "triangles": 1224
+          },
+          {
+            "name": "site perimeter paving | pale paving",
+            "bounds": [
+              [
+                -20.742692087750726,
+                -0.14611084215329584,
+                -27.793800354003906
+              ],
+              [
+                30.34558591709643,
+                0.08437147937701638,
+                36.75503921508789
+              ]
+            ],
+            "triangles": 228
+          },
+          {
+            "name": "south exterior return stairs | white warm ceramic",
+            "bounds": [
+              [
+                -14.316300949149708,
+                -0.30531394481658936,
+                31.04739153340232
+              ],
+              [
+                -5.4675892981952625,
+                15.330241203308105,
+                35.49799191996682
+              ]
+            ],
+            "triangles": 2268
+          },
+          {
+            "name": "upper curtain walls | blue glazing",
+            "bounds": [
+              [
+                -17.773924661940733,
+                5.590380358049132,
+                -23.227489471435547
+              ],
+              [
+                24.028456522292295,
+                19.980102849653505,
+                30.40782356262207
+              ]
+            ],
+            "triangles": 512
+          },
+          {
+            "name": "upper curtain walls | blue glazing light",
+            "bounds": [
+              [
+                -17.677905708454087,
+                5.5904981460388505,
+                -23.527624130249023
+              ],
+              [
+                23.449681907794908,
+                19.979985061663786,
+                27.794931411743164
+              ]
+            ],
+            "triangles": 124
+          },
+          {
+            "name": "upper end wall with square opening | white warm ceramic",
+            "bounds": [
+              [
+                -16.7647705078125,
+                10.68028973599911,
+                35.31613800067048
+              ],
+              [
+                2.6293256282806396,
+                21.080194005761143,
+                36.73901489239593
+              ]
+            ],
+            "triangles": 48
+          },
+          {
+            "name": "window frames | window metal",
+            "bounds": [
+              [
+                -17.81335765249427,
+                -0.20759726226762787,
+                -23.55431365966797
+              ],
+              [
+                24.03537112600501,
+                20.015580511693514,
+                30.44282341003418
+              ]
+            ],
+            "triangles": 15768
+          }
+        ]
+      },
+      {
+        "file": "activity-lod1.glb",
+        "triangles": 45194,
+        "meshes": 23,
+        "bytes": 493344,
+        "bounds": [
+          [
+            -20.742692087750726,
+            -0.38036596058078376,
+            -33.6142578125
+          ],
+          [
+            30.34558591709643,
+            21.590685747881036,
+            36.75503921508789
+          ]
+        ],
+        "nodes": [
+          {
+            "name": "branching tree trunks | bark.001",
+            "bounds": [
+              [
+                1.1504817984180349,
+                -0.1623907818149708,
+                -31.210824966430664
+              ],
+              [
+                22.683210394613276,
+                7.479562757785239,
+                21.930917739868164
+              ]
+            ],
+            "triangles": 2820
+          },
+          {
+            "name": "brick ground rooms and piers | brick.001",
+            "bounds": [
+              [
+                -17.076920009552147,
+                -0.2694214325171167,
+                -24.341630935668945
+              ],
+              [
+                27.812540508209374,
+                4.619904701016491,
+                34.75410842895508
+              ]
+            ],
+            "triangles": 480
+          },
+          {
+            "name": "connected planted lawns | lawn.001",
+            "bounds": [
+              [
+                -6.288912068579847,
+                -0.13962502621923045,
+                -33.549259185791016
+              ],
+              [
+                27.621075879309828,
+                0.05651243620429593,
+                31.36827850341797
+              ]
+            ],
+            "triangles": 174
+          },
+          {
+            "name": "continuous curved bands | white warm ceramic.001",
+            "bounds": [
+              [
+                -18.714335233170466,
+                -0.26933729824810193,
+                -25.833385467529297
+              ],
+              [
+                29.858961850602107,
+                21.52981993732243,
+                36.64850616455078
+              ]
+            ],
+            "triangles": 4948
+          },
+          {
+            "name": "continuous low hedges | hedge.001",
+            "bounds": [
+              [
+                -4.555437932093193,
+                -0.38036596058078376,
+                -33.113868713378906
+              ],
+              [
+                25.845308194239188,
+                0.7945792007274207,
+                29.79369354248047
+              ]
+            ],
+            "triangles": 3264
+          },
+          {
+            "name": "courtyard circular path | walkway.001",
+            "bounds": [
+              [
+                1.5191622972488403,
+                -0.03299115359474845,
+                -0.21268716436656554
+              ],
+              [
+                17.719161987304688,
+                0.04512402176548667,
+                15.587343051851116
+              ]
+            ],
+            "triangles": 96
+          },
+          {
+            "name": "elongated frosted glass motifs | frosted diamonds.001",
+            "bounds": [
+              [
+                -17.80838209149253,
+                5.719974952297505,
+                -23.488258361816406
+              ],
+              [
+                23.77843481060874,
+                19.86050753061265,
+                30.145591735839844
+              ]
+            ],
+            "triangles": 316
+          },
+          {
+            "name": "enclosed floor shadow | reveal shadow.001",
+            "bounds": [
+              [
+                -17.729239843710044,
+                4.990565075830525,
+                -23.483951568603516
+              ],
+              [
+                24.017901800497153,
+                20.209917769475872,
+                30.40545082092285
+              ]
+            ],
+            "triangles": 1284
+          },
+          {
+            "name": "exterior gallery floors | pale paving.001",
+            "bounds": [
+              [
+                -18.54108391922234,
+                4.60977801661192,
+                -25.658695220947266
+              ],
+              [
+                29.81488000076531,
+                20.530704409077778,
+                36.63901138305664
+              ]
+            ],
+            "triangles": 2212
+          },
+          {
+            "name": "exterior stair handrails | rail.001",
+            "bounds": [
+              [
+                -14.33085863808826,
+                -0.2697583734989166,
+                31.153171652600395
+              ],
+              [
+                -6.901013443668331,
+                16.35845947265625,
+                35.46868312950409
+              ]
+            ],
+            "triangles": 1152
+          },
+          {
+            "name": "gallery railings | rail.001",
+            "bounds": [
+              [
+                -18.309032137438262,
+                5.460642845334433,
+                -25.447612762451172
+              ],
+              [
+                29.77504699949881,
+                16.43234011441288,
+                36.643856048583984
+              ]
+            ],
+            "triangles": 6264
+          },
+          {
+            "name": "ground doors | blue glazing.001",
+            "bounds": [
+              [
+                -14.408017446615911,
+                -0.1699080735596914,
+                -19.493305206298828
+              ],
+              [
+                18.467910101034857,
+                3.2303912311944263,
+                28.656049728393555
+              ]
+            ],
+            "triangles": 32
+          },
+          {
+            "name": "layered leaf canopy | leaf light.001",
+            "bounds": [
+              [
+                0.513868869025849,
+                3.4190382188366306,
+                -31.779539108276367
+              ],
+              [
+                23.35020846060977,
+                7.922678547520791,
+                22.514347076416016
+              ]
+            ],
+            "triangles": 1614
+          },
+          {
+            "name": "layered leaf canopy | leaf shadow.001",
+            "bounds": [
+              [
+                0.4134726785445082,
+                3.1802695958794143,
+                -31.82860565185547
+              ],
+              [
+                23.41004306447269,
+                7.895387771826885,
+                22.534616470336914
+              ]
+            ],
+            "triangles": 4080
+          },
+          {
+            "name": "planting curbs | white warm ceramic.001",
+            "bounds": [
+              [
+                -6.349684386605961,
+                -0.1693386318437271,
+                -33.6142578125
+              ],
+              [
+                27.68375363862012,
+                0.15622622094075012,
+                31.433202743530273
+              ]
+            ],
+            "triangles": 1986
+          },
+          {
+            "name": "roof membrane | roof.001",
+            "bounds": [
+              [
+                -18.534542303568177,
+                20.529797650556464,
+                -25.658695220947266
+              ],
+              [
+                29.815717916971497,
+                21.590685747881036,
+                36.63901138305664
+              ]
+            ],
+            "triangles": 624
+          },
+          {
+            "name": "roof seams and panel joints | roof joints.001",
+            "bounds": [
+              [
+                -18.59645813606582,
+                4.519790964196147,
+                -25.126970291137695
+              ],
+              [
+                26.97460526130996,
+                21.040692014624653,
+                36.65576934814453
+              ]
+            ],
+            "triangles": 1224
+          },
+          {
+            "name": "site perimeter paving | pale paving.001",
+            "bounds": [
+              [
+                -20.742692087750726,
+                -0.14611084215329584,
+                -27.793800354003906
+              ],
+              [
+                30.34558591709643,
+                0.08437147937701638,
+                36.75503921508789
+              ]
+            ],
+            "triangles": 228
+          },
+          {
+            "name": "south exterior return stairs | white warm ceramic.001",
+            "bounds": [
+              [
+                -14.316300949149708,
+                -0.30531394481658936,
+                31.04739153340232
+              ],
+              [
+                -5.4675892981952625,
+                15.330241203308105,
+                35.49799191996682
+              ]
+            ],
+            "triangles": 2268
+          },
+          {
+            "name": "upper curtain walls | blue glazing light.001",
+            "bounds": [
+              [
+                -17.53534008384344,
+                5.5899211644042195,
+                -23.139423370361328
+              ],
+              [
+                23.907931102520198,
+                19.980562043298416,
+                26.986879348754883
+              ]
+            ],
+            "triangles": 96
+          },
+          {
+            "name": "upper curtain walls | blue glazing.001",
+            "bounds": [
+              [
+                -17.77045243049878,
+                5.590446783894057,
+                -23.527624130249023
+              ],
+              [
+                24.028819968950927,
+                19.980036423808578,
+                30.40782356262207
+              ]
+            ],
+            "triangles": 384
+          },
+          {
+            "name": "upper end wall with square opening | white warm ceramic.001",
+            "bounds": [
+              [
+                -16.7647705078125,
+                10.68028973599911,
+                35.31613800067048
+              ],
+              [
+                2.6293256282806396,
+                21.080194005761143,
+                36.73901489239593
+              ]
+            ],
+            "triangles": 48
+          },
+          {
+            "name": "window frames | window metal.001",
+            "bounds": [
+              [
+                -17.797376163696992,
+                -0.20759726226762787,
+                -23.55431365966797
+              ],
+              [
+                24.034873493408906,
+                20.015580511693514,
+                30.44282341003418
+              ]
+            ],
+            "triangles": 9600
+          }
+        ]
+      },
+      {
+        "file": "activity-lod2.glb",
+        "triangles": 27128,
+        "meshes": 21,
+        "bytes": 315636,
+        "bounds": [
+          [
+            -20.742692087750726,
+            -0.3796433598020492,
+            -33.6142578125
+          ],
+          [
+            30.34558591709643,
+            21.590685747881036,
+            36.75503921508789
+          ]
+        ],
+        "nodes": [
+          {
+            "name": "branching tree trunks | bark.002",
+            "bounds": [
+              [
+                1.3841666356049718,
+                -0.16206229316703302,
+                -31.210824966430664
+              ],
+              [
+                22.683355055717357,
+                7.479891246433176,
+                21.930917739868164
+              ]
+            ],
+            "triangles": 1956
+          },
+          {
+            "name": "brick ground rooms and piers | brick.002",
+            "bounds": [
+              [
+                -17.076920009552147,
+                -0.2694214325171167,
+                -24.341630935668945
+              ],
+              [
+                27.812540508209374,
+                4.619904701016491,
+                34.75410842895508
+              ]
+            ],
+            "triangles": 336
+          },
+          {
+            "name": "connected planted lawns | lawn.002",
+            "bounds": [
+              [
+                -6.288912068579847,
+                -0.13962502621923045,
+                -33.549259185791016
+              ],
+              [
+                27.621075879309828,
+                0.05651243620429593,
+                31.36827850341797
+              ]
+            ],
+            "triangles": 174
+          },
+          {
+            "name": "continuous curved bands | white warm ceramic.002",
+            "bounds": [
+              [
+                -18.69386447231614,
+                -0.26933729824810193,
+                -25.833385467529297
+              ],
+              [
+                29.85845721523606,
+                21.52981993732243,
+                36.64850616455078
+              ]
+            ],
+            "triangles": 2772
+          },
+          {
+            "name": "continuous low hedges | hedge.002",
+            "bounds": [
+              [
+                -4.587493689469786,
+                -0.3796433598020492,
+                -33.07518005371094
+              ],
+              [
+                25.88323810856769,
+                0.7938565999486862,
+                29.7550048828125
+              ]
+            ],
+            "triangles": 1836
+          },
+          {
+            "name": "courtyard circular path | walkway.002",
+            "bounds": [
+              [
+                1.5191622972488403,
+                -0.03299115359474845,
+                -0.21268716436656554
+              ],
+              [
+                17.719161987304688,
+                0.04512402176548667,
+                15.587343051851116
+              ]
+            ],
+            "triangles": 96
+          },
+          {
+            "name": "enclosed floor shadow | reveal shadow.002",
+            "bounds": [
+              [
+                -17.72485792932648,
+                4.990565075830525,
+                -23.483951568603516
+              ],
+              [
+                24.017349842168276,
+                20.209917769475872,
+                30.40545082092285
+              ]
+            ],
+            "triangles": 612
+          },
+          {
+            "name": "exterior gallery floors | pale paving.002",
+            "bounds": [
+              [
+                -18.52026260443034,
+                4.60977801661192,
+                -25.658695220947266
+              ],
+              [
+                29.814787750914714,
+                20.530704409077778,
+                36.63901138305664
+              ]
+            ],
+            "triangles": 1052
+          },
+          {
+            "name": "exterior stair handrails | rail.002",
+            "bounds": [
+              [
+                -14.33085863808826,
+                -0.2697583734989166,
+                31.153171652600395
+              ],
+              [
+                -6.901013443668331,
+                16.35845947265625,
+                35.46868312950409
+              ]
+            ],
+            "triangles": 1152
+          },
+          {
+            "name": "gallery railings | rail.002",
+            "bounds": [
+              [
+                -18.26914626343386,
+                5.460642845334433,
+                -25.447612762451172
+              ],
+              [
+                29.775139152838157,
+                16.43234011441288,
+                36.643856048583984
+              ]
+            ],
+            "triangles": 3672
+          },
+          {
+            "name": "ground doors | blue glazing.002",
+            "bounds": [
+              [
+                -14.408017446615911,
+                -0.1699080735596914,
+                -19.493305206298828
+              ],
+              [
+                18.467910101034857,
+                3.2303912311944263,
+                28.656049728393555
+              ]
+            ],
+            "triangles": 32
+          },
+          {
+            "name": "layered leaf canopy | leaf light.002",
+            "bounds": [
+              [
+                1.723669250170719,
+                3.871514231644162,
+                -30.61815071105957
+              ],
+              [
+                23.251827757199276,
+                7.742292731322757,
+                22.628616333007812
+              ]
+            ],
+            "triangles": 336
+          },
+          {
+            "name": "layered leaf canopy | leaf shadow.002",
+            "bounds": [
+              [
+                0.9365613727585664,
+                3.6241274802551704,
+                -31.926424026489258
+              ],
+              [
+                23.679772052286445,
+                7.907102015747027,
+                22.61699867248535
+              ]
+            ],
+            "triangles": 648
+          },
+          {
+            "name": "planting curbs | white warm ceramic.002",
+            "bounds": [
+              [
+                -6.349684386605961,
+                -0.1693386318437271,
+                -33.6142578125
+              ],
+              [
+                27.68375363862012,
+                0.15622622094075012,
+                31.433202743530273
+              ]
+            ],
+            "triangles": 1986
+          },
+          {
+            "name": "roof membrane | roof.002",
+            "bounds": [
+              [
+                -18.514156817938773,
+                20.529797650556464,
+                -25.658695220947266
+              ],
+              [
+                29.815189837958304,
+                21.590685747881036,
+                36.63901138305664
+              ]
+            ],
+            "triangles": 352
+          },
+          {
+            "name": "site perimeter paving | pale paving.002",
+            "bounds": [
+              [
+                -20.742692087750726,
+                -0.14611084215329584,
+                -27.793800354003906
+              ],
+              [
+                30.34558591709643,
+                0.08437147937701638,
+                36.75503921508789
+              ]
+            ],
+            "triangles": 228
+          },
+          {
+            "name": "south exterior return stairs | white warm ceramic.002",
+            "bounds": [
+              [
+                -14.316300949149708,
+                -0.30531394481658936,
+                31.04739153340232
+              ],
+              [
+                -5.4675892981952625,
+                15.330241203308105,
+                35.49799191996682
+              ]
+            ],
+            "triangles": 2268
+          },
+          {
+            "name": "upper curtain walls | blue glazing light.002",
+            "bounds": [
+              [
+                -17.511097808481882,
+                5.5901070979202725,
+                -22.979101181030273
+              ],
+              [
+                24.02874269068403,
+                19.980376109782362,
+                25.737289428710938
+              ]
+            ],
+            "triangles": 68
+          },
+          {
+            "name": "upper curtain walls | blue glazing.002",
+            "bounds": [
+              [
+                -17.776415236276307,
+                5.590446783894057,
+                -23.527624130249023
+              ],
+              [
+                23.90763510016791,
+                19.980036423808578,
+                30.40782356262207
+              ]
+            ],
+            "triangles": 280
+          },
+          {
+            "name": "upper end wall with square opening | white warm ceramic.002",
+            "bounds": [
+              [
+                -16.7647705078125,
+                10.68028973599911,
+                35.31613800067048
+              ],
+              [
+                2.6293256282806396,
+                21.080194005761143,
+                36.73901489239593
+              ]
+            ],
+            "triangles": 48
+          },
+          {
+            "name": "window frames | window metal.002",
+            "bounds": [
+              [
+                -17.80397265478475,
+                -0.20759726226762787,
+                -23.55431365966797
+              ],
+              [
+                24.0348686508785,
+                20.015580511693514,
+                30.44282341003418
+              ]
+            ],
+            "triangles": 7224
+          }
+        ]
+      }
+    ]
+  },
+  "apertures": {
+    "squareEndWall": "Ray checked in all 3 LODs; opening clear and neighboring solid wall hit",
+    "stairwells": "Ray checked at three upper gallery levels in all 3 LODs; clear opening and surrounding slab hit"
+  },
+  "vegetation": {
+    "treeGroups": 7,
+    "visibleTrunks": 9,
+    "shrubGroups": 51,
+    "lawnBeds": 4,
+    "actualCanopyBounds": [
+      {
+        "tree": "activity-tree-0",
+        "lod": 0,
+        "measuredRadius": 2.4750520757386147,
+        "clearanceRadius": 2.8
+      },
+      {
+        "tree": "activity-tree-1",
+        "lod": 0,
+        "measuredRadius": 2.224147282229933,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-2",
+        "lod": 0,
+        "measuredRadius": 2.2731284831333864,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-3",
+        "lod": 0,
+        "measuredRadius": 2.2737597064405013,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-4",
+        "lod": 0,
+        "measuredRadius": 2.270346422624716,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-5",
+        "lod": 0,
+        "measuredRadius": 2.236938788036361,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-6",
+        "lod": 0,
+        "measuredRadius": 2.273043049616462,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-0",
+        "lod": 1,
+        "measuredRadius": 2.400139389385749,
+        "clearanceRadius": 2.8
+      },
+      {
+        "tree": "activity-tree-1",
+        "lod": 1,
+        "measuredRadius": 2.2102013963667284,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-2",
+        "lod": 1,
+        "measuredRadius": 2.23077578188975,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-3",
+        "lod": 1,
+        "measuredRadius": 2.273760779914672,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-4",
+        "lod": 1,
+        "measuredRadius": 2.270345680913362,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-5",
+        "lod": 1,
+        "measuredRadius": 2.236937956127464,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-6",
+        "lod": 1,
+        "measuredRadius": 2.252186747974417,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-0",
+        "lod": 2,
+        "measuredRadius": 2.274221485441524,
+        "clearanceRadius": 2.8
+      },
+      {
+        "tree": "activity-tree-1",
+        "lod": 2,
+        "measuredRadius": 2.18728751015503,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-2",
+        "lod": 2,
+        "measuredRadius": 2.232530622167691,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-3",
+        "lod": 2,
+        "measuredRadius": 2.2375155803751205,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-4",
+        "lod": 2,
+        "measuredRadius": 2.3715304880565538,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-5",
+        "lod": 2,
+        "measuredRadius": 2.3153583629136087,
+        "clearanceRadius": 2.4
+      },
+      {
+        "tree": "activity-tree-6",
+        "lod": 2,
+        "measuredRadius": 2.302886500627579,
+        "clearanceRadius": 2.4
+      }
+    ],
+    "positionsAndSpecies": "photo-informed estimates"
+  },
+  "gltfValidator": {
+    "lods": 3,
+    "errors": 0,
+    "warnings": 0,
+    "limitation": "EXT_meshopt_compression is unsupported by the validator; every compressed view decoded and inspected separately"
+  },
+  "physics": {
+    "status": "passed",
+    "summaries": [
+      "PASS: 33 destinations settle, jump, land and walk; 217 invisible access surfaces preserved; 533 collision meshes; six continuous teaching stair/bridge route legs and sports curved stair ascent/descent.",
+      "PASS: activity throughRoute, 5 waypoints each direction, no teleport between legs.",
+      "PASS: activity stairRoute, 27 waypoints each direction, no teleport between legs."
+    ],
+    "hiddenSurfaceMethod": "Actual triangle centroid / normal, filtered to matching collider name; concave slab bounding-box centres are not used"
+  },
+  "regressions": {
+    "sports": "passed",
+    "library": "passed"
+  },
+  "materials": {
+    "materials": 98,
+    "families": {
+      "terrain": 1,
+      "paving": 4,
+      "asphalt": 2,
+      "paint": 8,
+      "plaster": 14,
+      "concrete": 8,
+      "glass": 16,
+      "metal": 17,
+      "ceramic": 4,
+      "stone": 2,
+      "roofMetal": 5,
+      "foliage": 6,
+      "solar": 3,
+      "plastic": 2,
+      "rubber": 4,
+      "turf": 2
+    },
+    "upstreamFiles": 27,
+    "registeredHeightVertices": 78561,
+    "shoreField": "finite",
+    "status": "passed"
+  },
+  "registration": {
+    "localAxes": "X east / depth south / elevation up; atlas registration remains schematic",
+    "anchor": [
+      1239.078947368421,
+      1018.8157894736844
+    ],
+    "offsetFromLegacySite": [
+      7.5,
+      -7.5
+    ],
+    "note": "Metre scale preserved; translated to avoid schematic roads. Campus survey registration is still unverified."
+  },
+  "build": {
+    "typecheck": "passed",
+    "vite": "passed",
+    "warning": "Existing large JavaScript chunk warning"
+  },
+  "http": [
+    {
+      "url": "building.html?asset=activity",
+      "status": 200,
+      "bytes": 2308
+    },
+    {
+      "url": "building.html?asset=sports",
+      "status": 200,
+      "bytes": 2308
+    },
+    {
+      "url": "world.html?place=activity&view=orbit",
+      "status": 200,
+      "bytes": 10737
+    },
+    {
+      "url": "models/activity/activity.json",
+      "status": 200,
+      "bytes": 431331
+    },
+    {
+      "url": "models/activity/activity-lod0.glb",
+      "status": 200,
+      "bytes": 917932,
+      "sha256": "0ae6235cb6df4b8145306acb1ef237fb276d36b7a33b4db4e03f5f1f4f7eba5e"
+    },
+    {
+      "url": "models/activity/activity-lod1.glb",
+      "status": 200,
+      "bytes": 493344,
+      "sha256": "c73934599a2b174fa29b22aa958b89b092a87d2e07f4e7a8de84e98e235490f3"
+    },
+    {
+      "url": "models/activity/activity-lod2.glb",
+      "status": 200,
+      "bytes": 315636,
+      "sha256": "b45785b4d5b76f803e843f3e7341607dbf583e63782e72c58d6c3d45273341f0"
+    }
+  ],
+  "visualReview": {
+    "method": "Four final Blender Cycles renders inspected",
+    "views": [
+      "overall",
+      "front",
+      "arcade",
+      "landscape"
+    ],
+    "browserWebGPU": "not run in this revision; visual runtime review pending"
+  },
+  "reproducibility": {
+    "designRepeat": "byte-identical",
+    "sourceBlendSHA256": "ee8137c6df259b3bdb04c30417e4929b586e76ad65177d63da4a7379dc4e33e0"
+  },
+  "remaining": [
+    "Hand-traced centreline and envelope width; 1.2 m red-line control residual is not survey accuracy",
+    "Storey levels, balcony setbacks, column grid, glazing and pattern modules",
+    "Stair width / treads, roof equipment and unpublished elevations",
+    "Individual plant species, count, positions and schematic campus terrain registration",
+    "Browser WebGPU visual / LOD / lighting review",
+    "Additional site photographs to refine wing ends and unobserved elevations"
+  ]
+}
