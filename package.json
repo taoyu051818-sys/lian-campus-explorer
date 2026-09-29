@@ -1,6 +1,6 @@
 {
   "name": "lian-campus-explorer",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,8 @@
     "test:sports": "node tools/test-sports.mjs",
     "test:activity": "node tools/test-activity.mjs",
     "test:hall": "node tools/test-hall.mjs",
-    "test:uestc": "node tools/test-uestc.mjs"
+    "test:uestc": "node tools/test-uestc.mjs",
+    "test:bupt": "node tools/test-bupt.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.19.3",
