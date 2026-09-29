@@ -484,6 +484,50 @@ try {
       );
     }
   }
+  {
+    const model = JSON.parse(
+      await fs.readFile(
+        new URL("../public/models/incubator/incubator.json", import.meta.url),
+      ),
+    );
+    const reg = manifest.authoredAssets.find((a) => a.id === "incubator");
+    for (const local of model.walkRoutes) {
+      const route = local.points.map(([x, z, y]) => [
+        x + reg.anchor[0],
+        z + reg.anchor[1],
+        y + reg.base,
+      ]);
+      player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+      for (let i = 0; i < 90; i++) player.step({});
+      for (const points of [route, [...route].reverse()])
+        for (const [x, z, y] of points) {
+          let reached = false;
+          for (let i = 0; i < 2400; i++) {
+            const p = player.position,
+              dx = x - p.x,
+              dz = z - p.z,
+              d = Math.hypot(dx, dz);
+            if (d < 0.16) {
+              reached = true;
+              break;
+            }
+            const speed = Math.min(2.5, d * 20);
+            player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+          }
+          assert.ok(
+            reached,
+            `incubator ${local.name} blocked ${JSON.stringify(player.position)}`,
+          );
+          assert.ok(
+            Math.abs(player.position.y - y - 0.9) < 0.4,
+            "incubator stilt floor elevation mismatch",
+          );
+        }
+      console.log(
+        `PASS: incubator ${local.name}, continuous approach / open stilt bay / return.`,
+      );
+    }
+  }
 } finally {
   player.dispose();
 }

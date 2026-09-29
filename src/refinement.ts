@@ -39,7 +39,7 @@ export const detailStatus: Record<string, string> = {
   dorm62: "规划图四五区 · 分翼宿舍与食堂",
   workshop: "规划图五层工坊 · 三角中庭",
   geology: "规划图教学实践中心 · 弧形庭院",
-  incubator: "实建图外轮廓 · 照片参考表皮",
+  incubator: "Blender 错层幕墙 · 屋顶构架、退台与入口绿化",
   minzu: "效果图参考合院 · 尺寸估算",
   blcu: "效果图参考楼翼 · 尺寸估算",
   uestc: "Blender 双学院楼 · 阳台带、连廊与庭院绿化",

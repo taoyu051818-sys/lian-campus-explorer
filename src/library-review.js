@@ -12,7 +12,7 @@ async function boot() {
     ? new URLSearchParams(location.search).get("asset") || "sports"
     : "library";
   const supportedAssets = document.body.dataset.genericModel
-    ? ["sports", "activity", "hall", "uestc", "bupt"]
+    ? ["sports", "activity", "hall", "uestc", "bupt", "incubator"]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
     throw new Error("未找到该建筑模型");
@@ -145,6 +145,7 @@ async function boot() {
       pool: "游泳馆",
       gym: "体育馆",
       landscape: "周边绿化",
+      rear: "背面",
       roof: "屋顶",
       front: "正面",
       entrance: "入口",

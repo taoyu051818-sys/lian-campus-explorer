@@ -283,16 +283,16 @@
       "id": "incubator",
       "name": "创新创业孵化中心",
       "priority": 6,
-      "status": "queued",
-      "existingExterior": "实建图外轮廓 · 照片参考表皮",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 五层错层幕墙、局部架空层、屋顶构架与入口绿化",
       "source": "https://wap.study-hn.cn/upload/file/2025/09/23/1758593138960022228.docx",
-      "evidence": "2025实建测量图image2，六个界址点仿射拟合并描绘主体外包轮廓。按实建分层图五层，层高暂估4.5 m（总高22.5 m）。采用image20实建照片的深色玻璃、上部铜色表皮与白色屋顶构架，不沿用image19绿色报建外观；立面分格、局部退让和屋顶构架尺寸为近似。",
+      "evidence": "2025年官方公示Word的实建位置图、架空层与五层分层图、屋顶图及image20建成照片；六点拟合残差0.503m。层高和细部仍为估算，未找到该楼独立命名的720场景。",
       "units": [
         {
-          "name": "创新创业孵化中心 · 五层长条主楼",
+          "name": "创新创业孵化中心 · 五层错层主楼与局部架空层",
           "kind": "incubator",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -302,8 +302,27 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "补充剖面标高与立面近照，核对幕墙材质；按 nextSite 继续一号食堂。",
+      "completedChecks": [
+        "Three Meshopt LODs decoded; glTF validator 0 errors / 0 warnings",
+        "Blender source reopened; four Cycles views inspected; no external fonts/images",
+        "2523 plant and 418 building-perimeter clearance samples",
+        "Visible front recess, west roof terrace, open roof grid and stilt ground raycasts",
+        "Two stilt approach routes continuously out and back",
+        "33 destinations and previous outdoor routes regression",
+        "TypeScript / Vite / materials",
+        "Native Metal WebGPU: three LODs, five detail views, seven campus sites and automatic LOD 0/1/2"
+      ],
+      "version": "0.35.0",
+      "verification": "验证记录/incubator-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.35.0.json",
+      "authoring": "authoring/incubator/README.md",
+      "landscapeNotes": "8处种植岛、30株乔木／棕榈、812组低绿篱，西端屋顶种植、两侧小廊架和铺地；入口保留两处绿化断口。数量、品种和位置仍为估算。",
+      "remainingReview": [
+        "Exact stilt/storey heights from sections",
+        "Close-up facade material and frame modules",
+        "Additional landscape photographs and cadastral registration"
+      ]
     },
     {
       "id": "canteen",
@@ -2001,5 +2020,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "incubator"
+  "nextSite": "canteen"
 }
