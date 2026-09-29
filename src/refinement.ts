@@ -44,7 +44,7 @@ export const detailStatus: Record<string, string> = {
   uestc: "核实图轮廓 · 立面细化",
   bupt: "核实图合院 · 照片参考立面",
   cuc: "规划图轮廓 · 简化立面",
-  library: "Blender 实景参考外景 · 五瓣裙楼／19层塔楼 · 尺寸估算",
+  library: "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
   sports: "实建图尺寸 · 双馆与表皮细化",
   activity: "实建图轮廓 · 四层弯折主楼",
   hall: "实建图轮廓 · 椭圆主厅",
