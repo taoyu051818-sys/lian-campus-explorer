@@ -48,7 +48,7 @@ export const detailStatus: Record<string, string> = {
   library: "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
   sports: "Blender 实建图参考 · 双馆、附馆与周边绿化",
   activity: "Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
-  hall: "实建图轮廓 · 椭圆主厅",
+  hall: "Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
   dorm3: "变更总平面 · 九座宿舍主体",
   stadium: "全景参考跑道与看台 · 尺寸估算",
 };

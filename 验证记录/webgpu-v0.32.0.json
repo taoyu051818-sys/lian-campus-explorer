@@ -1,0 +1,412 @@
+{
+  "version": "0.32.0",
+  "date": "2026-09-29",
+  "method": "Playwright / local Chrome headless, native Apple Metal WebGPU adapter; viewport 1600x1000",
+  "flags": [
+    "--enable-unsafe-webgpu",
+    "--ignore-gpu-blocklist",
+    "--use-angle=metal"
+  ],
+  "standalone": {
+    "date": "2026-09-29T10:28:52.538Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "hall",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 11.9 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 6.4 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 3.5 万三角面",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "hall-lod0.png",
+          "hall-lod1.png",
+          "hall-lod2.png",
+          "hall-front.png",
+          "hall-entrance.png",
+          "hall-stairs.png",
+          "hall-landscape.png"
+        ],
+        "title": "会堂 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      },
+      {
+        "asset": "activity",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 8.7 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 4.5 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 2.7 万三角面",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "activity-lod0.png",
+          "activity-lod1.png",
+          "activity-lod2.png",
+          "activity-front.png",
+          "activity-arcade.png"
+        ],
+        "title": "大学生活动中心 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      },
+      {
+        "asset": "sports",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 20.7 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 13.1 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 4.8 万三角面",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "sports-lod0.png",
+          "sports-lod1.png",
+          "sports-lod2.png",
+          "sports-pool.png"
+        ],
+        "title": "综合体育中心 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      },
+      {
+        "asset": "library",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 57.4 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 27.4 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 5.5 万三角面",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "library-lod0.png",
+          "library-lod1.png",
+          "library-lod2.png",
+          "library-photo.png"
+        ],
+        "title": "图书馆 · 建筑模型",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1}",
+        "note": "A-60 · Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
+        "screenshot": "campus-hall.png"
+      },
+      {
+        "asset": "activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2}",
+        "note": "A-34 · Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
+        "screenshot": "campus-activity.png"
+      },
+      {
+        "asset": "sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2}",
+        "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+        "screenshot": "campus-sports.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2}",
+        "note": "A-88 · Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "hall",
+        "wheel": -900,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0}"
+      },
+      {
+        "asset": "hall",
+        "wheel": 1500,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1}"
+      },
+      {
+        "asset": "hall",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "assetHashes": {
+    "library": [
+      {
+        "file": "library-lod0.glb",
+        "distance": 0,
+        "triangles": 574064,
+        "meshObjects": 76,
+        "bytes": 4947744,
+        "sha256": "c88b224d6bb431045d681287f9e6431dd38fd934ed0b3ec10a9ad3d0928e928b"
+      },
+      {
+        "file": "library-lod1.glb",
+        "distance": 240,
+        "triangles": 274430,
+        "meshObjects": 70,
+        "bytes": 2711472,
+        "sha256": "57f1d406bb5c47c7465cc192a441ab72d76e11ce7a993c1bc724d5a40b626c98"
+      },
+      {
+        "file": "library-lod2.glb",
+        "distance": 650,
+        "triangles": 54782,
+        "meshObjects": 65,
+        "bytes": 506336,
+        "sha256": "ff45c5623682c17581fa34d138db90e7bb22ad327cda7a5ef9c8a2960cd7f67f"
+      }
+    ],
+    "sports": [
+      {
+        "file": "sports-lod0.glb",
+        "distance": 0,
+        "triangles": 206974,
+        "meshObjects": 33,
+        "bytes": 2072872,
+        "sha256": "7ada6e8455fdeff0755e6e5eae865a41f181a2a7250f2d020bb6f535b89ad1f3"
+      },
+      {
+        "file": "sports-lod1.glb",
+        "distance": 300,
+        "triangles": 130510,
+        "meshObjects": 33,
+        "bytes": 1326244,
+        "sha256": "d2155c5ada3f35afb697415951e4035f0fa363168966528c115bedffa5c851d4"
+      },
+      {
+        "file": "sports-lod2.glb",
+        "distance": 750,
+        "triangles": 48194,
+        "meshObjects": 30,
+        "bytes": 510716,
+        "sha256": "d5c57929ce11246fb50ee320b63dc34058dbd41f219a6308019fa75ba1b8b783"
+      }
+    ],
+    "activity": [
+      {
+        "file": "activity-lod0.glb",
+        "distance": 0,
+        "triangles": 86708,
+        "meshObjects": 24,
+        "bytes": 917932,
+        "sha256": "0ae6235cb6df4b8145306acb1ef237fb276d36b7a33b4db4e03f5f1f4f7eba5e"
+      },
+      {
+        "file": "activity-lod1.glb",
+        "distance": 180,
+        "triangles": 45194,
+        "meshObjects": 23,
+        "bytes": 493344,
+        "sha256": "c73934599a2b174fa29b22aa958b89b092a87d2e07f4e7a8de84e98e235490f3"
+      },
+      {
+        "file": "activity-lod2.glb",
+        "distance": 450,
+        "triangles": 27128,
+        "meshObjects": 21,
+        "bytes": 315636,
+        "sha256": "b45785b4d5b76f803e843f3e7341607dbf583e63782e72c58d6c3d45273341f0"
+      }
+    ],
+    "hall": [
+      {
+        "file": "hall-lod0.glb",
+        "distance": 0,
+        "triangles": 118521,
+        "meshObjects": 33,
+        "bytes": 1398740,
+        "sha256": "f70b294839835c4fe381ae583eca8236ad70ef9d2fb6da6b1dc1f4e8ab28dff7"
+      },
+      {
+        "file": "hall-lod1.glb",
+        "distance": 180,
+        "triangles": 63803,
+        "meshObjects": 33,
+        "bytes": 770960,
+        "sha256": "64b8c9bf84578643df61e6698f4f4df854f24f38ebcc3ad8bf9ff1ac3c55e35d"
+      },
+      {
+        "file": "hall-lod2.glb",
+        "distance": 450,
+        "triangles": 34597,
+        "meshObjects": 30,
+        "bytes": 445896,
+        "sha256": "d976abe5c5a69df9e0b2c8ef989c04c9d6ec5d2cd7563696d60d7b8847bb9f58"
+      }
+    ]
+  },
+  "screenshots": [
+    {
+      "file": "webgpu-v0.32.0-activity-arcade.png",
+      "sha256": "c8bce7b62579bd1f982f837c76e58328ac7f204e32afa0c3fcdb8cb611e2667e"
+    },
+    {
+      "file": "webgpu-v0.32.0-activity-front.png",
+      "sha256": "d72689d317809c3144f87a9ada372c3a729c768ca9c6356453e302f870fa0ade"
+    },
+    {
+      "file": "webgpu-v0.32.0-activity-lod0.png",
+      "sha256": "b91c06afff55d67cf5d5cce232baa2086fa0589a1d04e538fc444e0d0129da3a"
+    },
+    {
+      "file": "webgpu-v0.32.0-activity-lod1.png",
+      "sha256": "2a4af9b1a420f1c59bbbc6d8711a4558b307197cda20da92bb1119aea56b311c"
+    },
+    {
+      "file": "webgpu-v0.32.0-activity-lod2.png",
+      "sha256": "6d80f01ff38f53618ee9c2267191ecd9f495bfdbd50f17778a2bfbe8698c1b5d"
+    },
+    {
+      "file": "webgpu-v0.32.0-campus-activity.png",
+      "sha256": "6bd8feb857a1f65b59d5db7281dcf6f4ab9640cefc7a834b6e7bb19cf5cdbd72"
+    },
+    {
+      "file": "webgpu-v0.32.0-campus-hall.png",
+      "sha256": "c07da87ccc2dd191bcb3d02f1c2988d08dda0c20af5009b959da3e3145de5698"
+    },
+    {
+      "file": "webgpu-v0.32.0-campus-library.png",
+      "sha256": "1c45669922e4d09e6a9d7e445fa9455bca8910b51a5ac0b10903c99e572d183a"
+    },
+    {
+      "file": "webgpu-v0.32.0-campus-sports.png",
+      "sha256": "2dff4e2d509af13ca9d977c84ca829f28149c2403162cd05caeed33691036326"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-entrance.png",
+      "sha256": "205910b4655332a5b593f51225b3e4343c939d371800797da547edcdbc3baa16"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-front.png",
+      "sha256": "4463c3a2df6c4e4b744c26500430a746afda1ba0cf2978a0e1be230cdba63dfc"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-landscape.png",
+      "sha256": "6b4f5a0a9e262d04a15654bee693c016cee12602fe92fc491350e3fa9d9c3f53"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-lod0.png",
+      "sha256": "30502ebfd6413791579b02f64af55fb8d60ca5844fe1e37241fea2eb5f9d3022"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-lod1.png",
+      "sha256": "acd1945615609fa52ca67aa294410677d7e37f1e59b8f6c830e10eb04417a8a8"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-lod2.png",
+      "sha256": "74151f7a7082326f0ae6e956ef63245c24334de73c132032c4e1a68748edea3d"
+    },
+    {
+      "file": "webgpu-v0.32.0-hall-stairs.png",
+      "sha256": "45660066a550ffb0718c6c2c89acebd51d18b6515393ac6806e3912c8befb160"
+    },
+    {
+      "file": "webgpu-v0.32.0-library-lod0.png",
+      "sha256": "5c77ceb336893c2984666cb319714d17ca609a7924eece9ce67ec3ae41f1d185"
+    },
+    {
+      "file": "webgpu-v0.32.0-library-lod1.png",
+      "sha256": "4cceb4e89e551483f293e61db24704d06e024690aa6fe0a2476cce1f36f77bca"
+    },
+    {
+      "file": "webgpu-v0.32.0-library-lod2.png",
+      "sha256": "7a4d996426219180257108e9d03e5a5d3caf0134d18799238c4d5beb5508b296"
+    },
+    {
+      "file": "webgpu-v0.32.0-library-photo.png",
+      "sha256": "d3aceff961332e2d593b3144f5eefa972ada83443f210d087836209b815a6f16"
+    },
+    {
+      "file": "webgpu-v0.32.0-sports-lod0.png",
+      "sha256": "07d0dcbf4f9f6dca3b927a675c66d8513e28548173a96de81a13f0ebc1250ba7"
+    },
+    {
+      "file": "webgpu-v0.32.0-sports-lod1.png",
+      "sha256": "8f242cd97447c728f43ff7349d7e9241983d8e4619cfecedf6fc2ba58ebe8b1f"
+    },
+    {
+      "file": "webgpu-v0.32.0-sports-lod2.png",
+      "sha256": "0b8052be21e7b4ae3f71e615c145efc4a7940f5983ffb31c32a6235eb51196e1"
+    },
+    {
+      "file": "webgpu-v0.32.0-sports-pool.png",
+      "sha256": "a9f0c0e77e598d846e522b3107bedb474a6ce5e18e8fcddae126770e19c78101"
+    }
+  ],
+  "review": "Standalone key views and campus placements inspected. Actual hall automatic LOD sequence 0 / 1 / 2 observed. Scoped GPU compilation passed in all 12 standalone loads. No browser console/page errors or failed network requests in final runs.",
+  "limits": [
+    "Desktop headless test is not a mobile-device performance benchmark",
+    "Current geometry estimates and schematic campus registration remain",
+    "Main campus lighting can be polished further across times of day"
+  ]
+}

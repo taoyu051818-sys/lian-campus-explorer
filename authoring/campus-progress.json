@@ -23,7 +23,7 @@
       "id": "sports",
       "name": "综合体育中心",
       "priority": 1,
-      "status": "offline-verified-runtime-review-pending",
+      "status": "runtime-verified-estimates-remain",
       "existingExterior": "Blender 双馆、附馆与周边绿化；实建图尺寸及照片参考",
       "source": "https://wap.study-hn.cn/upload/file/2025/08/04/594775550c264ea39e5dda6616583998.pdf",
       "evidence": "第1–2页实建图尺寸约束的简化圆角体块：游泳馆85.31×96.78 m，体育馆79.00×121.40 m；游泳馆高23.9 m，体育馆实建图高29.9 m，附馆17.4 m。双馆相对位置及转角按图近似，未完成共同坐标配准；表皮纹样依据第15页照片抽象表达。",
@@ -31,20 +31,20 @@
         {
           "name": "综合体育中心 · 游泳馆",
           "kind": "pool",
-          "model": "offline-verified",
-          "landscape": "offline-verified"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
           "name": "综合体育中心 · 体育馆",
           "kind": "gym",
-          "model": "offline-verified",
-          "landscape": "offline-verified"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
           "name": "综合体育中心 · 附馆",
           "kind": "sports-annex",
-          "model": "offline-verified",
-          "landscape": "offline-verified"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -54,7 +54,7 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "在可用的 WebGPU 浏览器中复查校园配准、阴影、远近 LOD 及近景绿化；继续 nextSite 指定的未处理建筑，不将待浏览器复查误计为全园阻塞。",
+      "nextAction": "补充更多实拍视角核对模型与绿化；按 nextSite 继续未完成建筑。",
       "completedChecks": [
         "three Meshopt LODs decoded",
         "glTF validator: 0 errors / 0 warnings",
@@ -65,23 +65,24 @@
         "33 destination physics regression",
         "library and material regression",
         "TypeScript / Vite build",
-        "served GLB hashes match"
+        "served GLB hashes match",
+        "v0.32.0: native Metal WebGPU standalone 3 LODs and key views; campus placement checked"
       ],
       "version": "0.30.0",
       "verification": "验证记录/sports-blender.json",
       "authoring": "authoring/sports/README.md",
       "landscapeNotes": "38 株乔木、38 处低灌木种植岛、周边铺装与赭色步道。种类和位置为照片参考估算；植物组合与连续草坪仍可进一步打磨。",
       "remainingReview": [
-        "browser WebGPU rendering and LOD switching",
         "more exact facade modules, annex footprint and campus registration",
         "landscape arrangement against additional tour views when available"
-      ]
+      ],
+      "runtimeVerification": "验证记录/webgpu-v0.32.0.json"
     },
     {
       "id": "activity",
       "name": "大学生活动中心",
       "priority": 2,
-      "status": "offline-verified-runtime-review-pending",
+      "status": "runtime-verified-estimates-remain",
       "existingExterior": "Blender 弧形楼翼、首层通廊、交错外廊、开洞端墙和室外楼梯",
       "source": "https://wap.study-hn.cn/upload/file/2025/08/04/0ab6120f7fe041eab515bee73ddf7ab0.docx",
       "evidence": "重新检查核实附件实建位置图 image2、各层及屋顶实建图 image6/8/10/12/14、建成照片 image17/18；image16 为设计效果图，单独标注。",
@@ -89,8 +90,8 @@
         {
           "name": "大学生活动中心 · 弯折四层主楼",
           "kind": "activity",
-          "model": "offline-verified",
-          "landscape": "offline-verified"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -100,7 +101,7 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "在可用 WebGPU 浏览器中复查校园落位、光照及 LOD；补充端部与背面照片。下一批推进会堂及周边绿化。",
+      "nextAction": "补充更多实拍视角核对模型与绿化；按 nextSite 继续未完成建筑。",
       "completedChecks": [
         "3 Meshopt LODs decoded with hash / index / normal / unit checks",
         "glTF Validator: 0 errors, 0 warnings",
@@ -112,7 +113,8 @@
         "exterior stairs: 27 waypoints each direction without teleport between legs",
         "all hidden collision checks target actual triangles and exact collider names",
         "Blender source reopened and 4 final Cycles views reviewed",
-        "sports / library / material regression, TypeScript / Vite build, served GLB hashes"
+        "sports / library / material regression, TypeScript / Vite build, served GLB hashes",
+        "v0.32.0: native Metal WebGPU standalone 3 LODs and key views; campus placement checked"
       ],
       "version": "0.31.0",
       "verification": "验证记录/activity-blender.json",
@@ -123,30 +125,30 @@
         "Storey levels, balcony setbacks, column grid, glazing and pattern modules",
         "Stair width / treads, roof equipment and unpublished elevations",
         "Individual plant species, count, positions and schematic campus terrain registration",
-        "Browser WebGPU visual / LOD / lighting review",
         "Additional site photographs to refine wing ends and unobserved elevations"
-      ]
+      ],
+      "runtimeVerification": "验证记录/webgpu-v0.32.0.json"
     },
     {
       "id": "hall",
       "name": "会堂",
       "priority": 3,
-      "status": "queued",
-      "existingExterior": "实建图轮廓 · 椭圆主厅",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 米色石材椭圆会堂、平台、双侧楼梯与绿化",
       "source": "https://wap.study-hn.cn/upload/file/2025/08/04/bffa53c4f2b84bebae05ea11f4793733.docx",
-      "evidence": "实建测量图 image2 顺时针旋转 90°至北向上；6 个红线控制点仿射拟合，椭圆主厅与低区外轮廓人工描绘。总高19.70 m来自实建图；低区高5.2 m为照片比例估算。",
+      "evidence": "实建测量图 image2、实建平面 image6/8/10 和唯一建成照片 image13；image12 单列为设计意向参考。",
       "units": [
         {
           "name": "会堂 · 入口及低区",
           "kind": "hall-base",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
           "name": "会堂 · 椭圆主厅",
           "kind": "hall",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -156,8 +158,30 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "补充后区、侧面照片并核准尺寸；按 nextSite 继续电子科大组团。",
+      "completedChecks": [
+        "Three compressed LODs decoded and validated; 0 glTF errors/warnings",
+        "Recessed windows, portal and both stair voids ray checked at every LOD",
+        "480 canopy / 806 lawn boundary-interior / 1635 building clearance samples",
+        "Two stairs including ground approach: 10 waypoints bidirectionally",
+        "33 destinations and teaching, sports, activity routes passed",
+        "Source .blend reopened; four Cycles views checked",
+        "Actual native Metal WebGPU: all three LODs, key views and campus placement",
+        "Hall automatic LOD sequence 0 / 1 / 2 observed",
+        "Library, sports, activity, materials, TypeScript and Vite regressions passed"
+      ],
+      "version": "0.32.0",
+      "verification": "验证记录/hall-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.32.0.json",
+      "authoring": "authoring/hall/README.md",
+      "landscapeNotes": "八处种植区，七株棕榈、八株乔木、319 组低灌木、树木支撑、五根灯杆与扇形铺装；具体位置和数量为估算。",
+      "remainingReview": [
+        "Hand-traced outlines; 0.343 m control residual is not survey accuracy",
+        "Podium/rear heights, window grid, portal dimensions, roof details and stairs",
+        "Unobserved elevations and fan paving (design intent reference)",
+        "Tree species/count/positions and schematic campus registration",
+        "Additional built photographs to refine rear/side elevations and exact landscape placement"
+      ]
     },
     {
       "id": "uestc",
@@ -299,7 +323,10 @@
         "entrance and walkway clearance"
       ],
       "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "completedChecks": [
+        "v0.32.0: three LODs and photo view checked in native Metal WebGPU; campus placement checked; landscape still queued"
+      ],
+      "runtimeVerification": "验证记录/webgpu-v0.32.0.json"
     },
     {
       "id": "stadium",
@@ -1942,5 +1969,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "hall"
+  "nextSite": "uestc"
 }
