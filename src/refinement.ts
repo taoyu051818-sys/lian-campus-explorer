@@ -1,4 +1,5 @@
 import { addTeachingAccess } from "./teaching-access";
+import { registerLibrary } from "./library-registration";
 import { addServicesIndustryExterior } from "./services-industry-exterior";
 import {
   type Point,
@@ -43,7 +44,7 @@ export const detailStatus: Record<string, string> = {
   uestc: "核实图轮廓 · 立面细化",
   bupt: "核实图合院 · 照片参考立面",
   cuc: "规划图轮廓 · 简化立面",
-  library: "全景参考外形 · 尺寸估算",
+  library: "Blender 实景参考外景 · 五瓣裙楼／19层塔楼 · 尺寸估算",
   sports: "实建图尺寸 · 双馆与表皮细化",
   activity: "实建图轮廓 · 四层弯折主楼",
   hall: "实建图轮廓 · 椭圆主厅",
@@ -208,22 +209,7 @@ export function refine(geo: any, data: AtlasData, plans: any) {
   geo.buildings = geo.buildings.filter(
     (b: Building) => !["library", "stadium"].includes(b.placeId),
   );
-  const c = toWorld(data.places.find((p) => p.id === "library")!.point);
-  for (const [name, x, z, r, h, f] of [
-    ["知识灯塔", -14, 24, 36, 83.6, 19],
-    ["南侧花瓣裙楼", -9, -28, 46, 17.6, 4],
-    ["东侧花瓣裙楼", 33, 3, 43, 17.6, 4],
-  ] as [string, number, number, number, number, number][]) {
-    geo.buildings.push({
-      name,
-      placeId: "library",
-      footprint: roundedTriangle(c[0] + x, c[1] + z, r, 0.3),
-      height: h,
-      floors: f,
-      traced: false,
-      kind: "library",
-    });
-  }
+  registerLibrary(geo);
   for (const b of geo.buildings as RefinedBuilding[])
     if (b.placeId === "uestc") {
       b.kind = "uestc";

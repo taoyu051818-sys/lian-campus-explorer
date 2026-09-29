@@ -1,6 +1,7 @@
 import * as THREE from "three/webgpu";
 import { createCampusMaterialSystem } from "./materials.js";
 import { LAYERS } from "../vendor/tidewater/core/SceneRenderer.js";
+import { loadLibrary } from "./library.js";
 
 export async function loadCampus(progress) {
   const base = import.meta.env.BASE_URL;
@@ -99,6 +100,8 @@ export async function loadCampus(progress) {
       await new Promise(requestAnimationFrame);
     }
   }
+  const library = await loadLibrary(meta.libraryAsset, progress);
+  root.add(library.lod);
   return {
     root,
     meta,
@@ -107,5 +110,6 @@ export async function loadCampus(progress) {
     materials,
     lodMeshes,
     materialSystem,
+    library,
   };
 }

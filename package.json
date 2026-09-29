@@ -1,6 +1,6 @@
 {
   "name": "lian-campus-explorer",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,8 @@
     "predev": "node tools/bake-campus.mjs",
     "prebuild": "node tools/bake-campus.mjs",
     "test:physics": "node tools/test-physics.mjs",
-    "test:materials": "node tools/test-materials.mjs"
+    "test:materials": "node tools/test-materials.mjs",
+    "test:library": "node tools/test-library.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.19.3",

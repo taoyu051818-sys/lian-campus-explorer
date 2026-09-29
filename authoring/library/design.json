@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "units": "metres",
+  "campusAnchor": [547.3684210526316, 794.7368421052632],
+  "campusYaw": -0.7853981633974483,
+  "floorHeight": 4.4,
+  "tower": { "center": [0, 23], "width": 42, "depth": 35, "angle": -8, "floors": 19, "height": 83.6 },
+  "petals": [
+    { "name": "west-front", "center": [-38, -27], "width": 53, "depth": 40, "angle": -22, "floors": 4, "crown": 5.8, "crest": 150 },
+    { "name": "east-front", "center": [37, -27], "width": 53, "depth": 43, "angle": 24, "floors": 4, "crown": 4.8, "crest": 25 },
+    { "name": "west-rear", "center": [-37, 23], "width": 48, "depth": 43, "angle": -48, "floors": 4, "crown": 6.2, "crest": 185 },
+    { "name": "east-rear", "center": [42, 27], "width": 49, "depth": 44, "angle": 38, "floors": 4, "crown": 6.2, "crest": 20 },
+    { "name": "south-front", "center": [1, -62], "width": 44, "depth": 31, "angle": 8, "floors": 3, "crown": 1.2, "crest": 40 }
+  ],
+  "evidence": {
+    "confirmed": ["19-storey tower; podium up to four storeys", "five petal-shaped volumes", "curved tower crown", "white geometric screens in front of glazing", "horizontal tower sunshades", "roof terraces and forest-reading courtyard"],
+    "estimated": ["all horizontal dimensions and floor heights", "individual petal placement, rotation and setback", "screen module dimensions and roof crest curves", "campus registration against the existing schematic terrain"],
+    "scope": "Photo-referenced exterior reconstruction; no interior or measured survey claim. Local +Z is toward the rear in glTF; source Blender uses Z-up."
+  },
+  "sources": [
+    { "url": "https://www.cscec.com/xwzx_new/zqydt_new/202405/3787332.html", "role": "Contractor aerial photograph of the built library" },
+    { "url": "https://frenchdesignawards.com/winner-info.php?id=3205", "role": "TJAD project submission: five volumes, facade concept, multiple completed-building photographs" },
+    { "url": "https://hi.people.com.cn/n2/2024/0423/c228872-40821145.html", "role": "Opening report: 19-storey tower and four-storey podium" },
+    { "url": "https://www.720yun.com/vr/5dejtgefzu6", "role": "Previously recorded campus panorama; not used as a survey" }
+  ]
+}

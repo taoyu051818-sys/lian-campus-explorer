@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>图书馆 · 建筑模型</title>
+  </head>
+  <body>
+    <canvas
+      id="library-canvas"
+      aria-label="图书馆三维模型，拖动旋转，滚轮缩放"
+    ></canvas>
+    <header>
+      <a href="./world.html?place=library&view=orbit">← 回到校园</a>
+      <div>
+        <span>LI'AN INTERNATIONAL LEARNING CENTER</span>
+        <h1>图书馆 · 知识灯塔</h1>
+      </div>
+      <button id="panels" type="button">收起面板</button>
+    </header>
+    <aside id="review-panel">
+      <p class="eyebrow">建筑外景 / 实景参考重建</p>
+      <h2>图书馆外观</h2>
+      <p>
+        十九层塔楼、五瓣裙楼与黎族几何纹样。拖动旋转模型，滚轮查看镂空格栅和玻璃之间的层次。
+      </p>
+      <div class="view-buttons">
+        <button data-view="overall" aria-pressed="true">整体</button
+        ><button data-view="front" aria-pressed="false">正立面</button
+        ><button data-view="screen" aria-pressed="false">格栅近景</button
+        ><button data-view="roof" aria-pressed="false">屋顶</button>
+      </div>
+      <label for="model-quality">模型精度</label
+      ><select id="model-quality">
+        <option value="0">近景 · 完整构件</option>
+        <option value="1">中景 · 简化构件</option>
+        <option value="2">远景 · 烘焙纹样</option>
+      </select>
+      <label class="check"
+        ><input id="wireframe" type="checkbox" />查看网格</label
+      >
+      <details>
+        <summary>模型依据</summary>
+        <p>
+          依据承建方航拍、设计方项目照片重建外观。平面尺寸、层高和校园配准含估算，非测绘模型；不含室内。
+        </p>
+        <a
+          href="https://frenchdesignawards.com/winner-info.php?id=3205"
+          target="_blank"
+          rel="noopener"
+          >设计方项目资料 ↗</a
+        >
+      </details>
+    </aside>
+    <footer>
+      <span id="model-status" role="status">正在载入建筑…</span
+      ><span>BLENDER → THREE.JS / WEBGPU</span>
+    </footer>
+    <script type="module" src="/src/library-review.js"></script>
+  </body>
+</html>

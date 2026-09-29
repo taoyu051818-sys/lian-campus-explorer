@@ -2,6 +2,10 @@
   color: #e0e8e3;
   background: #142b30;
 }
+#library-review:not([hidden]) {
+  display: block;
+  margin-top: 10px;
+}
 .glass {
   color: #e0e8e3;
   background: rgba(18, 36, 39, 0.78);

@@ -4,7 +4,7 @@ import {
   PCFShadowMap,
 } from "three/webgpu";
 
-export async function createRenderer(canvas) {
+export async function createRenderer(canvas, { antialias = false } = {}) {
   if (!navigator.gpu)
     throw new Error(
       "此浏览器未提供 WebGPU。请使用支持 WebGPU 的 Chrome、Edge 或 Safari，并启用硬件加速。",
@@ -40,7 +40,7 @@ export async function createRenderer(canvas) {
   const renderer = new WebGPURenderer({
     canvas,
     device,
-    antialias: false,
+    antialias,
     reversedDepthBuffer: true,
   });
   renderer.setPixelRatio(1);

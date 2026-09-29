@@ -234,26 +234,11 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
       (facilityBase.get(b.placeId) ??
         Math.min(...b.footprint.map((p) => height(...p))) - 0.15) +
         (b.baseOffset || 0);
-    if (b.placeId === "library" && b.height < 30) {
-      const cx = b.footprint.reduce((s, p) => s + p[0], 0) / b.footprint.length;
-      const cz = b.footprint.reduce((s, p) => s + p[1], 0) / b.footprint.length;
-      for (let floor = 0; floor < 4; floor++) {
-        const fp = b.footprint.map(
-          (p) =>
-            [
-              cx + (p[0] - cx) * (1 - floor * 0.065),
-              cz + (p[1] - cz) * (1 - floor * 0.065),
-            ] as Point,
-        );
-        const y = base + floor * 4.4;
-        const body = volume(b.name + " terrace " + floor, fp, 4.4, y, traced);
-        body.metadata = { placeId: b.placeId };
-        physicalMeshes.push(body);
-        details.facade(
-          { ...b, footprint: fp, height: 4.4, floors: 1, kind: "library" },
-          y,
-        );
-      }
+    if (b.kind === "library-blender") {
+      const hull = volume(b.name, b.footprint, b.height, base, traced);
+      hull.metadata = { placeId: b.placeId };
+      hull.isVisible = false;
+      physicalMeshes.push(hull);
       continue;
     }
     const solid = volume(
@@ -305,7 +290,6 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
   createForecourts(scene, geo);
   physicalMeshes.push(...createTransportSites(scene, geo).physical);
   physicalMeshes.push(...details.stadium(data));
-  physicalMeshes.push(...details.library(data));
 
   return {
     scene,

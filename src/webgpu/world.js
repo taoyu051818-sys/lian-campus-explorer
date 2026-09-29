@@ -28,6 +28,13 @@ async function boot() {
   const canvas = $("scene");
   progress("正在连接 WebGPU 图形设备…");
   const renderer = await createRenderer(canvas);
+  // A reload during async shader compilation must also release its GPU device.
+  const abortBoot = () => {
+    renderer.setAnimationLoop(null);
+    renderer.dispose();
+    renderer.backend.device.destroy();
+  };
+  addEventListener("pagehide", abortBoot, { once: true });
   const scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(
       55,
@@ -152,6 +159,7 @@ async function boot() {
     $("destination-note").textContent =
       `${p.parcel} · ${campus.meta.status?.[p.id] || "参考资料建立的校园外观模型"}`;
     $("evidence").href = plans[p.id]?.source || p.source;
+    $("library-review").hidden = selected !== "library";
     select.value = selected;
   }
   function orient() {
@@ -528,8 +536,13 @@ async function boot() {
   }
   updateCamera();
   environment.update(1 / 60, 0);
-  await renderer.compileAsync(scene, camera);
+  campus.library.lod.update(camera);
+  progress("正在编译建筑光照与阴影…");
+  await renderer.compileAsync(scene, camera, null, ({ loaded, total }) => {
+    progress(`正在编译建筑光照与阴影 ${loaded} / ${total}…`);
+  });
   environment.render();
+  progress("正在等待图形设备完成首帧…");
   await renderer.backend.device.queue.onSubmittedWorkDone();
   $("loading").remove();
   $("toast").hidden = true;
@@ -584,6 +597,8 @@ async function boot() {
         accumulator -= 1 / 60;
       }
       updateCamera();
+      campus.library.lod.update(camera);
+      canvas.dataset.libraryLod = String(campus.library.lod.getCurrentLevel());
       if (frame % 15 === 0)
         for (const { mesh, distance } of campus.lodMeshes)
           mesh.visible =
@@ -604,6 +619,7 @@ async function boot() {
       toast(`WebGPU 设备已断开：${info.message || "请刷新页面重新连接"}`);
     }
   });
+  removeEventListener("pagehide", abortBoot);
   window.addEventListener(
     "pagehide",
     () => {
@@ -614,7 +630,8 @@ async function boot() {
       environment.dispose();
       campus.materialSystem.dispose();
       const geometries = new Set(),
-        materials = new Set();
+        materials = new Set(),
+        textures = new Set();
       scene.traverse((o) => {
         if (o.geometry) geometries.add(o.geometry);
         if (o.material)
@@ -623,7 +640,12 @@ async function boot() {
           );
       });
       geometries.forEach((g) => g.dispose());
-      materials.forEach((m) => m.dispose());
+      materials.forEach((m) => {
+        for (const value of Object.values(m))
+          if (value?.isTexture) textures.add(value);
+        m.dispose();
+      });
+      textures.forEach((t) => t.dispose());
       const device = renderer.backend.device;
       renderer.dispose();
       device.destroy();

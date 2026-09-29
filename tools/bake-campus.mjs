@@ -147,6 +147,7 @@ try {
     spawns: geo.spawns.map((s) => ({ ...s, y: geo.height(...s.point) })),
     teachingFoot: geo.teachingAccess?.stairs[1].foot,
     teachingAccess: geo.teachingAccess,
+    libraryAsset: geo.libraryAsset,
     registrations: built.registrations,
     stats: {
       buildings: geo.buildings.length,

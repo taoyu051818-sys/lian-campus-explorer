@@ -9,3 +9,6 @@ dist/
 __pycache__/
 *.pyc
 public/generated/
+authoring/**/*.blend
+authoring/**/*.blend1
+authoring/**/preview.png

@@ -7,6 +7,7 @@ export default defineConfig({
         overview: "index.html",
         detail: "detail.html",
         world: "world.html",
+        library: "library.html",
       },
     },
   },
