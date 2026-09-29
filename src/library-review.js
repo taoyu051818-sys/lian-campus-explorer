@@ -12,7 +12,7 @@ async function boot() {
     ? new URLSearchParams(location.search).get("asset") || "sports"
     : "library";
   const supportedAssets = document.body.dataset.genericModel
-    ? ["sports", "activity", "hall", "uestc", "bupt", "incubator"]
+    ? ["sports", "activity", "hall", "uestc", "bupt", "incubator", "canteen"]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
     throw new Error("未找到该建筑模型");

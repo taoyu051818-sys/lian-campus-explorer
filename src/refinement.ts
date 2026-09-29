@@ -19,7 +19,7 @@ export type RefinedBuilding = Building & {
 };
 export const partialDetailStatus: Record<string, string> = {
   dorm52: "生活二区实景立面 · 六层宿舍／三层外廊 · A52待核",
-  canteen: "现8号／原一号 · 航拍屋顶与入口外景",
+  canteen: "Blender 红砖遮阳 · 屋顶设备、入口与树荫广场",
 };
 export const detailStatus: Record<string, string> = {
   teaching: "规划参考外景 · 教学楼、体育场与可步行连廊",

@@ -1,0 +1,202 @@
+{
+  "version": "0.36.0",
+  "date": "2026-09-29",
+  "renderer": "Three.js WebGPURenderer / native Metal",
+  "standalone": {
+    "date": "2026-09-29T13:46:10.630Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "canteen",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 13.3 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 8.7 万三角面 · 55 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 3.9 万三角面 · 60 FPS",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "canteen-lod0.png",
+          "canteen-lod1.png",
+          "canteen-lod2.png",
+          "canteen-front.png",
+          "canteen-entrance.png",
+          "canteen-rear.png",
+          "canteen-roof.png",
+          "canteen-landscape.png"
+        ],
+        "title": "8号食堂（原一号食堂） · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "canteen",
+        "url": "http://127.0.0.1:4197/world.html?place=canteen&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":0}",
+        "note": "A-38-02 · Blender 红砖遮阳 · 屋顶设备、入口与树荫广场",
+        "screenshot": "campus-canteen.png"
+      },
+      {
+        "asset": "incubator",
+        "url": "http://127.0.0.1:4197/world.html?place=incubator&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2}",
+        "note": "A-59 · Blender 错层幕墙 · 屋顶构架、退台与入口绿化",
+        "screenshot": "campus-incubator.png"
+      },
+      {
+        "asset": "bupt",
+        "url": "http://127.0.0.1:4197/world.html?place=bupt&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":2,\"canteen\":2}",
+        "note": "A-67 · Blender 双学院楼 · 横向遮阳、阶梯花园与周边绿化",
+        "screenshot": "campus-bupt.png"
+      },
+      {
+        "asset": "uestc",
+        "url": "http://127.0.0.1:4197/world.html?place=uestc&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2}",
+        "note": "A-64 · Blender 双学院楼 · 阳台带、连廊与庭院绿化",
+        "screenshot": "campus-uestc.png"
+      },
+      {
+        "asset": "hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0,\"uestc\":1,\"bupt\":2,\"incubator\":0,\"canteen\":2}",
+        "note": "A-60 · Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
+        "screenshot": "campus-hall.png"
+      },
+      {
+        "asset": "activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1}",
+        "note": "A-34 · Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
+        "screenshot": "campus-activity.png"
+      },
+      {
+        "asset": "sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1}",
+        "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+        "screenshot": "campus-sports.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}",
+        "note": "A-88 · Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "canteen",
+        "wheel": -900,
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":0}"
+      },
+      {
+        "asset": "canteen",
+        "wheel": 1500,
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":0}"
+      },
+      {
+        "asset": "canteen",
+        "wheel": 1800,
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1}"
+      },
+      {
+        "asset": "canteen",
+        "wheel": 2200,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "screenshots": [
+    {
+      "file": "webgpu-v0.36.0-campus-activity.png",
+      "sha256": "ff68f93db0021e970aa1c93d5afd23331674dd99359a763f8d7999b842b7013b"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-bupt.png",
+      "sha256": "4d9dee8b05e94a3641b992a3a72cda88a01b19ba97de56cb9a03ba761fda52bd"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-canteen.png",
+      "sha256": "8c90af753778f2ac3f416a0ef06ded146888d8f5abeabf3a1af33e5452c67c87"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-hall.png",
+      "sha256": "9bb28967450da60304f9b23fabfec53f0587cb661210aa2d323ad070ca663ce5"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-incubator.png",
+      "sha256": "99508c9333ce79f44fa97fe915f6602dbd9ce3136da379f4100982e26d0585d5"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-library.png",
+      "sha256": "95c2c9ac0aa584ee37a745d0f2c59ab4988a510e16cde23b275ffae075b007c1"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-sports.png",
+      "sha256": "596a52772dece2c33355986a1ed8adc8a39386d7b5ad05aab3a4562c2e232420"
+    },
+    {
+      "file": "webgpu-v0.36.0-campus-uestc.png",
+      "sha256": "ab61e8a37f962f2c3324985c4f51d1be40b985b8eb35449745d6254616572b65"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-entrance.png",
+      "sha256": "8a8177469dddd8064f52e10162e9dbcdb7e2585974c88e14967fe690c5c44d27"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-front.png",
+      "sha256": "afac83f0aeeab9c03e8608057d89b8e0348df8584f655e9e2e1f5f7cfac56739"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-landscape.png",
+      "sha256": "aaf6a7e78fdf86856da85892e88fe0a680cfed583a08c684d51e2880b80525f5"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-lod0.png",
+      "sha256": "7d7e7f5d669c9087bd833dd0413679f3176475269bcc468639b76d8028962466"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-lod1.png",
+      "sha256": "9753294790d9a80df69b2cd6268209132f0b83fb2f9bf13465318413c45bcc5d"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-lod2.png",
+      "sha256": "665e5ca6469d7a80eaf0841eca1437cfdc9b7c4dde25d367a25c0c8a0bd1ce5b"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-rear.png",
+      "sha256": "5f4b7029371e1436ddc9fb7e155d321d5a9b6bd4ddd4d52d77a5ba4c0536a588"
+    },
+    {
+      "file": "webgpu-v0.36.0-canteen-roof.png",
+      "sha256": "83f0950947afd0df3266cf211f1d7e2000bd52a85e2b3445ec0cf6d2648ef6aa"
+    }
+  ],
+  "scope": "Canteen three LODs and five preset detail views; eight authored campus sites; canteen automatic LOD 0/1/2; no page errors or failed requests",
+  "limits": [
+    "Only desktop Chrome/Apple Metal tested; no mobile performance claim",
+    "Outdoor physics routes separately tested; complete interiors and rooftop access not claimed"
+  ]
+}
