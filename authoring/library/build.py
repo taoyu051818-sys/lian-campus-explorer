@@ -11,6 +11,12 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'public/models/library'
 OUT.mkdir(parents=True,exist_ok=True)
 DESIGN = json.loads((Path(__file__).parent / 'design.json').read_text())
+for petal in DESIGN['petals']:
+    levels=petal['floorLevels']
+    assert len(levels)==petal['floors']+1 and levels[0]==0
+    assert all(b>a+3 for a,b in zip(levels,levels[1:])), 'invalid storey height'
+    assert petal['roofProfile']['upperTerraceRise'] < petal['roofProfile']['rise'] or petal['roofProfile']['upperTerraceRise']==0
+
 BLEND = ROOT / 'authoring/library/library.blend'
 random.seed(8819)
 bpy.ops.object.select_all(action='SELECT')
@@ -178,7 +184,7 @@ def wall(part,poly,z0,z1,tile=3.0):
         part.face([(*a,z0),(*b,z0),(*b,z1),(*a,z1)],[(arclen/tile,0),((arclen+length)/tile,0),((arclen+length)/tile,(z1-z0)/3.4),(arclen/tile,(z1-z0)/3.4)])
         arclen+=length
 
-MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[],'facadeRevision':DESIGN['version'],'photoObservations':DESIGN['photoObservations']}
+MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[],'facadeRevision':DESIGN['version'],'roofLevels':[],'photoObservations':DESIGN['photoObservations']}
 ROOTS=[]
 for lod in range(3):
     coll=bpy.data.collections.new(f'Library LOD{lod}');scene.collection.children.link(coll)
@@ -226,7 +232,7 @@ for lod in range(3):
     if lod==0:
         MANIFEST['collisionVolumes'].append({'name':'library tower','footprint':outline(tx,ty,tower['width'],tower['depth'],tower['angle'],48,True),'height':83.8,'base':0})
     for k,petal in enumerate(DESIGN['petals']):
-        sec='Petal '+petal['name']; cx,cy=petal['center']; floors=petal['floors']; floorH=5.0
+        sec='Petal '+petal['name']; cx,cy=petal['center']; levels=petal['floorLevels']; floors=len(levels)-1
         shape=outline(cx,cy,petal['width'],petal['depth'],petal['angle'],res)
         white=pmat(sec,'warm ceramic'); aluminium=pmat(sec,'pearl aluminium'); rails=pmat(sec,'frame shadow')
         glass=pmat(sec,'blue grey glass'); grid=pmat(sec+' screen','distant baked screen'); roofgrid=pmat(sec+' roof screen','distant baked screen')
@@ -235,13 +241,13 @@ for lod in range(3):
         clearframe=pmat(sec+' glazing mullions','frame shadow')
         for floor in range(floors):
             poly=inset(shape,floor*.68)
-            y0=floor*floorH; y1=y0+floorH
+            y0,y1=levels[floor:floor+2]; floorH=y1-y0
             glazing=inset(poly,facade['glassRecess'])
             wall(glass,glazing,y0+.10,y1+.06)
             band(white,poly,y0,facade['solidBandHeight'],facade['solidBandProjection'])
             # Broad opaque ribbon, then lattice, then a continuous clear shadow/glass slot.
             # Every LOD uses the same boundaries. No random missing screen modules.
-            screenLo=y0+facade['screenBottom']; screenHi=y0+facade['screenTop']
+            screenLo=y0+facade['screenBottom']; screenHi=y1-facade['clearGlassSlot']; screenScale=(screenHi-screenLo)/2.98
             if lod<2:
                 for i in range(0,len(poly),2 if lod==0 else 4):
                     a=glazing[i];clearframe.beam((*a,y0+.15),(*a,y1),.07,.12)
@@ -278,48 +284,101 @@ for lod in range(3):
                     continue
                 # Interlocking diagonal square/maze modules clipped to a finite screen panel.
                 for row in range(2):
-                    z=screenLo+.50+row*1.80
+                    z=screenLo+(.50+row*1.80)*screenScale
                     for ring,factor in enumerate([1,.70,.39] if lod==0 else [1,.55]):
-                        w=bay*.5*factor; h=.90*factor
+                        w=bay*.5*factor; h=.90*factor*screenScale
                         coords=[(s-w,z),(s,z+h),(s+w,z),(s,z-h)]
                         for edge,(a,b) in enumerate(zip(coords,coords[1:]+coords[:1])):
                             if ring==1 and edge==(j+row)%4:continue
                             screen_beam(a,b,.082)
                 for factor in ([1,.52] if lod==0 else [.8]):
-                    mid=s+bay*.5; z=screenLo+1.4
-                    coords=[(mid-bay*.5*factor,z),(mid,z+.90*factor),(mid+bay*.5*factor,z),(mid,z-.90*factor)]
+                    mid=s+bay*.5; z=screenLo+1.4*screenScale
+                    coords=[(mid-bay*.5*factor,z),(mid,z+.90*factor*screenScale),(mid+bay*.5*factor,z),(mid,z-.90*factor*screenScale)]
                     for a,b in zip(coords,coords[1:]+coords[:1]):screen_beam(a,b,.075)
                 if lod==0 and j%2==0:
                     pt=perimeter(j*bay);rails.beam((*pt,screenLo),(*pt,screenHi),.045,.085)
-        roofY=floors*floorH
+        roofY=levels[-1]
         roofpoly=inset(shape,(floors-1)*.68)
+        profile=petal['roofProfile']; az=math.radians(profile['crestAzimuth'])
+        axis=(math.cos(az),math.sin(az))
+        # A plane across the whole volume defines the sloping crown. Calibrate with
+        # a fixed-resolution outline so different LODs cannot move the crest.
+        reference=inset(outline(cx,cy,petal['width'],petal['depth'],petal['angle'],160),(floors-1)*.68)
+        dots=[(x-cx)*axis[0]+(y-cy)*axis[1] for x,y in reference]
+        low,high=min(dots),max(dots)
+        def fraction(p):return ((p[0]-cx)*axis[0]+(p[1]-cy)*axis[1]-low)/(high-low)
+        def roof_top(p):return roofY+profile['minParapet']+profile['rise']*fraction(p)
+        def lip(i):return roof_top(roofpoly[i])
         band(white,roofpoly,roofY,facade['solidBandHeight'],facade['solidBandProjection'])
         roofdeck=inset(roofpoly,.48)
-        cap(pmat(sec+' roof','roof gravel'),roofdeck,roofY+.05)
-        if petal['roofFinish']=='white-terrace':
+        cap(pmat(sec+' lower terrace','roof gravel'),roofdeck,roofY+.05)
+        upper=profile['upperTerraceRise']
+        if upper:
+            # Keep the raised white roof on the high side; the low side stays a
+            # distinct terrace, instead of lifting the entire roof as one flat cap.
             terrace=inset(roofpoly,4.2)
-            wall(pmat(sec+' raised roof','white concrete'),terrace,roofY+.06,roofY+1.05)
-            cap(pmat(sec+' raised roof','white roof'),terrace,roofY+1.05)
-        # A translucent, rising parapet reads as a petal lip, rather than a solid dome.
-        crest=math.radians(petal['crest'])
-        def lip(i):
-            x,y=roofpoly[i]; t=.5+.5*math.cos(math.atan2(y-cy,x-cx)-crest)
-            return roofY+1.15+petal['crown']*t*t
-        strip(aluminium,inset(roofpoly,-.06),inset(roofpoly,.06),lip,lambda i:lip(i)+.11)
-        for i,(a,b) in enumerate(zip(roofpoly,roofpoly[1:]+roofpoly[:1])):
-            j=(i+1)%len(roofpoly);h=min(lip(i),lip(j))-roofY-.42
-            if lod<2:
-                aluminium.beam((*a,roofY+.4),(*a,lip(i)),.075,.11)
-                # Roof-lip diamonds are clipped to each locally varying height.
-                count=max(1,int(h/1.8))
-                for row in range(count):
-                    z=roofY+.55+(row+.5)*h/count
-                    mid=((a[0]+b[0])/2,(a[1]+b[1])/2)
-                    left=(*a,z); right=(*b,z)
-                    high=(*mid,z+h/count*.43); low=(*mid,z-h/count*.43)
-                    for p,q in [(left,high),(high,right),(right,low),(low,left)]:aluminium.beam(p,q,.065,.1)
-            else:
-                roofgrid.face([(*a,roofY+.4),(*b,roofY+.4),(*b,lip(j)),(*a,lip(i))],[(i*.5,0),(j*.5,0),(j*.5,h/2),(i*.5,h/2)])
+            clipped=[]; cutoff=profile['upperTerraceCutoff']
+            for a,b in zip(terrace,terrace[1:]+terrace[:1]):
+                fa,fb=fraction(a)-cutoff,fraction(b)-cutoff
+                if fa>=0:clipped.append(a)
+                if (fa>=0)!=(fb>=0):
+                    t=fa/(fa-fb);clipped.append((a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t))
+            terrace=clipped
+            wall(pmat(sec+' upper terrace wall','white concrete'),terrace,roofY+.06,roofY+upper)
+            cap(pmat(sec+' upper terrace','white roof'),terrace,roofY+upper)
+            band(pmat(sec+' upper terrace edge','warm ceramic'),terrace,roofY+upper-.15,.18,.08)
+            if lod==0:
+                MANIFEST['collisionVolumes'].append({'name':'library '+petal['name']+' upper terrace','footprint':terrace,'height':roofY+upper+.03,'base':0})
+            # Low rectangular planted strips occupy the terrace below the white roof.
+            for i in range(0,len(roofpoly),8 if lod<2 else 16):
+                a=roofpoly[i]; b=roofpoly[(i+5)%len(roofpoly)]
+                if .10 < fraction(a) < .30:
+                    inner=inset(roofpoly,2.0); a2=inner[i];b2=inner[(i+5)%len(roofpoly)]
+                    cap(pmat(sec+' lower terrace','planted roof'),[a,b,b2,a2],roofY+.08)
+        # A substantial sloping rim and white supports tie the roof screen to the
+        # architecture; the former thin, nearly level decorative railing is removed.
+        strip(pmat(sec+' sloping rim','warm ceramic'),inset(roofpoly,-.10),inset(roofpoly,.24),lip,lambda i:lip(i)+.22)
+        roofbars=pmat(sec+' roof screen','pearl aluminium')
+        lengths=[0]
+        for a,b in zip(roofpoly,roofpoly[1:]+roofpoly[:1]):lengths.append(lengths[-1]+math.dist(a,b))
+        perimeterLength=lengths[-1]
+        def roof_perimeter(s):
+            s%=perimeterLength;ix=next((q for q in range(len(roofpoly)) if lengths[q+1]>=s),len(roofpoly)-1)
+            t=(s-lengths[ix])/(lengths[ix+1]-lengths[ix]);a=roofpoly[ix];b=roofpoly[(ix+1)%len(roofpoly)]
+            return (a[0]*(1-t)+b[0]*t,a[1]*(1-t)+b[1]*t)
+        base=roofY+facade['solidBandHeight']+.06
+        def roof_beam(a,b,width):
+            # Clip bars against the same sloping plane used by the far LOD.
+            aa,bb=list(a),list(b)
+            for boundary in ['bottom','top']:
+                def margin(p):return p[1]-base if boundary=='bottom' else roof_top(roof_perimeter(p[0]))-p[1]
+                da,db=margin(aa),margin(bb)
+                if da<0 and db<0:return
+                if (da<0)!=(db<0):
+                    t=da/(da-db);hit=[aa[0]+(bb[0]-aa[0])*t,aa[1]+(bb[1]-aa[1])*t]
+                    if da<0:aa=hit
+                    else:bb=hit
+            if math.dist(aa,bb)<.02:return
+            pa=roof_perimeter(aa[0]);pb=roof_perimeter(bb[0]);roofbars.beam((*pa,aa[1]),(*pb,bb[1]),width,.10,False)
+        bays=max(12,round(perimeterLength/2.2)); bay=perimeterLength/bays
+        for j in range(bays):
+            a=roof_perimeter(j*bay);b=roof_perimeter((j+1)*bay)
+            if j%3==0:
+                p=inset(roofpoly,.25)[round(j/bays*len(roofpoly))%len(roofpoly)]
+                pmat(sec+' roof supports','warm ceramic').beam((*p,roofY+.1),(*p,roof_top(p)),.18,.24)
+            if lod==2:
+                roofgrid.face([(*a,base),(*b,base),(*b,roof_top(b)),(*a,roof_top(a))],[(j,0),(j+1,0),(j+1,(roof_top(b)-base)/1.8),(j,(roof_top(a)-base)/1.8)])
+                continue
+            s=(j+.5)*bay
+            for row in range(math.ceil((roofY+profile['minParapet']+profile['rise']-base)/1.8)):
+                z=base+.55+row*1.8
+                for ring,factor in enumerate([1,.68,.36] if lod==0 else [1,.54]):
+                    coords=[(s-bay*.5*factor,z),(s,z+.9*factor),(s+bay*.5*factor,z),(s,z-.9*factor)]
+                    for edge,(a,b) in enumerate(zip(coords,coords[1:]+coords[:1])):
+                        if ring==1 and edge==(j+row)%4:continue
+                        roof_beam(a,b,.075)
+        if lod==0:
+            MANIFEST['roofLevels'].append({'name':petal['name'],'role':profile['role'],'floorLevels':levels,'deck':roofY,'upperTerrace':roofY+upper if upper else None,'crownMin':roofY+profile['minParapet'],'crownMax':roofY+profile['minParapet']+profile['rise'],'crestAxis':list(axis),'projectionRange':[low,high],'center':[cx,cy]})
         planter=pmat(sec+' roof','white concrete'); green=pmat(sec+' roof','planted roof')
         for q in range((5 if lod<2 else 3) if petal['roofFinish']=='garden' else 0):
             px=cx+(q-2)*4.3;py=cy+2.5*math.sin(q*3)
@@ -333,7 +392,7 @@ for lod in range(3):
             cap(aluminium,roofaccess,roofY+1.22)
         if lod==0:
             # Collision follows the actual outer shell, excluding the thin decorative screen.
-            MANIFEST['collisionVolumes'].append({'name':'library '+petal['name'],'footprint':outline(cx,cy,petal['width'],petal['depth'],petal['angle'],48),'height':roofY+.5,'base':0})
+            MANIFEST['collisionVolumes'].append({'name':'library '+petal['name'],'footprint':outline(cx,cy,petal['width'],petal['depth'],petal['angle'],48),'height':roofY+.12,'base':0})
     # Low connector with an external arrival canopy; no fictional traversable interiors.
     con=pmat('Atrium','blue grey glass'); concrete=pmat('Atrium','warm ceramic'); metal=pmat('Atrium','pearl aluminium')
     atrium=outline(0,-12,57,57,18,64 if lod<2 else 32)
@@ -451,6 +510,7 @@ print('LIBRARY_ASSET_COMPLETE',json.dumps(MANIFEST['lods']))
 if '--render' in sys.argv:
     for name,location,aim,lens in [
         ('preview',(118,-228,118),(5,0,32),47),
+        ('roof-heights',(8,-260,100),(8,-4,24),48),
         ('entrance',(-6,-103,8),(-3,-35,9.0),43),
         ('tower-facade',(-73,-75,22),(-4,19,36),57),
     ]:

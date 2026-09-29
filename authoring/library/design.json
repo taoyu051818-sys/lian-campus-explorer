@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "units": "metres",
   "campusAnchor": [
     547.3684210526316,
@@ -29,8 +29,6 @@
       "depth": 40,
       "angle": -22,
       "floors": 4,
-      "crown": 5.8,
-      "crest": 150,
       "clearGlazingZones": [
         {
           "floors": [
@@ -46,7 +44,22 @@
           "role": "unpatterned glazing facing the entrance connector"
         }
       ],
-      "roofFinish": "white-terrace"
+      "roofFinish": "white-terrace",
+      "floorLevels": [
+        0,
+        5.2,
+        10.4,
+        15.6,
+        20.8
+      ],
+      "roofProfile": {
+        "role": "upper entrance wing",
+        "minParapet": 1.35,
+        "rise": 10.0,
+        "crestAzimuth": 150,
+        "upperTerraceRise": 4.2,
+        "upperTerraceCutoff": 0.3
+      }
     },
     {
       "name": "east-front",
@@ -58,8 +71,6 @@
       "depth": 43,
       "angle": 24,
       "floors": 4,
-      "crown": 4.8,
-      "crest": 25,
       "clearGlazingZones": [
         {
           "floors": [
@@ -75,7 +86,22 @@
           "role": "unpatterned inner return towards the entrance"
         }
       ],
-      "roofFinish": "white-terrace"
+      "roofFinish": "white-terrace",
+      "floorLevels": [
+        0,
+        4.95,
+        9.9,
+        14.85,
+        19.8
+      ],
+      "roofProfile": {
+        "role": "second entrance wing",
+        "minParapet": 1.35,
+        "rise": 8.0,
+        "crestAzimuth": 25,
+        "upperTerraceRise": 3.1,
+        "upperTerraceCutoff": 0.3
+      }
     },
     {
       "name": "west-rear",
@@ -87,8 +113,6 @@
       "depth": 43,
       "angle": -48,
       "floors": 4,
-      "crown": 6.2,
-      "crest": 185,
       "clearGlazingZones": [
         {
           "floors": [
@@ -101,7 +125,22 @@
           "role": "recessed ground glazing; hidden extent estimated"
         }
       ],
-      "roofFinish": "garden"
+      "roofFinish": "garden",
+      "floorLevels": [
+        0,
+        4.6,
+        9.2,
+        13.8,
+        18.4
+      ],
+      "roofProfile": {
+        "role": "upper rear wing",
+        "minParapet": 1.35,
+        "rise": 5.0,
+        "crestAzimuth": 185,
+        "upperTerraceRise": 0,
+        "upperTerraceCutoff": 0
+      }
     },
     {
       "name": "east-rear",
@@ -112,9 +151,7 @@
       "width": 49,
       "depth": 44,
       "angle": 38,
-      "floors": 4,
-      "crown": 6.2,
-      "crest": 20,
+      "floors": 3,
       "clearGlazingZones": [
         {
           "floors": [
@@ -128,7 +165,21 @@
           "role": "courtyard glazing; hidden extent estimated"
         }
       ],
-      "roofFinish": "garden"
+      "roofFinish": "garden",
+      "floorLevels": [
+        0,
+        4.65,
+        9.3,
+        13.95
+      ],
+      "roofProfile": {
+        "role": "lower rear wing",
+        "minParapet": 1.35,
+        "rise": 4.0,
+        "crestAzimuth": 20,
+        "upperTerraceRise": 0,
+        "upperTerraceCutoff": 0
+      }
     },
     {
       "name": "east-garden",
@@ -140,8 +191,6 @@
       "depth": 34,
       "angle": 25,
       "floors": 3,
-      "crown": 1.2,
-      "crest": 40,
       "clearGlazingZones": [
         {
           "floors": [
@@ -165,7 +214,21 @@
           "role": "clear-glass end bays on low garden wing"
         }
       ],
-      "roofFinish": "garden"
+      "roofFinish": "garden",
+      "floorLevels": [
+        0,
+        4.3,
+        8.6,
+        12.9
+      ],
+      "roofProfile": {
+        "role": "low garden wing",
+        "minParapet": 1.35,
+        "rise": 1.5,
+        "crestAzimuth": 40,
+        "upperTerraceRise": 0,
+        "upperTerraceCutoff": 0
+      }
     }
   ],
   "evidence": {
@@ -187,7 +250,8 @@
       "screen module dimensions and roof crest curves",
       "campus registration against the existing schematic terrain",
       "entrance connector and skylight dimensions; position of the low garden wing inferred from aerial view",
-      "angular extents of clear glazing and unphotographed rear facades"
+      "angular extents of clear glazing and unphotographed rear facades",
+      "per-wing floor elevations, sloping roof crest heights and upper roof terrace extents, inferred from photographs; no site grading survey"
     ],
     "scope": "Photo-referenced exterior reconstruction; no interior or measured survey claim. Local +Z is toward the rear in glTF; source Blender uses Z-up."
   },
@@ -211,12 +275,11 @@
   ],
   "facade": {
     "podium": {
-      "storeyHeight": 5.0,
       "solidBandHeight": 1.12,
       "solidBandProjection": 0.86,
       "screenBottom": 1.4,
-      "screenTop": 4.38,
-      "glassRecess": 0.68
+      "glassRecess": 0.68,
+      "clearGlassSlot": 0.62
     },
     "tower": {
       "spandrelBottom": 0.16,
@@ -255,7 +318,9 @@
         "clear glass slots under ribbons",
         "low garden wing at the side of the entrance pair",
         "white roof terraces",
-        "central pitched glass skylight"
+        "central pitched glass skylight",
+        "upper white roofs step above lower planted roof terraces",
+        "entrance wings, rear wings and garden wing have separate roof elevations and sloping silhouettes"
       ]
     },
     {

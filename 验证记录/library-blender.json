@@ -1,11 +1,11 @@
 {
-  "version": "0.29.1",
+  "version": "0.29.2",
   "date": "2026-09-29",
-  "scope": "Photo correction: separate tower glazing/spandrels/champagne fins; broad solid podium ribbons, glass slots and bounded screen panels; curved entrance",
+  "scope": "Podium height hierarchy, sloping roof profiles and two-level white roof / planted terraces, referenced to the user aerial photo",
   "authoring": {
     "blender": "4.5.9 LTS",
     "sourceReopened": true,
-    "editableMeshObjects": 183,
+    "editableMeshObjects": 224,
     "lodCollections": 3,
     "externalFonts": 0,
     "screenTexturePacked": true
@@ -15,13 +15,13 @@
     "lods": [
       {
         "file": "library-lod0.glb",
-        "triangles": 660774,
-        "meshes": 66,
-        "bytes": 5812484,
+        "triangles": 634516,
+        "meshes": 83,
+        "bytes": 5498364,
         "bounds": [
           [
             -67.25540161132812,
-            -0.0002114676532780635,
+            -0.00021307948714799352,
             -56.49260711669922
           ],
           [
@@ -31,20 +31,70 @@
           ]
         ],
         "facadeChecks": {
-          "screenVertices": 484720,
+          "screenVertices": 454960,
           "spandrelVertices": 6912,
           "entranceVertices": 120
+        },
+        "roofs": {
+          "Petal east-front lower terrace": [
+            19.850000381469727,
+            19.8799991607666
+          ],
+          "Petal east-front sloping rim": [
+            21.149790498652784,
+            29.370209959110888
+          ],
+          "Petal east-front upper terrace": [
+            22.899999618530273,
+            22.899999618530273
+          ],
+          "Petal east-garden lower terrace": [
+            12.949999809265137,
+            12.949999809265137
+          ],
+          "Petal east-garden sloping rim": [
+            14.25002464329272,
+            15.969975623736088
+          ],
+          "Petal east-rear lower terrace": [
+            14,
+            14
+          ],
+          "Petal east-rear sloping rim": [
+            15.300332529472314,
+            19.51966811902622
+          ],
+          "Petal west-front lower terrace": [
+            20.850000381469727,
+            20.8799991607666
+          ],
+          "Petal west-front sloping rim": [
+            22.149736770905562,
+            32.37026177950948
+          ],
+          "Petal west-front upper terrace": [
+            25,
+            25
+          ],
+          "Petal west-rear lower terrace": [
+            18.450000762939453,
+            18.450000762939453
+          ],
+          "Petal west-rear sloping rim": [
+            19.750164602813268,
+            24.969834710541225
+          ]
         }
       },
       {
         "file": "library-lod1.glb",
-        "triangles": 312922,
-        "meshes": 59,
-        "bytes": 3083140,
+        "triangles": 307437,
+        "meshes": 76,
+        "bytes": 3018044,
         "bounds": [
           [
             -67.2620620727539,
-            -0.0003069369787187526,
+            -0.0003220490963711242,
             -56.49397659301758
           ],
           [
@@ -54,20 +104,70 @@
           ]
         ],
         "facadeChecks": {
-          "screenVertices": 290832,
+          "screenVertices": 272976,
           "spandrelVertices": 3456,
           "entranceVertices": 120
+        },
+        "roofs": {
+          "Petal east-front lower terrace": [
+            19.850000381469727,
+            19.8799991607666
+          ],
+          "Petal east-front sloping rim": [
+            21.15134980223288,
+            29.369262914441926
+          ],
+          "Petal east-front upper terrace": [
+            22.899999618530273,
+            22.899999618530273
+          ],
+          "Petal east-garden lower terrace": [
+            12.949999809265137,
+            12.949999809265137
+          ],
+          "Petal east-garden sloping rim": [
+            14.250409607193557,
+            15.97011136601201
+          ],
+          "Petal east-rear lower terrace": [
+            14,
+            14
+          ],
+          "Petal east-rear sloping rim": [
+            15.300313381846944,
+            19.519976229969462
+          ],
+          "Petal west-front lower terrace": [
+            20.850000381469727,
+            20.8799991607666
+          ],
+          "Petal west-front sloping rim": [
+            22.15110183555977,
+            32.36886619727714
+          ],
+          "Petal west-front upper terrace": [
+            25,
+            25
+          ],
+          "Petal west-rear lower terrace": [
+            18.450000762939453,
+            18.450000762939453
+          ],
+          "Petal west-rear sloping rim": [
+            19.75187852183511,
+            24.967270114029148
+          ]
         }
       },
       {
         "file": "library-lod2.glb",
-        "triangles": 57834,
-        "meshes": 58,
-        "bytes": 506280,
+        "triangles": 59402,
+        "meshes": 65,
+        "bytes": 524692,
         "bounds": [
           [
             -66.9124984741211,
-            -0.00039655193729615235,
+            -0.00015255936800073755,
             -56.50543212890625
           ],
           [
@@ -77,13 +177,63 @@
           ]
         ],
         "facadeChecks": {
-          "screenVertices": 4060,
+          "screenVertices": 3812,
           "spandrelVertices": 1728,
           "entranceVertices": 72
+        },
+        "roofs": {
+          "Petal east-front lower terrace": [
+            19.850000381469727,
+            19.850000381469727
+          ],
+          "Petal east-front sloping rim": [
+            21.159317840905405,
+            29.365752349524282
+          ],
+          "Petal east-front upper terrace": [
+            22.899999618530273,
+            22.899999618530273
+          ],
+          "Petal east-garden lower terrace": [
+            12.949999809265137,
+            12.949999809265137
+          ],
+          "Petal east-garden sloping rim": [
+            14.259866446059272,
+            15.9699147047586
+          ],
+          "Petal east-rear lower terrace": [
+            14,
+            14
+          ],
+          "Petal east-rear sloping rim": [
+            15.300643420922572,
+            19.516009830725377
+          ],
+          "Petal west-front lower terrace": [
+            20.850000381469727,
+            20.850000381469727
+          ],
+          "Petal west-front sloping rim": [
+            22.185117800489614,
+            32.32990447734242
+          ],
+          "Petal west-front upper terrace": [
+            25,
+            25
+          ],
+          "Petal west-rear lower terrace": [
+            18.450000762939453,
+            18.450000762939453
+          ],
+          "Petal west-rear sloping rim": [
+            19.753716368574384,
+            24.95689878950667
+          ]
         }
       }
     ],
-    "independentCollisionVolumes": 40
+    "independentCollisionVolumes": 42
   },
   "checks": {
     "productionBuild": "passed; existing large-chunk warning",
@@ -112,27 +262,29 @@
       "shoreField": "finite",
       "status": "passed"
     },
-    "physics": "using deprecated parameters for the initialization function; pass a single object instead\nPASS: 33 destinations settle, jump, land and walk; 91 invisible access surfaces preserved; 411 collision meshes; six continuous bidirectional stair/bridge route legs.",
-    "facadeZones": "Decoded vertex checks pass on all three LODs: screens respect plain glass and solid-ribbon zones; garden wing ground floor stays clear; spandrels stay outside tower window bands.",
-    "gltfValidator": "Three LODs: no errors or warnings. Validator reports unsupported EXT_meshopt_compression and unused objects as info; test:library separately decodes every compressed view."
+    "physics": "using deprecated parameters for the initialization function; pass a single object instead\nPASS: 33 destinations settle, jump, land and walk; 93 invisible access surfaces preserved; 413 collision meshes; six continuous bidirectional stair/bridge route legs.",
+    "facadeZones": "Decoded vertex checks pass for all three LODs against each wing floorLevels. Solid ribbons and .62 m glass slots are preserved; the low garden ground floor remains clear.",
+    "gltfValidator": "Three LODs: no errors or warnings. Validator reports unsupported EXT_meshopt_compression and unused objects as info; test:library separately decodes every compressed view.",
+    "roofHierarchy": "Decoded roof and rim vertex bounds match declared deck, upper terrace and sloping crest heights; slopes bound the lattice geometry. Raised roof platforms have independent colliders."
   },
   "visualReview": {
-    "method": "Blender Cycles renders from saved source",
+    "method": "Blender Cycles renders from regenerated source; saved blend reopened successfully",
     "views": [
-      "overall",
+      "same-camera overall",
+      "roof-heights",
       "entrance",
       "tower-facade"
     ],
-    "corrections": [
-      "removed atrium obstruction at entrance",
-      "offset entrance fascia to eliminate coplanar glass overlap",
-      "welded/smoothed curved solid ribbons while retaining sharp edges",
-      "Chinese lettering converted from available CJK font"
+    "observations": [
+      "distinct entrance, rear and low garden wing heights",
+      "raised white platforms leave lower roof terraces",
+      "sloped crowns rise across the full volume; they are not uniform-height parapets",
+      "facade ribbons and glazing remain separate"
     ]
   },
   "browser": {
-    "status": "not rerun for 0.29.1",
-    "reason": "No browser interaction tool is available in this turn. Opening a preview is not counted as a browser rendering test."
+    "status": "not rerun for 0.29.2",
+    "reason": "No browser interaction tool available in this turn. Local production preview serves the rebuilt model page; this is not counted as a WebGPU rendering test."
   },
   "previousVersionBrowserCheck": {
     "version": "0.29.0",
@@ -185,7 +337,8 @@
       "screen module dimensions and roof crest curves",
       "campus registration against the existing schematic terrain",
       "entrance connector and skylight dimensions; position of the low garden wing inferred from aerial view",
-      "angular extents of clear glazing and unphotographed rear facades"
+      "angular extents of clear glazing and unphotographed rear facades",
+      "per-wing floor elevations, sloping roof crest heights and upper roof terrace extents, inferred from photographs; no site grading survey"
     ],
     "scope": "Photo-referenced exterior reconstruction; no interior or measured survey claim. Local +Z is toward the rear in glTF; source Blender uses Z-up."
   },
@@ -206,7 +359,9 @@
         "clear glass slots under ribbons",
         "low garden wing at the side of the entrance pair",
         "white roof terraces",
-        "central pitched glass skylight"
+        "central pitched glass skylight",
+        "upper white roofs step above lower planted roof terraces",
+        "entrance wings, rear wings and garden wing have separate roof elevations and sloping silhouettes"
       ]
     },
     {
@@ -215,6 +370,141 @@
         "tower and podium use different facade systems",
         "projecting cream slab edges",
         "recessed glazing between lattice panels and ribbons"
+      ]
+    }
+  ],
+  "roofLevels": [
+    {
+      "name": "west-front",
+      "role": "upper entrance wing",
+      "floorLevels": [
+        0,
+        5.2,
+        10.4,
+        15.6,
+        20.8
+      ],
+      "deck": 20.8,
+      "upperTerrace": 25,
+      "crownMin": 22.150000000000002,
+      "crownMax": 32.150000000000006,
+      "crestAxis": [
+        -0.8660254037844387,
+        0.49999999999999994
+      ],
+      "projectionRange": [
+        -24.870142949459183,
+        22.69386321933468
+      ],
+      "center": [
+        -37,
+        -29
+      ]
+    },
+    {
+      "name": "east-front",
+      "role": "second entrance wing",
+      "floorLevels": [
+        0,
+        4.95,
+        9.9,
+        14.85,
+        19.8
+      ],
+      "deck": 19.8,
+      "upperTerrace": 22.900000000000002,
+      "crownMin": 21.150000000000002,
+      "crownMax": 29.150000000000002,
+      "crestAxis": [
+        0.9063077870366499,
+        0.42261826174069944
+      ],
+      "projectionRange": [
+        -24.662162560274723,
+        24.36598960051102
+      ],
+      "center": [
+        28,
+        -29
+      ]
+    },
+    {
+      "name": "west-rear",
+      "role": "upper rear wing",
+      "floorLevels": [
+        0,
+        4.6,
+        9.2,
+        13.8,
+        18.4
+      ],
+      "deck": 18.4,
+      "upperTerrace": null,
+      "crownMin": 19.75,
+      "crownMax": 24.75,
+      "crestAxis": [
+        -0.9961946980917455,
+        -0.08715574274765794
+      ],
+      "projectionRange": [
+        -20.1451733509973,
+        25.490391926801948
+      ],
+      "center": [
+        -37,
+        23
+      ]
+    },
+    {
+      "name": "east-rear",
+      "role": "lower rear wing",
+      "floorLevels": [
+        0,
+        4.65,
+        9.3,
+        13.95
+      ],
+      "deck": 13.95,
+      "upperTerrace": null,
+      "crownMin": 15.299999999999999,
+      "crownMax": 19.299999999999997,
+      "crestAxis": [
+        0.9396926207859084,
+        0.3420201433256687
+      ],
+      "projectionRange": [
+        -18.73235058780179,
+        24.006676309985004
+      ],
+      "center": [
+        42,
+        27
+      ]
+    },
+    {
+      "name": "east-garden",
+      "role": "low garden wing",
+      "floorLevels": [
+        0,
+        4.3,
+        8.6,
+        12.9
+      ],
+      "deck": 12.9,
+      "upperTerrace": null,
+      "crownMin": 14.25,
+      "crownMax": 15.75,
+      "crestAxis": [
+        0.766044443118978,
+        0.6427876096865393
+      ],
+      "projectionRange": [
+        -20.723766273572945,
+        17.509496423541187
+      ],
+      "center": [
+        64,
+        -19
       ]
     }
   ]
