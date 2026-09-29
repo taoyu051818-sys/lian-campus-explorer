@@ -1,3 +1,4 @@
+import uestc from "../public/models/uestc/uestc.json";
 import sports from "../public/models/sports/sports.json";
 import hall from "../public/models/hall/hall.json";
 import activity from "../public/models/activity/activity.json";
@@ -7,7 +8,7 @@ import type { Point } from "./world-geometry";
 export function registerAuthoredSites(geo: any) {
   geo.authoredAssets = [];
   geo.authoredCollisionMeshes = [];
-  for (const asset of [sports, activity, hall]) {
+  for (const asset of [sports, activity, hall, uestc]) {
     const c = Math.cos(asset.yaw),
       s = Math.sin(asset.yaw);
     const point = (p: number[]): Point => [

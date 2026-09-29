@@ -12,7 +12,7 @@ async function boot() {
     ? new URLSearchParams(location.search).get("asset") || "sports"
     : "library";
   const supportedAssets = document.body.dataset.genericModel
-    ? ["sports", "activity", "hall"]
+    ? ["sports", "activity", "hall", "uestc"]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
     throw new Error("未找到该建筑模型");
@@ -22,6 +22,7 @@ async function boot() {
   );
   if (document.body.dataset.genericModel) {
     document.title = `${manifest.name} · 建筑与环境`;
+    document.querySelector('#model-quality option[value="2"]').textContent = "远景 · 轮廓简化";
     document.querySelector("header h1").textContent = manifest.name;
     document.querySelector("header a").href =
       `./world.html?place=${requestedAsset}&view=orbit`;
@@ -88,7 +89,7 @@ async function boot() {
     new THREE.MeshStandardNodeMaterial({ color: "#c2c9c6", roughness: 0.95 }),
   );
   ground.rotation.x = -Math.PI / 2;
-  ground.position.y = -0.12;
+  ground.position.y = manifest.review?.groundHeight ?? -0.12;
   ground.receiveShadow = true;
   scene.add(ground);
   const cache = new Map();
@@ -138,6 +139,8 @@ async function boot() {
       poses[name] = [view.position, view.target];
     const labels = {
       overall: "整体",
+      college1: "学院楼一",
+      college2: "学院楼二",
       pool: "游泳馆",
       gym: "体育馆",
       landscape: "周边绿化",
