@@ -234,7 +234,7 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
       (facilityBase.get(b.placeId) ??
         Math.min(...b.footprint.map((p) => height(...p))) - 0.15) +
         (b.baseOffset || 0);
-    if (b.kind === "library-blender") {
+    if (b.kind === "library-blender" || b.kind === "authored-blender") {
       const hull = volume(b.name, b.footprint, b.height, base, traced);
       hull.metadata = { placeId: b.placeId };
       hull.isVisible = false;
@@ -259,6 +259,20 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
     );
     cap.isPickable = false;
     details.facade(b, base);
+  }
+  for (const record of geo.authoredCollisionMeshes || []) {
+    const mesh = new Mesh(record.name, scene),
+      data = new VertexData(),
+      normals: number[] = [];
+    VertexData.ComputeNormals(record.position, record.index, normals);
+    data.positions = record.position;
+    data.indices = record.index;
+    data.normals = normals;
+    data.applyToMesh(mesh);
+    mesh.material = grey;
+    mesh.isVisible = false;
+    mesh.metadata = { placeId: record.placeId };
+    physicalMeshes.push(mesh);
   }
   for (const path of campus.roads as Point[][])
     ribbon("UESTC internal road", path.map(geo.local), 5, 0.24, shoulder);

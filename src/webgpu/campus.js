@@ -1,7 +1,7 @@
 import * as THREE from "three/webgpu";
 import { createCampusMaterialSystem } from "./materials.js";
 import { LAYERS } from "../vendor/tidewater/core/SceneRenderer.js";
-import { loadLibrary } from "./library.js";
+import { loadLibrary, loadAuthoredAsset } from "./library.js";
 
 export async function loadCampus(progress) {
   const base = import.meta.env.BASE_URL;
@@ -102,6 +102,12 @@ export async function loadCampus(progress) {
   }
   const library = await loadLibrary(meta.libraryAsset, progress);
   root.add(library.lod);
+  const authoredAssets = [library];
+  for (const registration of meta.authoredAssets || []) {
+    const asset = await loadAuthoredAsset(registration, progress);
+    root.add(asset.lod);
+    authoredAssets.push(asset);
+  }
   return {
     root,
     meta,
@@ -111,5 +117,6 @@ export async function loadCampus(progress) {
     lodMeshes,
     materialSystem,
     library,
+    authoredAssets,
   };
 }
