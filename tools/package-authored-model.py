@@ -15,6 +15,7 @@ name = manifest['name']
 source_dir = root/f'authoring/{asset}'
 verification = root/f'验证记录/{asset}-blender.json'
 assert json.loads(verification.read_text())['version'] == version
+runtime_verification = root/f'验证记录/webgpu-v{version}.json'
 assert (source_dir/f'{asset}.blend').is_file()
 out = args.out.resolve(); out.mkdir(parents=True, exist_ok=True)
 files = []
@@ -41,6 +42,8 @@ with zipfile.ZipFile(source_zip, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as 
         if file.is_file(): z.write(file, str(file.relative_to(root)))
     for file in previews: z.write(file, '预览/'+file.name)
     z.write(verification, '验证记录.json')
+    if runtime_verification.exists():
+        z.write(runtime_verification, str(runtime_verification.relative_to(root)))
     z.writestr('打开说明.txt', f'使用 Blender 4.5 LTS 打开 authoring/{asset}/{asset}.blend。三档模型各自位于独立集合。\n建筑与植物参考官方资料和照片制作，具体估算及复现步骤见 authoring/{asset}/README.md。校园接入与地形准备需完整 Git 仓库。\n本包预览为 Blender 渲染；浏览器验证范围见验证记录，不将离线构建当作网页画面检查。\n')
 files.append(source_zip)
 
@@ -50,6 +53,8 @@ with zipfile.ZipFile(runtime_zip, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as
     for file in sorted((root/'dist').rglob('*')):
         if file.is_file(): z.write(file, str(file.relative_to(root)))
     z.write(verification, '验证记录.json')
+    if runtime_verification.exists():
+        z.write(runtime_verification, str(runtime_verification.relative_to(root)))
     for file in root.glob('*NOTICE*'):
         if file.is_file(): z.write(file, file.name)
     launcher = zipfile.ZipInfo('启动漫游.command'); launcher.create_system = 3; launcher.external_attr = 0o100755 << 16

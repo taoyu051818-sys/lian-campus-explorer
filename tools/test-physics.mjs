@@ -278,6 +278,50 @@ try {
       `PASS: activity ${name}, ${route.length} waypoints each direction, no teleport between legs.`,
     );
   }
+  const hall = JSON.parse(
+    await fs.readFile(
+      new URL("../public/models/hall/hall.json", import.meta.url),
+    ),
+  );
+  const hr = manifest.authoredAssets.find((a) => a.id === "hall"),
+    hc = Math.cos(hr.yaw),
+    hs = Math.sin(hr.yaw);
+  for (const [index, local] of hall.stairRoutes.entries()) {
+    const route = local.map(([x, z, y]) => [
+      hc * x + hs * z + hr.anchor[0],
+      -hs * x + hc * z + hr.anchor[1],
+      y + hr.base,
+    ]);
+    player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+    for (let i = 0; i < 120; i++) player.step({});
+    for (const points of [route, [...route].reverse()])
+      for (const [x, z, y] of points) {
+        let reached = false;
+        for (let i = 0; i < 1500; i++) {
+          const p = player.position,
+            dx = x - p.x,
+            dz = z - p.z,
+            d = Math.hypot(dx, dz);
+          if (d < 0.09) {
+            reached = true;
+            break;
+          }
+          const speed = Math.min(2.1, d * 60);
+          player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+        }
+        assert.ok(
+          reached,
+          `hall stair ${index} blocked: ${JSON.stringify(player.position)} -> ${x},${z},${y}`,
+        );
+        assert.ok(
+          Math.abs(player.position.y - y - 0.9) < 0.65,
+          `hall stair ${index} height: ${player.position.y} vs ${y + 0.9}`,
+        );
+      }
+    console.log(
+      `PASS: hall stair ${index}, ${route.length} waypoints each direction, no teleport between legs.`,
+    );
+  }
 } finally {
   player.dispose();
 }

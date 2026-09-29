@@ -12,7 +12,7 @@ async function boot() {
     ? new URLSearchParams(location.search).get("asset") || "sports"
     : "library";
   const supportedAssets = document.body.dataset.genericModel
-    ? ["sports", "activity"]
+    ? ["sports", "activity", "hall"]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
     throw new Error("未找到该建筑模型");
@@ -46,7 +46,7 @@ async function boot() {
     antialias: true,
   });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.toneMappingExposure = 1.15;
+  renderer.toneMappingExposure = 1.03;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#dce3e5");
   scene.fog = new THREE.Fog("#dce3e5", 600, 1100);
@@ -79,9 +79,9 @@ async function boot() {
     near: 1,
     far: 500,
   });
-  sun.shadow.mapSize.set(2048, 2048);
-  sun.shadow.normalBias = 0.04;
-  sun.shadow.bias = -0.00005;
+  sun.shadow.mapSize.set(4096, 4096);
+  sun.shadow.normalBias = 0.16;
+  sun.shadow.bias = -0.00015;
   scene.add(sun);
   const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(1600, 1600),
@@ -142,7 +142,9 @@ async function boot() {
       gym: "体育馆",
       landscape: "周边绿化",
       roof: "屋顶",
-      front: "庭院正面",
+      front: "正面",
+      entrance: "入口",
+      stairs: "外楼梯",
       arcade: "首层通廊",
       facade: "幕墙与外廊",
     };

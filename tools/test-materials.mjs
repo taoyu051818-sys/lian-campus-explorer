@@ -17,7 +17,14 @@ for (const m of meta.materials) {
   const family = materialFamily(m.name);
   counts[family] = (counts[family] || 0) + 1;
 }
-assert.equal(Object.keys(MATERIAL_CATALOG).length, meta.materials.length);
+// Authored GLBs can retire procedural materials without removing their explicit mappings.
+// Every active material is still checked by materialFamily above; stale entries are harmless.
+assert.equal(
+  new Set(meta.materials.map((m) => m.name)).size,
+  meta.materials.length,
+);
+for (const name of Object.keys(MATERIAL_CATALOG))
+  assert.ok(materialFamily(name));
 assert.throws(() => materialFamily("unassigned future facade"), /尚未映射/);
 const provenance = JSON.parse(
   await fs.readFile(

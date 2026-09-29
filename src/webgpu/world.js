@@ -614,7 +614,17 @@ async function boot() {
             distance;
       environment.update(paused ? 0 : dt, time);
       environment.render();
-      if (frame++ % 15 === 0) hud();
+      if (frame++ % 15 === 0) {
+        canvas.dataset.authoredLods = JSON.stringify(
+          Object.fromEntries(
+            campus.authoredAssets.map((asset) => [
+              asset.manifest.asset || "library",
+              asset.lod.getCurrentLevel(),
+            ]),
+          ),
+        );
+        hud();
+      }
     } catch (error) {
       renderer.setAnimationLoop(null);
       console.error(error);
