@@ -57,7 +57,16 @@ async function boot() {
   ground.position.y = -0.12;
   ground.receiveShadow = true;
   scene.add(ground);
-  const manifest = await fetch("./models/library/library.json").then((r) =>
+  const requestedAsset = document.body.dataset.genericModel
+    ? new URLSearchParams(location.search).get("asset") || "sports"
+    : "library";
+  const supportedAssets = document.body.dataset.genericModel
+    ? ["sports"]
+    : ["library"];
+  if (!supportedAssets.includes(requestedAsset))
+    throw new Error("未找到该建筑模型");
+  const modelBase = `./models/${requestedAsset}/`;
+  const manifest = await fetch(`${modelBase}${requestedAsset}.json`).then((r) =>
     r.json(),
   );
   const cache = new Map();
@@ -69,7 +78,10 @@ async function boot() {
     fps = 0,
     request = 0;
   const poses = {
-    photo: [manifest.photoCamera.position, manifest.photoCamera.target],
+    photo: [
+      manifest.photoCamera?.position || [-23, 112, -235],
+      manifest.photoCamera?.target || [-23, 18, 23],
+    ],
     overall: [
       [110, 130, -255],
       [-23, 30, -15],
@@ -99,10 +111,35 @@ async function boot() {
       [-23, 25, -20],
     ],
   };
+  if (manifest.views) {
+    for (const [name, view] of Object.entries(manifest.views))
+      poses[name] = [view.position, view.target];
+    const labels = {
+      overall: "整体",
+      pool: "游泳馆",
+      gym: "体育馆",
+      landscape: "周边绿化",
+      roof: "屋顶",
+    };
+    document.querySelector(".view-buttons").replaceChildren(
+      ...Object.keys(manifest.views).map((name) => {
+        const button = document.createElement("button");
+        button.dataset.view = name;
+        button.textContent = labels[name] || name;
+        button.setAttribute("aria-pressed", "false");
+        return button;
+      }),
+    );
+  }
   function pose(name) {
     const [p, t] = poses[name];
     camera.fov =
-      name === "photo" ? manifest.photoCamera.fov : name === "entrance" ? 46 : 42;
+      manifest.views?.[name]?.fov ??
+      (name === "photo"
+        ? manifest.photoCamera.fov
+        : name === "entrance"
+          ? 46
+          : 42);
     camera.updateProjectionMatrix();
     camera.position.fromArray(p);
     controls.target.fromArray(t);
@@ -113,13 +150,13 @@ async function boot() {
         b.setAttribute("aria-pressed", String(b.dataset.view === name)),
       );
   }
-  pose("photo");
+  pose(manifest.views ? "overall" : "photo");
   async function quality(index) {
     const ticket = ++request;
     status.textContent = "正在载入建筑…";
     if (!cache.has(index)) {
       const gltf = await loader.loadAsync(
-        "./models/library/" + manifest.lods[index].file,
+        modelBase + manifest.lods[index].file,
       );
       gltf.scene.traverse((o) => {
         if (o.isMesh) {

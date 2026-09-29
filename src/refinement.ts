@@ -1,4 +1,5 @@
 import { addTeachingAccess } from "./teaching-access";
+import { registerAuthoredSites } from "./authored-registration";
 import { registerLibrary } from "./library-registration";
 import { addServicesIndustryExterior } from "./services-industry-exterior";
 import {
@@ -45,7 +46,7 @@ export const detailStatus: Record<string, string> = {
   bupt: "核实图合院 · 照片参考立面",
   cuc: "规划图轮廓 · 简化立面",
   library: "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
-  sports: "实建图尺寸 · 双馆与表皮细化",
+  sports: "Blender 实建图参考 · 双馆、附馆与周边绿化",
   activity: "实建图轮廓 · 四层弯折主楼",
   hall: "实建图轮廓 · 椭圆主厅",
   dorm3: "变更总平面 · 九座宿舍主体",
@@ -210,6 +211,7 @@ export function refine(geo: any, data: AtlasData, plans: any) {
     (b: Building) => !["library", "stadium"].includes(b.placeId),
   );
   registerLibrary(geo);
+  registerAuthoredSites(geo);
   for (const b of geo.buildings as RefinedBuilding[])
     if (b.placeId === "uestc") {
       b.kind = "uestc";

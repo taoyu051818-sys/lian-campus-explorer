@@ -4,11 +4,14 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
+const asset =
+  process.argv.find((arg) => arg.startsWith("--asset="))?.slice(8) || "library";
+if (!/^[a-z0-9-]+$/.test(asset)) throw new Error("Invalid asset name");
 const directory = fileURLToPath(
-  new URL("../../public/models/library/", import.meta.url),
+  new URL(`../../public/models/${asset}/`, import.meta.url),
 );
 const manifest = JSON.parse(
-  await fs.readFile(path.join(directory, "library.json"), "utf8"),
+  await fs.readFile(path.join(directory, `${asset}.json`), "utf8"),
 );
 for (const level of manifest.lods) {
   const input = path.join(directory, level.file),
@@ -58,7 +61,7 @@ for (const level of manifest.lods) {
 manifest.compression =
   "EXT_meshopt_compression; glTF Transform 4.2.1; position 16 / normal 12 / UV 14 bits";
 await fs.writeFile(
-  path.join(directory, "library.json"),
+  path.join(directory, `${asset}.json`),
   JSON.stringify(manifest, null, 2) + "\n",
 );
 console.log(JSON.stringify(manifest.lods, null, 2));

@@ -33,14 +33,23 @@ export function adaptLibraryMaterial(source) {
   return target;
 }
 
-export async function loadLibrary(registration, progress = () => {}) {
-  const base = `${import.meta.env.BASE_URL}models/library/`;
-  const response = await fetch(`${base}library.json`);
-  if (!response.ok) throw new Error("图书馆模型清单加载失败。");
+export function loadLibrary(registration, progress = () => {}) {
+  return loadAuthoredAsset(
+    { ...registration, id: "library", name: "图书馆" },
+    progress,
+  );
+}
+
+export async function loadAuthoredAsset(registration, progress = () => {}) {
+  const id = registration.id;
+  if (!/^[a-z0-9-]+$/.test(id)) throw new Error("Invalid model identifier");
+  const base = `${import.meta.env.BASE_URL}models/${id}/`;
+  const response = await fetch(`${base}${id}.json`);
+  if (!response.ok) throw new Error(`${registration.name}模型清单加载失败。`);
   const manifest = await response.json();
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   const lod = new THREE.LOD();
-  lod.name = "Blender library";
+  lod.name = `Blender ${id}`;
   lod.autoUpdate = false;
   lod.position.set(
     registration.anchor[0],
@@ -48,7 +57,7 @@ export async function loadLibrary(registration, progress = () => {}) {
     registration.anchor[1],
   );
   lod.rotation.y = registration.yaw;
-  progress("正在加载 Blender 图书馆与三档细节模型…");
+  progress(`正在加载${registration.name}与周边环境…`);
   for (const level of manifest.lods) {
     const asset = await loader.loadAsync(`${base}${level.file}`);
     const converted = new Map();
@@ -62,7 +71,7 @@ export async function loadLibrary(registration, progress = () => {}) {
       mesh.material = Array.isArray(mesh.material)
         ? mesh.material.map(convert)
         : convert(mesh.material);
-      mesh.userData.placeId = "library";
+      mesh.userData.placeId = id;
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       mesh.layers.set(LAYERS.OPAQUE);

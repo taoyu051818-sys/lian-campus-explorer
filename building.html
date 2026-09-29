@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>综合体育中心 · 建筑与环境</title>
+  </head>
+  <body data-generic-model="true">
+    <canvas
+      id="library-canvas"
+      aria-label="综合体育中心三维模型，拖动旋转，滚轮缩放"
+    ></canvas>
+    <header>
+      <a href="./world.html?place=sports&view=orbit">← 回到校园</a>
+      <div>
+        <span>LI'AN SPORTS CENTER</span>
+        <h1>综合体育中心</h1>
+      </div>
+      <button id="panels" type="button">收起面板</button>
+    </header>
+    <aside id="review-panel">
+      <p class="eyebrow">建筑外景 / 实景参考重建</p>
+      <h2>双馆、附馆与周边绿化</h2>
+      <p>
+        游泳馆的穿孔外墙与中央金属曲面、体育馆格栅与退台主馆、附馆屋顶球场和室外台阶。拖动旋转，查看建筑与周边绿化。
+      </p>
+      <div class="view-buttons">
+        <button data-view="overall" aria-pressed="true">整体</button
+        ><button data-view="pool" aria-pressed="false">游泳馆</button
+        ><button data-view="gym" aria-pressed="false">体育馆</button
+        ><button data-view="landscape" aria-pressed="false">周边绿化</button
+        ><button data-view="roof" aria-pressed="false">屋顶</button>
+      </div>
+      <label for="model-quality">模型精度</label
+      ><select id="model-quality">
+        <option value="0">近景 · 完整构件</option>
+        <option value="1">中景 · 简化构件</option>
+        <option value="2">远景 · 烘焙纹样</option>
+      </select>
+      <label class="check"
+        ><input id="wireframe" type="checkbox" />查看网格</label
+      >
+      <details>
+        <summary>模型依据</summary>
+        <p>
+          依据规划核实附件中的实建图和建成照片重建。双馆尺寸与高度有图纸依据；构件、植物布置和校园配准仍含估算。
+        </p>
+        <a
+          href="https://wap.study-hn.cn/upload/file/2025/08/04/594775550c264ea39e5dda6616583998.pdf"
+          target="_blank"
+          rel="noopener"
+          >实建图与现场照片 ↗</a
+        >
+      </details>
+    </aside>
+    <footer>
+      <span id="model-status" role="status">正在载入建筑…</span
+      ><span>BLENDER → THREE.JS / WEBGPU</span>
+    </footer>
+    <script type="module" src="/src/library-review.js"></script>
+  </body>
+</html>

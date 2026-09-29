@@ -148,6 +148,7 @@ try {
     teachingFoot: geo.teachingAccess?.stairs[1].foot,
     teachingAccess: geo.teachingAccess,
     libraryAsset: geo.libraryAsset,
+    authoredAssets: geo.authoredAssets,
     registrations: built.registrations,
     stats: {
       buildings: geo.buildings.length,

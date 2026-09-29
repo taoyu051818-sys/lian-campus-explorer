@@ -159,7 +159,15 @@ async function boot() {
     $("destination-note").textContent =
       `${p.parcel} · ${campus.meta.status?.[p.id] || "参考资料建立的校园外观模型"}`;
     $("evidence").href = plans[p.id]?.source || p.source;
-    $("library-review").hidden = selected !== "library";
+    const detailed =
+      selected === "library" ||
+      campus.meta.authoredAssets?.some((a) => a.id === selected);
+    $("library-review").hidden = !detailed;
+    $("library-review").textContent = `查看${p.name}建筑与环境 ↗`;
+    $("library-review").href =
+      selected === "library"
+        ? "./library.html"
+        : `./building.html?asset=${selected}`;
     select.value = selected;
   }
   function orient() {
@@ -536,7 +544,7 @@ async function boot() {
   }
   updateCamera();
   environment.update(1 / 60, 0);
-  campus.library.lod.update(camera);
+  campus.authoredAssets.forEach((asset) => asset.lod.update(camera));
   progress("正在编译建筑光照与阴影…");
   await renderer.compileAsync(scene, camera, null, ({ loaded, total }) => {
     progress(`正在编译建筑光照与阴影 ${loaded} / ${total}…`);
@@ -597,7 +605,7 @@ async function boot() {
         accumulator -= 1 / 60;
       }
       updateCamera();
-      campus.library.lod.update(camera);
+      campus.authoredAssets.forEach((asset) => asset.lod.update(camera));
       canvas.dataset.libraryLod = String(campus.library.lod.getCurrentLevel());
       if (frame % 15 === 0)
         for (const { mesh, distance } of campus.lodMeshes)

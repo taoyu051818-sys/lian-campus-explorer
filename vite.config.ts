@@ -8,6 +8,7 @@ export default defineConfig({
         detail: "detail.html",
         world: "world.html",
         library: "library.html",
+        building: "building.html",
       },
     },
   },

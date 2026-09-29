@@ -132,8 +132,52 @@ try {
       );
     }
   }
+  const sports = JSON.parse(
+    await fs.readFile(
+      new URL("../public/models/sports/sports.json", import.meta.url),
+    ),
+  );
+  const sportsRegistration = manifest.authoredAssets.find(
+    (a) => a.id === "sports",
+  );
+  const sportsRoute = sports.stairRoute.map(([x, z, y]) => [
+    x + sportsRegistration.anchor[0],
+    z + sportsRegistration.anchor[1],
+    y + sportsRegistration.base,
+  ]);
+  player.teleport(
+    sportsRoute[0][0],
+    sportsRoute[0][2] + 1.05,
+    sportsRoute[0][1],
+  );
+  for (let i = 0; i < 90; i++) player.step({});
+  for (const route of [sportsRoute, [...sportsRoute].reverse()]) {
+    for (const [x, z, y] of route) {
+      let reached = false;
+      for (let i = 0; i < 900; i++) {
+        const p = player.position,
+          dx = x - p.x,
+          dz = z - p.z,
+          d = Math.hypot(dx, dz);
+        if (d < 0.1) {
+          reached = true;
+          break;
+        }
+        const speed = Math.min(2.5, d * 60);
+        player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+      }
+      assert.ok(
+        reached,
+        `sports curved stair blocked at ${x},${z}: ${JSON.stringify(player.position)}`,
+      );
+      assert.ok(
+        Math.abs(player.position.y - y - 0.9) < 0.7,
+        `sports stair elevation: ${player.position.y} vs ${y + 0.9}`,
+      );
+    }
+  }
   console.log(
-    `PASS: 33 destinations settle, jump, land and walk; ${checks} invisible access surfaces preserved; ${meshes.length} collision meshes; six continuous bidirectional stair/bridge route legs.`,
+    `PASS: 33 destinations settle, jump, land and walk; ${checks} invisible access surfaces preserved; ${meshes.length} collision meshes; six continuous teaching stair/bridge route legs and sports curved stair ascent/descent.`,
   );
 } finally {
   player.dispose();
