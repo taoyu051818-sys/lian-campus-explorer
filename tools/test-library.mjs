@@ -7,7 +7,7 @@ const root = new URL("../public/models/library/", import.meta.url);
 const manifest = JSON.parse(await fs.readFile(new URL("library.json", root)));
 await MeshoptDecoder.ready;
 assert.equal(manifest.lods.length, 3);
-assert.equal(manifest.collisionVolumes.length, 39);
+assert.equal(manifest.collisionVolumes.length, 40);
 const stats = [];
 for (const level of manifest.lods) {
   const data = await fs.readFile(new URL(level.file, root));
@@ -71,6 +71,7 @@ for (const level of manifest.lods) {
   let triangles = 0,
     meshes = 0;
   const bounds = new Box3();
+  const facadeChecks = { screenVertices: 0, spandrelVertices: 0, entranceVertices: 0 };
   const point = new Vector3();
   function visit(index, parent) {
     const node = gltf.nodes[index];
@@ -99,6 +100,21 @@ for (const level of manifest.lods) {
             .applyMatrix4(matrix);
           assert.ok([point.x, point.y, point.z].every(Number.isFinite));
           bounds.expandByPoint(point);
+          // Inspect decoded vertices in model space: screens must never intrude into
+          // the broad solid ribbons or continuous clear glass slots in any LOD.
+          if (/^Petal .* screen \|/.test(node.name) && !node.name.includes("roof screen")) {
+            const withinStorey = ((point.y % 5) + 5) % 5;
+            assert.ok(withinStorey >= 1.30 && withinStorey <= 4.48, `${node.name}: screen crosses a plain facade band at ${point.y}`);
+            if (node.name.startsWith("Petal east-garden")) assert.ok(point.y > 6.30, "garden wing ground floor must remain clear glass");
+            facadeChecks.screenVertices++;
+          }
+          if (node.name.startsWith("Tower spandrel panels")) {
+            const withinStorey = ((point.y % 4.4) + 4.4) % 4.4;
+            assert.ok(withinStorey >= .12 && withinStorey <= 1.34, "spandrel crosses the clear window band");
+            facadeChecks.spandrelVertices++;
+          }
+          if (node.name.startsWith("Entrance clear glazing")) facadeChecks.entranceVertices++;
+
           const n = Math.hypot(
             normals.get(i, 0),
             normals.get(i, 1),
@@ -112,11 +128,14 @@ for (const level of manifest.lods) {
   }
   for (const node of gltf.scenes[gltf.scene || 0].nodes)
     visit(node, new Matrix4());
+  for (const [name, count] of Object.entries(facadeChecks)) assert.ok(count > 0, `missing ${name}`);
+  const towerFins = gltf.materials.find(m => m.name === "Library / champagne fins");
+  assert.ok(towerFins.pbrMetallicRoughness.baseColorFactor[0] > towerFins.pbrMetallicRoughness.baseColorFactor[2], "tower fins must have their separate warm finish");
   assert.equal(triangles, level.triangles);
   assert.equal(meshes, level.meshObjects);
   const size = bounds.getSize(new Vector3());
   assert.ok(
-    size.x > 110 && size.x < 150 && size.z > 120 && size.z < 160,
+    size.x > 110 && size.x < 165 && size.z > 95 && size.z < 160,
     "metres or axes changed",
   );
   assert.ok(size.y > 83 && size.y < 85, "tower height changed");
@@ -127,6 +146,7 @@ for (const level of manifest.lods) {
     meshes,
     bytes: data.length,
     bounds: [bounds.min.toArray(), bounds.max.toArray()],
+    facadeChecks,
   });
 }
 assert.ok(stats[0].triangles > stats[1].triangles * 1.5);

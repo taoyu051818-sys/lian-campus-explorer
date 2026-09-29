@@ -2,7 +2,7 @@
 Run: blender -b --factory-startup --python authoring/library/build.py
 No reference photograph is embedded in the distributable assets.
 """
-import bpy, json, math, random, sys, os
+import bpy, bmesh, json, math, random, sys, os
 from pathlib import Path
 from mathutils import Vector
 from mathutils.geometry import tessellate_polygon
@@ -34,7 +34,10 @@ def mat(name, color, rough=.6, metal=0, family='paint'):
     MATS[name]=m
     return m
 mat('Library / pearl aluminium',(.82,.84,.81),.35,.08,'metal')
-mat('Library / warm ceramic',(.80,.79,.74),.62,0,'ceramic')
+mat('Library / warm ceramic',(.86,.835,.75),.52,0,'ceramic')
+mat('Library / champagne fins',(.66,.59,.40),.34,.35,'metal')
+mat('Library / grey spandrel',(.33,.36,.37),.64,.18,'metal')
+mat('Library / white roof',(.70,.72,.70),.89,0,'concrete')
 mat('Library / white concrete',(.7,.71,.68),.8,0,'concrete')
 mat('Library / frame shadow',(.043,.062,.069),.4,.55,'metal')
 mat('Library / blue grey glass',(.11,.23,.3),.15,0,'glass')
@@ -98,6 +101,13 @@ class Part:
             uv=mesh.uv_layers.new(name='UVMap')
             for poly,coords in zip(mesh.polygons,self.uv):
                 for loop,co in zip(poly.loop_indices,coords): uv.data[loop].uv=co
+        if self.material in ['Library / warm ceramic','Library / champagne fins']:
+            # Weld profile rings before smoothing; retain sharp slab corners and fin edges.
+            bm=bmesh.new();bm.from_mesh(mesh)
+            bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=.00001)
+            for f in bm.faces:f.smooth=True
+            for e in bm.edges:e.smooth=len(e.link_faces)==2 and e.calc_face_angle(0)<math.radians(30)
+            bm.to_mesh(mesh);bm.free();mesh.update()
         obj=bpy.data.objects.new(self.name,mesh);self.coll.objects.link(obj)
         obj.parent=parent;obj.data.materials.append(MATS[self.material]);obj['placeId']='library'
         return obj
@@ -168,7 +178,7 @@ def wall(part,poly,z0,z1,tile=3.0):
         part.face([(*a,z0),(*b,z0),(*b,z1),(*a,z1)],[(arclen/tile,0),((arclen+length)/tile,0),((arclen+length)/tile,(z1-z0)/3.4),(arclen/tile,(z1-z0)/3.4)])
         arclen+=length
 
-MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[]}
+MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[],'facadeRevision':DESIGN['version'],'photoObservations':DESIGN['photoObservations']}
 ROOTS=[]
 for lod in range(3):
     coll=bpy.data.collections.new(f'Library LOD{lod}');scene.collection.children.link(coll)
@@ -179,28 +189,30 @@ for lod in range(3):
         if key not in buckets:buckets[key]=Part(f'{section} | {material.split(" / ")[-1]}',material,coll)
         return buckets[key]
     def pmat(section,key):return part(section,'Library / '+key)
-    res=[96,48,20][lod]
+    res=[160,80,32][lod]
     tower=DESIGN['tower']; tx,ty=tower['center']
-    tp=outline(tx,ty,tower['width'],tower['depth'],tower['angle'],res,True)
-    frame=pmat('Tower','pearl aluminium'); shadow=pmat('Tower','frame shadow')
-    glasses=[pmat('Tower',n) for n in ['blue grey glass','blue grey glass light','blue grey glass dark']]
-    fh=DESIGN['floorHeight']; top=tower['height']-4.2
-    # Nineteen readable floors, including the sloping lantern crown at floor nineteen.
-    for floor in range(18):
+    tp=outline(tx,ty,tower['width'],tower['depth'],tower['angle'],[96,48,24][lod],True)
+    frame=pmat('Tower horizontal fins','champagne fins'); shadow=pmat('Tower mullions','frame shadow')
+    spandrel=pmat('Tower spandrel panels','grey spandrel')
+    glasses=[pmat('Tower glazing',n) for n in ['blue grey glass','blue grey glass light','blue grey glass dark']]
+    fh=DESIGN['floorHeight']; tf=DESIGN['facade']['tower']
+    for floor in range(tower['floors']-1):
         lo=floor*fh; hi=lo+fh
+        wall(spandrel,tp,lo+tf['spandrelBottom'],lo+tf['spandrelTop'])
         for i,(a,b) in enumerate(zip(tp,tp[1:]+tp[:1])):
             glass=glasses[(i*17+floor*7)%13//5]
-            glass.face([(*a,lo+.18),(*b,lo+.18),(*b,hi-.18),(*a,hi-.18)])
+            glass.face([(*a,lo+tf['spandrelTop']),(*b,lo+tf['spandrelTop']),(*b,hi-.06),(*a,hi-.06)])
             if lod<2:
-                frame.beam((*a,lo+.08),(*a,hi-.06),.075,.13)
-        band(frame,tp,lo,.22,.24)
-        for h in ([.92,2.92,3.43] if lod==0 else [1.05,3.35] if lod==1 else [3.2]):
-            band(frame,tp,lo+h,.075 if h!=3.43 else .12,.3)
-        # Recessed opening lights interrupt the otherwise continuous curtain wall.
+                shadow.beam((*a,lo+.10),(*a,hi-.06),.065,.13)
+        for h in tf['finLevels']:
+            band(frame,tp,lo+h,.15 if h==1.34 else .10,tf['finProjection'])
         if lod==0:
+            # Small opening lights sit inside the blue window band, not across the spandrel.
             for i in range((floor*3)%7,len(tp),9):
-                a=tp[i];b=tp[(i+1)%len(tp)]
-                shadow.beam((*a,lo+2.4),(*b,lo+2.4),.09,.11)
+                a=Vector(tp[i]);b=Vector(tp[(i+1)%len(tp)])
+                left=a.lerp(b,.13); right=a.lerp(b,.87)
+                for pa,pb in [((*left,lo+1.72),(*right,lo+1.72)),((*left,lo+3.02),(*right,lo+3.02)),((*left,lo+1.72),(*left,lo+3.02)),((*right,lo+1.72),(*right,lo+3.02))]:
+                    frame.beam(pa,pb,.055,.075)
     def tower_top(i):
         x,y=tp[i]; return 79.4+4.2*(.5+.5*math.cos(math.atan2(y-ty,x-tx)-.7))
     for i,(a,b) in enumerate(zip(tp,tp[1:]+tp[:1])):
@@ -217,58 +229,77 @@ for lod in range(3):
         sec='Petal '+petal['name']; cx,cy=petal['center']; floors=petal['floors']; floorH=5.0
         shape=outline(cx,cy,petal['width'],petal['depth'],petal['angle'],res)
         white=pmat(sec,'warm ceramic'); aluminium=pmat(sec,'pearl aluminium'); rails=pmat(sec,'frame shadow')
-        glass=pmat(sec,'blue grey glass'); grid=pmat(sec,'distant baked screen')
+        glass=pmat(sec,'blue grey glass'); grid=pmat(sec+' screen','distant baked screen'); roofgrid=pmat(sec+' roof screen','distant baked screen')
+        facade=DESIGN['facade']['podium']
+        lattice=pmat(sec+' screen','pearl aluminium')
+        clearframe=pmat(sec+' glazing mullions','frame shadow')
         for floor in range(floors):
             poly=inset(shape,floor*.68)
             y0=floor*floorH; y1=y0+floorH
-            wall(glass,inset(poly,.62),y0+.28,y1-.3)
-            band(white,poly,y0,.56,.35)
-            band(aluminium,poly,y0+.57,.08,.38)
-            # A 60 cm cavity separates the glass from the external lattice screen.
+            glazing=inset(poly,facade['glassRecess'])
+            wall(glass,glazing,y0+.10,y1+.06)
+            band(white,poly,y0,facade['solidBandHeight'],facade['solidBandProjection'])
+            # Broad opaque ribbon, then lattice, then a continuous clear shadow/glass slot.
+            # Every LOD uses the same boundaries. No random missing screen modules.
+            screenLo=y0+facade['screenBottom']; screenHi=y0+facade['screenTop']
             if lod<2:
                 for i in range(0,len(poly),2 if lod==0 else 4):
-                    a=inset(poly,.56)[i];aluminium.beam((*a,y0+.5),(*a,y1-.3),.065,.095)
+                    a=glazing[i];clearframe.beam((*a,y0+.15),(*a,y1),.07,.12)
             lengths=[0]
             for a,b in zip(poly,poly[1:]+poly[:1]):lengths.append(lengths[-1]+math.dist(a,b))
-            bays=max(8,round(lengths[-1]/2.1)); bay=lengths[-1]/bays
+            bays=max(8,round(lengths[-1]/2.15)); bay=lengths[-1]/bays
             def perimeter(s):
                 s%=lengths[-1]; ix=next((q for q in range(len(poly)) if lengths[q+1]>=s),len(poly)-1)
                 t=(s-lengths[ix])/(lengths[ix+1]-lengths[ix]);a=poly[ix];b=poly[(ix+1)%len(poly)]
                 return (a[0]*(1-t)+b[0]*t,a[1]*(1-t)+b[1]*t)
+            def clear_at(s):
+                x,y=perimeter(s)
+                angle=(math.degrees(math.atan2(y-cy,x-cx))-petal['angle']+180)%360-180
+                return any(floor in z['floors'] and z['angle'][0]<=angle<=z['angle'][1] for z in petal['clearGlazingZones'])
+            def screen_beam(a,b,width):
+                # Clip at the actual panel edges so diagonal bars cannot cross a plain glass slot.
+                low=min(a[1],b[1]);high=max(a[1],b[1])
+                if high<screenLo or low>screenHi:return
+                if a[1]!=b[1]:
+                    t0=max(0,min((screenLo-a[1])/(b[1]-a[1]),(screenHi-a[1])/(b[1]-a[1])))
+                    t1=min(1,max((screenLo-a[1])/(b[1]-a[1]),(screenHi-a[1])/(b[1]-a[1])))
+                    if t1<=t0:return
+                    aa=(a[0]+(b[0]-a[0])*t0,a[1]+(b[1]-a[1])*t0)
+                    bb=(a[0]+(b[0]-a[0])*t1,a[1]+(b[1]-a[1])*t1)
+                else:aa,bb=a,b
+                if clear_at((aa[0]+bb[0])*.5):return
+                pa=perimeter(aa[0]);pb=perimeter(bb[0]);lattice.beam((*pa,aa[1]),(*pb,bb[1]),width,.12,False)
             for j in range(bays):
-                # Leave deliberate clear horizontal glazing openings, as in completed photos.
-                clear = floor>0 and (j+9*k+floor*11)%bays < max(4,bays//7)
                 s=(j+.5)*bay
-                pt=perimeter(s)
-                entrance = k==4 and floor==0 and pt[1] < min(p[1] for p in poly)+2.5
-                if clear or entrance:continue
+                if clear_at(s):continue
                 if lod==2:
                     a=perimeter(j*bay); b=perimeter((j+1)*bay)
-                    grid.face([(*a,y0+.72),(*b,y0+.72),(*b,y1-.3),(*a,y1-.3)],[(0,0),(1,0),(1,2),(0,2)])
+                    grid.face([(*a,screenLo),(*b,screenLo),(*b,screenHi),(*a,screenHi)],[(0,0),(1,0),(1,1.5),(0,1.5)])
                     continue
-                # Two rows of interlocking stepped diamonds. The open inner corners
-                # echo the woven Li motif; dimensions are reconstructed, not surveyed.
+                # Interlocking diagonal square/maze modules clipped to a finite screen panel.
                 for row in range(2):
-                    z=y0+1.7+row*1.98
+                    z=screenLo+.50+row*1.80
                     for ring,factor in enumerate([1,.70,.39] if lod==0 else [1,.55]):
-                        w=bay*.5*factor; h=.99*factor
+                        w=bay*.5*factor; h=.90*factor
                         coords=[(s-w,z),(s,z+h),(s+w,z),(s,z-h)]
                         for edge,(a,b) in enumerate(zip(coords,coords[1:]+coords[:1])):
-                            if ring==1 and edge==(j+row)%4: continue
-                            pa=perimeter(a[0]);pb=perimeter(b[0]);aluminium.beam((*pa,a[1]),(*pb,b[1]),.085,.12,False)
-                # Bridge the empty corners of neighbouring modules into a woven field.
+                            if ring==1 and edge==(j+row)%4:continue
+                            screen_beam(a,b,.082)
                 for factor in ([1,.52] if lod==0 else [.8]):
-                    mid=s+bay*.5; z=y0+2.69
-                    coords=[(mid-bay*.5*factor,z),(mid,z+.99*factor),(mid+bay*.5*factor,z),(mid,z-.99*factor)]
-                    for a,b in zip(coords,coords[1:]+coords[:1]):
-                        pa=perimeter(a[0]);pb=perimeter(b[0]);aluminium.beam((*pa,a[1]),(*pb,b[1]),.075,.12,False)
+                    mid=s+bay*.5; z=screenLo+1.4
+                    coords=[(mid-bay*.5*factor,z),(mid,z+.90*factor),(mid+bay*.5*factor,z),(mid,z-.90*factor)]
+                    for a,b in zip(coords,coords[1:]+coords[:1]):screen_beam(a,b,.075)
                 if lod==0 and j%2==0:
-                    pt=perimeter(j*bay); rails.beam((*pt,y0+.65),(*pt,y1-.3),.045,.085)
+                    pt=perimeter(j*bay);rails.beam((*pt,screenLo),(*pt,screenHi),.045,.085)
         roofY=floors*floorH
         roofpoly=inset(shape,(floors-1)*.68)
-        band(white,roofpoly,roofY,.48,.36)
+        band(white,roofpoly,roofY,facade['solidBandHeight'],facade['solidBandProjection'])
         roofdeck=inset(roofpoly,.48)
         cap(pmat(sec+' roof','roof gravel'),roofdeck,roofY+.05)
+        if petal['roofFinish']=='white-terrace':
+            terrace=inset(roofpoly,4.2)
+            wall(pmat(sec+' raised roof','white concrete'),terrace,roofY+.06,roofY+1.05)
+            cap(pmat(sec+' raised roof','white roof'),terrace,roofY+1.05)
         # A translucent, rising parapet reads as a petal lip, rather than a solid dome.
         crest=math.radians(petal['crest'])
         def lip(i):
@@ -288,14 +319,14 @@ for lod in range(3):
                     high=(*mid,z+h/count*.43); low=(*mid,z-h/count*.43)
                     for p,q in [(left,high),(high,right),(right,low),(low,left)]:aluminium.beam(p,q,.065,.1)
             else:
-                grid.face([(*a,roofY+.4),(*b,roofY+.4),(*b,lip(j)),(*a,lip(i))],[(i*.5,0),(j*.5,0),(j*.5,h/2),(i*.5,h/2)])
+                roofgrid.face([(*a,roofY+.4),(*b,roofY+.4),(*b,lip(j)),(*a,lip(i))],[(i*.5,0),(j*.5,0),(j*.5,h/2),(i*.5,h/2)])
         planter=pmat(sec+' roof','white concrete'); green=pmat(sec+' roof','planted roof')
-        for q in range(3 if lod<2 else 2):
-            px=cx+(q-1)*5.1;py=cy+1.5*math.sin(q*3)
+        for q in range((5 if lod<2 else 3) if petal['roofFinish']=='garden' else 0):
+            px=cx+(q-2)*4.3;py=cy+2.5*math.sin(q*3)
             ring=outline(px,py,3.1,2.8,q*30,16)
             strip(planter,ring,inset(ring,.18),roofY+.1,roofY+.55)
             cap(green,inset(ring,.2),roofY+.5)
-        if lod<2:
+        if lod<2 and petal['roofFinish']=='garden':
             # Recessed clerestory / roof access, deliberately below the high petal rim.
             roofaccess=outline(cx+1,cy+5,9,5,petal['angle'],24)
             wall(glass,roofaccess,roofY+.12,roofY+1.15)
@@ -316,9 +347,6 @@ for lod in range(3):
     strip(concrete,garden,inset(garden,.16),9.98,10.45)
     for i in range(0,len(atrium),2):
         p=atrium[i];metal.beam((*p,.25),(*p,9.8),.085,.15)
-    canopy=[(-21,-47),(-9,-53),(17,-51),(24,-44),(9,-38),(-14,-39)]
-    cap(concrete,canopy,5.2);strip(concrete,canopy,inset(canopy,.28),4.9,5.2)
-    for x,y in [(-18,-45),(20,-45),(-8,-49),(11,-48)]:metal.beam((x,y,0),(x,y,4.95),.24)
     if lod==0:
         outer=outline(0,-12,57,57,18,32);inner=outline(0,-8,31,32,18,32)
         for i in range(32):
@@ -337,25 +365,57 @@ for lod in range(3):
         planting=outline(x+2.5,y+1,2.3,1.8,j*23,12)
         strip(concrete,planting,inset(planting,.12),2.82,3.15)
         cap(pmat('Reading garden','planted roof'),inset(planting,.13),3.12)
-    # Modest entrance frames at accessible facade bays, modelled with real reveals.
-    entry=pmat('Entrance','frame shadow')
-    for x in [-6,-3,0,3,6]:
-        entry.box((x,-77.2,1.65),(2.7,.18,3.1))
-        metal.box((x-1.42,-77.35,1.7),(.08,.15,3.3))
-    metal.box((0,-77.35,3.42),(15,.16,.1))
-    metal.box((0,-78.1,4.85),(18,3.2,.25))
-    metal.box((0,-79.6,4.38),(18,.2,1.05))
+    # Recessed curved connector between the front petals. The whole connector is clear glass.
+    ef=DESIGN['facade']['entrance']; ex,ey=ef['center']; width=ef['width']; eh=ef['height']
+    entryGlass=pmat('Entrance clear glazing','blue grey glass')
+    entryFrame=pmat('Entrance mullions','pearl aluminium')
+    entrySolid=pmat('Entrance solid sign fascia','warm ceramic')
+    def entry_point(u,offset=0):return (ex+(u-.5)*width,ey+ef['recess']*math.sin(math.pi*u)+offset)
+    divisions=24 if lod<2 else 12
+    for i in range(divisions):
+        a=entry_point(i/divisions);b=entry_point((i+1)/divisions)
+        entryGlass.face([(*a,0),(*b,0),(*b,eh-2.2),(*a,eh-2.2)])
+        backA=entry_point(i/divisions,1.1);backB=entry_point((i+1)/divisions,1.1)
+        solidA=(a[0],a[1]-.12);solidB=(b[0],b[1]-.12)
+        for z,h in [(4.6,.60),(eh-2.2,2.2)]:
+            entrySolid.face([(*solidA,z),(*solidB,z),(*solidB,z+h),(*solidA,z+h)])
+            entrySolid.face([(*solidA,z+h),(*solidB,z+h),(*backB,z+h),(*backA,z+h)])
+            entrySolid.face([(*backA,z),(*backB,z),(*solidB,z),(*solidA,z)])
+        if lod<2 and i%2==0:entryFrame.beam((*a,.08),(*a,eh-2.2),.085,.15)
+        for z in [3.1,6.5,8.55]:entryFrame.beam((*a,z),(*b,z),.10,.14)
+    doorY=entry_point(.5)[1]-.08
+    for x in [ex-4.8,ex-2.4,ex,ex+2.4,ex+4.8]:
+        entryFrame.box((x,doorY,1.55),(.11,.17,3.1))
+        if lod==0:entryFrame.box((x+.25,doorY-.18,1.38),(.04,.10,.65))
+    entryFrame.box((ex,doorY,3.1),(9.7,.18,.13))
+    entryGlass.box((ex,doorY-1.55,3.85),(13.5,3.2,.10))
+    for x in [ex-6,ex,ex+6]:entryFrame.beam((x,doorY+.1,4.4),(x,doorY-3.1,3.8),.065,.09)
+    # Central raised skylight visible in the aerial photograph, behind the entrance.
+    skylightGlass=pmat('Central skylight','blue grey glass light')
+    skylightFrame=pmat('Central skylight','pearl aluminium')
+    skylightBase=pmat('Central skylight','white concrete')
+    skylightBase.box((0,-22,10.7),(20,21,1.2))
+    for i in range(10):
+        x=-10+i*2;nx=x+2
+        for sign in [-1,1]:
+            skylightGlass.face([(x,-22,15.3),(nx,-22,15.3),(nx,-22+sign*10.5,11.35),(x,-22+sign*10.5,11.35)])
+            skylightFrame.beam((x,-22,15.35),(x,-22+sign*10.5,11.40),.12,.16)
+    skylightFrame.beam((-10,-22,15.35),(10,-22,15.35),.18,.2)
+    if lod==0:
+        # A continuous entrance collision hull, while the forecourt remains walkable.
+        front=[entry_point(i/12) for i in range(13)]
+        MANIFEST['collisionVolumes'].append({'name':'library curved entrance','footprint':front+[entry_point(1,2),entry_point(0,2)],'height':eh,'base':0})
     # The sign is original vector geometry, not raster text on a facade.
     if lod==0:
-        fontpath=Path(os.environ.get('LIBRARY_FONT','/System/Library/Fonts/PingFang.ttc'))
+        fontpath=Path(os.environ.get('LIBRARY_FONT','/System/Library/Fonts/STHeiti Medium.ttc'))
         font=bpy.data.fonts.load(str(fontpath)) if fontpath.exists() else None
-        for text,z,size in [('图书馆',4.35,.72),('LIBRARY',3.8,.26)]:
+        for text,z,size in [('图书馆',11.76,.82),('Library',11.13,.34)]:
             if text=='图书馆' and font is None:
                 print('Set LIBRARY_FONT to a CJK font path to include Chinese lettering.');continue
             curve=bpy.data.curves.new('Library lettering','FONT');curve.body=text;curve.size=size;curve.align_x='CENTER';curve.extrude=.014;curve.bevel_depth=.004
             if font:curve.font=font
             obj=bpy.data.objects.new('Entrance sign '+text,curve);coll.objects.link(obj);obj.parent=parent
-            obj.location=xyz((0,-79.72,z));obj.rotation_euler=(math.pi/2,0,math.pi);obj.data.materials.append(MATS['Library / bronze lettering'])
+            obj.location=xyz((ex,ey+ef['recess']-.24,z));obj.rotation_euler=(math.pi/2,0,math.pi);obj.data.materials.append(MATS['Library / bronze lettering'])
             # Ship vector outlines, without embedding or depending on a system font.
             bpy.ops.object.select_all(action='DESELECT');obj.select_set(True)
             bpy.context.view_layer.objects.active=obj;bpy.ops.object.convert(target='MESH')
@@ -374,12 +434,12 @@ for lod in range(3):
 world=bpy.data.worlds.new('Library studio daylight');scene.world=world;world.use_nodes=True
 world.node_tree.nodes['Background'].inputs[0].default_value=(.28,.36,.45,1)
 world.node_tree.nodes['Background'].inputs[1].default_value=.7
-light=bpy.data.lights.new('Studio sun','SUN');light.energy=2.4;light.angle=.12
-ob=bpy.data.objects.new('Studio sun',light);scene.collection.objects.link(ob);ob.rotation_euler=(.6,-.45,-.65)
+light=bpy.data.lights.new('Studio sun','SUN');light.energy=3.0;light.angle=.12
+ob=bpy.data.objects.new('Studio sun',light);scene.collection.objects.link(ob);ob.rotation_euler=(.65,-.25,3.4)
 camdata=bpy.data.cameras.new('Library review camera');cam=bpy.data.objects.new('Library review camera',camdata);scene.collection.objects.link(cam)
-cam.location=xyz((150,-210,125));target=Vector(xyz((0,0,32)))
+cam.location=xyz((118,-228,118));target=Vector(xyz((5,0,32)))
 cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();camdata.lens=47
-scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32
+scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=40;scene.cycles.use_denoising=True
 scene.render.resolution_x=1500;scene.render.resolution_y=1050;scene.render.resolution_percentage=100
 scene.view_settings.view_transform='AgX'
 scene['sourceNotes']=json.dumps(DESIGN['evidence'],ensure_ascii=False)
@@ -389,5 +449,11 @@ MANIFEST['evidence']=DESIGN['evidence'];MANIFEST['sources']=DESIGN['sources']
 (OUT/'library.json').write_text(json.dumps(MANIFEST,ensure_ascii=False,indent=2)+'\n')
 print('LIBRARY_ASSET_COMPLETE',json.dumps(MANIFEST['lods']))
 if '--render' in sys.argv:
-    scene.render.filepath=str(BLEND.with_name('preview.png'))
-    bpy.ops.render.render(write_still=True)
+    for name,location,aim,lens in [
+        ('preview',(118,-228,118),(5,0,32),47),
+        ('entrance',(-6,-103,8),(-3,-35,9.0),43),
+        ('tower-facade',(-73,-75,22),(-4,19,36),57),
+    ]:
+        cam.location=xyz(location);cam.rotation_euler=(Vector(xyz(aim))-cam.location).to_track_quat('-Z','Y').to_euler();camdata.lens=lens
+        scene.render.filepath=str(BLEND.with_name(name+'.png'))
+        bpy.ops.render.render(write_still=True)
