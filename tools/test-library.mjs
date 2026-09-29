@@ -7,8 +7,17 @@ const root = new URL("../public/models/library/", import.meta.url);
 const manifest = JSON.parse(await fs.readFile(new URL("library.json", root)));
 await MeshoptDecoder.ready;
 assert.equal(manifest.lods.length, 3);
-assert.equal(manifest.collisionVolumes.length, 40);
+assert.equal(manifest.collisionVolumes.length, 42);
 const stats = [];
+assert.equal(manifest.roofLevels.length, 5);
+const roofLevels = new Map(manifest.roofLevels.map(level => [level.name, level]));
+// The entrance pair, rear wings and garden wing must not collapse back to one roof.
+const getRoof = name => roofLevels.get(name);
+assert.ok(getRoof("west-front").crownMax > getRoof("east-front").crownMax + 2);
+assert.ok(getRoof("east-front").crownMax > getRoof("west-rear").crownMax + 3);
+assert.ok(getRoof("west-rear").crownMax > getRoof("east-rear").crownMax + 4);
+assert.ok(getRoof("east-rear").deck > getRoof("east-garden").deck + .8);
+
 for (const level of manifest.lods) {
   const data = await fs.readFile(new URL(level.file, root));
   assert.equal(data.readUInt32LE(0), 0x46546c67);
@@ -73,6 +82,7 @@ for (const level of manifest.lods) {
   const bounds = new Box3();
   const facadeChecks = { screenVertices: 0, spandrelVertices: 0, entranceVertices: 0 };
   const point = new Vector3();
+  const roofBounds = new Map();
   function visit(index, parent) {
     const node = gltf.nodes[index];
     const matrix = node.matrix
@@ -102,11 +112,26 @@ for (const level of manifest.lods) {
           bounds.expandByPoint(point);
           // Inspect decoded vertices in model space: screens must never intrude into
           // the broad solid ribbons or continuous clear glass slots in any LOD.
-          if (/^Petal .* screen \|/.test(node.name) && !node.name.includes("roof screen")) {
-            const withinStorey = ((point.y % 5) + 5) % 5;
-            assert.ok(withinStorey >= 1.30 && withinStorey <= 4.48, `${node.name}: screen crosses a plain facade band at ${point.y}`);
-            if (node.name.startsWith("Petal east-garden")) assert.ok(point.y > 6.30, "garden wing ground floor must remain clear glass");
+          const petalName = node.name.match(/^Petal ([^ ]+) /)?.[1];
+          const roof = roofLevels.get(petalName);
+          if (roof && /^Petal .* screen \|/.test(node.name) && !node.name.includes("roof screen")) {
+            const floor = roof.floorLevels.findIndex((y, i, levels) => i < levels.length - 1 && point.y >= y && point.y < levels[i + 1]);
+            assert.ok(floor >= 0, `${node.name}: screen outside occupied floors`);
+            assert.ok(point.y >= roof.floorLevels[floor] + 1.30 && point.y <= roof.floorLevels[floor + 1] - .52, `${node.name}: screen crosses a solid ribbon or clear glass slot`);
+            if (petalName === "east-garden") assert.ok(floor > 0, "garden ground floor must remain clear glass");
             facadeChecks.screenVertices++;
+          }
+          if (roof && / (sloping rim|upper terrace|lower terrace) \|/.test(node.name)) {
+            const part = node.name.split(" | ")[0];
+            if (!roofBounds.has(part)) roofBounds.set(part, new Box3());
+            roofBounds.get(part).expandByPoint(point);
+          }
+          if (roof && node.name.includes(" roof screen |")) {
+            const projection = (point.x - roof.center[0]) * roof.crestAxis[0] + (point.z - roof.center[1]) * roof.crestAxis[1];
+            const t = (projection - roof.projectionRange[0]) / (roof.projectionRange[1] - roof.projectionRange[0]);
+            const top = roof.crownMin + (roof.crownMax - roof.crownMin) * t;
+            assert.ok(point.y <= top + .12, `${node.name}: screen exceeds sloping crown`);
+            assert.ok(point.y >= roof.deck + 1.08, `${node.name}: screen intersects roof band`);
           }
           if (node.name.startsWith("Tower spandrel panels")) {
             const withinStorey = ((point.y % 4.4) + 4.4) % 4.4;
@@ -131,6 +156,20 @@ for (const level of manifest.lods) {
   for (const [name, count] of Object.entries(facadeChecks)) assert.ok(count > 0, `missing ${name}`);
   const towerFins = gltf.materials.find(m => m.name === "Library / champagne fins");
   assert.ok(towerFins.pbrMetallicRoughness.baseColorFactor[0] > towerFins.pbrMetallicRoughness.baseColorFactor[2], "tower fins must have their separate warm finish");
+  for (const roof of roofLevels.values()) {
+    const prefix = `Petal ${roof.name}`;
+    const rim = roofBounds.get(prefix + " sloping rim");
+    const lower = roofBounds.get(prefix + " lower terrace");
+    assert.ok(rim && lower, `${prefix}: missing roof silhouette or deck`);
+    assert.ok(Math.abs(lower.min.y - roof.deck - .05) < .03, `${prefix}: deck elevation drift`);
+    assert.ok(Math.abs(rim.min.y - roof.crownMin) < .35, `${prefix}: low crown drift`);
+    assert.ok(Math.abs(rim.max.y - roof.crownMax - .22) < .35, `${prefix}: high crown drift`);
+    if (roof.upperTerrace !== null) {
+      const upper = roofBounds.get(prefix + " upper terrace");
+      assert.ok(upper && Math.abs(upper.min.y - roof.upperTerrace) < .03 && Math.abs(upper.max.y - roof.upperTerrace) < .03, `${prefix}: raised white platform missing`);
+      assert.ok(upper.min.y > lower.max.y + 2.5, `${prefix}: terrace step lost`);
+    }
+  }
   assert.equal(triangles, level.triangles);
   assert.equal(meshes, level.meshObjects);
   const size = bounds.getSize(new Vector3());
@@ -147,6 +186,7 @@ for (const level of manifest.lods) {
     bytes: data.length,
     bounds: [bounds.min.toArray(), bounds.max.toArray()],
     facadeChecks,
+    roofs: Object.fromEntries([...roofBounds].map(([name, box]) => [name, [box.min.y, box.max.y]])),
   });
 }
 assert.ok(stats[0].triangles > stats[1].triangles * 1.5);
