@@ -12,7 +12,7 @@ async function boot() {
     ? new URLSearchParams(location.search).get("asset") || "sports"
     : "library";
   const supportedAssets = document.body.dataset.genericModel
-    ? ["sports", "activity", "hall", "uestc"]
+    ? ["sports", "activity", "hall", "uestc", "bupt"]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
     throw new Error("未找到该建筑模型");
@@ -22,7 +22,8 @@ async function boot() {
   );
   if (document.body.dataset.genericModel) {
     document.title = `${manifest.name} · 建筑与环境`;
-    document.querySelector('#model-quality option[value="2"]').textContent = "远景 · 轮廓简化";
+    document.querySelector('#model-quality option[value="2"]').textContent =
+      "远景 · 轮廓简化";
     document.querySelector("header h1").textContent = manifest.name;
     document.querySelector("header a").href =
       `./world.html?place=${requestedAsset}&view=orbit`;

@@ -43,7 +43,7 @@ export const detailStatus: Record<string, string> = {
   minzu: "效果图参考合院 · 尺寸估算",
   blcu: "效果图参考楼翼 · 尺寸估算",
   uestc: "Blender 双学院楼 · 阳台带、连廊与庭院绿化",
-  bupt: "核实图合院 · 照片参考立面",
+  bupt: "Blender 双学院楼 · 横向遮阳、阶梯花园与周边绿化",
   cuc: "规划图轮廓 · 简化立面",
   library: "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
   sports: "Blender 实建图参考 · 双馆、附馆与周边绿化",

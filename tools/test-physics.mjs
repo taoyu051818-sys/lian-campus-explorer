@@ -430,6 +430,60 @@ try {
       );
     }
   }
+  {
+    const bupt = JSON.parse(
+      await fs.readFile(
+        new URL("../public/models/bupt/bupt.json", import.meta.url),
+      ),
+    );
+    const br = manifest.authoredAssets.find((a) => a.id === "bupt");
+    const gardenRoute = [
+      "B entry flight 3",
+      "B entry flight 2",
+      "B entry flight 1",
+      "B middle terrace",
+      "B upper terrace",
+    ].flatMap((name) => bupt.stairRoutes.find((r) => r.name === name).points);
+    for (const local of [
+      ...bupt.stairRoutes,
+      { name: "full five-flight garden promenade", points: gardenRoute },
+    ]) {
+      const route = local.points.map(([x, z, y]) => [
+        x + br.anchor[0],
+        z + br.anchor[1],
+        y + br.base,
+      ]);
+      player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+      for (let i = 0; i < 90; i++) player.step({});
+      for (const points of [route, [...route].reverse()])
+        for (const [x, z, y] of points) {
+          let reached = false;
+          for (let i = 0; i < 2400; i++) {
+            const p = player.position,
+              dx = x - p.x,
+              dz = z - p.z,
+              d = Math.hypot(dx, dz);
+            if (d < 0.16) {
+              reached = true;
+              break;
+            }
+            const speed = Math.min(2.5, d * 20);
+            player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+          }
+          assert.ok(
+            reached,
+            `BUPT ${local.name} blocked ${JSON.stringify(player.position)} -> ${x},${z},${y}`,
+          );
+          assert.ok(
+            Math.abs(player.position.y - y - 0.9) < 0.65,
+            `BUPT ${local.name} wrong height ${player.position.y} vs ${y + 0.9}`,
+          );
+        }
+      console.log(
+        `PASS: BUPT ${local.name}, continuous ascent / garden landing / descent.`,
+      );
+    }
+  }
 } finally {
   player.dispose();
 }

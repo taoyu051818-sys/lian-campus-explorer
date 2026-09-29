@@ -7,7 +7,7 @@
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29: normal Chrome browser successfully rendered the public tour; UESTC scene 27335715 visually reviewed after dismissing the introductory overlay. Earlier HTTP failures remain historical, not current access status.",
+  "referenceTourStatus": "2026-09-29: normal Chrome browser rendered the public tour; UESTC scene 27335715 and BUPT scene 27335716 visually reviewed after dismissing the introductory overlay. Other scenes remain to be reviewed building by building.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -232,28 +232,22 @@
       "id": "bupt",
       "name": "北京邮电大学",
       "priority": 5,
-      "status": "queued",
-      "existingExterior": "核实图合院 · 照片参考立面",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 双学院楼、红灰端楼、实体遮阳、阶梯花园与周边绿化",
       "source": "https://wap.study-hn.cn/upload/file/2025/08/04/502f538dc40e40ea9b18acc0508914af.pdf",
-      "evidence": "Manual trace of actual-built image; affine fit to six red-line coordinates; heights estimated 3.9m/storey. Smaller low-rise links omitted.",
+      "evidence": "40页官方实建资料：第4页总图、实建分层图、第38–40页实拍及720场景27335716；控制点纠正后拟合残差0.243m，建筑层高和构件尺寸仍为估算。",
       "units": [
         {
-          "name": "学院楼一 · 五层合院",
-          "kind": "building",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "学院楼一 · 五层折角合院",
+          "kind": "college-building",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "学院楼二 · 北翼",
-          "kind": "building",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "学院楼二 · 东翼",
-          "kind": "building",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "学院楼二 · 六层主翼与局部四层翼",
+          "kind": "college-building",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -263,8 +257,27 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "补充精确层高、屋顶构件和植物定位资料；按 nextSite 继续未完成建筑。",
+      "completedChecks": [
+        "Three Meshopt LODs decoded; glTF validator 0 errors / 0 warnings",
+        "Blender source reopened and four Cycles previews checked",
+        "1389 plant and 780 building-perimeter clearance samples",
+        "Actual visible stair and terrace heights raycast in all LODs",
+        "Six garden stairs continuously up / down; five-flight BUPT promenade end to end",
+        "33 destinations and existing outdoor route regression",
+        "TypeScript / Vite / materials",
+        "Native Metal WebGPU: three LODs, six review views, six campus sites and automatic LOD 0/1/2"
+      ],
+      "version": "0.34.0",
+      "verification": "验证记录/bupt-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.34.0.json",
+      "authoring": "authoring/bupt/README.md",
+      "landscapeNotes": "6处连续种植岛、17株乔木／棕榈、539组低绿篱、退台种植面板、内部道路及周边铺地。数量、类型及定位为照片参考估算。",
+      "remainingReview": [
+        "Exact storey/terrace elevations and detailed facade module dimensions",
+        "More accurate northwest core and rooftop equipment geometry",
+        "Additional landscape views and cadastral campus registration"
+      ]
     },
     {
       "id": "incubator",
@@ -1988,5 +2001,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "bupt"
+  "nextSite": "incubator"
 }

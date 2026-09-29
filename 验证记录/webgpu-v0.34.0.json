@@ -1,0 +1,180 @@
+{
+  "version": "0.34.0",
+  "date": "2026-09-29",
+  "renderer": "Three.js WebGPURenderer / native Metal",
+  "standalone": {
+    "date": "2026-09-29T12:23:59.635Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "bupt",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 26.3 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 21.2 万三角面 · 55 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 9.9 万三角面 · 60 FPS",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "bupt-lod0.png",
+          "bupt-lod1.png",
+          "bupt-lod2.png",
+          "bupt-front.png",
+          "bupt-entrance.png",
+          "bupt-college1.png",
+          "bupt-college2.png",
+          "bupt-roof.png",
+          "bupt-landscape.png"
+        ],
+        "title": "北京邮电大学 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "bupt",
+        "url": "http://127.0.0.1:4197/world.html?place=bupt&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":1}",
+        "note": "A-67 · Blender 双学院楼 · 横向遮阳、阶梯花园与周边绿化",
+        "screenshot": "campus-bupt.png"
+      },
+      {
+        "asset": "uestc",
+        "url": "http://127.0.0.1:4197/world.html?place=uestc&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1}",
+        "note": "A-64 · Blender 双学院楼 · 阳台带、连廊与庭院绿化",
+        "screenshot": "campus-uestc.png"
+      },
+      {
+        "asset": "hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0,\"uestc\":1,\"bupt\":2}",
+        "note": "A-60 · Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
+        "screenshot": "campus-hall.png"
+      },
+      {
+        "asset": "activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2,\"uestc\":2,\"bupt\":2}",
+        "note": "A-34 · Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
+        "screenshot": "campus-activity.png"
+      },
+      {
+        "asset": "sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2}",
+        "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+        "screenshot": "campus-sports.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2}",
+        "note": "A-88 · Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "bupt",
+        "wheel": -900,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":0}"
+      },
+      {
+        "asset": "bupt",
+        "wheel": 1500,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":1}"
+      },
+      {
+        "asset": "bupt",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "screenshots": [
+    {
+      "file": "webgpu-v0.34.0-bupt-college1.png",
+      "sha256": "48041d7481bf264dc9e7d408bf754b391c3aa368dd24075fe24bc62f1210bc21"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-college2.png",
+      "sha256": "ea4ca21680f3a8b3d4bf1f41f5af59a4d12872b7d362dee7de129fc87ddd339e"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-entrance.png",
+      "sha256": "b149e5811a02dbd34956553c5dc29e56f29137d05cb3ac2e234ba3dc1a085150"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-front.png",
+      "sha256": "734e7ecbd264cc7cc5c755618a96fd01ad3afbc6df85c8d5da4c52be0a879607"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-landscape.png",
+      "sha256": "e47a2fe52c11ac2183ee1d7700ac63f533ee1dcb309c2521420a7507c64a9681"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-lod0.png",
+      "sha256": "0b67d41bbfc1103c96d9a72975d24bd98c4996ae793e36181475cf89dfc1bc60"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-lod1.png",
+      "sha256": "3664ba14ea59f4fd6302194273bb024bad433d43c4e5adc97fc2cbe6d40e615b"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-lod2.png",
+      "sha256": "f69b939b52c1cb11a76a4673ddd99a2fc88a5a48b1ec9a9c685d09bb015e3f54"
+    },
+    {
+      "file": "webgpu-v0.34.0-bupt-roof.png",
+      "sha256": "b95f874a482603f80864578f33f2a7505153a2c4d343988c1b963a0b30050763"
+    },
+    {
+      "file": "webgpu-v0.34.0-campus-activity.png",
+      "sha256": "ffb3299bfc5a84969b0a6780d08fe5fc41a4897f2060a53b373bfdfbe1d58619"
+    },
+    {
+      "file": "webgpu-v0.34.0-campus-bupt.png",
+      "sha256": "b749b32a4c777b9679d5bed9b5364e4df2a071308d87ebb8bc28bdaf16b26b93"
+    },
+    {
+      "file": "webgpu-v0.34.0-campus-hall.png",
+      "sha256": "66bd9f5b537468b63b449d19e0c564059fc11dab975313cace64014d659a89b6"
+    },
+    {
+      "file": "webgpu-v0.34.0-campus-library.png",
+      "sha256": "8430d0f1acf87e78724bcfaf6f11b2fbd56b5b34f9825da1fe5fd83fafc9280d"
+    },
+    {
+      "file": "webgpu-v0.34.0-campus-sports.png",
+      "sha256": "a633f5b56a94065d6f6f31c89c1a084a7ef511a19c4c1949350a599ccecb003e"
+    },
+    {
+      "file": "webgpu-v0.34.0-campus-uestc.png",
+      "sha256": "b0afdafd1fd79a93d5bb4eb79300204566686803ededd6f40a244112a74605ab"
+    }
+  ],
+  "scope": "BUPT three LODs and six preset views; six authored campus sites; BUPT automatic LOD 0/1/2; no page errors or failed requests",
+  "limits": [
+    "Only desktop Chrome/Apple Metal tested; no mobile performance claim",
+    "Outdoor route physics is a separate automated check, not a claim of manually walking every room"
+  ]
+}
