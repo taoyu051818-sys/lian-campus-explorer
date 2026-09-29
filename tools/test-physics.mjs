@@ -63,24 +63,81 @@ try {
       mesh.position.offset,
       mesh.position.count,
     );
-    let minX = Infinity,
-      maxX = -Infinity,
-      minZ = Infinity,
-      maxZ = -Infinity,
-      maxY = -Infinity;
-    for (let i = 0; i < positions.length; i += 3) {
-      minX = Math.min(minX, positions[i]);
-      maxX = Math.max(maxX, positions[i]);
-      maxY = Math.max(maxY, positions[i + 1]);
-      minZ = Math.min(minZ, positions[i + 2]);
-      maxZ = Math.max(maxZ, positions[i + 2]);
-    }
-    const hit = player.ray(
-      { x: (minX + maxX) / 2, y: maxY + 3, z: (minZ + maxZ) / 2 },
-      { x: 0, y: -1, z: 0 },
-      20,
+    const indices = new Uint32Array(
+      buffer,
+      mesh.index.offset,
+      mesh.index.count,
     );
-    assert.ok(hit, `${mesh.name}: invisible access has no collision surface`);
+    let surface = null,
+      bestHeight = -Infinity,
+      bestArea = 0,
+      vertical = null,
+      largestFace = 0;
+    for (let i = 0; i < indices.length; i += 3) {
+      const a = indices[i] * 3,
+        b = indices[i + 1] * 3,
+        c = indices[i + 2] * 3;
+      const area = Math.abs(
+        (positions[b] - positions[a]) * (positions[c + 2] - positions[a + 2]) -
+          (positions[b + 2] - positions[a + 2]) * (positions[c] - positions[a]),
+      );
+      if (area < 1e-6) {
+        const u = [0, 1, 2].map((k) => positions[b + k] - positions[a + k]),
+          v = [0, 1, 2].map((k) => positions[c + k] - positions[a + k]);
+        const normal = [
+            u[1] * v[2] - u[2] * v[1],
+            u[2] * v[0] - u[0] * v[2],
+            u[0] * v[1] - u[1] * v[0],
+          ],
+          size = Math.hypot(...normal);
+        if (size > largestFace) {
+          largestFace = size;
+          const n = normal.map((v) => v / size),
+            center = [0, 1, 2].map(
+              (k) =>
+                (positions[a + k] + positions[b + k] + positions[c + k]) / 3,
+            );
+          vertical = {
+            origin: {
+              x: center[0] + n[0] * 0.5,
+              y: center[1] + n[1] * 0.5,
+              z: center[2] + n[2] * 0.5,
+            },
+            direction: { x: -n[0], y: -n[1], z: -n[2] },
+          };
+        }
+        continue;
+      }
+      const y = (positions[a + 1] + positions[b + 1] + positions[c + 1]) / 3;
+      if (
+        y > bestHeight + 0.001 ||
+        (Math.abs(y - bestHeight) < 0.001 && area > bestArea)
+      ) {
+        bestHeight = y;
+        bestArea = area;
+        surface = {
+          x: (positions[a] + positions[b] + positions[c]) / 3,
+          y: y + 0.5,
+          z: (positions[a + 2] + positions[b + 2] + positions[c + 2]) / 3,
+        };
+      }
+    }
+    assert.ok(
+      surface || vertical,
+      `${mesh.name}: no nondegenerate collision triangle`,
+    );
+    // A concave slab's bounding-box centre can lie outside it. Cast at a real
+    // triangle and require this collider, rather than accidentally hitting terrain.
+    const hit = player.ray(
+      surface || vertical.origin,
+      surface ? { x: 0, y: -1, z: 0 } : vertical.direction,
+      1,
+      (c) => c.userData?.name === mesh.name,
+    );
+    assert.ok(
+      hit,
+      `${mesh.name}: invisible access has no matching collision surface`,
+    );
     checks++;
   }
   const access = manifest.teachingAccess;
@@ -179,6 +236,48 @@ try {
   console.log(
     `PASS: 33 destinations settle, jump, land and walk; ${checks} invisible access surfaces preserved; ${meshes.length} collision meshes; six continuous teaching stair/bridge route legs and sports curved stair ascent/descent.`,
   );
+  const activity = JSON.parse(
+    await fs.readFile(
+      new URL("../public/models/activity/activity.json", import.meta.url),
+    ),
+  );
+  const ar = manifest.authoredAssets.find((a) => a.id === "activity");
+  for (const name of ["throughRoute", "stairRoute"]) {
+    const route = activity[name].map(([x, z, y]) => [
+      x + ar.anchor[0],
+      z + ar.anchor[1],
+      y + ar.base,
+    ]);
+    player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+    for (let i = 0; i < 120; i++) player.step({});
+    for (const points of [route, [...route].reverse()])
+      for (const [x, z, y] of points) {
+        let reached = false;
+        for (let i = 0; i < 1500; i++) {
+          const p = player.position,
+            dx = x - p.x,
+            dz = z - p.z,
+            d = Math.hypot(dx, dz);
+          if (d < 0.09) {
+            reached = true;
+            break;
+          }
+          const speed = Math.min(2.1, d * 60);
+          player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+        }
+        assert.ok(
+          reached,
+          `activity ${name} blocked: ${JSON.stringify(player.position)} -> ${x},${z},${y}`,
+        );
+        assert.ok(
+          Math.abs(player.position.y - y - 0.9) < 0.65,
+          `activity ${name} elevation mismatch: ${player.position.y} vs ${y + 0.9}`,
+        );
+      }
+    console.log(
+      `PASS: activity ${name}, ${route.length} waypoints each direction, no teleport between legs.`,
+    );
+  }
 } finally {
   player.dispose();
 }

@@ -8,6 +8,40 @@ import { createRenderer } from "./webgpu/renderer.js";
 const $ = (id) => document.getElementById(id);
 const status = $("model-status");
 async function boot() {
+  const requestedAsset = document.body.dataset.genericModel
+    ? new URLSearchParams(location.search).get("asset") || "sports"
+    : "library";
+  const supportedAssets = document.body.dataset.genericModel
+    ? ["sports", "activity"]
+    : ["library"];
+  if (!supportedAssets.includes(requestedAsset))
+    throw new Error("未找到该建筑模型");
+  const modelBase = `./models/${requestedAsset}/`;
+  const manifest = await fetch(`${modelBase}${requestedAsset}.json`).then((r) =>
+    r.json(),
+  );
+  if (document.body.dataset.genericModel) {
+    document.title = `${manifest.name} · 建筑与环境`;
+    document.querySelector("header h1").textContent = manifest.name;
+    document.querySelector("header a").href =
+      `./world.html?place=${requestedAsset}&view=orbit`;
+    $("library-canvas").setAttribute(
+      "aria-label",
+      `${manifest.name}三维模型，拖动旋转，滚轮缩放`,
+    );
+    if (manifest.review) {
+      document.querySelector("header div span").textContent =
+        manifest.review.eyebrow;
+      document.querySelector("#review-panel h2").textContent =
+        manifest.review.heading;
+      document.querySelector("#review-panel h2 + p").textContent =
+        manifest.review.description;
+    }
+    document.querySelector("#review-panel details p").textContent =
+      "依据官方实建图与建成照片细化。可见体量和结构有资料依据；构件尺寸、植物布置和校园配准仍含估算。";
+    document.querySelector("#review-panel details a").href =
+      manifest.sources[0].url;
+  }
   const renderer = await createRenderer($("library-canvas"), {
     antialias: true,
   });
@@ -57,18 +91,6 @@ async function boot() {
   ground.position.y = -0.12;
   ground.receiveShadow = true;
   scene.add(ground);
-  const requestedAsset = document.body.dataset.genericModel
-    ? new URLSearchParams(location.search).get("asset") || "sports"
-    : "library";
-  const supportedAssets = document.body.dataset.genericModel
-    ? ["sports"]
-    : ["library"];
-  if (!supportedAssets.includes(requestedAsset))
-    throw new Error("未找到该建筑模型");
-  const modelBase = `./models/${requestedAsset}/`;
-  const manifest = await fetch(`${modelBase}${requestedAsset}.json`).then((r) =>
-    r.json(),
-  );
   const cache = new Map();
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   let active = null,
@@ -120,6 +142,9 @@ async function boot() {
       gym: "体育馆",
       landscape: "周边绿化",
       roof: "屋顶",
+      front: "庭院正面",
+      arcade: "首层通廊",
+      facade: "幕墙与外廊",
     };
     document.querySelector(".view-buttons").replaceChildren(
       ...Object.keys(manifest.views).map((name) => {
@@ -172,6 +197,11 @@ async function boot() {
     if (active) active.visible = false;
     active = cache.get(index);
     active.visible = true;
+    // Authored landscapes follow campus slopes and may extend below local zero.
+    ground.position.y = Math.min(
+      -0.12,
+      new THREE.Box3().setFromObject(active).min.y - 0.1,
+    );
     triangles = manifest.lods[index].triangles;
     active.traverse((o) => {
       if (o.isMesh) {

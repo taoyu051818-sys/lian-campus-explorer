@@ -54,7 +54,7 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "在可用的 WebGPU 浏览器中复查校园配准、阴影、远近 LOD 及近景绿化；继续大学生活动中心，不将等待浏览器复查误计为全园阻塞。",
+      "nextAction": "在可用的 WebGPU 浏览器中复查校园配准、阴影、远近 LOD 及近景绿化；继续 nextSite 指定的未处理建筑，不将待浏览器复查误计为全园阻塞。",
       "completedChecks": [
         "three Meshopt LODs decoded",
         "glTF validator: 0 errors / 0 warnings",
@@ -81,16 +81,16 @@
       "id": "activity",
       "name": "大学生活动中心",
       "priority": 2,
-      "status": "queued",
-      "existingExterior": "实建图轮廓 · 四层弯折主楼",
+      "status": "offline-verified-runtime-review-pending",
+      "existingExterior": "Blender 弧形楼翼、首层通廊、交错外廊、开洞端墙和室外楼梯",
       "source": "https://wap.study-hn.cn/upload/file/2025/08/04/0ab6120f7fe041eab515bee73ddf7ab0.docx",
-      "evidence": "实建测量图 image2；5 个红线控制点仿射拟合，人工描绘简化外轮廓。H=21.8 m、四层来自实建图；立面依据实建照片简化。",
+      "evidence": "重新检查核实附件实建位置图 image2、各层及屋顶实建图 image6/8/10/12/14、建成照片 image17/18；image16 为设计效果图，单独标注。",
       "units": [
         {
           "name": "大学生活动中心 · 弯折四层主楼",
           "kind": "activity",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "offline-verified",
+          "landscape": "offline-verified"
         }
       ],
       "landscapeScope": [
@@ -100,8 +100,32 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "在可用 WebGPU 浏览器中复查校园落位、光照及 LOD；补充端部与背面照片。下一批推进会堂及周边绿化。",
+      "completedChecks": [
+        "3 Meshopt LODs decoded with hash / index / normal / unit checks",
+        "glTF Validator: 0 errors, 0 warnings",
+        "square wall opening and 3 stairwells checked in every LOD",
+        "actual canopy vertices fit tested radii",
+        "224 canopy / 174 bed boundary / 911 footprint and interior clearance samples",
+        "33 destinations and prior teaching / sports routes passed",
+        "open arcade: 5 waypoints each direction",
+        "exterior stairs: 27 waypoints each direction without teleport between legs",
+        "all hidden collision checks target actual triangles and exact collider names",
+        "Blender source reopened and 4 final Cycles views reviewed",
+        "sports / library / material regression, TypeScript / Vite build, served GLB hashes"
+      ],
+      "version": "0.31.0",
+      "verification": "验证记录/activity-blender.json",
+      "authoring": "authoring/activity/README.md",
+      "landscapeNotes": "4 组连续草地与庭院圆形绿地，7 组乔木（含一组三干棕榈），51 组低灌木及环形步道。具体植物与位置仍为估算。",
+      "remainingReview": [
+        "Hand-traced centreline and envelope width; 1.2 m red-line control residual is not survey accuracy",
+        "Storey levels, balcony setbacks, column grid, glazing and pattern modules",
+        "Stair width / treads, roof equipment and unpublished elevations",
+        "Individual plant species, count, positions and schematic campus terrain registration",
+        "Browser WebGPU visual / LOD / lighting review",
+        "Additional site photographs to refine wing ends and unobserved elevations"
+      ]
     },
     {
       "id": "hall",
@@ -1918,5 +1942,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "activity"
+  "nextSite": "hall"
 }

@@ -1,0 +1,119 @@
+{
+  "source": "https://wap.study-hn.cn/upload/file/2025/08/04/0ab6120f7fe041eab515bee73ddf7ab0.docx",
+  "sourceImage": "word/media/image2.png",
+  "calibration": {
+    "image": "image2.png",
+    "pixels": [
+      [
+        493,
+        138
+      ],
+      [
+        598,
+        126
+      ],
+      [
+        758,
+        251
+      ],
+      [
+        477,
+        660
+      ],
+      [
+        254,
+        531
+      ]
+    ],
+    "eastingNorthing": [
+      [
+        396564.175,
+        2036134.684
+      ],
+      [
+        396584.153,
+        2036137.251
+      ],
+      [
+        396618.277,
+        2036113.749
+      ],
+      [
+        396558.295,
+        2036026.659
+      ],
+      [
+        396512.061,
+        2036054.421
+      ]
+    ],
+    "maxControlResidualMeters": 1.2
+  },
+  "pixelToEastingNorthing": [
+    [
+      0.20807349926016036,
+      0.0031885913708933865
+    ],
+    [
+      -0.0032983797490806735,
+      -0.20577663771694105
+    ],
+    [
+      396461.1516815527,
+      2036161.9184756442
+    ]
+  ],
+  "existingOrigin": [
+    396564.0161779762,
+    2036088.2162014104
+  ],
+  "centerlinePixels": [
+    [
+      469,
+      541
+    ],
+    [
+      459,
+      394
+    ],
+    [
+      451,
+      335
+    ],
+    [
+      500,
+      320
+    ],
+    [
+      631,
+      289
+    ]
+  ],
+  "curve": "straight A-B, quadratic Bezier B-C-D, straight D-E",
+  "halfWidth": 9.7,
+  "height": 21.8,
+  "floorHeights": [
+    0,
+    5.2,
+    10.4,
+    15.6,
+    20.8
+  ],
+  "evidenceImages": {
+    "asBuiltSite": "image2.png",
+    "ground": "image6.png",
+    "second": "image8.png",
+    "third": "image10.png",
+    "fourth": "image12.png",
+    "roof": "image14.png",
+    "builtPhotos": [
+      "image17.jpeg",
+      "image18.jpeg"
+    ],
+    "designRenderOnly": [
+      "image15.png",
+      "image16.png"
+    ]
+  },
+  "note": "Centreline is manually sampled from the as-built survey. Envelope width, storey subdivision and facade modules are approximate; red-line control residual is not a surveying accuracy statement."
+}

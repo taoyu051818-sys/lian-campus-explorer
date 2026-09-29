@@ -1,11 +1,12 @@
 import sports from "../public/models/sports/sports.json";
+import activity from "../public/models/activity/activity.json";
 import type { Point } from "./world-geometry";
 
 // One transform governs model, landscape and colliders; source geometry remains in metres.
 export function registerAuthoredSites(geo: any) {
   geo.authoredAssets = [];
   geo.authoredCollisionMeshes = [];
-  for (const asset of [sports]) {
+  for (const asset of [sports, activity]) {
     const c = Math.cos(asset.yaw),
       s = Math.sin(asset.yaw);
     const point = (p: number[]): Point => [
