@@ -42,7 +42,7 @@ export const detailStatus: Record<string, string> = {
   incubator: "实建图外轮廓 · 照片参考表皮",
   minzu: "效果图参考合院 · 尺寸估算",
   blcu: "效果图参考楼翼 · 尺寸估算",
-  uestc: "核实图轮廓 · 立面细化",
+  uestc: "Blender 双学院楼 · 阳台带、连廊与庭院绿化",
   bupt: "核实图合院 · 照片参考立面",
   cuc: "规划图轮廓 · 简化立面",
   library: "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
@@ -213,7 +213,7 @@ export function refine(geo: any, data: AtlasData, plans: any) {
   registerLibrary(geo);
   registerAuthoredSites(geo);
   for (const b of geo.buildings as RefinedBuilding[])
-    if (b.placeId === "uestc") {
+    if (b.placeId === "uestc" && b.kind !== "authored-blender") {
       b.kind = "uestc";
       b.floors = Math.round(b.height / 3.9);
     }

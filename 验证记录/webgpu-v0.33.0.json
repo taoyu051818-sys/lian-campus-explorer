@@ -1,0 +1,140 @@
+{
+  "version": "0.33.0",
+  "date": "2026-09-29",
+  "scope": "UESTC standalone three LODs and six views; five authored campus sites; UESTC automatic LOD 0/1/2",
+  "standalone": {
+    "date": "2026-09-29T11:34:31.575Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "uestc",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 28.1 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 19.8 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 10.9 万三角面",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "uestc-lod0.png",
+          "uestc-lod1.png",
+          "uestc-lod2.png",
+          "uestc-front.png",
+          "uestc-entrance.png",
+          "uestc-college1.png",
+          "uestc-college2.png",
+          "uestc-roof.png",
+          "uestc-landscape.png"
+        ],
+        "title": "电子科技大学 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "uestc",
+        "url": "http://127.0.0.1:4197/world.html?place=uestc&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1}",
+        "note": "A-64 · Blender 双学院楼 · 阳台带、连廊与庭院绿化",
+        "screenshot": "campus-uestc.png"
+      },
+      {
+        "asset": "hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0,\"uestc\":1}",
+        "note": "A-60 · Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
+        "screenshot": "campus-hall.png"
+      },
+      {
+        "asset": "activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2,\"uestc\":2}",
+        "note": "A-34 · Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
+        "screenshot": "campus-activity.png"
+      },
+      {
+        "asset": "sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2}",
+        "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+        "screenshot": "campus-sports.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2}",
+        "note": "A-88 · Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "uestc",
+        "wheel": -900,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":0}"
+      },
+      {
+        "asset": "uestc",
+        "wheel": 1500,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1}"
+      },
+      {
+        "asset": "uestc",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "servedAssetHashes": [
+    {
+      "file": "uestc-lod0.glb",
+      "sha256": "b15fb33b98b01587b230e0e5bfe10d3f01975aa610516f62ed1fcab1556512ec"
+    },
+    {
+      "file": "uestc-lod1.glb",
+      "sha256": "afb890ae737549464e46abf26c4208151a63f837c104204c20cec4467f4f2f36"
+    },
+    {
+      "file": "uestc-lod2.glb",
+      "sha256": "39ad69557996335d094ddf4450e0ad223d097e4134db8182b1e8c5bd16cdfc7f"
+    }
+  ],
+  "screenshots": {
+    "webgpu-v0.33.0-uestc-college2.png": "f4ba11a0e5d024c2cdc0d729952a098936032dda94b085828c535a8c572947c4",
+    "webgpu-v0.33.0-campus-sports.png": "988c0b1411008d82a5b0738e8642798355378445e1adfca4ba691526fd030d98",
+    "webgpu-v0.33.0-uestc-roof.png": "f4a3f2d279b0c7d4598984c0c5bfaa4ac92010a0bf225474d24f96dea15babbe",
+    "webgpu-v0.33.0-uestc-college1.png": "cd24451c7eaa42b93addfcd82c5db64c5cddb2269955a7999c3d0a0a21464280",
+    "webgpu-v0.33.0-uestc-entrance.png": "0d7c51c0e43adbc0038439c78f370c07bb4b69011c99f253a5a6771ffb73e84a",
+    "webgpu-v0.33.0-uestc-lod2.png": "7fb42e3eb63b39b79c86f3ce173fd45970f28584e9351095e6a055890b8d806d",
+    "webgpu-v0.33.0-uestc-lod1.png": "ca6fd469977e92269786be7526ffaf6a5c2d6bca4b7f9b311b17a965154923bd",
+    "webgpu-v0.33.0-uestc-lod0.png": "9e88bf7f90d59dce27474173330cb1bc10bb717a1792a7e1cb7914830f6e6950",
+    "webgpu-v0.33.0-campus-uestc.png": "f44f20663f754577aac391e06580f24e329a7dde6653da4b604841529041d419",
+    "webgpu-v0.33.0-campus-activity.png": "a2a213ba14c9e49f9bca02205c42180b0fa0e30f42e251c0b6679e6a8f6dde51",
+    "webgpu-v0.33.0-uestc-front.png": "1c9b99b8b6608f07afca716ce1c60448927e8359a663c6800b805d6c947abe5c",
+    "webgpu-v0.33.0-campus-library.png": "cf1f30ed5aff414b763c82ac3560b77cc4afce641b20f8d69182e2e5aed6e97e",
+    "webgpu-v0.33.0-uestc-landscape.png": "815bcf7d8d3c57d388122e3e5c58224b1dc083888c09d06a63e0ae0b14577d99",
+    "webgpu-v0.33.0-campus-hall.png": "a0f8059556d28c33a00dc854c6212a6822274b65a67e275bc88f99d64088f8df"
+  },
+  "limits": [
+    "Visual review covers the captured views, not every possible camera position",
+    "Bridge interior door passage and indoor rooms are outside this exterior batch"
+  ]
+}

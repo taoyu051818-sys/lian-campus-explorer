@@ -322,6 +322,114 @@ try {
       `PASS: hall stair ${index}, ${route.length} waypoints each direction, no teleport between legs.`,
     );
   }
+  const uestc = JSON.parse(
+    await fs.readFile(
+      new URL("../public/models/uestc/uestc.json", import.meta.url),
+    ),
+  );
+  const ur = manifest.authoredAssets.find((a) => a.id === "uestc");
+  for (const local of uestc.stairRoutes) {
+    const route = local.points.map(([x, z, y]) => [
+      x + ur.anchor[0],
+      z + ur.anchor[1],
+      y + ur.base,
+    ]);
+    player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+    for (let i = 0; i < 90; i++) player.step({});
+    for (const points of [route, [...route].reverse()])
+      for (const [x, z, y] of points) {
+        let reached = false;
+        for (let i = 0; i < 2400; i++) {
+          const p = player.position,
+            dx = x - p.x,
+            dz = z - p.z,
+            d = Math.hypot(dx, dz);
+          if (d < 0.16) {
+            reached = true;
+            break;
+          }
+          const speed = Math.min(2.5, d * 20);
+          player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+        }
+        assert.ok(
+          reached,
+          `UESTC ${local.name} blocked ${JSON.stringify(player.position)} -> ${x},${z},${y}`,
+        );
+        assert.ok(
+          Math.abs(player.position.y - y - 0.9) < 0.65,
+          `UESTC ${local.name} wrong height ${player.position.y} vs ${y + 0.9}`,
+        );
+      }
+    console.log(
+      `PASS: UESTC ${local.name}, continuous ascent / balcony landing / descent.`,
+    );
+  }
+  {
+    const ud = JSON.parse(
+      await fs.readFile(
+        new URL("../authoring/uestc/design.json", import.meta.url),
+      ),
+    );
+    const bridge = ud.bridge,
+      a = bridge.a,
+      b = bridge.b,
+      span = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      normal = [-(b[1] - a[1]) / span, (b[0] - a[0]) / span];
+    const bridgeRoute = [0.18, 0.5, 0.82].map((t) => [
+      a[0] * (1 - t) + b[0] * t + ur.anchor[0],
+      a[1] * (1 - t) + b[1] * t + ur.anchor[1],
+      ud.buildingBases.B * (1 - t) +
+        ud.buildingBases.A * t +
+        ud.storeyHeight +
+        ur.base,
+    ]);
+    const underRoute = [-7, 0, 7].map((k) => {
+      const x = (a[0] + b[0]) / 2 + normal[0] * k + ur.anchor[0],
+        z = (a[1] + b[1]) / 2 + normal[1] * k + ur.anchor[1];
+      const hit = player.ray(
+        { x, y: 40, z },
+        { x: 0, y: -1, z: 0 },
+        80,
+        (c) => c.userData?.name === "continuous terrain",
+      );
+      assert.ok(hit);
+      return [x, z, 40 - hit.timeOfImpact];
+    });
+    for (const [name, route] of [
+      ["bridge deck middle span", bridgeRoute],
+      ["bridge underpass", underRoute],
+    ]) {
+      player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+      for (let i = 0; i < 90; i++) player.step({});
+      for (const points of [route, [...route].reverse()])
+        for (const [x, z, y] of points) {
+          let reached = false;
+          for (let i = 0; i < 1800; i++) {
+            const p = player.position,
+              dx = x - p.x,
+              dz = z - p.z,
+              d = Math.hypot(dx, dz);
+            if (d < 0.12) {
+              reached = true;
+              break;
+            }
+            const speed = Math.min(2.5, d * 20);
+            player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+          }
+          assert.ok(
+            reached,
+            `UESTC ${name} blocked: ${JSON.stringify(player.position)}`,
+          );
+          assert.ok(
+            Math.abs(player.position.y - y - 0.9) < 0.65,
+            `UESTC ${name} wrong level`,
+          );
+        }
+      console.log(
+        `PASS: UESTC ${name}, both directions; distinct bridge/ground elevations.`,
+      );
+    }
+  }
 } finally {
   player.dispose();
 }

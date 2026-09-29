@@ -7,7 +7,7 @@
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29: web tool timeout and direct HTTP 502; use existing evidence meanwhile, do not claim the tour was reviewed.",
+  "referenceTourStatus": "2026-09-29: normal Chrome browser successfully rendered the public tour; UESTC scene 27335715 visually reviewed after dismissing the introductory overlay. Earlier HTTP failures remain historical, not current access status.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -187,16 +187,22 @@
       "id": "uestc",
       "name": "电子科技大学",
       "priority": 4,
-      "status": "queued",
-      "existingExterior": "核实图轮廓 · 立面细化",
-      "source": null,
-      "evidence": "See 建筑细化与图纸来源.md and existing site-specific authoring data.",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 双学院楼、圆角阳台带、金色构件、连桥与庭院绿化",
+      "source": "https://wap.study-hn.cn/upload/file/2025/08/04/a8a440f163b84513bc2628a0b16455a7.pdf",
+      "evidence": "2025 实建图确认两栋学院楼；学院楼一五层，学院楼二六层楼翼围绕三层公共空间。第36–38页建成照片与全景场景27335715已查阅；3.9m层高、构件尺度、植栽及校园配准含估算。",
       "units": [
         {
-          "name": "电子科技大学",
-          "kind": "site-needs-unit-audit",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "学院楼一",
+          "kind": "college-building",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
+        },
+        {
+          "name": "学院楼二",
+          "kind": "college-building",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -206,8 +212,21 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "补充后侧立面和实测尺寸；按 nextSite 继续北京邮电大学。",
+      "completedChecks": [
+        "three Meshopt LODs decoded; glTF 0 errors/0 warnings",
+        "five exterior stair flights to balcony landings and back",
+        "bridge middle span and underpass both directions",
+        "33 destination and existing access regression",
+        "court open-sky and actual GLB stair visibility rays",
+        "1132 planting and 770 building clearance samples",
+        "Blender source reopened and four Cycles previews inspected",
+        "native Metal WebGPU three LODs and six views; campus auto LOD 0/1/2",
+        "TypeScript, Vite, materials and served hashes"
+      ],
+      "verification": "验证记录/uestc-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.33.0.json",
+      "version": "0.33.0"
     },
     {
       "id": "bupt",
@@ -1969,5 +1988,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "uestc"
+  "nextSite": "bupt"
 }
