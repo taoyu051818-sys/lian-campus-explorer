@@ -69,37 +69,41 @@ async function boot() {
     fps = 0,
     request = 0;
   const poses = {
+    photo: [manifest.photoCamera.position, manifest.photoCamera.target],
     overall: [
-      [157, 120, -226],
-      [0, 31, 0],
+      [110, 130, -255],
+      [-23, 30, -15],
     ],
     front: [
-      [0, 44, -277],
-      [0, 40, 0],
+      [-23, 44, -290],
+      [-23, 40, -10],
     ],
     screen: [
-      [-84, 18, -87],
-      [-38, 12, -30],
+      [-78, 18, -122],
+      [-38, 12, -65],
     ],
     heights: [
-      [8, 100, -260],
-      [8, 24, -4],
+      [-25, 165, -185],
+      [-25, 15, -21],
     ],
     entrance: [
-      [-6, 8, -103],
-      [-3, 9, -40],
+      [-4, 8, -124],
+      [-4, 10, -66],
     ],
     tower: [
       [-73, 22, -75],
       [-4, 36, 19],
     ],
     roof: [
-      [109, 155, -108],
-      [0, 25, -4],
+      [80, 185, -110],
+      [-23, 25, -20],
     ],
   };
   function pose(name) {
     const [p, t] = poses[name];
+    camera.fov =
+      name === "photo" ? manifest.photoCamera.fov : name === "entrance" ? 46 : 42;
+    camera.updateProjectionMatrix();
     camera.position.fromArray(p);
     controls.target.fromArray(t);
     controls.update();
@@ -109,7 +113,7 @@ async function boot() {
         b.setAttribute("aria-pressed", String(b.dataset.view === name)),
       );
   }
-  pose("overall");
+  pose("photo");
   async function quality(index) {
     const ticket = ++request;
     status.textContent = "正在载入建筑…";

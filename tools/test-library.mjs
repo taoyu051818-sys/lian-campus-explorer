@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { Box3, Matrix4, Quaternion, Vector3 } from "three";
+import { Box3, Matrix4, PerspectiveCamera, Quaternion, Vector3 } from "three";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 const root = new URL("../public/models/library/", import.meta.url);
 const manifest = JSON.parse(await fs.readFile(new URL("library.json", root)));
@@ -9,14 +9,48 @@ await MeshoptDecoder.ready;
 assert.equal(manifest.lods.length, 3);
 assert.equal(manifest.collisionVolumes.length, 42);
 const stats = [];
-assert.equal(manifest.roofLevels.length, 5);
+assert.equal(manifest.roofLevels.length, 4);
 const roofLevels = new Map(manifest.roofLevels.map(level => [level.name, level]));
-// The entrance pair, rear wings and garden wing must not collapse back to one roof.
+const design = JSON.parse(await fs.readFile(new URL("../authoring/library/design.json", import.meta.url)));
+assert.deepEqual([...roofLevels.keys()].sort(), ["front-left", "front-right", "rear-garden", "right-garden"]);
 const getRoof = name => roofLevels.get(name);
-assert.ok(getRoof("west-front").crownMax > getRoof("east-front").crownMax + 2);
-assert.ok(getRoof("east-front").crownMax > getRoof("west-rear").crownMax + 3);
-assert.ok(getRoof("west-rear").crownMax > getRoof("east-rear").crownMax + 4);
-assert.ok(getRoof("east-rear").deck > getRoof("east-garden").deck + .8);
+assert.equal(getRoof("front-left").deck, getRoof("front-right").deck);
+assert.ok(getRoof("front-left").center[0] > getRoof("front-right").center[0]);
+assert.ok(getRoof("right-garden").center[0] < getRoof("front-right").center[0]);
+assert.ok(getRoof("rear-garden").center[1] > getRoof("front-right").center[1] + 35);
+assert.ok(getRoof("right-garden").deck < getRoof("front-right").deck - 5);
+assert.ok(getRoof("rear-garden").upperTerrace > getRoof("rear-garden").deck + 4);
+const photo = manifest.photoCamera;
+const photoCamera = new PerspectiveCamera(photo.fov, photo.imageSize[0] / photo.imageSize[1], .1, 1000);
+photoCamera.position.fromArray(photo.position);
+photoCamera.lookAt(new Vector3().fromArray(photo.target));
+photoCamera.updateMatrixWorld();
+const photoPoint = new Vector3();
+function project(point) {
+  photoPoint.copy(point).project(photoCamera);
+  return new Vector3((photoPoint.x + 1) * photo.imageSize[0] / 2, (1 - photoPoint.y) * photo.imageSize[1] / 2, 0);
+}
+function crownHeight(point, roof) {
+  let best = Infinity, height = 0;
+  const curve = roof.crownOutline;
+  for (let i = 0; i < curve.length; i++) {
+    const a = curve[i], b = curve[(i + 1) % curve.length];
+    const dx = b[0] - a[0], dz = b[1] - a[1];
+    const t = Math.max(0, Math.min(1, ((point.x - a[0]) * dx + (point.z - a[1]) * dz) / (dx * dx + dz * dz)));
+    const distance = (point.x - a[0] - t * dx) ** 2 + (point.z - a[1] - t * dz) ** 2;
+    if (distance < best) { best = distance; height = a[2] * (1 - t) + b[2] * t; }
+  }
+  return height;
+}
+function insideRoof(point, roof) {
+  let inside = false;
+  const curve = roof.crownOutline;
+  for (let i = 0, j = curve.length - 1; i < curve.length; j = i++) {
+    const a = curve[i], b = curve[j];
+    if ((a[1] > point.z) !== (b[1] > point.z) && point.x < (b[0] - a[0]) * (point.z - a[1]) / (b[1] - a[1]) + a[0]) inside = !inside;
+  }
+  return inside;
+}
 
 for (const level of manifest.lods) {
   const data = await fs.readFile(new URL(level.file, root));
@@ -83,6 +117,7 @@ for (const level of manifest.lods) {
   const facadeChecks = { screenVertices: 0, spandrelVertices: 0, entranceVertices: 0 };
   const point = new Vector3();
   const roofBounds = new Map();
+  const projectedCrowns = new Map();
   function visit(index, parent) {
     const node = gltf.nodes[index];
     const matrix = node.matrix
@@ -118,7 +153,7 @@ for (const level of manifest.lods) {
             const floor = roof.floorLevels.findIndex((y, i, levels) => i < levels.length - 1 && point.y >= y && point.y < levels[i + 1]);
             assert.ok(floor >= 0, `${node.name}: screen outside occupied floors`);
             assert.ok(point.y >= roof.floorLevels[floor] + 1.30 && point.y <= roof.floorLevels[floor + 1] - .52, `${node.name}: screen crosses a solid ribbon or clear glass slot`);
-            if (petalName === "east-garden") assert.ok(floor > 0, "garden ground floor must remain clear glass");
+            if (petalName === "right-garden") assert.ok(floor > 0, "garden ground floor must remain clear glass");
             facadeChecks.screenVertices++;
           }
           if (roof && / (sloping rim|upper terrace|lower terrace) \|/.test(node.name)) {
@@ -127,11 +162,16 @@ for (const level of manifest.lods) {
             roofBounds.get(part).expandByPoint(point);
           }
           if (roof && node.name.includes(" roof screen |")) {
-            const projection = (point.x - roof.center[0]) * roof.crestAxis[0] + (point.z - roof.center[1]) * roof.crestAxis[1];
-            const t = (projection - roof.projectionRange[0]) / (roof.projectionRange[1] - roof.projectionRange[0]);
-            const top = roof.crownMin + (roof.crownMax - roof.crownMin) * t;
-            assert.ok(point.y <= top + .12, `${node.name}: screen exceeds sloping crown`);
+            const top = crownHeight(point, roof);
+            assert.ok(point.y <= top + .18, `${node.name}: screen exceeds sloping crown`);
             assert.ok(point.y >= roof.deck + 1.08, `${node.name}: screen intersects roof band`);
+          }
+          if (roof && node.name.includes(" sloping rim |")) {
+            if (!projectedCrowns.has(petalName)) projectedCrowns.set(petalName, new Box3());
+            projectedCrowns.get(petalName).expandByPoint(project(point));
+          }
+          if (roof && node.name.includes(" upper terrace |")) {
+            assert.ok(insideRoof(point, roof), `${petalName}: inner roof extends outside its containing wing`);
           }
           if (node.name.startsWith("Tower spandrel panels")) {
             const withinStorey = ((point.y % 4.4) + 4.4) % 4.4;
@@ -170,11 +210,20 @@ for (const level of manifest.lods) {
       assert.ok(upper.min.y > lower.max.y + 2.5, `${prefix}: terrace step lost`);
     }
   }
+  // Check actual decoded geometry in the photo camera, not just authoring constants.
+  // The bounds allow small curve interpolation and LOD error around traced landmarks.
+  for (const wing of design.petals) {
+    const box = projectedCrowns.get(wing.name);
+    const pixels = wing.photoCrownPixels;
+    const expected = [Math.min(...pixels.map(p => p[0])), Math.min(...pixels.map(p => p[1])), Math.max(...pixels.map(p => p[0])), Math.max(...pixels.map(p => p[1]))];
+    const actual = [box.min.x, box.min.y, box.max.x, box.max.y];
+    for (let i = 0; i < 4; i++) assert.ok(Math.abs(actual[i] - expected[i]) < 20, `${wing.name}: silhouette or camera flipped / drifted`);
+  }
   assert.equal(triangles, level.triangles);
   assert.equal(meshes, level.meshObjects);
   const size = bounds.getSize(new Vector3());
   assert.ok(
-    size.x > 110 && size.x < 165 && size.z > 95 && size.z < 160,
+    size.x > 165 && size.x < 185 && size.z > 95 && size.z < 160,
     "metres or axes changed",
   );
   assert.ok(size.y > 83 && size.y < 85, "tower height changed");
@@ -186,6 +235,7 @@ for (const level of manifest.lods) {
     bytes: data.length,
     bounds: [bounds.min.toArray(), bounds.max.toArray()],
     facadeChecks,
+    photoSilhouettes: Object.fromEntries([...projectedCrowns].map(([name, box]) => [name, [box.min.toArray(), box.max.toArray()]])),
     roofs: Object.fromEntries([...roofBounds].map(([name, box]) => [name, [box.min.y, box.max.y]])),
   });
 }

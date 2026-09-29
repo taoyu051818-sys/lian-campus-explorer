@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "units": "metres",
   "campusAnchor": [
     547.3684210526316,
@@ -12,146 +12,628 @@
       0,
       23
     ],
-    "width": 42,
-    "depth": 35,
-    "angle": -8,
+    "width": 54,
+    "depth": 43,
+    "angle": 0,
     "floors": 19,
     "height": 83.6
   },
   "petals": [
     {
-      "name": "west-front",
+      "name": "front-left",
       "center": [
-        -37,
-        -29
+        27.34958214285714,
+        -56.56271357142857
       ],
-      "width": 53,
-      "depth": 40,
-      "angle": -22,
-      "floors": 4,
-      "clearGlazingZones": [
-        {
-          "floors": [
-            0,
-            1,
-            2,
-            3
-          ],
-          "angle": [
-            -35,
-            22
-          ],
-          "role": "unpatterned glazing facing the entrance connector"
-        }
+      "roofOutline": [
+        [
+          58.61265,
+          -51.44623
+        ],
+        [
+          55.85475,
+          -46.96587
+        ],
+        [
+          42.80647,
+          -37.10839
+        ],
+        [
+          31.61114,
+          -34.00749
+        ],
+        [
+          23.57724,
+          -38.35061
+        ],
+        [
+          13.55793,
+          -49.6265
+        ],
+        [
+          5.37909,
+          -59.69358
+        ],
+        [
+          -0.86235,
+          -68.06232
+        ],
+        [
+          -0.88423,
+          -70.76444
+        ],
+        [
+          2.33764,
+          -72.26262
+        ],
+        [
+          13.98751,
+          -70.4732
+        ],
+        [
+          32.92985,
+          -67.98902
+        ],
+        [
+          48.53611,
+          -65.80976
+        ],
+        [
+          55.45035,
+          -59.31796
+        ]
       ],
-      "roofFinish": "white-terrace",
+      "crownHeights": [
+        26.7,
+        27.0,
+        27.5,
+        27.6,
+        27.1,
+        25.3,
+        22.8,
+        21.5,
+        21.5,
+        21.7,
+        22.8,
+        24.4,
+        26.0,
+        26.5
+      ],
       "floorLevels": [
         0,
-        5.2,
-        10.4,
-        15.6,
-        20.8
+        5.0,
+        10.0,
+        15.0,
+        20.0
       ],
-      "roofProfile": {
-        "role": "upper entrance wing",
-        "minParapet": 1.35,
-        "rise": 10.0,
-        "crestAzimuth": 150,
-        "upperTerraceRise": 4.2,
-        "upperTerraceCutoff": 0.3
-      }
+      "floors": 4,
+      "roofFinish": "white-terrace",
+      "upperTerraceHeight": 25.0,
+      "upperTerraceOutline": [
+        [
+          54.23001,
+          -49.94315
+        ],
+        [
+          47.50399,
+          -43.53595
+        ],
+        [
+          33.63208,
+          -36.4684
+        ],
+        [
+          27.25384,
+          -39.40116
+        ],
+        [
+          20.23513,
+          -53.47486
+        ],
+        [
+          20.06556,
+          -59.11188
+        ],
+        [
+          26.92754,
+          -62.14023
+        ],
+        [
+          37.55735,
+          -62.56565
+        ],
+        [
+          48.82792,
+          -58.23009
+        ]
+      ],
+      "angle": 0,
+      "clearGlazingZones": [],
+      "photoCrownPixels": [
+        [
+          214,
+          750
+        ],
+        [
+          257,
+          729
+        ],
+        [
+          411,
+          687
+        ],
+        [
+          522,
+          675
+        ],
+        [
+          588,
+          695
+        ],
+        [
+          665,
+          755
+        ],
+        [
+          733,
+          822
+        ],
+        [
+          788,
+          875
+        ],
+        [
+          785,
+          889
+        ],
+        [
+          748,
+          895
+        ],
+        [
+          624,
+          875
+        ],
+        [
+          425,
+          847
+        ],
+        [
+          264,
+          821
+        ],
+        [
+          216,
+          786
+        ]
+      ]
     },
     {
-      "name": "east-front",
+      "name": "front-right",
       "center": [
-        28,
-        -29
+        -36.0484275,
+        -62.557134166666664
       ],
-      "width": 53,
-      "depth": 43,
-      "angle": 24,
-      "floors": 4,
-      "clearGlazingZones": [
-        {
-          "floors": [
-            0,
-            1,
-            2,
-            3
-          ],
-          "angle": [
-            -180,
-            -145
-          ],
-          "role": "unpatterned inner return towards the entrance"
-        }
+      "roofOutline": [
+        [
+          -10.64435,
+          -72.83679
+        ],
+        [
+          -15.68459,
+          -64.66869
+        ],
+        [
+          -25.21677,
+          -52.70187
+        ],
+        [
+          -35.11837,
+          -43.57115
+        ],
+        [
+          -42.45051,
+          -45.56299
+        ],
+        [
+          -53.85433,
+          -54.62937
+        ],
+        [
+          -58.29262,
+          -60.15862
+        ],
+        [
+          -58.02064,
+          -64.758
+        ],
+        [
+          -53.93146,
+          -70.1346
+        ],
+        [
+          -41.83611,
+          -72.52327
+        ],
+        [
+          -23.55818,
+          -73.73234
+        ],
+        [
+          -13.9732,
+          -75.40792
+        ]
       ],
-      "roofFinish": "white-terrace",
+      "crownHeights": [
+        21.5,
+        23.2,
+        26.4,
+        27.3,
+        27.5,
+        27.3,
+        26.8,
+        26.1,
+        24.9,
+        23.7,
+        22.1,
+        21.6
+      ],
       "floorLevels": [
         0,
-        4.95,
-        9.9,
-        14.85,
-        19.8
+        5.0,
+        10.0,
+        15.0,
+        20.0
       ],
-      "roofProfile": {
-        "role": "second entrance wing",
-        "minParapet": 1.35,
-        "rise": 8.0,
-        "crestAzimuth": 25,
-        "upperTerraceRise": 3.1,
-        "upperTerraceCutoff": 0.3
-      }
+      "floors": 4,
+      "roofFinish": "white-terrace",
+      "upperTerraceHeight": 24.8,
+      "upperTerraceOutline": [
+        [
+          -22.44183,
+          -64.48088
+        ],
+        [
+          -31.29219,
+          -49.0345
+        ],
+        [
+          -35.75166,
+          -44.3577
+        ],
+        [
+          -41.96873,
+          -47.33455
+        ],
+        [
+          -50.44787,
+          -55.8051
+        ],
+        [
+          -51.94392,
+          -60.66682
+        ],
+        [
+          -45.37888,
+          -64.89597
+        ],
+        [
+          -31.0226,
+          -68.35652
+        ]
+      ],
+      "angle": 0,
+      "clearGlazingZones": [],
+      "photoCrownPixels": [
+        [
+          889,
+          900
+        ],
+        [
+          947,
+          842
+        ],
+        [
+          1046,
+          758
+        ],
+        [
+          1140,
+          713
+        ],
+        [
+          1212,
+          719
+        ],
+        [
+          1335,
+          758
+        ],
+        [
+          1389,
+          787
+        ],
+        [
+          1394,
+          815
+        ],
+        [
+          1359,
+          853
+        ],
+        [
+          1230,
+          877
+        ],
+        [
+          1030,
+          899
+        ],
+        [
+          924,
+          913
+        ]
+      ]
     },
     {
-      "name": "west-rear",
+      "name": "right-garden",
       "center": [
-        -37,
-        23
+        -83.8075,
+        -49.2025
       ],
-      "width": 48,
-      "depth": 43,
-      "angle": -48,
-      "floors": 4,
+      "roofOutline": [
+        [
+          -62.63245,
+          -30.85684
+        ],
+        [
+          -67.37426,
+          -25.06129
+        ],
+        [
+          -74.32201,
+          -26.98965
+        ],
+        [
+          -88.19939,
+          -34.87553
+        ],
+        [
+          -101.85653,
+          -44.68843
+        ],
+        [
+          -109.0705,
+          -52.65237
+        ],
+        [
+          -109.70466,
+          -57.37894
+        ],
+        [
+          -103.89744,
+          -62.116
+        ],
+        [
+          -93.18985,
+          -66.0457
+        ],
+        [
+          -79.49479,
+          -68.14809
+        ],
+        [
+          -70.53456,
+          -64.72594
+        ],
+        [
+          -65.72708,
+          -58.91666
+        ],
+        [
+          -63.49438,
+          -47.17686
+        ]
+      ],
+      "crownHeights": [
+        16.2,
+        16.4,
+        16.4,
+        16.5,
+        16.5,
+        16.4,
+        16.3,
+        16.1,
+        16.0,
+        15.9,
+        15.8,
+        15.9,
+        16.0
+      ],
+      "floorLevels": [
+        0,
+        4.6,
+        9.2,
+        13.8
+      ],
+      "floors": 3,
+      "roofFinish": "garden",
+      "upperTerraceHeight": null,
+      "upperTerraceOutline": null,
+      "angle": 0,
       "clearGlazingZones": [
         {
           "floors": [
             0
           ],
           "angle": [
-            -130,
-            -50
+            -180,
+            180
           ],
-          "role": "recessed ground glazing; hidden extent estimated"
+          "role": "clear glazed base in photo"
+        },
+        {
+          "floors": [
+            1
+          ],
+          "angle": [
+            -160,
+            -115
+          ],
+          "role": "clear end bays visible in aerial"
         }
       ],
-      "roofFinish": "garden",
-      "floorLevels": [
-        0,
-        4.6,
-        9.2,
-        13.8,
-        18.4
-      ],
-      "roofProfile": {
-        "role": "upper rear wing",
-        "minParapet": 1.35,
-        "rise": 5.0,
-        "crestAzimuth": 185,
-        "upperTerraceRise": 0,
-        "upperTerraceCutoff": 0
-      }
+      "photoCrownPixels": [
+        [
+          1377,
+          758
+        ],
+        [
+          1410,
+          735
+        ],
+        [
+          1474,
+          742
+        ],
+        [
+          1615,
+          771
+        ],
+        [
+          1770,
+          811
+        ],
+        [
+          1868,
+          847
+        ],
+        [
+          1893,
+          870
+        ],
+        [
+          1853,
+          895
+        ],
+        [
+          1757,
+          916
+        ],
+        [
+          1620,
+          928
+        ],
+        [
+          1517,
+          911
+        ],
+        [
+          1455,
+          881
+        ],
+        [
+          1411,
+          826
+        ]
+      ]
     },
     {
-      "name": "east-rear",
+      "name": "rear-garden",
       "center": [
-        42,
-        27
+        -47.807562000000004,
+        6.977754
       ],
-      "width": 49,
-      "depth": 44,
-      "angle": 38,
+      "roofOutline": [
+        [
+          -25.20234,
+          23.77564
+        ],
+        [
+          -37.66714,
+          35.38474
+        ],
+        [
+          -47.67974,
+          29.02745
+        ],
+        [
+          -54.1034,
+          14.94484
+        ],
+        [
+          -59.38695,
+          2.11854
+        ],
+        [
+          -62.69246,
+          -4.66758
+        ],
+        [
+          -61.35258,
+          -9.57021
+        ],
+        [
+          -53.79471,
+          -13.1255
+        ],
+        [
+          -44.22069,
+          -9.00626
+        ],
+        [
+          -31.97561,
+          0.89588
+        ]
+      ],
+      "crownHeights": [
+        22.0,
+        22.5,
+        22.1,
+        21.4,
+        19.4,
+        17.1,
+        17.0,
+        18.1,
+        19.8,
+        21.5
+      ],
+      "floorLevels": [
+        0,
+        5.0,
+        10.0,
+        15.0
+      ],
       "floors": 3,
+      "roofFinish": "garden",
+      "upperTerraceHeight": 20.0,
+      "upperTerraceOutline": [
+        [
+          -29.67305,
+          27.01021
+        ],
+        [
+          -38.41677,
+          35.22769
+        ],
+        [
+          -45.3319,
+          30.41535
+        ],
+        [
+          -49.20936,
+          22.04557
+        ],
+        [
+          -41.3782,
+          14.90385
+        ],
+        [
+          -34.2373,
+          16.06965
+        ]
+      ],
+      "angle": 0,
       "clearGlazingZones": [
         {
           "floors": [
@@ -159,82 +641,59 @@
             1
           ],
           "angle": [
-            125,
-            180
+            15,
+            75
           ],
-          "role": "courtyard glazing; hidden extent estimated"
+          "role": "courtyard-facing glazing; extent estimated"
         }
       ],
-      "roofFinish": "garden",
-      "floorLevels": [
-        0,
-        4.65,
-        9.3,
-        13.95
-      ],
-      "roofProfile": {
-        "role": "lower rear wing",
-        "minParapet": 1.35,
-        "rise": 4.0,
-        "crestAzimuth": 20,
-        "upperTerraceRise": 0,
-        "upperTerraceCutoff": 0
-      }
-    },
-    {
-      "name": "east-garden",
-      "center": [
-        64,
-        -19
-      ],
-      "width": 40,
-      "depth": 34,
-      "angle": 25,
-      "floors": 3,
-      "clearGlazingZones": [
-        {
-          "floors": [
-            0
-          ],
-          "angle": [
-            -180,
-            180
-          ],
-          "role": "continuous clear glazed plinth in aerial photograph"
-        },
-        {
-          "floors": [
-            1,
-            2
-          ],
-          "angle": [
-            -85,
-            -25
-          ],
-          "role": "clear-glass end bays on low garden wing"
-        }
-      ],
-      "roofFinish": "garden",
-      "floorLevels": [
-        0,
-        4.3,
-        8.6,
-        12.9
-      ],
-      "roofProfile": {
-        "role": "low garden wing",
-        "minParapet": 1.35,
-        "rise": 1.5,
-        "crestAzimuth": 40,
-        "upperTerraceRise": 0,
-        "upperTerraceCutoff": 0
-      }
+      "photoCrownPixels": [
+        [
+          1040,
+          550
+        ],
+        [
+          1127,
+          520
+        ],
+        [
+          1201,
+          537
+        ],
+        [
+          1258,
+          576
+        ],
+        [
+          1310,
+          625
+        ],
+        [
+          1343,
+          662
+        ],
+        [
+          1338,
+          678
+        ],
+        [
+          1280,
+          681
+        ],
+        [
+          1198,
+          655
+        ],
+        [
+          1095,
+          613
+        ]
+      ]
     }
   ],
   "evidence": {
     "confirmed": [
       "19-storey tower; podium up to four storeys",
-      "five petal-shaped volumes",
       "curved tower crown",
       "white geometric screens in front of glazing",
       "horizontal tower sunshades",
@@ -242,7 +701,8 @@
       "tower has blue-grey glazing, grey spandrel panels and champagne horizontal fins, without geometric lattice",
       "podium uses projecting solid cream ribbons, recessed glass slots and partial lattice panels",
       "recessed curved glazed entrance with solid sign fascia and glass door canopy",
-      "low garden wing includes continuous clear glazing at its base"
+      "low garden wing includes continuous clear glazing at its base",
+      "reference photographs show one tower and four low wings: two white-roof entrance wings, a right garden wing and a rear garden wing"
     ],
     "estimated": [
       "all horizontal dimensions and floor heights",
@@ -251,7 +711,7 @@
       "campus registration against the existing schematic terrain",
       "entrance connector and skylight dimensions; position of the low garden wing inferred from aerial view",
       "angular extents of clear glazing and unphotographed rear facades",
-      "per-wing floor elevations, sloping roof crest heights and upper roof terrace extents, inferred from photographs; no site grading survey"
+      "photo-fitted camera, footprint control points and roof crown elevations; all dimensions remain estimated"
     ],
     "scope": "Photo-referenced exterior reconstruction; no interior or measured survey claim. Local +Z is toward the rear in glTF; source Blender uses Z-up."
   },
@@ -293,12 +753,12 @@
     },
     "entrance": {
       "center": [
-        -3,
-        -49
+        -4.13029,
+        -69.18589
       ],
-      "width": 26,
-      "recess": 4.4,
-      "height": 12.8
+      "width": 16.0,
+      "recess": 2.0,
+      "height": 12.4
     }
   },
   "photoObservations": [
@@ -330,6 +790,44 @@
         "projecting cream slab edges",
         "recessed glazing between lattice panels and ribbons"
       ]
+    },
+    {
+      "reference": "User repeated frontal aerial, received 2026-09-29",
+      "features": [
+        "low garden wing on image right, not left",
+        "four low wings plus one tower, not five low wings",
+        "entrance wings share near-level floor bands; roof terraces and sloping outer screens produce the high-low relationship",
+        "rear garden includes an upper planted platform and a lower roof terrace"
+      ]
     }
-  ]
+  ],
+  "photoCamera": {
+    "imageSize": [
+      2048,
+      1164
+    ],
+    "position": [
+      -23.0116606875311,
+      111.53976662411063,
+      -235.04306222436594
+    ],
+    "target": [
+      -23.0116606875311,
+      17.619772815539932,
+      23
+    ],
+    "fov": 32.449991752775055,
+    "blenderLens": 35.15625,
+    "role": "Approximate camera fit to the supplied frontal aerial; positive X appears on the photo left."
+  },
+  "skylight": {
+    "center": [
+      -5.94121,
+      -38.65756
+    ],
+    "width": 25.0,
+    "depth": 24.0,
+    "ridge": 15.3,
+    "eave": 11.35
+  }
 }

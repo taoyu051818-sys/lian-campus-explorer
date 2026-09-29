@@ -15,7 +15,8 @@ for petal in DESIGN['petals']:
     levels=petal['floorLevels']
     assert len(levels)==petal['floors']+1 and levels[0]==0
     assert all(b>a+3 for a,b in zip(levels,levels[1:])), 'invalid storey height'
-    assert petal['roofProfile']['upperTerraceRise'] < petal['roofProfile']['rise'] or petal['roofProfile']['upperTerraceRise']==0
+    assert len(petal['roofOutline'])==len(petal['crownHeights'])
+    assert min(petal['crownHeights']) > levels[-1]+1.18
 
 BLEND = ROOT / 'authoring/library/library.blend'
 random.seed(8819)
@@ -142,6 +143,38 @@ def outline(cx,cy,w,d,angle=0,n=96,tower=False):
         result.append((cx+x*math.cos(an)-y*math.sin(an),cy+x*math.sin(an)+y*math.cos(an)))
     return result
 
+def profile_curve(points, heights=None, n=160):
+    # Interpolating closed Catmull-Rom curve follows the photo control points.
+    # Resample by plan arc length so all LODs retain the same footprint and crest.
+    heights=heights or [0]*len(points)
+    source=[(*p,h) for p,h in zip(points,heights)]
+    if area(points)<0:source.reverse()
+    dense=[]
+    for i,p1 in enumerate(source):
+        p0=source[i-1];p2=source[(i+1)%len(source)];p3=source[(i+2)%len(source)]
+        for j in range(16):
+            t=j/16
+            dense.append(tuple(.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-e)*t*t+(-a+3*b-3*c+e)*t*t*t) for a,b,c,e in zip(p0,p1,p2,p3)))
+    lengths=[0]
+    for a,b in zip(dense,dense[1:]+dense[:1]):lengths.append(lengths[-1]+math.dist(a[:2],b[:2]))
+    result=[];k=0
+    for i in range(n):
+        dist=lengths[-1]*i/n
+        while lengths[k+1]<dist:k+=1
+        t=(dist-lengths[k])/(lengths[k+1]-lengths[k]);a=dense[k];b=dense[(k+1)%len(dense)]
+        result.append(tuple(a[q]*(1-t)+b[q]*t for q in range(3)))
+    return [p[:2] for p in result],[p[2] for p in result]
+
+def nearest_height(point,poly,heights):
+    best=float('inf');height=0
+    for i,a in enumerate(poly):
+        j=(i+1)%len(poly);b=poly[j];dx=b[0]-a[0];dy=b[1]-a[1]
+        t=max(0,min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dy)/(dx*dx+dy*dy)))
+        dist=(point[0]-a[0]-t*dx)**2+(point[1]-a[1]-t*dy)**2
+        if dist<best:best=dist;height=heights[i]*(1-t)+heights[j]*t
+    return height
+
+
 def inset(poly,amount):
     # Parallel offset from adjacent edge normals, with a miter limited at acute tips.
     out=[]
@@ -184,7 +217,7 @@ def wall(part,poly,z0,z1,tile=3.0):
         part.face([(*a,z0),(*b,z0),(*b,z1),(*a,z1)],[(arclen/tile,0),((arclen+length)/tile,0),((arclen+length)/tile,(z1-z0)/3.4),(arclen/tile,(z1-z0)/3.4)])
         arclen+=length
 
-MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[],'facadeRevision':DESIGN['version'],'roofLevels':[],'photoObservations':DESIGN['photoObservations']}
+MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[],'facadeRevision':DESIGN['version'],'roofLevels':[],'photoObservations':DESIGN['photoObservations'],'photoCamera':DESIGN['photoCamera']}
 ROOTS=[]
 for lod in range(3):
     coll=bpy.data.collections.new(f'Library LOD{lod}');scene.collection.children.link(coll)
@@ -233,7 +266,8 @@ for lod in range(3):
         MANIFEST['collisionVolumes'].append({'name':'library tower','footprint':outline(tx,ty,tower['width'],tower['depth'],tower['angle'],48,True),'height':83.8,'base':0})
     for k,petal in enumerate(DESIGN['petals']):
         sec='Petal '+petal['name']; cx,cy=petal['center']; levels=petal['floorLevels']; floors=len(levels)-1
-        shape=outline(cx,cy,petal['width'],petal['depth'],petal['angle'],res)
+        roofpoly,crown=profile_curve(petal['roofOutline'],petal['crownHeights'],res)
+        shape=inset(roofpoly,-(floors-1)*.68)
         white=pmat(sec,'warm ceramic'); aluminium=pmat(sec,'pearl aluminium'); rails=pmat(sec,'frame shadow')
         glass=pmat(sec,'blue grey glass'); grid=pmat(sec+' screen','distant baked screen'); roofgrid=pmat(sec+' roof screen','distant baked screen')
         facade=DESIGN['facade']['podium']
@@ -298,43 +332,26 @@ for lod in range(3):
                 if lod==0 and j%2==0:
                     pt=perimeter(j*bay);rails.beam((*pt,screenLo),(*pt,screenHi),.045,.085)
         roofY=levels[-1]
-        roofpoly=inset(shape,(floors-1)*.68)
-        profile=petal['roofProfile']; az=math.radians(profile['crestAzimuth'])
-        axis=(math.cos(az),math.sin(az))
-        # A plane across the whole volume defines the sloping crown. Calibrate with
-        # a fixed-resolution outline so different LODs cannot move the crest.
-        reference=inset(outline(cx,cy,petal['width'],petal['depth'],petal['angle'],160),(floors-1)*.68)
-        dots=[(x-cx)*axis[0]+(y-cy)*axis[1] for x,y in reference]
-        low,high=min(dots),max(dots)
-        def fraction(p):return ((p[0]-cx)*axis[0]+(p[1]-cy)*axis[1]-low)/(high-low)
-        def roof_top(p):return roofY+profile['minParapet']+profile['rise']*fraction(p)
-        def lip(i):return roof_top(roofpoly[i])
+        reference,referenceHeights=profile_curve(petal['roofOutline'],petal['crownHeights'],320)
+        def roof_top(p):return nearest_height(p,reference,referenceHeights)
+        def lip(i):return crown[i]
         band(white,roofpoly,roofY,facade['solidBandHeight'],facade['solidBandProjection'])
         roofdeck=inset(roofpoly,.48)
         cap(pmat(sec+' lower terrace','roof gravel'),roofdeck,roofY+.05)
-        upper=profile['upperTerraceRise']
+        upper=petal['upperTerraceHeight']
         if upper:
-            # Keep the raised white roof on the high side; the low side stays a
-            # distinct terrace, instead of lifting the entire roof as one flat cap.
-            terrace=inset(roofpoly,4.2)
-            clipped=[]; cutoff=profile['upperTerraceCutoff']
-            for a,b in zip(terrace,terrace[1:]+terrace[:1]):
-                fa,fb=fraction(a)-cutoff,fraction(b)-cutoff
-                if fa>=0:clipped.append(a)
-                if (fa>=0)!=(fb>=0):
-                    t=fa/(fa-fb);clipped.append((a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t))
-            terrace=clipped
-            wall(pmat(sec+' upper terrace wall','white concrete'),terrace,roofY+.06,roofY+upper)
-            cap(pmat(sec+' upper terrace','white roof'),terrace,roofY+upper)
-            band(pmat(sec+' upper terrace edge','warm ceramic'),terrace,roofY+upper-.15,.18,.08)
+            terrace,_=profile_curve(petal['upperTerraceOutline'],n=[64,32,16][lod])
+            wall(pmat(sec+' upper terrace wall','blue grey glass' if petal['roofFinish']=='garden' else 'white concrete'),terrace,roofY+.06,upper)
+            cap(pmat(sec+' upper terrace','planted roof' if petal['roofFinish']=='garden' else 'white roof'),terrace,upper)
+            band(pmat(sec+' upper terrace edge','warm ceramic'),terrace,upper-.15,.18,.08)
             if lod==0:
-                MANIFEST['collisionVolumes'].append({'name':'library '+petal['name']+' upper terrace','footprint':terrace,'height':roofY+upper+.03,'base':0})
-            # Low rectangular planted strips occupy the terrace below the white roof.
-            for i in range(0,len(roofpoly),8 if lod<2 else 16):
-                a=roofpoly[i]; b=roofpoly[(i+5)%len(roofpoly)]
-                if .10 < fraction(a) < .30:
-                    inner=inset(roofpoly,2.0); a2=inner[i];b2=inner[(i+5)%len(roofpoly)]
-                    cap(pmat(sec+' lower terrace','planted roof'),[a,b,b2,a2],roofY+.08)
+                MANIFEST['collisionVolumes'].append({'name':'library '+petal['name']+' upper terrace','footprint':terrace,'height':upper+.03,'base':0})
+        # Narrow planting beds leave the lower deck visibly below its inner roof.
+        inner=inset(roofpoly,2.4);edge=inset(roofpoly,1.0)
+        for i in range(0,len(roofpoly),8 if lod<2 else 16):
+            if roof_top(roofpoly[i]) > roofY+3.4:continue
+            j=(i+5)%len(roofpoly)
+            cap(pmat(sec+' lower terrace','planted roof'),[edge[i],edge[j],inner[j],inner[i]],roofY+.08)
         # A substantial sloping rim and white supports tie the roof screen to the
         # architecture; the former thin, nearly level decorative railing is removed.
         strip(pmat(sec+' sloping rim','warm ceramic'),inset(roofpoly,-.10),inset(roofpoly,.24),lip,lambda i:lip(i)+.22)
@@ -348,7 +365,7 @@ for lod in range(3):
             return (a[0]*(1-t)+b[0]*t,a[1]*(1-t)+b[1]*t)
         base=roofY+facade['solidBandHeight']+.06
         def roof_beam(a,b,width):
-            # Clip bars against the same sloping plane used by the far LOD.
+            # Clip bars against the shared crown curve used by the far LOD.
             aa,bb=list(a),list(b)
             for boundary in ['bottom','top']:
                 def margin(p):return p[1]-base if boundary=='bottom' else roof_top(roof_perimeter(p[0]))-p[1]
@@ -370,7 +387,7 @@ for lod in range(3):
                 roofgrid.face([(*a,base),(*b,base),(*b,roof_top(b)),(*a,roof_top(a))],[(j,0),(j+1,0),(j+1,(roof_top(b)-base)/1.8),(j,(roof_top(a)-base)/1.8)])
                 continue
             s=(j+.5)*bay
-            for row in range(math.ceil((roofY+profile['minParapet']+profile['rise']-base)/1.8)):
+            for row in range(math.ceil((max(referenceHeights)-base)/1.8)):
                 z=base+.55+row*1.8
                 for ring,factor in enumerate([1,.68,.36] if lod==0 else [1,.54]):
                     coords=[(s-bay*.5*factor,z),(s,z+.9*factor),(s+bay*.5*factor,z),(s,z-.9*factor)]
@@ -378,25 +395,26 @@ for lod in range(3):
                         if ring==1 and edge==(j+row)%4:continue
                         roof_beam(a,b,.075)
         if lod==0:
-            MANIFEST['roofLevels'].append({'name':petal['name'],'role':profile['role'],'floorLevels':levels,'deck':roofY,'upperTerrace':roofY+upper if upper else None,'crownMin':roofY+profile['minParapet'],'crownMax':roofY+profile['minParapet']+profile['rise'],'crestAxis':list(axis),'projectionRange':[low,high],'center':[cx,cy]})
+            MANIFEST['roofLevels'].append({'name':petal['name'],'floorLevels':levels,'deck':roofY,'upperTerrace':upper,'crownMin':min(referenceHeights),'crownMax':max(referenceHeights),'crownOutline':[[*p,h] for p,h in zip(reference,referenceHeights)],'center':[cx,cy]})
         planter=pmat(sec+' roof','white concrete'); green=pmat(sec+' roof','planted roof')
-        for q in range((5 if lod<2 else 3) if petal['roofFinish']=='garden' else 0):
-            px=cx+(q-2)*4.3;py=cy+2.5*math.sin(q*3)
-            ring=outline(px,py,3.1,2.8,q*30,16)
-            strip(planter,ring,inset(ring,.18),roofY+.1,roofY+.55)
-            cap(green,inset(ring,.2),roofY+.5)
-        if lod<2 and petal['roofFinish']=='garden':
-            # Recessed clerestory / roof access, deliberately below the high petal rim.
-            roofaccess=outline(cx+1,cy+5,9,5,petal['angle'],24)
-            wall(glass,roofaccess,roofY+.12,roofY+1.15)
-            cap(aluminium,roofaccess,roofY+1.22)
+        if petal['roofFinish']=='garden':
+            deck=upper if upper else roofY
+            planting=terrace if upper else roofdeck
+            pc=[sum(p[q] for p in planting)/len(planting) for q in [0,1]]
+            for q in range(5 if lod<2 else 3):
+                angle=q*2.4;px=pc[0]+math.cos(angle)*5;py=pc[1]+math.sin(angle)*4
+                ring=[(px+1.45*math.cos(i*math.tau/20),py+1.45*math.sin(i*math.tau/20)) for i in range(20)]
+                strip(planter,ring,inset(ring,.18),deck+.10,deck+.55)
+                cap(green,inset(ring,.2),deck+.5)
+            roofaccess=outline(pc[0]+5,pc[1]+2,6,3.5,petal['angle'],24)
+            wall(glass,roofaccess,deck+.12,deck+1.15);cap(aluminium,roofaccess,deck+1.22)
         if lod==0:
-            # Collision follows the actual outer shell, excluding the thin decorative screen.
-            MANIFEST['collisionVolumes'].append({'name':'library '+petal['name'],'footprint':outline(cx,cy,petal['width'],petal['depth'],petal['angle'],48),'height':roofY+.12,'base':0})
+            footprint,_=profile_curve(petal['roofOutline'],n=64)
+            MANIFEST['collisionVolumes'].append({'name':'library '+petal['name'],'footprint':inset(footprint,-(floors-1)*.68),'height':roofY+.12,'base':0})
     # Low connector with an external arrival canopy; no fictional traversable interiors.
     con=pmat('Atrium','blue grey glass'); concrete=pmat('Atrium','warm ceramic'); metal=pmat('Atrium','pearl aluminium')
-    atrium=outline(0,-12,57,57,18,64 if lod<2 else 32)
-    garden=outline(0,-8,31,32,18,len(atrium))
+    atrium=outline(-4,-25,40,76,0,64 if lod<2 else 32)
+    garden=outline(-4,-10,24,27,0,len(atrium))
     wall(con,atrium,.25,9.8)
     strip(concrete,atrium,garden,9.72,9.98)
     band(concrete,atrium,9.8,.4,.45)
@@ -407,7 +425,7 @@ for lod in range(3):
     for i in range(0,len(atrium),2):
         p=atrium[i];metal.beam((*p,.25),(*p,9.8),.085,.15)
     if lod==0:
-        outer=outline(0,-12,57,57,18,32);inner=outline(0,-8,31,32,18,32)
+        outer=outline(-4,-25,40,76,0,32);inner=outline(-4,-10,24,27,0,32)
         for i in range(32):
             j=(i+1)%32
             MANIFEST['collisionVolumes'].append({'name':f'library atrium rim {i}','footprint':[outer[i],outer[j],inner[j],inner[i]],'height':10.2,'base':0})
@@ -453,13 +471,14 @@ for lod in range(3):
     skylightGlass=pmat('Central skylight','blue grey glass light')
     skylightFrame=pmat('Central skylight','pearl aluminium')
     skylightBase=pmat('Central skylight','white concrete')
-    skylightBase.box((0,-22,10.7),(20,21,1.2))
-    for i in range(10):
-        x=-10+i*2;nx=x+2
+    sk=DESIGN['skylight'];sx,sy=sk['center'];sw=sk['width'];sd=sk['depth'];ridge=sk['ridge'];eave=sk['eave']
+    skylightBase.box((sx,sy,eave-.6),(sw,sd,1.2))
+    for i in range(11):
+        x=sx-sw/2+i*sw/10
         for sign in [-1,1]:
-            skylightGlass.face([(x,-22,15.3),(nx,-22,15.3),(nx,-22+sign*10.5,11.35),(x,-22+sign*10.5,11.35)])
-            skylightFrame.beam((x,-22,15.35),(x,-22+sign*10.5,11.40),.12,.16)
-    skylightFrame.beam((-10,-22,15.35),(10,-22,15.35),.18,.2)
+            if i<10:skylightGlass.face([(x,sy,ridge),(x+sw/10,sy,ridge),(x+sw/10,sy+sign*sd/2,eave),(x,sy+sign*sd/2,eave)])
+            skylightFrame.beam((x,sy,ridge+.05),(x,sy+sign*sd/2,eave+.05),.12,.16)
+    skylightFrame.beam((sx-sw/2,sy,ridge+.05),(sx+sw/2,sy,ridge+.05),.18,.2)
     if lod==0:
         # A continuous entrance collision hull, while the forecourt remains walkable.
         front=[entry_point(i/12) for i in range(13)]
@@ -468,7 +487,7 @@ for lod in range(3):
     if lod==0:
         fontpath=Path(os.environ.get('LIBRARY_FONT','/System/Library/Fonts/STHeiti Medium.ttc'))
         font=bpy.data.fonts.load(str(fontpath)) if fontpath.exists() else None
-        for text,z,size in [('图书馆',11.76,.82),('Library',11.13,.34)]:
+        for text,z,size in [('图书馆',eh-1.04,.82),('Library',eh-1.67,.34)]:
             if text=='图书馆' and font is None:
                 print('Set LIBRARY_FONT to a CJK font path to include Chinese lettering.');continue
             curve=bpy.data.curves.new('Library lettering','FONT');curve.body=text;curve.size=size;curve.align_x='CENTER';curve.extrude=.014;curve.bevel_depth=.004
@@ -496,10 +515,12 @@ world.node_tree.nodes['Background'].inputs[1].default_value=.7
 light=bpy.data.lights.new('Studio sun','SUN');light.energy=3.0;light.angle=.12
 ob=bpy.data.objects.new('Studio sun',light);scene.collection.objects.link(ob);ob.rotation_euler=(.65,-.25,3.4)
 camdata=bpy.data.cameras.new('Library review camera');cam=bpy.data.objects.new('Library review camera',camdata);scene.collection.objects.link(cam)
-cam.location=xyz((118,-228,118));target=Vector(xyz((5,0,32)))
-cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();camdata.lens=47
+photo=DESIGN['photoCamera'];p=photo['position'];t=photo['target']
+photoLocation=(p[0],p[2],p[1]);photoAim=(t[0],t[2],t[1])
+cam.location=xyz(photoLocation);target=Vector(xyz(photoAim))
+cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();camdata.lens=photo['blenderLens']
 scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=40;scene.cycles.use_denoising=True
-scene.render.resolution_x=1500;scene.render.resolution_y=1050;scene.render.resolution_percentage=100
+scene.render.resolution_x=1500;scene.render.resolution_y=853;scene.render.resolution_percentage=100
 scene.view_settings.view_transform='AgX'
 scene['sourceNotes']=json.dumps(DESIGN['evidence'],ensure_ascii=False)
 scene['referenceURLs']='\n'.join(x['url'] for x in DESIGN['sources'])
@@ -509,9 +530,9 @@ MANIFEST['evidence']=DESIGN['evidence'];MANIFEST['sources']=DESIGN['sources']
 print('LIBRARY_ASSET_COMPLETE',json.dumps(MANIFEST['lods']))
 if '--render' in sys.argv:
     for name,location,aim,lens in [
-        ('preview',(118,-228,118),(5,0,32),47),
-        ('roof-heights',(8,-260,100),(8,-4,24),48),
-        ('entrance',(-6,-103,8),(-3,-35,9.0),43),
+        ('preview',photoLocation,photoAim,photo['blenderLens']),
+        ('roof-heights',(-25,-185,165),(-25,-21,15),35),
+        ('entrance',(-4,-124,8),(-4,-66,10),25),
         ('tower-facade',(-73,-75,22),(-4,19,36),57),
     ]:
         cam.location=xyz(location);cam.rotation_euler=(Vector(xyz(aim))-cam.location).to_track_quat('-Z','Y').to_euler();camdata.lens=lens
