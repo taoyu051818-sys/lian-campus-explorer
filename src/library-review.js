@@ -91,6 +91,19 @@ async function boot() {
   );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = manifest.review?.groundHeight ?? -0.12;
+  if (manifest.landscape?.terrain) {
+    const t = manifest.landscape.terrain;
+    ground.geometry.dispose();
+    ground.geometry = new THREE.BufferGeometry();
+    ground.geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(t.position, 3),
+    );
+    ground.geometry.setIndex(t.index);
+    ground.geometry.computeVertexNormals();
+    ground.rotation.x = 0;
+    ground.position.y = 0;
+  }
   ground.receiveShadow = true;
   scene.add(ground);
   const cache = new Map();
@@ -102,6 +115,10 @@ async function boot() {
     fps = 0,
     request = 0;
   const poses = {
+    landscape: [
+      [111, 43, -143],
+      [14, 4, -94],
+    ],
     photo: [
       manifest.photoCamera?.position || [-23, 112, -235],
       manifest.photoCamera?.target || [-23, 18, 23],

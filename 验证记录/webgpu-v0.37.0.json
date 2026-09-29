@@ -1,0 +1,202 @@
+{
+  "version": "0.37.0",
+  "date": "2026-09-29",
+  "renderer": "Three.js WebGPURenderer / native Metal",
+  "standalone": {
+    "date": "2026-09-29T15:11:40.905Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "library",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 93.7 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 40.7 万三角面 · 26 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 12.2 万三角面 · 30 FPS",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "library-lod0.png",
+          "library-lod1.png",
+          "library-lod2.png",
+          "library-photo.png",
+          "library-heights.png",
+          "library-entrance.png",
+          "library-roof.png",
+          "library-landscape.png"
+        ],
+        "title": "图书馆 · 建筑模型",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}",
+        "note": "A-88 · Blender 实景参考 · 四组裙楼、入口景观池与屋顶绿化",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "canteen",
+        "url": "http://127.0.0.1:4197/world.html?place=canteen&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":0}",
+        "note": "A-38-02 · Blender 红砖遮阳 · 屋顶设备、入口与树荫广场",
+        "screenshot": "campus-canteen.png"
+      },
+      {
+        "asset": "incubator",
+        "url": "http://127.0.0.1:4197/world.html?place=incubator&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2}",
+        "note": "A-59 · Blender 错层幕墙 · 屋顶构架、退台与入口绿化",
+        "screenshot": "campus-incubator.png"
+      },
+      {
+        "asset": "bupt",
+        "url": "http://127.0.0.1:4197/world.html?place=bupt&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":2,\"canteen\":2}",
+        "note": "A-67 · Blender 双学院楼 · 横向遮阳、阶梯花园与周边绿化",
+        "screenshot": "campus-bupt.png"
+      },
+      {
+        "asset": "uestc",
+        "url": "http://127.0.0.1:4197/world.html?place=uestc&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2}",
+        "note": "A-64 · Blender 双学院楼 · 阳台带、连廊与庭院绿化",
+        "screenshot": "campus-uestc.png"
+      },
+      {
+        "asset": "hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0,\"uestc\":1,\"bupt\":2,\"incubator\":0,\"canteen\":2}",
+        "note": "A-60 · Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
+        "screenshot": "campus-hall.png"
+      },
+      {
+        "asset": "activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1}",
+        "note": "A-34 · Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
+        "screenshot": "campus-activity.png"
+      },
+      {
+        "asset": "sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1}",
+        "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+        "screenshot": "campus-sports.png"
+      },
+      {
+        "asset": "library",
+        "wheel": -3000,
+        "lods": "{\"library\":0,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}"
+      },
+      {
+        "asset": "library",
+        "wheel": 2600,
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}"
+      },
+      {
+        "asset": "library",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}"
+      },
+      {
+        "asset": "library",
+        "wheel": 2200,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "screenshots": [
+    {
+      "file": "webgpu-v0.37.0-campus-activity.png",
+      "sha256": "cbc5b6a30e8dc4ca6f50ea5fda6750d6d604e6448281aa53ee8105ccd270eaeb"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-bupt.png",
+      "sha256": "86bb4498ea96431913b76bec4aeda9c63ef2e3f3f6452e07b5129a4c1eb849be"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-canteen.png",
+      "sha256": "bca09c90e431362595690b16314c07c0946cb581b0d74d4ab069bf589e8baa90"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-hall.png",
+      "sha256": "3750cc4f3518e7cb48207ab958f6c62a4d721d01cbf1943440dc9b8d037abebe"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-incubator.png",
+      "sha256": "2bd3516442052a7f96857c6d5cb550766414fafc4be17ebd4d1782f0d9bd432a"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-library.png",
+      "sha256": "a4ba95e92c8847578afc965b611759397bd2d609426bcb5409f072e302407714"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-sports.png",
+      "sha256": "e9c669276632395a4b8b850c064a0e670c25f371b24044122d49c98ee89240ec"
+    },
+    {
+      "file": "webgpu-v0.37.0-campus-uestc.png",
+      "sha256": "2bd43d9d5ee147f5f74aaf216da6236e4a5859a1de9d8b6b1c6382ca0be86711"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-entrance.png",
+      "sha256": "ce846a038f0537fe19636814ed5825651bd5554320dae6d2df16b19587fcc7b0"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-heights.png",
+      "sha256": "946a4a7136812f950b14ef45e47d3ee4e69b45d7c8aadc34546926ea8543dcfe"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-landscape.png",
+      "sha256": "d0946aa137c33fc150551afa4e6cb486cd49f6d72dce4824c35b0709df7ba2ec"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-lod0.png",
+      "sha256": "0d4bf3d2f92ad783c1793f0aa54166039b8846b5647a014e07a61bc4c12177a3"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-lod1.png",
+      "sha256": "4b5f980dadc292069f941fd69dfbf555c132a98e2e2dced10804e965f543381c"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-lod2.png",
+      "sha256": "36940dcd998674afff66eba2377aa1c8941cc219289b403a0d27a688634b0008"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-photo.png",
+      "sha256": "32dcec0cd28e1fdaa41872aae310b452012d7d15bf7ed07bcfcba97ebb371c5f"
+    },
+    {
+      "file": "webgpu-v0.37.0-library-roof.png",
+      "sha256": "30d5ace4d07e0f57c68a5d25d673fc4d66c02c7fea2b620fd20a47b62b5a114a"
+    }
+  ],
+  "scope": "Library three LODs and five views; eight authored campus sites; library automatic LOD 0/1/2; no page errors or failed requests",
+  "limits": [
+    "Desktop Chrome/Apple Metal only; no mobile performance claim",
+    "Outdoor pool-to-entrance forecourt routes separately checked; complete interior and roof access not claimed"
+  ]
+}

@@ -45,7 +45,7 @@ export const detailStatus: Record<string, string> = {
   uestc: "Blender 双学院楼 · 阳台带、连廊与庭院绿化",
   bupt: "Blender 双学院楼 · 横向遮阳、阶梯花园与周边绿化",
   cuc: "规划图轮廓 · 简化立面",
-  library: "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
+  library: "Blender 实景参考 · 四组裙楼、入口景观池与屋顶绿化",
   sports: "Blender 实建图参考 · 双馆、附馆与周边绿化",
   activity: "Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
   hall: "Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",

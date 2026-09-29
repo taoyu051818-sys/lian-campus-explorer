@@ -259,7 +259,10 @@ export function addTeachingAccess(geo: any) {
   // Arrive at the road end of the new stadium-side approach.
   if (candidate)
     geo.spawns.find((s: any) => s.id === "teaching")!.point = candidate;
-  geo.exteriorAccessAreas = stairs.map((s) => ({ footprint: s.footprint }));
+  geo.exteriorAccessAreas = [
+    ...(geo.exteriorAccessAreas || []),
+    ...stairs.map((s) => ({ footprint: s.footprint })),
+  ];
   geo.teachingAccess = {
     slabs,
     ramps,
