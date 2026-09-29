@@ -572,6 +572,50 @@ try {
       );
     }
   }
+  {
+    const model = JSON.parse(
+      await fs.readFile(
+        new URL("../public/models/library/library.json", import.meta.url),
+      ),
+    );
+    const reg = manifest.libraryAsset;
+    for (const local of model.walkRoutes) {
+      const route = local.points.map(([x, z, y]) => [
+        reg.anchor[0] + Math.cos(reg.yaw) * x + Math.sin(reg.yaw) * z,
+        reg.anchor[1] - Math.sin(reg.yaw) * x + Math.cos(reg.yaw) * z,
+        y + reg.base,
+      ]);
+      player.teleport(route[0][0], route[0][2] + 1.05, route[0][1]);
+      for (let i = 0; i < 90; i++) player.step({});
+      for (const points of [route, [...route].reverse()])
+        for (const [x, z, y] of points) {
+          let reached = false;
+          for (let i = 0; i < 2400; i++) {
+            const p = player.position,
+              dx = x - p.x,
+              dz = z - p.z,
+              d = Math.hypot(dx, dz);
+            if (d < 0.16) {
+              reached = true;
+              break;
+            }
+            const speed = Math.min(2.5, d * 20);
+            player.step({ x: (dx / d) * speed, z: (dz / d) * speed });
+          }
+          assert.ok(
+            reached,
+            `library ${local.name} blocked ${JSON.stringify(player.position)}`,
+          );
+          assert.ok(
+            Math.abs(player.position.y - y - 0.9) < 0.4,
+            "library landscape approach elevation mismatch",
+          );
+        }
+      console.log(
+        `PASS: library ${local.name}, continuous pond approach / entrance / return.`,
+      );
+    }
+  }
 } finally {
   player.dispose();
 }

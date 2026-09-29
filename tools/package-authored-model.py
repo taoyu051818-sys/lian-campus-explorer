@@ -30,7 +30,7 @@ for source, suffix in [(source_dir/f'{asset}.blend', 'Blender源文件.blend'), 
 source_zip = out/f'{name}-v{version}-建筑与绿化源文件包.zip'
 with zipfile.ZipFile(source_zip, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as z:
     for file in sorted(source_dir.iterdir()):
-        if file.suffix in ['.py', '.json', '.md', '.blend']:
+        if file.suffix in ['.py', '.json', '.md', '.blend'] or file.name == 'requirements.txt':
             z.write(file, str(file.relative_to(root)))
     for file in sorted((root/'authoring/common').glob('*.py')):
         z.write(file, str(file.relative_to(root)))

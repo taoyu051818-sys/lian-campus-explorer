@@ -6,11 +6,14 @@ import bpy, bmesh, json, math, random, sys, os
 from pathlib import Path
 from mathutils import Vector
 from mathutils.geometry import tessellate_polygon
+sys.path.insert(0,str(Path(__file__).parent))
+from landscape import ground as build_landscape, roof as build_roof_landscape
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'public/models/library'
 OUT.mkdir(parents=True,exist_ok=True)
 DESIGN = json.loads((Path(__file__).parent / 'design.json').read_text())
+LANDSCAPE = json.loads((Path(__file__).parent / 'landscape.json').read_text())
 for petal in DESIGN['petals']:
     levels=petal['floorLevels']
     assert len(levels)==petal['floors']+1 and levels[0]==0
@@ -55,6 +58,10 @@ mat('Library / roof gravel',(.21,.24,.23),.96,0,'stone')
 mat('Library / planted roof',(.12,.19,.072),.96,0,'foliage')
 mat('Library / bronze lettering',(.34,.23,.09),.3,.8,'metal')
 mat('Library / interior recess',(.016,.025,.031),.92,0,'paint')
+
+for name,color,rough,metal,family in [('landscape bark',(.26,.20,.13),.97,0,'bark'),('leaf shadow',(.05,.17,.028),.94,0,'foliage'),('leaf light',(.18,.31,.05),.93,0,'foliage'),('landscape lawn',(.21,.30,.07),.99,0,'foliage'),('burgundy shrubs',(.16,.055,.045),.96,0,'foliage'),('basin stone',(.095,.105,.10),.96,0,'stone'),('pool water',(.025,.062,.048),.16,.12,'glass'),('roof timber',(.12,.071,.047),.94,0,'wood')]:
+    mat('Library / '+name,color,rough,metal,family)
+for name in ['leaf shadow','leaf light']:MATS['Library / '+name].use_backface_culling=False
 
 # Bake a repeatable screen colour tile for the far LOD. Near/mid screens are geometry.
 size=256
@@ -218,6 +225,7 @@ def wall(part,poly,z0,z1,tile=3.0):
         arclen+=length
 
 MANIFEST={'schema':1,'asset':'library','authoring':'Blender 4.5 LTS','anchor':DESIGN['campusAnchor'],'yaw':DESIGN['campusYaw'],'lods':[],'collisionVolumes':[],'facadeRevision':DESIGN['version'],'roofLevels':[],'photoObservations':DESIGN['photoObservations'],'photoCamera':DESIGN['photoCamera']}
+MANIFEST.update(name='图书馆',base=LANDSCAPE['base'],landscape={k:v for k,v in LANDSCAPE.items() if k!='pavingMesh'},canopyBounds=[],roofPlanting=[],walkRoutes=LANDSCAPE['walkRoutes'],review={'groundHeight':LANDSCAPE['groundHeight']})
 ROOTS=[]
 for lod in range(3):
     coll=bpy.data.collections.new(f'Library LOD{lod}');scene.collection.children.link(coll)
@@ -337,7 +345,7 @@ for lod in range(3):
         def lip(i):return crown[i]
         band(white,roofpoly,roofY,facade['solidBandHeight'],facade['solidBandProjection'])
         roofdeck=inset(roofpoly,.48)
-        cap(pmat(sec+' lower terrace','roof gravel'),roofdeck,roofY+.05)
+        cap(pmat(sec+' lower terrace','roof timber'),roofdeck,roofY+.05)
         upper=petal['upperTerraceHeight']
         if upper:
             terrace,_=profile_curve(petal['upperTerraceOutline'],n=[64,32,16][lod])
@@ -396,18 +404,7 @@ for lod in range(3):
                         roof_beam(a,b,.075)
         if lod==0:
             MANIFEST['roofLevels'].append({'name':petal['name'],'floorLevels':levels,'deck':roofY,'upperTerrace':upper,'crownMin':min(referenceHeights),'crownMax':max(referenceHeights),'crownOutline':[[*p,h] for p,h in zip(reference,referenceHeights)],'center':[cx,cy]})
-        planter=pmat(sec+' roof','white concrete'); green=pmat(sec+' roof','planted roof')
-        if petal['roofFinish']=='garden':
-            deck=upper if upper else roofY
-            planting=terrace if upper else roofdeck
-            pc=[sum(p[q] for p in planting)/len(planting) for q in [0,1]]
-            for q in range(5 if lod<2 else 3):
-                angle=q*2.4;px=pc[0]+math.cos(angle)*5;py=pc[1]+math.sin(angle)*4
-                ring=[(px+1.45*math.cos(i*math.tau/20),py+1.45*math.sin(i*math.tau/20)) for i in range(20)]
-                strip(planter,ring,inset(ring,.18),deck+.10,deck+.55)
-                cap(green,inset(ring,.2),deck+.5)
-            roofaccess=outline(pc[0]+5,pc[1]+2,6,3.5,petal['angle'],24)
-            wall(glass,roofaccess,deck+.12,deck+1.15);cap(aluminium,roofaccess,deck+1.22)
+        build_roof_landscape(pmat,lod,petal,profile_curve(petal["roofOutline"],n=160)[0],profile_curve(petal["upperTerraceOutline"],n=64)[0] if upper else None,roofY,upper,MANIFEST,cap,strip,inset)
         if lod==0:
             footprint,_=profile_curve(petal['roofOutline'],n=64)
             MANIFEST['collisionVolumes'].append({'name':'library '+petal['name'],'footprint':inset(footprint,-(floors-1)*.68),'height':roofY+.12,'base':0})
@@ -497,6 +494,7 @@ for lod in range(3):
             # Ship vector outlines, without embedding or depending on a system font.
             bpy.ops.object.select_all(action='DESELECT');obj.select_set(True)
             bpy.context.view_layer.objects.active=obj;bpy.ops.object.convert(target='MESH')
+    build_landscape(pmat,lod,LANDSCAPE,MANIFEST,cap,strip,inset)
     objects=[p.finish(parent) for p in buckets.values()];objects=[o for o in objects if o]
     # Export this LOD only. Other source collections stay editable in the blend.
     bpy.ops.object.select_all(action='DESELECT')
@@ -508,6 +506,14 @@ for lod in range(3):
     MANIFEST['lods'].append({'file':file.name,'distance':[0,240,650][lod],'triangles':tris,'meshObjects':len(objects),'bytes':file.stat().st_size})
     coll.hide_render=lod!=0
     for o in coll.objects:o.hide_set(lod!=0)
+# Studio ground is excluded from the three exported GLBs.
+preview=bpy.data.collections.new('Preview only');scene.collection.children.link(preview)
+mat('Library / studio ground',(.36,.42,.32),.97,0,'terrain')
+floor=Part('Preview ground','Library / studio ground',preview)
+terrain=LANDSCAPE['terrain'];vs=terrain['position'];idx=terrain['index']
+for i in range(0,len(idx),3):
+    face=[(vs[j*3],vs[j*3+2],vs[j*3+1]) for j in idx[i:i+3]];floor.face(list(reversed(face)))
+root=bpy.data.objects.new('Preview only root',None);preview.objects.link(root);floor.finish(root)
 # Studio lighting and cameras are saved for editing; they are excluded from GLBs.
 world=bpy.data.worlds.new('Library studio daylight');scene.world=world;world.use_nodes=True
 world.node_tree.nodes['Background'].inputs[0].default_value=(.28,.36,.45,1)
@@ -524,6 +530,8 @@ scene.render.resolution_x=1500;scene.render.resolution_y=853;scene.render.resolu
 scene.view_settings.view_transform='AgX'
 scene['sourceNotes']=json.dumps(DESIGN['evidence'],ensure_ascii=False)
 scene['referenceURLs']='\n'.join(x['url'] for x in DESIGN['sources'])
+for font in list(bpy.data.fonts):
+    if font.filepath:bpy.data.fonts.remove(font,do_unlink=True)
 bpy.ops.wm.save_as_mainfile(filepath=str(BLEND),compress=True)
 MANIFEST['evidence']=DESIGN['evidence'];MANIFEST['sources']=DESIGN['sources']
 (OUT/'library.json').write_text(json.dumps(MANIFEST,ensure_ascii=False,indent=2)+'\n')
@@ -534,6 +542,7 @@ if '--render' in sys.argv:
         ('roof-heights',(-25,-185,165),(-25,-21,15),35),
         ('entrance',(-4,-124,8),(-4,-66,10),25),
         ('tower-facade',(-73,-75,22),(-4,19,36),57),
+        ('landscape',(111,-143,43),(14,-94,4),36),
     ]:
         cam.location=xyz(location);cam.rotation_euler=(Vector(xyz(aim))-cam.location).to_track_quat('-Z','Y').to_euler();camdata.lens=lens
         scene.render.filepath=str(BLEND.with_name(name+'.png'))

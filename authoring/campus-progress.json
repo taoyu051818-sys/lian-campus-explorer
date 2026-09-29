@@ -7,7 +7,7 @@
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29: normal Chrome rendered the public tour; UESTC 27335715, BUPT 27335716 and canteen 27335706 visually reviewed. Other scenes remain to be reviewed building by building.",
+  "referenceTourStatus": "2026-09-29: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 and entrance 27310152. Remaining scenes still require individual review.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -373,16 +373,16 @@
       "id": "library",
       "name": "图书馆",
       "priority": 8,
-      "status": "queued",
-      "existingExterior": "Blender 实景参考外景 · 四组裙楼／19层塔楼 · 尺寸估算",
-      "source": null,
-      "evidence": "See 建筑细化与图纸来源.md and existing site-specific authoring data.",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 19层塔楼＋四组低翼、分区幕墙、屋顶花园、入口景观池与周边绿化",
+      "source": "https://www.720yun.com/vr/5dejtgefzu6",
+      "evidence": "本轮实看27335703图书馆外观及27310152图书馆大门多角度全景，保留用户照片校正的塔楼和四组裙楼。楼高、园林布置及池体尺寸仍为照片估算；地面入口与正面航拍可能为不同立面，不强行拟合同一机位。",
       "units": [
         {
-          "name": "图书馆",
-          "kind": "site-needs-unit-audit",
-          "model": "photo-refined",
-          "landscape": "queued"
+          "name": "图书馆 · 19层塔楼与四组低翼",
+          "kind": "library-complex",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -392,11 +392,28 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
+      "nextAction": "按 nextSite 继续综合体育场；图书馆保留测绘配准、近景种植与背面入口补证任务。",
       "completedChecks": [
-        "v0.32.0: three LODs and photo view checked in native Metal WebGPU; campus placement checked; landscape still queued"
+        "Three Meshopt LODs decoded; glTF validator 0 errors / 0 warnings",
+        "Original photo silhouette, roof levels and facade glass/screen zones regression",
+        "Blender source reopened; five Cycles views inspected; no external fonts/images",
+        "10461 plant clearance samples and 19780 paving/terrain samples",
+        "Pool, approach paving and roof-soil raycasts in all three LODs",
+        "Two continuous pool approaches out and back; 33 destinations and earlier routes regression",
+        "TypeScript / Vite / materials",
+        "Native Metal WebGPU: three LODs, five views, eight campus assets and library automatic LOD 0/1/2"
       ],
-      "runtimeVerification": "验证记录/webgpu-v0.32.0.json"
+      "runtimeVerification": "验证记录/webgpu-v0.37.0.json",
+      "version": "0.37.0",
+      "verification": "验证记录/library-blender.json",
+      "authoring": "authoring/library/README.md",
+      "landscapeNotes": "65株乔木／棕榈、8处草坪、440组灌木，椭圆景观池、曲线浅色铺装、一段白色遮阴廊、屋顶圆形与条形花池及弧形座椅；种类、数量和位置为估算。",
+      "remainingReview": [
+        "Surveyed height, wing dimensions and exact campus registration",
+        "Reconcile front and side entrance elevations with a measured plan",
+        "Denser planting references, actual species and exact locations",
+        "Close-up material and landscape refinement"
+      ]
     },
     {
       "id": "stadium",
@@ -2039,5 +2056,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "library"
+  "nextSite": "stadium"
 }

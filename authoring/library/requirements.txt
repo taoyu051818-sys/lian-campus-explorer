@@ -1,0 +1,2 @@
+# Only required when rebuilding the terrain-aware landscape design.
+shapely==2.1.2

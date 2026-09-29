@@ -18,11 +18,17 @@ export function registerLibrary(geo: any) {
       name: hull.name,
       placeId: "library",
       footprint: hull.footprint.map(libraryWorldPoint),
-      height: hull.height + 2,
-      fixedBase: base - 2,
+      height: hull.height + (hull.foundationDepth ?? 2),
+      fixedBase: base + hull.base - (hull.foundationDepth ?? 2),
       traced: false,
       kind: "library-blender",
     });
   }
+  geo.exteriorAccessAreas ??= [];
+  for (const patch of [...library.landscape.beds, ...library.landscape.paths])
+    geo.exteriorAccessAreas.push({
+      placeId: "library",
+      footprint: patch.footprint.map(libraryWorldPoint),
+    });
   geo.libraryAsset = { base, anchor: library.anchor, yaw: library.yaw };
 }

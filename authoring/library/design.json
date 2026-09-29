@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "units": "metres",
   "campusAnchor": [
     547.3684210526316,
@@ -702,7 +702,8 @@
       "podium uses projecting solid cream ribbons, recessed glass slots and partial lattice panels",
       "recessed curved glazed entrance with solid sign fascia and glass door canopy",
       "low garden wing includes continuous clear glazing at its base",
-      "reference photographs show one tower and four low wings: two white-roof entrance wings, a right garden wing and a rear garden wing"
+      "reference photographs show one tower and four low wings: two white-roof entrance wings, a right garden wing and a rear garden wing",
+      "Aerial scene shows an elliptical forecourt basin, curved white paths/canopies, palm lawn groves and distinct timber roof terraces with round/linear white planters"
     ],
     "estimated": [
       "all horizontal dimensions and floor heights",
@@ -711,7 +712,8 @@
       "campus registration against the existing schematic terrain",
       "entrance connector and skylight dimensions; position of the low garden wing inferred from aerial view",
       "angular extents of clear glazing and unphotographed rear facades",
-      "photo-fitted camera, footprint control points and roof crown elevations; all dimensions remain estimated"
+      "photo-fitted camera, footprint control points and roof crown elevations; all dimensions remain estimated",
+      "Pool size/depth, planted patch boundaries, species/counts, paths and shade canopy dimensions; different ground and aerial entrance views are not assumed to share one camera"
     ],
     "scope": "Photo-referenced exterior reconstruction; no interior or measured survey claim. Local +Z is toward the rear in glTF; source Blender uses Z-up."
   },
@@ -730,7 +732,7 @@
     },
     {
       "url": "https://www.720yun.com/vr/5dejtgefzu6",
-      "role": "Previously recorded campus panorama; not used as a survey"
+      "role": "Exterior aerial scene 27335703 and entrance scene 27310152 visually inspected in Chrome 2026-09-29"
     }
   ],
   "facade": {
