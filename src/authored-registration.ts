@@ -1,3 +1,4 @@
+import incubator from "../public/models/incubator/incubator.json";
 import bupt from "../public/models/bupt/bupt.json";
 import uestc from "../public/models/uestc/uestc.json";
 import sports from "../public/models/sports/sports.json";
@@ -9,7 +10,7 @@ import type { Point } from "./world-geometry";
 export function registerAuthoredSites(geo: any) {
   geo.authoredAssets = [];
   geo.authoredCollisionMeshes = [];
-  for (const asset of [sports, activity, hall, uestc, bupt]) {
+  for (const asset of [sports, activity, hall, uestc, bupt, incubator]) {
     const c = Math.cos(asset.yaw),
       s = Math.sin(asset.yaw);
     const point = (p: number[]): Point => [
