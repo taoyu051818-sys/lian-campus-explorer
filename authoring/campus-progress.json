@@ -7,7 +7,7 @@
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29: normal Chrome browser rendered the public tour; UESTC scene 27335715 and BUPT scene 27335716 visually reviewed after dismissing the introductory overlay. Other scenes remain to be reviewed building by building.",
+  "referenceTourStatus": "2026-09-29: normal Chrome rendered the public tour; UESTC 27335715, BUPT 27335716 and canteen 27335706 visually reviewed. Other scenes remain to be reviewed building by building.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -328,16 +328,16 @@
       "id": "canteen",
       "name": "8号食堂（原一号食堂）",
       "priority": 7,
-      "status": "queued",
-      "existingExterior": "现8号／原一号 · 航拍屋顶与入口外景",
-      "source": "https://www.openstreetmap.org/way/1223487854",
-      "evidence": "OSM geographic footprint converted to local metres without rescaling. A-38-02 placement is a candidate inferred from neighbouring sports centre and atlas land use, not a surveyed registration. Two floors, 11.2 m height, facade modules and rooftop equipment are photo-based estimates. Back facade is simplified. v0.26 user-confirmed aerial supports a dense dark roof panel array and a separate rear equipment zone; 191 model panels, four mechanical units and entrance canopy dimensions are visual estimates, not surveyed details.",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 红砖遮阳、白色侧框、屋顶设备与入口绿化",
+      "source": "https://www.720yun.com/vr/5dejtgefzu6",
+      "evidence": "已在普通Chrome检查27335706一号食堂实景；与用户确认的现8号食堂航拍对应。沿用米制OSM候选轮廓，修正前后朝向；11.2m高度、构件和景观位置仍估算。关联PDF为园区控规，不作为本栋实测层高。",
       "units": [
         {
-          "name": "8号食堂（原一号食堂）· 照片参考外景",
-          "kind": "canteen-photo",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "8号食堂（原一号食堂）· 两层主楼",
+          "kind": "canteen",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -347,8 +347,27 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "补充本栋实测高度与后立面照片；按 nextSite 继续图书馆周边绿化。",
+      "completedChecks": [
+        "Three Meshopt LODs decoded; glTF validator 0 errors / 0 warnings",
+        "Blender source reopened; four Cycles views inspected; no external fonts/images",
+        "1136 plant and 361 building-perimeter clearance samples",
+        "Collector tilt, roof/stair surface and white side-frame recess raycasts",
+        "Two entrance stairs continuously out and back",
+        "33 destinations and previous outdoor routes regression",
+        "TypeScript / Vite / materials",
+        "Native Metal WebGPU: three LODs, five detail views, eight campus sites and automatic LOD 0/1/2"
+      ],
+      "version": "0.36.0",
+      "verification": "验证记录/canteen-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.36.0.json",
+      "authoring": "authoring/canteen/README.md",
+      "landscapeNotes": "5处草坪种植岛、12株阔叶树／棕榈、431组低绿篱、两处入口台阶与停车分格铺地。植物品种、数量和位置为估算，部分因校园路网避让而偏移。",
+      "remainingReview": [
+        "Surveyed height and exact campus registration",
+        "Rear elevation and collector-system specification",
+        "Denser close-up planting references and exact species/locations"
+      ]
     },
     {
       "id": "library",
@@ -2020,5 +2039,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "canteen"
+  "nextSite": "library"
 }
