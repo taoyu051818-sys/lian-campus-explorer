@@ -184,8 +184,8 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
   const physicalMeshes: Mesh[] = [ground];
   const details = createDetails(scene, height, volume);
   for (const p of data.places) {
-    // A75/A79 crosses the stadium terrain transition; its coarse parcel overlay hid ground paths.
-    if (!p.polygon || p.id === "teaching") continue;
+    // Coarse parcel triangles bridge terrain transitions and can cover authored ground surfaces.
+    if (!p.polygon || p.id === "teaching" || p.id === "stadium") continue;
     const fp = p.polygon.map(toWorld);
     const m = MeshBuilder.CreatePolygon(
       "parcel " + p.id,
@@ -303,7 +303,8 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
   createSchoolGrounds(scene, geo);
   createForecourts(scene, geo);
   physicalMeshes.push(...createTransportSites(scene, geo).physical);
-  physicalMeshes.push(...details.stadium(data));
+  if (!geo.authoredAssets?.some((asset: any) => asset.id === "stadium"))
+    physicalMeshes.push(...details.stadium(data));
 
   return {
     scene,

@@ -1,3 +1,4 @@
+import stadium from "../public/models/stadium/stadium.json";
 import canteen from "../public/models/canteen/canteen.json";
 import incubator from "../public/models/incubator/incubator.json";
 import bupt from "../public/models/bupt/bupt.json";
@@ -19,6 +20,7 @@ export function registerAuthoredSites(geo: any) {
     bupt,
     incubator,
     canteen,
+    stadium,
   ]) {
     const c = Math.cos(asset.yaw),
       s = Math.sin(asset.yaw);

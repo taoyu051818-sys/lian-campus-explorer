@@ -50,7 +50,7 @@ export const detailStatus: Record<string, string> = {
   activity: "Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
   hall: "Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
   dorm3: "变更总平面 · 九座宿舍主体",
-  stadium: "全景参考跑道与看台 · 尺寸估算",
+  stadium: "Blender 实景参考 · 双层蓝白看台、折线观景平台与滨海绿化",
 };
 export function roundedTriangle(
   cx: number,

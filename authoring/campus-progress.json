@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "updated": "2026-09-29",
+  "updated": "2026-09-30",
   "goal": "逐栋精修全园建筑及对应周边绿化，接入 Three.js WebGPU",
   "automation": {
     "id": "automation",
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 and entrance 27310152. Remaining scenes still require individual review.",
+  "referenceTourStatus": "2026-09-29–30: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 / entrance 27310152, and stadium 27335713. Remaining scenes require individual review.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -419,16 +419,16 @@
       "id": "stadium",
       "name": "综合体育场",
       "priority": 9,
-      "status": "queued",
-      "existingExterior": "全景参考跑道与看台 · 尺寸估算",
-      "source": null,
-      "evidence": "See 建筑细化与图纸来源.md and existing site-specific authoring data.",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 双层蓝白看台、折线观景平台、贯通入口与滨海绿化",
+      "source": "https://www.720yun.com/vr/5dejtgefzu6",
+      "evidence": "实看 27335713 滨海体育场五个方位；三面双层看台、朝海长边开口、端部凹入平台和高架折线构架有照片依据。跑道模板、排数、尺寸和校园配准仍为估算，未取得实建测绘图。",
       "units": [
         {
-          "name": "综合体育场",
-          "kind": "site-needs-unit-audit",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "滨海体育场 · 跑道、三面看台与观景平台",
+          "kind": "stadium-complex",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -438,8 +438,28 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "按 nextSite 推进学生生活二区；保留体育场实测尺寸、准确排数和远端外立面补证。",
+      "completedChecks": [
+        "Three Meshopt LODs decoded; glTF validator 0 errors / 0 warnings",
+        "Blender source reopened; five Cycles views inspected; no external images/fonts",
+        "Track, turf, aisle steps, five open passages and folded frame raycasts in three LODs",
+        "3807 plant clearance samples; 2232 decoded pavement/terrain samples",
+        "Three aisle routes plus five entrance passages, continuous out and back",
+        "33 campus destination physics regression and previous building routes",
+        "TypeScript / Vite build; served GLB hashes match",
+        "Native Metal WebGPU: stadium and library three LODs / five views, nine campus sites and stadium automatic LOD 0/1/2"
+      ],
+      "version": "0.38.0",
+      "verification": "验证记录/stadium-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.38.0.json",
+      "authoring": "authoring/stadium/README.md",
+      "landscapeNotes": "47 株乔木／棕榈，47 处草坪种植岛，564 组低灌木和贴地外围铺装；品种、数量与位置为估算。",
+      "remainingReview": [
+        "Surveyed track and stand dimensions / exact seat rows and capacity",
+        "Exact campus registration and north-facing elevations",
+        "Detailed service-room exterior and complete elevated platform access",
+        "Denser landscape references and actual plant species"
+      ]
     },
     {
       "id": "dorm52",
@@ -2056,5 +2076,5 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "stadium"
+  "nextSite": "dorm52"
 }
