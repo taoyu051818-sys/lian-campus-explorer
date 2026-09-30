@@ -178,7 +178,6 @@ export function createEnvironment(renderer, scene, camera, campus) {
   function preset(name) {
     const p = PRESETS[name] || PRESETS.tropical;
     sunDirectionFromTime(p.hour, 18.4, 6, atmosphere.sunDir.value);
-    atmosphere.sunDir.value.z *= -1; // Campus authoring uses +Z for north.
     G.sunDir.value.copy(atmosphere.sunDir.value);
     clouds.coverage.value = p.cloud;
     atmosphere.mieScale.value = p.haze;

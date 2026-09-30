@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { gunzipSync } from "node:zlib";
-import { createPlayer } from "../src/webgpu/player.js";
+import { createPlayer } from "./physics-fixture.mjs";
 
 const manifest = JSON.parse(
   await fs.readFile(

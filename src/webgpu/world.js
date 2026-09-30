@@ -7,11 +7,18 @@ import { loadCampus } from "./campus.js";
 import { createPlayer } from "./player.js";
 import { createEnvironment } from "./environment.js";
 
+import {
+  mapToWorld,
+  worldToMap,
+  fromAuthoringPoint,
+  bearingTo,
+  heading,
+  movement,
+  RUNTIME_COORDINATES,
+} from "./coordinates.js";
+import { terrainGrid } from "./terrain-grid.js";
+
 const $ = (id) => document.getElementById(id);
-const toWorld = (p) => [
-  ((p[0] - 359) * 1000) / 190,
-  ((870 - p[1]) * 1000) / 190,
-];
 const nextFrame = () => new Promise(requestAnimationFrame);
 let toastTimer;
 function toast(message) {
@@ -49,7 +56,7 @@ async function boot() {
   controls.minDistance = 15;
   controls.maxDistance = 10000;
   controls.maxPolarAngle = Math.PI * 0.48;
-  controls.target.set(650, 0, 900);
+  controls.target.set(650, 0, -900);
   progress("正在下载校园建筑与碰撞模型…");
   const [campus, data, plans] = await Promise.all([
     loadCampus(progress),
@@ -61,21 +68,8 @@ async function boot() {
   const terrain = campus.colliders.find(
     (m) => m.name === "continuous terrain",
   ).position;
-  function height(x, z) {
-    const fx = THREE.MathUtils.clamp((x + 1840) / 20, 0, 259.999),
-      fz = THREE.MathUtils.clamp((z + 2100) / 20, 0, 299.999);
-    const i = Math.floor(fx),
-      j = Math.floor(fz),
-      u = fx - i,
-      v = fz - j;
-    const a = terrain[(j * 261 + i) * 3 + 1],
-      b = terrain[(j * 261 + i + 1) * 3 + 1];
-    const c = terrain[((j + 1) * 261 + i) * 3 + 1],
-      d = terrain[((j + 1) * 261 + i + 1) * 3 + 1];
-    return u + v <= 1
-      ? a + (b - a) * u + (c - a) * v
-      : d + (c - d) * (1 - u) + (b - d) * (1 - v);
-  }
+  const height = terrainGrid(terrain).heightAt;
+  canvas.dataset.coordinates = RUNTIME_COORDINATES;
   progress("正在编译体积云、FFT 海浪与光照…");
   await nextFrame();
   const environment = createEnvironment(renderer, scene, camera, campus);
@@ -133,9 +127,9 @@ async function boot() {
     select.add(new Option(`${p.name} · ${p.parcel}`, p.id));
   function targetPoint(id = selected) {
     const blocks = campus.meta.buildings.filter((b) => b.placeId === id);
-    const points = blocks.flatMap((b) => b.footprint);
+    const points = blocks.flatMap((b) => b.footprint.map(fromAuthoringPoint));
     if (!points.length) {
-      const p = toWorld(data.places.find((p) => p.id === id).point);
+      const p = mapToWorld(data.places.find((p) => p.id === id).point);
       return { x: p[0], z: p[1], y: height(...p) + 12, radius: 110 };
     }
     const xs = points.map((p) => p[0]),
@@ -173,10 +167,10 @@ async function boot() {
   function orient() {
     const t =
         selected === "teaching"
-          ? { x: campus.meta.teachingFoot[0], z: campus.meta.teachingFoot[1] }
+          ? { x: campus.meta.teachingFoot[0], z: -campus.meta.teachingFoot[1] }
           : targetPoint(),
       p = player.position;
-    yaw = Math.atan2(t.x - p.x, t.z - p.z);
+    yaw = bearingTo(t.x - p.x, t.z - p.z);
     pitch = 0.02;
   }
   function fitSelected() {
@@ -192,7 +186,7 @@ async function boot() {
     camera.position
       .copy(controls.target)
       .add(
-        new THREE.Vector3(-0.58, 0.72, -0.65)
+        new THREE.Vector3(-0.58, 0.72, 0.65)
           .normalize()
           .multiplyScalar(distance),
       );
@@ -201,7 +195,7 @@ async function boot() {
   function travel(id = selected) {
     selected = id;
     const s = campus.meta.spawns.find((s) => s.id === id);
-    player.teleport(s.point[0], s.y + 1.1, s.point[1]);
+    player.teleport(s.point[0], s.y + 1.1, -s.point[1]);
     keys.clear();
     jump = false;
     orient();
@@ -220,8 +214,8 @@ async function boot() {
     controls.enabled = mode === "orbit";
     if (mode === "orbit") {
       document.exitPointerLock?.();
-      controls.target.set(650, 0, 900);
-      camera.position.set(-1400, 3500, -2000);
+      controls.target.set(650, 0, -900);
+      camera.position.set(-1400, 3500, 2000);
       controls.update();
     }
     const url = new URL(location.href);
@@ -242,13 +236,25 @@ async function boot() {
   }
   function showTerrain() {
     setMode("orbit");
-    controls.target.set(750, 45, 700);
-    camera.position.set(-900, 1300, 2300);
+    controls.target.set(750, 45, -700);
+    camera.position.set(-900, 1300, -2300);
     controls.update();
     const url = new URL(location.href);
     url.searchParams.set("view", "terrain");
     history.replaceState(null, "", url);
   }
+  function showNorthUp() {
+    setMode("orbit");
+    controls.target.set(650, 0, -900);
+    // Approach straight down from geographic south so OrbitControls retains
+    // its regular Y-up orbit axis and north remains at the top of the screen.
+    camera.position.set(650, 4400, -899.99);
+    controls.update();
+    const url = new URL(location.href);
+    url.searchParams.set("view", "map");
+    history.replaceState(null, "", url);
+  }
+  $("map-overview").onclick = showNorthUp;
   $("terrain-overview").onclick = showTerrain;
   select.onchange = () => {
     selected = select.value;
@@ -347,7 +353,7 @@ async function boot() {
   });
   canvas.addEventListener("pointermove", (e) => {
     if (mode === "orbit" || !pointer || pointer.id !== e.pointerId) return;
-    yaw -= (e.clientX - pointer.x) * 0.004;
+    yaw += (e.clientX - pointer.x) * 0.004;
     pitch = THREE.MathUtils.clamp(
       pitch + (e.clientY - pointer.y) * 0.003,
       -1.1,
@@ -435,10 +441,7 @@ async function boot() {
     $("location").textContent =
       `${data.places.find((p) => p.id === selected).name}附近 · 已行走 ${Math.round(travelled)} m`;
     ctx.drawImage(mapBg, 0, 0);
-    const [mx, my] = mapP([
-      (cp.x * 190) / 1000 + 359,
-      870 - (cp.z * 190) / 1000,
-    ]);
+    const [mx, my] = mapP(worldToMap([cp.x, cp.z]));
     ctx.save();
     ctx.translate(mx, my);
     ctx.rotate(yaw);
@@ -510,10 +513,11 @@ async function boot() {
     fitSelected();
   }
   if (initialView === "terrain") showTerrain();
+  if (initialView === "map") showNorthUp();
   function updateCamera() {
     const cp = player.position;
     avatar.position.set(cp.x, cp.y - 0.9, cp.z);
-    avatar.rotation.y = yaw;
+    avatar.rotation.y = Math.PI - yaw;
     legs.forEach(
       (leg, i) =>
         (leg.rotation.x = Math.sin(travelled * 2.8 + i * Math.PI) * 0.4),
@@ -523,10 +527,11 @@ async function boot() {
       return;
     }
     const eye = new THREE.Vector3(cp.x, cp.y + 0.65, cp.z);
+    const [hx, hz] = heading(yaw);
     const look = new THREE.Vector3(
-      Math.sin(yaw) * Math.cos(pitch),
+      hx * Math.cos(pitch),
       -Math.sin(pitch),
-      Math.cos(yaw) * Math.cos(pitch),
+      hz * Math.cos(pitch),
     );
     if (mode === "first") {
       camera.position.copy(eye);
@@ -598,8 +603,7 @@ async function boot() {
               ? 7
               : 3.6;
           const delta = player.step({
-            x: (Math.sin(yaw) * f - Math.cos(yaw) * r) * speed,
-            z: (Math.cos(yaw) * f + Math.sin(yaw) * r) * speed,
+            ...movement(yaw, f * speed, r * speed),
             jump,
           });
           travelled += Math.hypot(delta.x, delta.z);
@@ -609,8 +613,8 @@ async function boot() {
             p.y < -2 ||
             p.x < -1810 ||
             p.x > 3330 ||
-            p.z < -2070 ||
-            p.z > 3870
+            p.z < -3870 ||
+            p.z > 2070
           )
             travel();
         }

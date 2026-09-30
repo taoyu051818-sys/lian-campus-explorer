@@ -1,4 +1,5 @@
 import * as THREE from "three/webgpu";
+import { AUTHORING_COORDINATES, reflectMesh } from "./coordinates.js";
 import { createCampusMaterialSystem } from "./materials.js";
 import { LAYERS } from "../vendor/tidewater/core/SceneRenderer.js";
 import { loadLibrary, loadAuthoredAsset } from "./library.js";
@@ -12,6 +13,8 @@ export async function loadCampus(progress) {
   if (!metaResponse.ok || !binaryResponse.ok)
     throw new Error("校园模型未生成，请先运行 npm run bake。");
   const meta = await metaResponse.json();
+  if (meta.coordinates && meta.coordinates !== AUTHORING_COORDINATES)
+    throw new Error("Unsupported campus authoring coordinates");
   const buffer = await new Response(
     binaryResponse.body.pipeThrough(new DecompressionStream("gzip")),
   ).arrayBuffer();
@@ -38,6 +41,11 @@ export async function loadCampus(progress) {
     geometry.setAttribute("position", attr(entry.position, 3));
     geometry.setAttribute("normal", attr(entry.normal, 3));
     geometry.setIndex(attr(entry.index, 1, true));
+    reflectMesh(
+      geometry.attributes.position.array,
+      geometry.attributes.normal.array,
+      geometry.index.array,
+    );
     if (entry.uv) geometry.setAttribute("uv", attr(entry.uv, 2));
     let mats = entry.materials.map((id) => materials[id]);
     if (entry.color) {

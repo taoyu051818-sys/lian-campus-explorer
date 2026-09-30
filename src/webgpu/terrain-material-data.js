@@ -13,26 +13,19 @@ import {
   uniform,
 } from "three/tsl";
 
+import { terrainGrid } from "./terrain-grid.js";
 import { computeShoreField } from "../vendor/tidewater/world/ShoreField.js";
 
 // Adapter from the campus's shared 20 m authoring grid to Tidewater's material
 // queries. Half-texel correction keeps the rendered shore on the collision grid.
 export function createTerrainMaterialData(positions) {
-  const width = 261,
-    height = 301,
-    step = 20;
-  const heights = new Float32Array(width * height);
-  for (let i = 0; i < heights.length; i++) heights[i] = positions[i * 3 + 1];
-  const at = (x, z) =>
-    heights[
-      Math.max(0, Math.min(height - 1, z)) * width +
-        Math.max(0, Math.min(width - 1, x))
-    ];
+  const grid = terrainGrid(positions);
+  const { width, height, step, heights, at, heightAt: heightCPU } = grid;
   const normals = new Uint16Array(width * height * 4);
   for (let z = 0; z < height; z++)
     for (let x = 0; x < width; x++) {
-      const dx = (at(x + 1, z) - at(x - 1, z)) / (step * 2),
-        dz = (at(x, z + 1) - at(x, z - 1)) / (step * 2);
+      const dx = (at(x + 1, z) - at(x - 1, z)) / (step[0] * 2),
+        dz = (at(x, z + 1) - at(x, z - 1)) / (step[1] * 2);
       const inv = 1 / Math.hypot(dx, 1, dz),
         i = (z * width + x) * 4;
       [-dx * inv, -dz * inv, 0, 1].forEach(
@@ -56,10 +49,9 @@ export function createTerrainMaterialData(positions) {
     THREE.RGBAFormat,
     THREE.HalfFloatType,
   );
-  const hNode = texture(heightTexture),
-    nNode = texture(normalTexture);
-  const origin = new THREE.Vector2(-1840, -2100),
-    size = new THREE.Vector2(5200, 6000);
+  const nNode = texture(normalTexture);
+  const origin = new THREE.Vector2(...grid.origin),
+    size = new THREE.Vector2(...grid.size);
   const uOrigin = uniform(origin),
     uSize = uniform(size);
   const uvOf = (p) => p.sub(uOrigin).div(uSize);
@@ -101,27 +93,18 @@ export function createTerrainMaterialData(positions) {
     type: "float",
     inputs: [{ name: "p", type: "vec2" }],
   });
-  function heightCPU(x, z) {
-    const fx = (x - origin.x) / step,
-      fz = (z - origin.y) / step;
-    if (fx < 0 || fx > width - 1 || fz < 0 || fz > height - 1) return -16.8;
-    const ix = Math.min(width - 2, Math.floor(fx)),
-      iz = Math.min(height - 2, Math.floor(fz)),
-      u = fx - ix,
-      v = fz - iz;
-    const a = at(ix, iz),
-      b = at(ix + 1, iz),
-      c = at(ix, iz + 1),
-      d = at(ix + 1, iz + 1);
-    return u + v <= 1
-      ? a + (b - a) * u + (c - a) * v
-      : d + (c - d) * (1 - u) + (b - d) * (1 - v);
-  }
-  // The upstream phase solver uses a square domain. Pad the rectangular campus
-  // grid without moving its coordinates; the sampler below has its own domain.
+  // The phase solver needs a positive square in runtime east/south coordinates.
+  const min = Math.min(
+    ...grid.origin,
+    ...grid.origin.map((v, i) => v + grid.size[i]),
+  );
+  const max = Math.max(
+    ...grid.origin,
+    ...grid.origin.map((v, i) => v + grid.size[i]),
+  );
   const field = computeShoreField(
-    { origin: -2100, size: 6000, heightAt: heightCPU },
-    { res: 256, swellDir: [0.8, -0.6], seaLevel: -0.8 },
+    { origin: min, size: max - min, heightAt: heightCPU },
+    { res: 320, swellDir: [0.8, 0.6], seaLevel: -0.8 },
   );
   const shoreTexture = new THREE.DataTexture(
     field.data,
