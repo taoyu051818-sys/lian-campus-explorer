@@ -19,7 +19,7 @@ export type RefinedBuilding = Building & {
   foundationBottom?: number;
 };
 export const partialDetailStatus: Record<string, string> = {
-  dorm52: "生活二区实景立面 · 六层宿舍／三层外廊 · A52待核",
+  dorm52: "Blender 生活二区 · 六层庭院、共享环廊与玻璃锥体 · A52待核",
   canteen: "Blender 红砖遮阳 · 屋顶设备、入口与树荫广场",
 };
 export const detailStatus: Record<string, string> = {

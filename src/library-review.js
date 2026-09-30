@@ -21,6 +21,7 @@ async function boot() {
         "incubator",
         "canteen",
         "stadium",
+        "dorm52",
       ]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
@@ -179,6 +180,7 @@ async function boot() {
       roof: "屋顶",
       front: "正面",
       entrance: "入口",
+      shared: "共享空间",
       stairs: "外楼梯",
       arcade: "首层通廊",
       facade: "幕墙与外廊",
