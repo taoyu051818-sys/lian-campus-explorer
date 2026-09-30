@@ -1,0 +1,76 @@
+{
+  "date": "2026-09-30",
+  "source": {
+    "url": "https://www.720yun.com/vr/5dejtgefzu6",
+    "scenes": [
+      27335352,
+      27335712
+    ],
+    "role": "Ground entrance and aerial panorama inspected 2026-09-30"
+  },
+  "selection": [
+    {
+      "label": "学生生活2区",
+      "scene": null,
+      "h": 0.15555555555555553,
+      "v": 0,
+      "fov": 111
+    },
+    {
+      "label": "生活区鸟瞰",
+      "scene": null,
+      "h": -41.84855555555567,
+      "v": 51.808,
+      "fov": 120
+    }
+  ],
+  "captures": [
+    {
+      "file": "tour-dorm52-east.png",
+      "sha256": "ef04c8416de1afc6530feb96a13257d48436e9838e8af3500d7a2eb38e267997"
+    },
+    {
+      "file": "tour-dorm52-overall.png",
+      "sha256": "78127126eb1fcc560e4cdc58d49ddc12d31662df36bb11514871fa67f774c41f"
+    },
+    {
+      "file": "tour-dorm52-south.png",
+      "sha256": "ad32b11214ffd4ad434989180b0bf41c2db0c054f765a09429252e4984d8907d"
+    },
+    {
+      "file": "tour-dorm52-west.png",
+      "sha256": "62f46f820d4bd38b8490f3a49cfc88723397875fa164e6d798a7c3da60dfa067"
+    },
+    {
+      "file": "tour-living-aerial-east.png",
+      "sha256": "4ff32ee65e871314c3b007cfdced2651560255648b5259ee7d708f16a4837f27"
+    },
+    {
+      "file": "tour-living-aerial-overall.png",
+      "sha256": "84097001ddb35405a9a745093113bce3c8de7b5afa7b560618dcc54fe1efa2a3"
+    },
+    {
+      "file": "tour-living-aerial-south.png",
+      "sha256": "b66bc4c9fd38146b9e02ff2619c54acc4c825257049a54b347b1e93e6bb040ea"
+    },
+    {
+      "file": "tour-living-aerial-west.png",
+      "sha256": "05965ea95701ac851da1c9aa8bbad71c1cba0f71418a1966f16fea061bca26d0"
+    }
+  ],
+  "observations": {
+    "confirmed": [
+      "Four courtyard groups surround a lower shared ring visible in aerial panorama",
+      "Six-storey white balcony grids, brown louvers, coloured two-storey frames, brick stair cores",
+      "Three gallery levels and an off-centre tapered glass pavilion",
+      "Trees, hedges, courtyard paving and perimeter palms"
+    ],
+    "estimated": [
+      "Building dimensions, bay counts, exact colours on hidden elevations and 3.6m floor heights",
+      "A52 cadastral correspondence and yaw remain candidate registration",
+      "Grading preserves v0.39 simulation levels, not measured elevations",
+      "Tour text states five dormitory buildings and one canteen; courtyard groups are not interpreted as official building numbers",
+      "Separate life-two canteen and unobserved interiors are not reconstructed in this asset"
+    ]
+  }
+}

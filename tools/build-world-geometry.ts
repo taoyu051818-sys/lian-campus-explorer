@@ -210,7 +210,13 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
   const details = createDetails(scene, height, volume);
   for (const p of data.places) {
     // Coarse parcel triangles bridge terrain transitions and can cover authored ground surfaces.
-    if (!p.polygon || p.id === "teaching" || p.id === "stadium") continue;
+    if (
+      !p.polygon ||
+      p.id === "teaching" ||
+      p.id === "stadium" ||
+      p.id === "dorm52"
+    )
+      continue;
     const fp = p.polygon.map(toWorld);
     const m = MeshBuilder.CreatePolygon(
       "parcel " + p.id,

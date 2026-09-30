@@ -1,3 +1,4 @@
+import dorm52 from "../public/models/dorm52/dorm52.json";
 import stadium from "../public/models/stadium/stadium.json";
 import canteen from "../public/models/canteen/canteen.json";
 import incubator from "../public/models/incubator/incubator.json";
@@ -21,6 +22,7 @@ export function registerAuthoredSites(geo: any) {
     incubator,
     canteen,
     stadium,
+    dorm52,
   ]) {
     const c = Math.cos(asset.yaw),
       s = Math.sin(asset.yaw);
@@ -28,7 +30,18 @@ export function registerAuthoredSites(geo: any) {
       asset.anchor[0] + c * p[0] + s * p[1],
       asset.anchor[1] - s * p[0] + c * p[1],
     ];
-    const base = geo.height(...asset.anchor) + 0.12;
+    const base =
+      "fixedTerrainBase" in asset
+        ? asset.fixedTerrainBase
+        : geo.height(...asset.anchor) + 0.12;
+    if (asset.asset === "dorm52") {
+      geo.walkways = geo.walkways.filter((p: any) => p.placeId !== "dorm52");
+      for (const p of asset.landscape.paths)
+        geo.exteriorAccessAreas = [
+          ...(geo.exteriorAccessAreas || []),
+          { placeId: asset.asset, footprint: p.footprint.map(point) },
+        ];
+    }
     geo.buildings = geo.buildings.filter((b: any) => b.placeId !== asset.asset);
     for (const hull of asset.collisionVolumes)
       geo.buildings.push({

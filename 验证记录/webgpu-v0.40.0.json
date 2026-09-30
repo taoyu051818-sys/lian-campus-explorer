@@ -1,0 +1,267 @@
+{
+  "version": "0.40.0",
+  "date": "2026-09-30T07:03:23.561323+00:00",
+  "status": "passed",
+  "review": {
+    "date": "2026-09-30T06:56:48.516Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "dorm52",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 58.6 万三角面 · 21 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 34.0 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 13.1 万三角面",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "dorm52-lod0.png",
+          "dorm52-lod1.png",
+          "dorm52-lod2.png",
+          "dorm52-front.png",
+          "dorm52-entrance.png",
+          "dorm52-roof.png",
+          "dorm52-landscape.png",
+          "dorm52-shared.png"
+        ],
+        "title": "学生生活二区 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "dorm52",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm52&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":1}",
+        "note": "A-52 · Blender 生活二区 · 六层庭院、共享环廊与玻璃锥体 · A52待核",
+        "screenshot": "campus-dorm52.png"
+      },
+      {
+        "asset": "dorm56",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":2}",
+        "note": "A-56 · 面积/道路对应推断 · 退台外观与院落步道",
+        "screenshot": "campus-dorm56.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":1,\"dorm52\":2}",
+        "note": "A-88 · Blender 实景参考 · 四组裙楼、入口景观池与屋顶绿化",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "stadium",
+        "url": "http://127.0.0.1:4197/world.html?place=stadium&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1,\"dorm52\":2}",
+        "note": "A-89 · Blender 实景参考 · 双层蓝白看台、折线观景平台与滨海绿化",
+        "screenshot": "campus-stadium.png"
+      },
+      {
+        "asset": "dorm52",
+        "wheel": -3000,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":0}"
+      },
+      {
+        "asset": "dorm52",
+        "wheel": 2600,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":0}"
+      },
+      {
+        "asset": "dorm52",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":1}"
+      },
+      {
+        "asset": "dorm52",
+        "wheel": 2200,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "gltfValidation": [
+    {
+      "file": "dorm52-lod0.glb",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/0"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "file": "dorm52-lod1.glb",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/0"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "file": "dorm52-lod2.glb",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/0"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      }
+    }
+  ],
+  "checks": [
+    "Three standalone LODs compile on native Apple Metal WebGPU",
+    "Five close views inspected; shared camera corrected to clear trees",
+    "Four campus views and automatic dorm52 LOD 0 / 1 / 2",
+    "Blender source reopened without external images/fonts; four Cycles views inspected",
+    "33 destination physics regression and previous building routes",
+    "Six dorm52 walking routes continuously out and back",
+    "Terrain, material, TypeScript and Vite checks passed"
+  ],
+  "limits": [
+    "Building dimensions, bay counts, exact colours on hidden elevations and 3.6m floor heights",
+    "A52 cadastral correspondence and yaw remain candidate registration",
+    "Grading preserves v0.39 simulation levels, not measured elevations",
+    "Tour text states five dormitory buildings and one canteen; courtyard groups are not interpreted as official building numbers",
+    "Separate life-two canteen and unobserved interiors are not reconstructed in this asset",
+    "Headless screenshots and display FPS are functional verification, not a hardware performance benchmark"
+  ],
+  "assets": [
+    {
+      "file": "dorm52-lod0.glb",
+      "sha256": "cc52a8568615c838dee79f9b7dfe81168a350aa0ac97cfdb6245786ca617c7f2",
+      "bytes": 5206508
+    },
+    {
+      "file": "dorm52-lod1.glb",
+      "sha256": "6bef1162eea3b73b8b3bb0cb6088d22c96032bd7e582c326312331b51a76316b",
+      "bytes": 3050172
+    },
+    {
+      "file": "dorm52-lod2.glb",
+      "sha256": "e3c6f12e56641c0d6b2c4f2d4a836cc6a0b54d19d7a0e07dae1d06e9437fd5f6",
+      "bytes": 1258028
+    }
+  ],
+  "campusMeshpackSHA256": "b8d50ea64376171c65d342cc643a29d9472677204ad5a91717a1f19d8676f37e",
+  "blenderSourceSHA256": "cf41dcaa8f4f061f75cd6549a1e34cbc39d4ba4c5d60ff3885a76ce4a16010b8",
+  "screenshots": [
+    {
+      "file": "campus-dorm52.png",
+      "sha256": "17e2bbadff5230a4fe5fb2045fc6c12ccfcba9b48e91da78fce51c8916eaff56"
+    },
+    {
+      "file": "campus-dorm56.png",
+      "sha256": "00a0beb0678962078ed04e7e922f5a852f1187f51605d808c6245cba029c788b"
+    },
+    {
+      "file": "campus-library.png",
+      "sha256": "ed5f3667736874910d22f78de8cf07db1e9aa8ce5e512de5314f2e4ff5b2aaf4"
+    },
+    {
+      "file": "campus-stadium.png",
+      "sha256": "0e9234f31abc38fe8c85a0d8ae6bb7f6d635bdc6d53833321cb1fdb00388e5c8"
+    },
+    {
+      "file": "dorm52-entrance.png",
+      "sha256": "ddb088f32fa5120c5bc3dccff5caefbf41b289ae258e547211f3e326931b2968"
+    },
+    {
+      "file": "dorm52-front.png",
+      "sha256": "197cecb3bba0ecd8699de2f8bac22570d653770ace3a26cdd52e494be89176ed"
+    },
+    {
+      "file": "dorm52-landscape.png",
+      "sha256": "201bc9a90538052c6d715bfe1172328c5defef3d894d12a1148e55e0985d1a6b"
+    },
+    {
+      "file": "dorm52-lod0.png",
+      "sha256": "1e8b5d64da3b053b1d534dd2ea151f9213afbca045d9e0031b72fc431d84548a"
+    },
+    {
+      "file": "dorm52-lod1.png",
+      "sha256": "d266de7b8020b24a42e13b381d18690570e5ff9452b2c68bece0059bb09baeee"
+    },
+    {
+      "file": "dorm52-lod2.png",
+      "sha256": "5050be80543be0b329e1a8d5121a12509a09d5e94a2c5f9ceaa1c599994477cb"
+    },
+    {
+      "file": "dorm52-roof.png",
+      "sha256": "5ba333839e4341e7993fd4170f975c8beb2cd3bdafb16ff4b0e0be7ca196e396"
+    },
+    {
+      "file": "dorm52-shared.png",
+      "sha256": "111d285e733d0f69eb93e0ba301727ada6412904f8d2a80438b772b8641a85b1"
+    },
+    {
+      "file": "overview.png",
+      "sha256": "b842402236d7a66ed08c181b9416a05fd427e82aad681130e5154ce629737842"
+    }
+  ]
+}

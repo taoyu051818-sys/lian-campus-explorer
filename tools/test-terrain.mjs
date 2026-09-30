@@ -11,7 +11,10 @@ const server = await createServer({
   server: { middlewareMode: true },
   appType: "custom",
 });
-const report = { version: "0.39.0", date: new Date().toISOString() };
+const report = {
+  version: (await json("package.json")).version,
+  date: new Date().toISOString(),
+};
 try {
   const { geometry, toWorld } = await server.ssrLoadModule(
     "/src/world-geometry.ts",
@@ -245,7 +248,7 @@ try {
   };
   console.log(JSON.stringify(report, null, 2));
   await fs.writeFile(
-    new URL("../验证记录/terrain-v0.39.0.json", import.meta.url),
+    new URL(`../验证记录/terrain-v${report.version}.json`, import.meta.url),
     JSON.stringify(report, null, 2) + "\n",
   );
   assert.ok(!steep.length, "road grade exceeds 8%");

@@ -7,7 +7,7 @@
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29–30: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 / entrance 27310152, and stadium 27335713. Remaining scenes require individual review.",
+  "referenceTourStatus": "2026-09-29–30: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 / entrance 27310152, and stadium 27335713. Remaining scenes require individual review. 2026-09-30: student living two 27335352 and living-area aerial 27335712 visually inspected in four directions each.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -465,154 +465,46 @@
       "id": "dorm52",
       "name": "学生宿舍地块",
       "priority": 10,
-      "status": "queued",
-      "existingExterior": "生活二区实景立面 · 六层宿舍／三层外廊 · A52待核",
-      "source": "https://admission.blcu.edu.cn/en/2024/0819/c1643a2810/page.htm",
-      "evidence": "Four courtyards from published aerials, refined with official 2024-06-17 close photographs. Visible main dormitory facade has six floors; shared gallery photograph has three levels. Candidate masses updated to six floors/21.6m and three floors/10.8m using estimated 3.6m floor spacing. White balcony grid, privacy louvers, blue frames and brick stair accents are photo references; exact room bays, dimensions and A52 cadastral correspondence remain unverified. Existing ground paths retained; no interiors.",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender 六层庭院、三层共享环廊、偏心玻璃锥体与院落绿化",
+      "source": "https://www.720yun.com/vr/5dejtgefzu6",
+      "evidence": "2026-09-30实看学生生活2区地面四向和生活区鸟瞰四向，核对四组庭院围绕三层共享环廊、偏心玻璃锥体；官方近照支持阳台、金属外廊、百叶、彩色框和红砖墙。尺寸和A52对应仍待核，分组不作为正式楼号。",
       "units": [
         {
-          "name": "生活二区照片参考合院1外翼1",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "生活二区庭院组1（非正式楼号）",
+          "kind": "courtyard-group",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活二区照片参考合院1外翼2",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "生活二区庭院组2（非正式楼号）",
+          "kind": "courtyard-group",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活二区照片参考合院1外翼3",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "生活二区庭院组3（非正式楼号）",
+          "kind": "courtyard-group",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活二区照片参考合院1外翼4",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "生活二区庭院组4（非正式楼号）",
+          "kind": "courtyard-group",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活二区照片参考合院1外翼5",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "三层共享环廊",
+          "kind": "shared-ring",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活二区照片参考合院2外翼1",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院2外翼2",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院2外翼3",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院2外翼4",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院2外翼5",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院3外翼1",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院3外翼2",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院3外翼3",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院3外翼4",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院3外翼5",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院4外翼1",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院4外翼2",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院4外翼3",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院4外翼4",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活二区照片参考合院4外翼5",
-          "kind": "dorm52-photo",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "照片参考中央环形共享外廊1",
-          "kind": "dorm52-shared",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "照片参考中央环形共享外廊2",
-          "kind": "dorm52-shared",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "照片参考中央环形共享外廊3",
-          "kind": "dorm52-shared",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "照片参考中央环形共享外廊4",
-          "kind": "dorm52-shared",
-          "model": "queued",
-          "landscape": "queued"
+          "name": "偏心玻璃锥体",
+          "kind": "glazed-pavilion",
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -622,8 +514,32 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "继续生活一区；保留生活二区A52对应、尺寸及独立食堂待核事项。",
+      "completedChecks": [
+        "Three Meshopt LODs decoded; glTF validator 0 errors / 0 warnings",
+        "Four open-to-sky courtyards, six-storey roofs, three-level ring and tapered pavilion raycasts",
+        "Recessed windows remain visible in front of room walls",
+        "42 plant crowns, ground elevations and campus road clearance",
+        "Triangle-centroid pavement drape and upward-facing standalone terrain",
+        "Six walking routes continuously out and back",
+        "33 campus destinations and previous building routes",
+        "Terrain / material / TypeScript / Vite checks",
+        "Native Metal WebGPU: three LODs, five detail views, four campus sites, automatic LOD 0/1/2"
+      ],
+      "version": "0.40.0",
+      "verification": "验证记录/dorm52-blender.json",
+      "runtimeVerification": "验证记录/webgpu-v0.40.0.json",
+      "authoring": "authoring/dorm52/README.md",
+      "landscapeNotes": "42株树木/棕榈、42处种植岛、420组灌木和院落铺地；品种、数量和位置为照片参考估算。",
+      "remainingReview": [
+        "Building dimensions, bay counts, exact colours on hidden elevations and 3.6m floor heights",
+        "A52 cadastral correspondence and yaw remain candidate registration",
+        "Grading preserves v0.39 simulation levels, not measured elevations",
+        "Tour text states five dormitory buildings and one canteen; courtyard groups are not interpreted as official building numbers",
+        "Separate life-two canteen and unobserved interiors are not reconstructed in this asset",
+        "更精确的院落不对称轮廓、楼群尺寸及室外停车/球场位置",
+        "共享空间上层交通与生活二区独立食堂"
+      ]
     },
     {
       "id": "dorm56",
@@ -2076,7 +1992,7 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "dorm52",
+  "nextSite": "dorm56",
   "terrain": {
     "version": "0.39.0",
     "status": "runtime-verified-estimates-remain",
@@ -2092,9 +2008,9 @@
     "source": "authoring/terrain/README.md",
     "remaining": [
       "统一测绘配准与高程资料",
-      "结合生活二区精建核对山脚台地和挡土关系"
+      "生活二区接入保持v0.39平台；山脚挡土和道路实测高差仍待补证"
     ],
     "validation": "验证记录/terrain-v0.39.0.json"
   },
-  "nextAction": "生活二区继续精建，同时核对山脚道路、台地边坡与建筑关系；延续全园地形的共同高程和碰撞约束。"
+  "nextAction": "按官方实建图和生活区全景推进生活一区，继续将台地、入口和建筑高程作为共同约束。"
 }
