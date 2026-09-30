@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { Raycaster, Vector3 } from "three";
 import { inspectGLB } from "./inspect-glb.mjs";
-import { createPlayer } from "../src/webgpu/player.js";
+import { createPlayer } from "./physics-fixture.mjs";
 const read = async (p) => JSON.parse(await fs.readFile(p, "utf8"));
 const m = await read("public/models/stadium/stadium.json"),
   d = await read("authoring/stadium/design.json"),

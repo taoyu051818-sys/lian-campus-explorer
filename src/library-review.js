@@ -5,6 +5,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { createRenderer } from "./webgpu/renderer.js";
+import { fromAuthoringVector } from "./webgpu/coordinates.js";
+import { preserveAuthoredLettering } from "./webgpu/library.js";
 const $ = (id) => document.getElementById(id);
 const status = $("model-status");
 async function boot() {
@@ -83,7 +85,7 @@ async function boot() {
   room.dispose();
   pmrem.dispose();
   const sun = new THREE.DirectionalLight(0xfff2db, 3.6);
-  sun.position.set(-95, 150, -105);
+  sun.position.set(-95, 150, 105);
   sun.castShadow = true;
   Object.assign(sun.shadow.camera, {
     left: -155,
@@ -116,6 +118,7 @@ async function boot() {
     );
     ground.geometry.setIndex(t.index);
     ground.geometry.computeVertexNormals();
+    ground.scale.z = -1;
     ground.rotation.x = 0;
     ground.position.y = 0;
   }
@@ -206,8 +209,8 @@ async function boot() {
           ? 46
           : 42);
     camera.updateProjectionMatrix();
-    camera.position.fromArray(p);
-    controls.target.fromArray(t);
+    camera.position.fromArray(fromAuthoringVector(p));
+    controls.target.fromArray(fromAuthoringVector(t));
     controls.update();
     document
       .querySelectorAll("[data-view]")
@@ -229,6 +232,8 @@ async function boot() {
           o.receiveShadow = true;
         }
       });
+      preserveAuthoredLettering(gltf.scene);
+      gltf.scene.scale.z = -1;
       gltf.scene.visible = false;
       scene.add(gltf.scene);
       cache.set(index, gltf.scene);

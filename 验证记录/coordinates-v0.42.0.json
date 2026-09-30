@@ -1,0 +1,89 @@
+{
+  "version": "0.42.0",
+  "date": "2026-09-30T10:06:36.156Z",
+  "meshes": 5678,
+  "assets": [
+    {
+      "id": "library",
+      "lods": 3,
+      "vertices": 3739,
+      "lettering": 2
+    },
+    {
+      "id": "sports",
+      "lods": 3,
+      "vertices": 1377,
+      "lettering": 0
+    },
+    {
+      "id": "activity",
+      "lods": 3,
+      "vertices": 956,
+      "lettering": 0
+    },
+    {
+      "id": "hall",
+      "lods": 3,
+      "vertices": 1347,
+      "lettering": 0
+    },
+    {
+      "id": "uestc",
+      "lods": 3,
+      "vertices": 1386,
+      "lettering": 0
+    },
+    {
+      "id": "bupt",
+      "lods": 3,
+      "vertices": 1350,
+      "lettering": 0
+    },
+    {
+      "id": "incubator",
+      "lods": 3,
+      "vertices": 1374,
+      "lettering": 2
+    },
+    {
+      "id": "canteen",
+      "lods": 3,
+      "vertices": 1496,
+      "lettering": 2
+    },
+    {
+      "id": "stadium",
+      "lods": 3,
+      "vertices": 1163,
+      "lettering": 0
+    },
+    {
+      "id": "dorm52",
+      "lods": 3,
+      "vertices": 986,
+      "lettering": 0
+    },
+    {
+      "id": "dorm56",
+      "lods": 3,
+      "vertices": 839,
+      "lettering": 0
+    }
+  ],
+  "orientation": {
+    "landmarks": 33,
+    "signedTriangles": 5455,
+    "cardinalBearings": 4
+  },
+  "terrain": {
+    "triangles": 156000,
+    "origin": [
+      -1840,
+      2100
+    ],
+    "size": [
+      5200,
+      -6000
+    ]
+  }
+}

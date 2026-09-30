@@ -54,6 +54,8 @@ const positions = new Float32Array(
   mesh.position.offset,
   mesh.position.count,
 );
+// Validate the runtime basis used by water, not the old source basis.
+for (let i = 2; i < positions.length; i += 3) positions[i] *= -1;
 const terrain = createTerrainMaterialData(positions);
 // Every height-field vertex must remain on the original grid (shoreline registration).
 for (let i = 0; i < positions.length; i += 3)
@@ -80,7 +82,7 @@ for (let z = 0; z < 300; z += 13)
           : d + (c - d) * (1 - u) + (b - d) * (1 - v);
       assert.ok(
         Math.abs(
-          terrain.heightCPU(-1840 + (x + u) * 20, -2100 + (z + v) * 20) -
+          terrain.heightCPU(-1840 + (x + u) * 20, 2100 - (z + v) * 20) -
             expected,
         ) < 1e-5,
       );

@@ -1,4 +1,5 @@
 import * as THREE from "three/webgpu";
+import { placeAuthoredAsset } from "./coordinates.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { physical } from "../vendor/tidewater/materials/Materials.js";
@@ -51,15 +52,11 @@ export async function loadAuthoredAsset(registration, progress = () => {}) {
   const lod = new THREE.LOD();
   lod.name = `Blender ${id}`;
   lod.autoUpdate = false;
-  lod.position.set(
-    registration.anchor[0],
-    registration.base,
-    registration.anchor[1],
-  );
-  lod.rotation.y = registration.yaw;
+  placeAuthoredAsset(lod, registration);
   progress(`正在加载${registration.name}与周边环境…`);
   for (const level of manifest.lods) {
     const asset = await loader.loadAsync(`${base}${level.file}`);
+    preserveAuthoredLettering(asset.scene);
     const converted = new Map();
     asset.scene.traverse((mesh) => {
       if (!mesh.isMesh) return;
@@ -81,4 +78,28 @@ export async function loadAuthoredAsset(registration, progress = () => {}) {
   }
   lod.updateMatrixWorld(true);
   return { lod, manifest };
+}
+
+// Letter outlines were created in Blender's native text basis. Keep them readable
+// when reflecting the architectural source basis, about each label's own centre.
+export function preserveAuthoredLettering(root) {
+  root.traverse((mesh) => {
+    if (
+      !mesh.isMesh ||
+      mesh.userData.letteringConverted ||
+      !/^(Entrance sign (Library|图书馆)|Rooftop sign 黎安国际科创港|Student canteen facade lettering)(\.\d+)?$/.test(
+        mesh.userData.name || mesh.name,
+      )
+    )
+      return;
+    mesh.geometry.computeBoundingBox();
+    const center = mesh.geometry.boundingBox.getCenter(new THREE.Vector3());
+    mesh.position.add(
+      new THREE.Vector3(2 * center.x * mesh.scale.x, 0, 0).applyQuaternion(
+        mesh.quaternion,
+      ),
+    );
+    mesh.scale.x *= -1;
+    mesh.userData.letteringConverted = true;
+  });
 }

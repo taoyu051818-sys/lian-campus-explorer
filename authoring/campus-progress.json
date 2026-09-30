@@ -1889,5 +1889,17 @@
     ],
     "validation": "验证记录/terrain-v0.39.0.json"
   },
-  "nextAction": "按变更总平面和生活区全景推进生活三区，继续共同约束台地、入口及建筑高程。"
+  "nextAction": "按变更总平面和生活区全景推进生活三区，继续共同约束台地、入口及建筑高程。",
+  "coordinateCorrection": {
+    "version": "0.42.0",
+    "status": "runtime-verified",
+    "reason": "用户反馈全园呈镜像；Three.js迁移保留了Babylon +Z北的手性",
+    "sourceBasis": "east-up-north",
+    "runtimeBasis": "east-up-south",
+    "validation": [
+      "验证记录/coordinates-v0.42.0.json",
+      "验证记录/webgpu-v0.42.0.json"
+    ],
+    "remaining": "逐栋配准精度与真实地形资料仍按原清单继续核对"
+  }
 }

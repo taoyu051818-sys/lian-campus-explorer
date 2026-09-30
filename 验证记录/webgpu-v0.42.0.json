@@ -1,0 +1,653 @@
+{
+  "version": "0.42.0",
+  "date": "2026-09-30T11:16:10.692775+00:00",
+  "status": "passed",
+  "scope": "Global coordinate handedness, authored GLB placement, terrain/shore sampling, navigation and north-up projection",
+  "browser": {
+    "pages": [
+      {
+        "name": "north-up",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56&view=map",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      },
+      {
+        "name": "terrain",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56&view=terrain",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      },
+      {
+        "name": "campus-dorm56",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":1}"
+      },
+      {
+        "name": "campus-dorm52",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm52&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":1,\"dorm56\":0}"
+      },
+      {
+        "name": "campus-library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":1,\"dorm52\":2,\"dorm56\":1}"
+      },
+      {
+        "name": "campus-stadium",
+        "url": "http://127.0.0.1:4197/world.html?place=stadium&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1,\"dorm52\":2,\"dorm56\":1}"
+      },
+      {
+        "name": "campus-sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1,\"stadium\":1,\"dorm52\":1,\"dorm56\":1}"
+      },
+      {
+        "name": "campus-activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      },
+      {
+        "name": "campus-hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0,\"uestc\":1,\"bupt\":2,\"incubator\":0,\"canteen\":2,\"stadium\":2,\"dorm52\":1,\"dorm56\":1}"
+      },
+      {
+        "name": "campus-uestc",
+        "url": "http://127.0.0.1:4197/world.html?place=uestc&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":0,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      },
+      {
+        "name": "campus-bupt",
+        "url": "http://127.0.0.1:4197/world.html?place=bupt&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      },
+      {
+        "name": "campus-incubator",
+        "url": "http://127.0.0.1:4197/world.html?place=incubator&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":1}"
+      },
+      {
+        "name": "campus-canteen",
+        "url": "http://127.0.0.1:4197/world.html?place=canteen&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":0,\"stadium\":2,\"dorm52\":1,\"dorm56\":1}"
+      },
+      {
+        "name": "walk-dorm56",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1,\"dorm52\":1,\"dorm56\":0}"
+      },
+      {
+        "name": "third-dorm56",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1,\"dorm52\":1,\"dorm56\":0}"
+      },
+      {
+        "asset": "library",
+        "lod": 0
+      },
+      {
+        "asset": "library",
+        "lod": 1
+      },
+      {
+        "asset": "library",
+        "lod": 2
+      },
+      {
+        "asset": "library",
+        "view": "entrance"
+      },
+      {
+        "asset": "dorm56",
+        "lod": 0
+      },
+      {
+        "asset": "dorm56",
+        "lod": 1
+      },
+      {
+        "asset": "dorm56",
+        "lod": 2
+      },
+      {
+        "asset": "dorm56",
+        "view": "shared"
+      },
+      {
+        "asset": "stadium",
+        "lod": 0
+      },
+      {
+        "asset": "stadium",
+        "lod": 1
+      },
+      {
+        "asset": "stadium",
+        "lod": 2
+      },
+      {
+        "asset": "stadium",
+        "view": "front"
+      },
+      {
+        "asset": "incubator",
+        "lod": 0
+      },
+      {
+        "asset": "incubator",
+        "lod": 1
+      },
+      {
+        "asset": "incubator",
+        "lod": 2
+      },
+      {
+        "asset": "incubator",
+        "view": "roof"
+      },
+      {
+        "asset": "canteen",
+        "lod": 0
+      },
+      {
+        "asset": "canteen",
+        "lod": 1
+      },
+      {
+        "asset": "canteen",
+        "lod": 2
+      },
+      {
+        "asset": "canteen",
+        "view": "front"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "gpu": {
+      "status": "passed",
+      "samples": 1124,
+      "maxHeightError": 0.1093902587890625,
+      "adapter": "metal-3",
+      "coordinates": "east-up-south"
+    },
+    "northUp": [
+      {
+        "name": "电子科技大学",
+        "x": 655.006,
+        "y": 699.179
+      },
+      {
+        "name": "北京邮电大学",
+        "x": 592.245,
+        "y": 734.943
+      },
+      {
+        "name": "中国传媒大学",
+        "x": 697.142,
+        "y": 667.757
+      },
+      {
+        "name": "中央民族大学",
+        "x": 852.869,
+        "y": 521.939
+      },
+      {
+        "name": "北京语言大学",
+        "x": 947.49,
+        "y": 372.593
+      },
+      {
+        "name": "法务与知识产权中心",
+        "x": 791.106,
+        "y": 659.575
+      },
+      {
+        "name": "地质资源与材料中心",
+        "x": 961.126,
+        "y": 340.306
+      },
+      {
+        "name": "图书馆",
+        "x": 779.191,
+        "y": 533.094
+      },
+      {
+        "name": "综合体育场",
+        "x": 740.972,
+        "y": 568.963
+      },
+      {
+        "name": "综合体育中心",
+        "x": 921.533,
+        "y": 515.439
+      },
+      {
+        "name": "大学生活动中心",
+        "x": 931.11,
+        "y": 473.07
+      },
+      {
+        "name": "会堂",
+        "x": 761.315,
+        "y": 692.178
+      },
+      {
+        "name": "创新创业孵化中心",
+        "x": 725.154,
+        "y": 710.785
+      },
+      {
+        "name": "学生宿舍四区 / 五区",
+        "x": 758.83,
+        "y": 756.882
+      },
+      {
+        "name": "学生生活三区",
+        "x": 707.831,
+        "y": 789.54
+      },
+      {
+        "name": "学生宿舍地块",
+        "x": 868.339,
+        "y": 655.311
+      },
+      {
+        "name": "学生生活一区",
+        "x": 818.285,
+        "y": 704.49
+      },
+      {
+        "name": "学生宿舍地块",
+        "x": 633.869,
+        "y": 804.375
+      },
+      {
+        "name": "8号食堂（原一号食堂）",
+        "x": 904.366,
+        "y": 557.749
+      },
+      {
+        "name": "校区医院",
+        "x": 986.105,
+        "y": 413.921
+      },
+      {
+        "name": "综合服务中心规划项目",
+        "x": 961.963,
+        "y": 438.398
+      },
+      {
+        "name": "产教融合中心一期",
+        "x": 964.712,
+        "y": 454.896
+      },
+      {
+        "name": "接驳换乘停车场",
+        "x": 994.296,
+        "y": 411.881
+      },
+      {
+        "name": "公共服务车辆蓄车场",
+        "x": 925.965,
+        "y": 677.111
+      },
+      {
+        "name": "1号能源站",
+        "x": 998.877,
+        "y": 630.259
+      },
+      {
+        "name": "产教协同创新工坊",
+        "x": 637.782,
+        "y": 753.177
+      },
+      {
+        "name": "公共教学服务中心及配套",
+        "x": 557.008,
+        "y": 821.555
+      },
+      {
+        "name": "国际青年文化基地",
+        "x": 873.756,
+        "y": 727.676
+      },
+      {
+        "name": "精英外国语高中",
+        "x": 1053.62,
+        "y": 277.804
+      },
+      {
+        "name": "龙光国际社区",
+        "x": 1038.25,
+        "y": 135.785
+      },
+      {
+        "name": "大墩村及周边",
+        "x": 1053.66,
+        "y": 531.932
+      },
+      {
+        "name": "消防站",
+        "x": 905.862,
+        "y": 683.978
+      },
+      {
+        "name": "派出所",
+        "x": 979.148,
+        "y": 440.232
+      }
+    ],
+    "errors": [],
+    "failed": []
+  },
+  "renderedOrientation": {
+    "status": "passed",
+    "renderedLabels": 33,
+    "signedTriangles": 3600,
+    "axes": "east-right/north-up"
+  },
+  "coordinates": {
+    "version": "0.42.0",
+    "date": "2026-09-30T10:06:36.156Z",
+    "meshes": 5678,
+    "assets": [
+      {
+        "id": "library",
+        "lods": 3,
+        "vertices": 3739,
+        "lettering": 2
+      },
+      {
+        "id": "sports",
+        "lods": 3,
+        "vertices": 1377,
+        "lettering": 0
+      },
+      {
+        "id": "activity",
+        "lods": 3,
+        "vertices": 956,
+        "lettering": 0
+      },
+      {
+        "id": "hall",
+        "lods": 3,
+        "vertices": 1347,
+        "lettering": 0
+      },
+      {
+        "id": "uestc",
+        "lods": 3,
+        "vertices": 1386,
+        "lettering": 0
+      },
+      {
+        "id": "bupt",
+        "lods": 3,
+        "vertices": 1350,
+        "lettering": 0
+      },
+      {
+        "id": "incubator",
+        "lods": 3,
+        "vertices": 1374,
+        "lettering": 2
+      },
+      {
+        "id": "canteen",
+        "lods": 3,
+        "vertices": 1496,
+        "lettering": 2
+      },
+      {
+        "id": "stadium",
+        "lods": 3,
+        "vertices": 1163,
+        "lettering": 0
+      },
+      {
+        "id": "dorm52",
+        "lods": 3,
+        "vertices": 986,
+        "lettering": 0
+      },
+      {
+        "id": "dorm56",
+        "lods": 3,
+        "vertices": 839,
+        "lettering": 0
+      }
+    ],
+    "orientation": {
+      "landmarks": 33,
+      "signedTriangles": 5455,
+      "cardinalBearings": 4
+    },
+    "terrain": {
+      "triangles": 156000,
+      "origin": [
+        -1840,
+        2100
+      ],
+      "size": [
+        5200,
+        -6000
+      ]
+    }
+  },
+  "campusMeshpackSHA256": "bad709bc2c5a8189d671db2003480a6143fc51fbeab7e75768b035f73cd167cf",
+  "checks": {
+    "physics": "using deprecated parameters for the initialization function; pass a single object instead\nRuntime coordinate regression: 4731 reflected colliders\nPASS: 33 destinations settle, jump, land and walk; 4475 invisible access surfaces preserved; 4731 collision meshes; six continuous teaching stair/bridge route legs and sports curved stair ascent/descent.\nPASS: activity throughRoute, 5 waypoints each direction, no teleport between legs.\nPASS: activity stairRoute, 27 waypoints each direction, no teleport between legs.\nPASS: hall stair 0, 10 waypoints each direction, no teleport between legs.\nPASS: hall stair 1, 10 waypoints each direction, no teleport between legs.\nPASS: UESTC A east approach 0, continuous ascent / balcony landing / descent.\nPASS: UESTC A courtyard stair 1, continuous ascent / balcony landing / descent.\nPASS: UESTC A courtyard stair 3, continuous ascent / balcony landing / descent.\nPASS: UESTC B public stair 0, continuous ascent / balcony landing / descent.\nPASS: UESTC B public stair 2, continuous ascent / balcony landing / descent.\nPASS: UESTC bridge deck middle span, both directions; distinct bridge/ground elevations.\nPASS: UESTC bridge underpass, both directions; distinct bridge/ground elevations.\nPASS: BUPT A court access, continuous ascent / garden landing / descent.\nPASS: BUPT B upper terrace, continuous ascent / garden landing / descent.\nPASS: BUPT B middle terrace, continuous ascent / garden landing / descent.\nPASS: BUPT B entry flight 1, continuous ascent / garden landing / descent.\nPASS: BUPT B entry flight 2, continuous ascent / garden landing / descent.\nPASS: BUPT B entry flight 3, continuous ascent / garden landing / descent.\nPASS: BUPT full five-flight garden promenade, continuous ascent / garden landing / descent.\nPASS: incubator stilt entrance 1, continuous approach / open stilt bay / return.\nPASS: incubator stilt entrance 2, continuous approach / open stilt bay / return.\nPASS: canteen front entrance, continuous stair ascent / terrace / descent.\nPASS: canteen side entrance, continuous stair ascent / terrace / descent.\nPASS: library left pond approach, continuous pond approach / entrance / return.\nPASS: library right pond approach, continuous pond approach / entrance / return.\n",
+    "stadium": "WebSocket server error: Port 24678 is already in use\nusing deprecated parameters for the initialization function; pass a single object instead\nRuntime coordinate regression: 4731 reflected colliders\n{\n  \"status\": \"passed\",\n  \"trees\": 47,\n  \"shrubs\": 564,\n  \"representedSeats\": 17065,\n  \"plantSamples\": 3807,\n  \"bedPairs\": 1081,\n  \"surfaces\": [\n    {\n      \"lod\": \"stadium-lod0.glb\",\n      \"name\": \"natural_turf\",\n      \"height\": -0.046000000089401555\n    },\n    {\n      \"lod\": \"stadium-lod0.glb\",\n      \"name\": \"eight_lane_blue\",\n      \"height\": -0.057000000029792504\n    },\n    {\n      \"lod\": \"stadium-lod0.glb\",\n      \"name\": \"blue_track_runoff\",\n      \"height\": -0.06499999761580917\n    },\n    {\n      \"lod\": \"stadium-lod1.glb\",\n      \"name\": \"natural_turf\",\n      \"height\": -0.046000000089401555\n    },\n    {\n      \"lod\": \"stadium-lod1.glb\",\n      \"name\": \"eight_lane_blue\",\n      \"height\": -0.057000000029807235\n    },\n    {\n      \"lod\": \"stadium-lod1.glb\",\n      \"name\": \"blue_track_runoff\",\n      \"height\": -0.06499999761581925\n    },\n    {\n      \"lod\": \"stadium-lod2.glb\",\n      \"name\": \"natural_turf\",\n      \"height\": -0.046000000089401555\n    },\n    {\n      \"lod\": \"stadium-lod2.glb\",\n      \"name\": \"eight_lane_blue\",\n      \"height\": -0.057000000029807235\n    },\n    {\n      \"lod\": \"stadium-lod2.glb\",\n      \"name\": \"blue_track_runoff\",\n      \"height\": -0.06499999761580917\n    }\n  ],\n  \"pavingTerrainSamples\": 2232,\n  \"routes\": [\n    {\n      \"name\": \"aisle 8\",\n      \"waypoints\": 5,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"aisle 14\",\n      \"waypoints\": 5,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"aisle 19\",\n      \"waypoints\": 5,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"portal 4\",\n      \"waypoints\": 6,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"portal 10\",\n      \"waypoints\": 6,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"portal 13\",\n      \"waypoints\": 6,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"portal 16\",\n      \"waypoints\": 6,\n      \"outAndBack\": true\n    },\n    {\n      \"name\": \"portal 22\",\n      \"waypoints\": 6,\n      \"outAndBack\": true\n    }\n  ],\n  \"collisionVolumes\": 102,\n  \"collisionMeshes\": 3,\n  \"lods\": [\n    {\n      \"file\": \"stadium-lod0.glb\",\n      \"triangles\": 808492,\n      \"meshes\": 29,\n      \"bytes\": 7675328,\n      \"bounds\": [\n        [\n          -140.6894073486328,\n          -8.096538579318526,\n          -98.49115920037\n        ],\n        [\n          139.63755798339844,\n          29.933938158875613,\n          98.4914262291786\n        ]\n      ],\n      \"nodes\": [\n        {\n          \"name\": \"blue track runoff apron | runoff\",\n          \"bounds\": [\n            [\n              -90.86000061035156,\n              -0.06499999761581421,\n              -48.65905608418376\n            ],\n            [\n              90.86000061035156,\n              -0.06499999761581421,\n              48.65905608418376\n            ]\n          ],\n          \"triangles\": 190\n        },\n        {\n          \"name\": \"branching tree trunks | bark\",\n          \"bounds\": [\n            [\n              -138.87013244628906,\n              -6.398959871839807,\n              -96.69193800252347\n            ],\n            [\n              137.81723022460938,\n              10.548320528578088,\n              96.93095167439847\n            ]\n          ],\n          \"triangles\": 19916\n        },\n        {\n          \"name\": \"circulation concourses | pale paving\",\n          \"bounds\": [\n            [\n              -117.5,\n              -0.02350599342376114,\n              -73.07970993581478\n            ],\n            [\n              115.27393341064453,\n              10.16350595490426,\n              57.554155278832354\n            ]\n          ],\n          \"triangles\": 894\n        },\n        {\n          \"name\": \"connected planted lawns | lawn\",\n          \"bounds\": [\n            [\n              -140.62440490722656,\n              -8.065461990215589,\n              -98.42431328994957\n            ],\n            [\n              139.57276916503906,\n              0.22920211849432182,\n              98.42431328994957\n            ]\n          ],\n          \"triangles\": 1504\n        },\n        {\n          \"name\": \"continuous low hedges | hedge\",\n          \"bounds\": [\n            [\n              -140.1282196044922,\n              -7.745910250595245,\n              -97.72636077845468\n            ],\n            [\n              139.01571655273438,\n              1.028718316009674,\n              97.72636077845468\n            ]\n          ],\n          \"triangles\": 56400\n        },\n        {\n          \"name\": \"eight lane blue running track | track\",\n          \"bounds\": [\n            [\n              -88.45999908447266,\n              -0.05700000002980232,\n              -46.25879953344643\n            ],\n            [\n              88.45999908447266,\n              -0.05700000002980232,\n              46.25879953344643\n            ]\n          ],\n          \"triangles\": 384\n        },\n        {\n          \"name\": \"floodlight housings | lamp\",\n          \"bounds\": [\n            [\n              -72.31500244140625,\n              28.364088236883607,\n              -77.17061111199196\n            ],\n            [\n              72.31500244140625,\n              29.705911457940612,\n              57.17061111199196\n            ]\n          ],\n          \"triangles\": 720\n        },\n        {\n          \"name\": \"floodlight lenses | light strip\",\n          \"bounds\": [\n            [\n              -72.2699966430664,\n              28.410822808013087,\n              -76.83325833247187\n            ],\n            [\n              72.2699966430664,\n              29.65917688681113,\n              56.83326214716914\n            ]\n          ],\n          \"triangles\": 720\n        },\n        {\n          \"name\": \"folded elevated viewing platform | ivory metal\",\n          \"bounds\": [\n            [\n              -116.88999938964844,\n              -0.06456646137297639,\n              -77.64930542203605\n            ],\n            [\n              71.6500015258789,\n              22.289567379284506,\n              57.64930542203605\n            ]\n          ],\n          \"triangles\": 872\n        },\n        {\n          \"name\": \"folded platform dark deck treads | dark paving\",\n          \"bounds\": [\n            [\n              -116.49964903714103,\n              11.964625156391062,\n              -38\n            ],\n            [\n              -107.50035096285897,\n              22.165375911724173,\n              38\n            ]\n          ],\n          \"triangles\": 912\n        },\n        {\n          \"name\": \"goal net strands | white line\",\n          \"bounds\": [\n            [\n              -54.10449981689453,\n              -0.025414178075064964,\n              -25.500647960679956\n            ],\n            [\n              54.10449981689453,\n              2.375414177702536,\n              24.500647960679956\n            ]\n          ],\n          \"triangles\": 1872\n        },\n        {\n          \"name\": \"individual blue bucket seats | blue seats\",\n          \"bounds\": [\n            [\n              -111.70965576171875,\n              0.8141232669702738,\n              -71.61040751032606\n            ],\n            [\n              113.7162857055664,\n              10.775876349175814,\n              57.445204415843634\n            ]\n          ],\n          \"triangles\": 85024\n        },\n        {\n          \"name\": \"individual white bucket seats | white seats\",\n          \"bounds\": [\n            [\n              -108.97228240966797,\n              0.81474125991845,\n              -71.61074170176552\n            ],\n            [\n              113.81015014648438,\n              10.775258356227639,\n              57.44764432017372\n            ]\n          ],\n          \"triangles\": 51496\n        },\n        {\n          \"name\": \"layered leaf canopy | leaf light\",\n          \"bounds\": [\n            [\n              -139.60133361816406,\n              1.0247335917807723,\n              -97.58659955318473\n            ],\n            [\n              138.3795623779297,\n              10.534807276024708,\n              97.00935956295035\n            ]\n          ],\n          \"triangles\": 23740\n        },\n        {\n          \"name\": \"layered leaf canopy | leaf shadow\",\n          \"bounds\": [\n            [\n              -139.95413208007812,\n              3.219891393803501,\n              -97.61266122813278\n            ],\n            [\n              138.72598266601562,\n              8.697048103190518,\n              19.58488450999313\n            ]\n          ],\n          \"triangles\": 56700\n        },\n        {\n          \"name\": \"natural turf mowing strips | grass\",\n          \"bounds\": [\n            [\n              -52.5,\n              -0.04600000008940697,\n              -34.00017548142949\n            ],\n            [\n              45,\n              -0.04600000008940697,\n              34.00017548142949\n            ]\n          ],\n          \"triangles\": 14\n        },\n        {\n          \"name\": \"natural turf mowing strips | grass stripe\",\n          \"bounds\": [\n            [\n              -45,\n              -0.04600000008940697,\n              -34.00017548142949\n            ],\n            [\n              52.5,\n              -0.04600000008940697,\n              34.00017548142949\n            ]\n          ],\n          \"triangles\": 14\n        },\n        {\n          \"name\": \"open seaside perimeter fence mesh | silver metal\",\n          \"bounds\": [\n            [\n              -42.20000076293945,\n              0.12189228009558417,\n              49.98712118876829\n            ],\n            [\n              42.20000076293945,\n              1.9481077127518585,\n              50.01287881123171\n            ]\n          ],\n          \"triangles\": 3120\n        },\n        {\n          \"name\": \"planting curbs | ivory metal\",\n          \"bounds\": [\n            [\n              -140.6894073486328,\n              -8.096538579318526,\n              -98.49115920037\n            ],\n            [\n              139.63755798339844,\n              0.3302951513266592,\n              98.4914262291786\n            ]\n          ],\n          \"triangles\": 18048\n        },\n        {\n          \"name\": \"radial white aisle stair treads | ivory metal\",\n          \"bounds\": [\n            [\n              -113.87405395507812,\n              -0.0655921508772428,\n              -71.67973136639912\n            ],\n            [\n              113.87405395507812,\n              10.165592115114457,\n              44.25515556073506\n            ]\n          ],\n          \"triangles\": 4016\n        },\n        {\n          \"name\": \"recessed central officials gallery | concrete\",\n          \"bounds\": [\n            [\n              -109.49998474074526,\n              4.845182071523911,\n              -12.5\n            ],\n            [\n              -106.50001525925474,\n              9.664817680520766,\n              12.5\n            ]\n          ],\n          \"triangles\": 12\n        },\n        {\n          \"name\": \"seat support rails | seat shadow\",\n          \"bounds\": [\n            [\n              -111.54264068603516,\n              0.696410600566324,\n              -71.43501520688021\n            ],\n            [\n              113.63612365722656,\n              10.413588638878409,\n              57.286669259614584\n            ]\n          ],\n          \"triangles\": 409560\n        },\n        {\n          \"name\": \"shaded gallery windows and doors | glass\",\n          \"bounds\": [\n            [\n              -106.4800033569336,\n              5.845102144312873,\n              -10.899999618530273\n            ],\n            [\n              -106.4800033569336,\n              7.1448976268052915,\n              11.899999618530273\n            ]\n          ],\n          \"triangles\": 16\n        },\n        {\n          \"name\": \"slender balustrades and fence posts | silver metal\",\n          \"bounds\": [\n            [\n              -117.51750183105469,\n              -0.063938690549044,\n              -77.29983362637998\n            ],\n            [\n              115.29643249511719,\n              29.933938158875613,\n              57.29982981168271\n            ]\n          ],\n          \"triangles\": 14156\n        },\n        {\n          \"name\": \"terrain conforming perimeter paving | pale paving\",\n          \"bounds\": [\n            [\n              -118.19999694824219,\n              -1.7289645048665274,\n              -75.99833783091422\n            ],\n            [\n              118.19999694824219,\n              0.0458210567819346,\n              75.99833783091422\n            ]\n          ],\n          \"triangles\": 744\n        },\n        {\n          \"name\": \"track lane and staggered start markings | white line\",\n          \"bounds\": [\n            [\n              -88.48749542236328,\n              -0.07690861130443474,\n              -46.286680853886736\n            ],\n            [\n              88.48749542236328,\n              0.014908608592423413,\n              46.286680853886736\n            ]\n          ],\n          \"triangles\": 21024\n        },\n        {\n          \"name\": \"two tier seating terraces | concrete\",\n          \"bounds\": [\n            [\n              -111.79251098632812,\n              -0.06360286431207562,\n              -73.0814494760115\n            ],\n            [\n              113.87405395507812,\n              10.163602828549289,\n              57.72347828460525\n            ]\n          ],\n          \"triangles\": 20178\n        },\n        {\n          \"name\": \"white stand cheek walls and copings | ivory metal\",\n          \"bounds\": [\n            [\n              -115.27393341064453,\n              -0.18346459385906044,\n              -73.07839421119681\n            ],\n            [\n              115.27393341064453,\n              10.363465316267355,\n              57.72042301979056\n            ]\n          ],\n          \"triangles\": 15346\n        },\n        {\n          \"name\": \"young tree support stakes | timber\",\n          \"bounds\": [\n            [\n              -137.27442932128906,\n              -0.25143469795918927,\n              -95.3658669752281\n            ],\n            [\n              136.5902099609375,\n              2.2225157164070652,\n              17.223950700203694\n            ]\n          ],\n          \"triangles\": 900\n        }\n      ]\n    },\n    {\n      \"file\": \"stadium-lod1.glb\",\n      \"triangles\": 269690,\n      \"meshes\": 28,\n      \"bytes\": 2598520,\n      \"bounds\": [\n        [\n          -140.6894073486328,\n          -8.096538579318526,\n          -98.49115920037\n        ],\n        [\n          139.63755798339844,\n          29.933938158875613,\n          98.4914262291786\n        ]\n      ],\n      \"nodes\": [\n        {\n          \"name\": \"blue track runoff apron | runoff.001\",\n          \"bounds\": [\n            [\n              -90.86000061035156,\n              -0.06499999761581421,\n              -48.65905608418376\n            ],\n            [\n              90.86000061035156,\n              -0.06499999761581421,\n              48.65905608418376\n            ]\n          ],\n          \"triangles\": 142\n        },\n        {\n          \"name\": \"branching tree trunks | bark.001\",\n          \"bounds\": [\n            [\n              -138.87013244628906,\n              -6.398959871839807,\n              -96.6931529171856\n            ],\n            [\n              137.81723022460938,\n              10.548320528578088,\n              96.98884536103326\n            ]\n          ],\n          \"triangles\": 14676\n        },\n        {\n          \"name\": \"circulation concourses | pale paving.001\",\n          \"bounds\": [\n            [\n              -117.5,\n              -0.02350599342376114,\n              -73.07970993581478\n            ],\n            [\n              115.27393341064453,\n              10.16350595490426,\n              57.554155278832354\n            ]\n          ],\n          \"triangles\": 662\n        },\n        {\n          \"name\": \"connected planted lawns | lawn.001\",\n          \"bounds\": [\n            [\n              -140.62440490722656,\n              -8.065461990215589,\n              -98.42431328994957\n            ],\n            [\n              139.57276916503906,\n              0.22920211849432182,\n              98.42431328994957\n            ]\n          ],\n          \"triangles\": 1504\n        },\n        {\n          \"name\": \"continuous low hedges | hedge.001\",\n          \"bounds\": [\n            [\n              -140.09886169433594,\n              -7.744987412146167,\n              -97.72709793834504\n            ],\n            [\n              138.98635864257812,\n              1.0277954775605957,\n              97.72709793834504\n            ]\n          ],\n          \"triangles\": 36096\n        },\n        {\n          \"name\": \"eight lane blue running track | track.001\",\n          \"bounds\": [\n            [\n              -88.45999908447266,\n              -0.05700000002980232,\n              -46.25879953344643\n            ],\n            [\n              88.45999908447266,\n              -0.05700000002980232,\n              46.25879953344643\n            ]\n          ],\n          \"triangles\": 288\n        },\n        {\n          \"name\": \"floodlight housings | lamp.001\",\n          \"bounds\": [\n            [\n              -72.31500244140625,\n              28.364088236883607,\n              -77.17061111199196\n            ],\n            [\n              72.31500244140625,\n              29.705911457940612,\n              57.17061111199196\n            ]\n          ],\n          \"triangles\": 720\n        },\n        {\n          \"name\": \"floodlight lenses | light strip.001\",\n          \"bounds\": [\n            [\n              -72.2699966430664,\n              28.410822808013087,\n              -76.83325833247187\n            ],\n            [\n              72.2699966430664,\n              29.65917688681113,\n              56.83326214716914\n            ]\n          ],\n          \"triangles\": 720\n        },\n        {\n          \"name\": \"folded elevated viewing platform | ivory metal.001\",\n          \"bounds\": [\n            [\n              -116.88999938964844,\n              -0.06456646137297639,\n              -77.64930542203605\n            ],\n            [\n              71.6500015258789,\n              22.289567379284506,\n              57.64930542203605\n            ]\n          ],\n          \"triangles\": 872\n        },\n        {\n          \"name\": \"folded platform dark deck treads | dark paving.001\",\n          \"bounds\": [\n            [\n              -116.49964903714103,\n              11.964625156391062,\n              -38\n            ],\n            [\n              -107.50035096285897,\n              22.165375911724173,\n              38\n            ]\n          ],\n          \"triangles\": 912\n        },\n        {\n          \"name\": \"goal net strands | white line.001\",\n          \"bounds\": [\n            [\n              -54.10449981689453,\n              -0.025414178075064964,\n              -25.500647960679956\n            ],\n            [\n              54.10449981689453,\n              2.375414177702536,\n              24.500647960679956\n            ]\n          ],\n          \"triangles\": 1872\n        },\n        {\n          \"name\": \"individual blue bucket seats | blue seats.001\",\n          \"bounds\": [\n            [\n              -111.70965576171875,\n              0.8666419278539585,\n              -71.61040751032606\n            ],\n            [\n              113.7162857055664,\n              10.773357700213058,\n              57.445204415843634\n            ]\n          ],\n          \"triangles\": 63768\n        },\n        {\n          \"name\": \"individual white bucket seats | white seats.001\",\n          \"bounds\": [\n            [\n              -108.97228240966797,\n              0.8635377231055914,\n              -71.61074170176552\n            ],\n            [\n              113.81015014648438,\n              10.776461904961426,\n              57.44764432017372\n            ]\n          ],\n          \"triangles\": 38622\n        },\n        {\n          \"name\": \"layered leaf canopy | leaf light.001\",\n          \"bounds\": [\n            [\n              -139.68246459960938,\n              1.160960870688168,\n              -97.15969691385838\n            ],\n            [\n              138.4092559814453,\n              10.539034885461124,\n              96.97067866434666\n            ]\n          ],\n          \"triangles\": 7656\n        },\n        {\n          \"name\": \"layered leaf canopy | leaf shadow.001\",\n          \"bounds\": [\n            [\n              -139.70899963378906,\n              3.2919747438779168,\n              -97.72123640720928\n            ],\n            [\n              138.67547607421875,\n              8.618891039813489,\n              19.139582812238572\n            ]\n          ],\n          \"triangles\": 17000\n        },\n        {\n          \"name\": \"natural turf mowing strips | grass stripe.001\",\n          \"bounds\": [\n            [\n              -45,\n              -0.04600000008940697,\n              -34.00017548142949\n            ],\n            [\n              52.5,\n              -0.04600000008940697,\n              34.00017548142949\n            ]\n          ],\n          \"triangles\": 14\n        },\n        {\n          \"name\": \"natural turf mowing strips | grass.001\",\n          \"bounds\": [\n            [\n              -52.5,\n              -0.04600000008940697,\n              -34.00017548142949\n            ],\n            [\n              45,\n              -0.04600000008940697,\n              34.00017548142949\n            ]\n          ],\n          \"triangles\": 14\n        },\n        {\n          \"name\": \"open seaside perimeter fence mesh | silver metal.001\",\n          \"bounds\": [\n            [\n              -42.20000076293945,\n              0.12189228009558417,\n              49.98712118876829\n            ],\n            [\n              42.20000076293945,\n              1.9481077127518585,\n              50.01287881123171\n            ]\n          ],\n          \"triangles\": 3120\n        },\n        {\n          \"name\": \"planting curbs | ivory metal.001\",\n          \"bounds\": [\n            [\n              -140.6894073486328,\n              -8.096538579318526,\n              -98.49115920037\n            ],\n            [\n              139.63755798339844,\n              0.3302951513266592,\n              98.4914262291786\n            ]\n          ],\n          \"triangles\": 18048\n        },\n        {\n          \"name\": \"radial white aisle stair treads | ivory metal.001\",\n          \"bounds\": [\n            [\n              -113.87405395507812,\n              -0.0655921508772428,\n              -71.67973136639912\n            ],\n            [\n              113.87405395507812,\n              10.165592115114457,\n              44.25515556073506\n            ]\n          ],\n          \"triangles\": 4016\n        },\n        {\n          \"name\": \"recessed central officials gallery | concrete.001\",\n          \"bounds\": [\n            [\n              -109.49998474074526,\n              4.845182071523911,\n              -12.5\n            ],\n            [\n              -106.50001525925474,\n              9.664817680520766,\n              12.5\n            ]\n          ],\n          \"triangles\": 12\n        },\n        {\n          \"name\": \"shaded gallery windows and doors | glass.001\",\n          \"bounds\": [\n            [\n              -106.4800033569336,\n              5.845102144312873,\n              -10.899999618530273\n            ],\n            [\n              -106.4800033569336,\n              7.1448976268052915,\n              11.899999618530273\n            ]\n          ],\n          \"triangles\": 16\n        },\n        {\n          \"name\": \"slender balustrades and fence posts | silver metal.001\",\n          \"bounds\": [\n            [\n              -117.51750183105469,\n              -0.063938690549044,\n              -77.29983362637998\n            ],\n            [\n              115.29643249511719,\n              29.933938158875613,\n              57.29982981168271\n            ]\n          ],\n          \"triangles\": 12108\n        },\n        {\n          \"name\": \"terrain conforming perimeter paving | pale paving.001\",\n          \"bounds\": [\n            [\n              -118.19999694824219,\n              -1.7289645048665274,\n              -75.99833783091422\n            ],\n            [\n              118.19999694824219,\n              0.0458210567819346,\n              75.99833783091422\n            ]\n          ],\n          \"triangles\": 744\n        },\n        {\n          \"name\": \"track lane and staggered start markings | white line.001\",\n          \"bounds\": [\n            [\n              -88.48749542236328,\n              -0.07690861130443474,\n              -46.286680853886736\n            ],\n            [\n              88.48749542236328,\n              0.014908608592423413,\n              46.286680853886736\n            ]\n          ],\n          \"triangles\": 15840\n        },\n        {\n          \"name\": \"two tier seating terraces | concrete.001\",\n          \"bounds\": [\n            [\n              -112.09990692138672,\n              -0.06367206567028649,\n              -73.07863013398809\n            ],\n            [\n              113.87405395507812,\n              10.163672029907499,\n              57.88378684175176\n            ]\n          ],\n          \"triangles\": 14138\n        },\n        {\n          \"name\": \"white stand cheek walls and copings | ivory metal.001\",\n          \"bounds\": [\n            [\n              -115.27393341064453,\n              -0.18346459385906044,\n              -73.08126198871093\n            ],\n            [\n              115.27393341064453,\n              10.363465316267355,\n              57.88641869647461\n            ]\n          ],\n          \"triangles\": 15210\n        },\n        {\n          \"name\": \"young tree support stakes | timber.001\",\n          \"bounds\": [\n            [\n              -137.27442932128906,\n              -0.25143469795918927,\n              -95.3658669752281\n            ],\n            [\n              136.5902099609375,\n              2.2225157164070652,\n              17.223950700203694\n            ]\n          ],\n          \"triangles\": 900\n        }\n      ]\n    },\n    {\n      \"file\": \"stadium-lod2.glb\",\n      \"triangles\": 144332,\n      \"meshes\": 26,\n      \"bytes\": 1471964,\n      \"bounds\": [\n        [\n          -140.6894073486328,\n          -8.096538579318526,\n          -98.49115920037\n        ],\n        [\n          139.63755798339844,\n          29.933937667355124,\n          98.4914262291786\n        ]\n      ],\n      \"nodes\": [\n        {\n          \"name\": \"blue track runoff apron | runoff.002\",\n          \"bounds\": [\n            [\n              -90.86000061035156,\n              -0.06499999761581421,\n              -48.65905608418376\n            ],\n            [\n              90.86000061035156,\n              -0.06499999761581421,\n              48.65905608418376\n            ]\n          ],\n          \"triangles\": 94\n        },\n        {\n          \"name\": \"branching tree trunks | bark.002\",\n          \"bounds\": [\n            [\n              -138.51947021484375,\n              -6.39665411150728,\n              -96.69152721340184\n            ],\n            [\n              137.81723022460938,\n              10.546014768245561,\n              96.93054088527684\n            ]\n          ],\n          \"triangles\": 10316\n        },\n        {\n          \"name\": \"circulation concourses | pale paving.002\",\n          \"bounds\": [\n            [\n              -117.5,\n              -0.02350599342376114,\n              -73.07970993581478\n            ],\n            [\n              115.27393341064453,\n              10.16350595490426,\n              57.554155278832354\n            ]\n          ],\n          \"triangles\": 482\n        },\n        {\n          \"name\": \"connected planted lawns | lawn.002\",\n          \"bounds\": [\n            [\n              -140.62440490722656,\n              -8.065461990215589,\n              -98.42431328994957\n            ],\n            [\n              139.57276916503906,\n              0.22920211849432182,\n              98.42431328994957\n            ]\n          ],\n          \"triangles\": 1504\n        },\n        {\n          \"name\": \"continuous low hedges | hedge.002\",\n          \"bounds\": [\n            [\n              -140.1282196044922,\n              -7.745910250595245,\n              -97.69228455101155\n            ],\n            [\n              139.01571655273438,\n              1.028718316009674,\n              97.69228455101155\n            ]\n          ],\n          \"triangles\": 20304\n        },\n        {\n          \"name\": \"eight lane blue running track | track.002\",\n          \"bounds\": [\n            [\n              -88.45999908447266,\n              -0.05700000002980232,\n              -46.25879953344643\n            ],\n            [\n              88.45999908447266,\n              -0.05700000002980232,\n              46.25879953344643\n            ]\n          ],\n          \"triangles\": 192\n        },\n        {\n          \"name\": \"floodlight housings | lamp.002\",\n          \"bounds\": [\n            [\n              -72.31500244140625,\n              28.364088236883607,\n              -77.17061111199196\n            ],\n            [\n              72.31500244140625,\n              29.705911457940612,\n              57.17061111199196\n            ]\n          ],\n          \"triangles\": 720\n        },\n        {\n          \"name\": \"floodlight lenses | light strip.002\",\n          \"bounds\": [\n            [\n              -72.2699966430664,\n              28.410822808013087,\n              -76.83325833247187\n            ],\n            [\n              72.2699966430664,\n              29.65917688681113,\n              56.83326214716914\n            ]\n          ],\n          \"triangles\": 720\n        },\n        {\n          \"name\": \"folded elevated viewing platform | ivory metal.002\",\n          \"bounds\": [\n            [\n              -116.88999938964844,\n              -0.06456646137297639,\n              -77.64930542203605\n            ],\n            [\n              71.6500015258789,\n              22.289567379284506,\n              57.64930542203605\n            ]\n          ],\n          \"triangles\": 644\n        },\n        {\n          \"name\": \"folded platform dark deck treads | dark paving.002\",\n          \"bounds\": [\n            [\n              -116.49964903714103,\n              11.964625156391062,\n              -38\n            ],\n            [\n              -107.50035096285897,\n              22.165375911724173,\n              38\n            ]\n          ],\n          \"triangles\": 912\n        },\n        {\n          \"name\": \"individual blue bucket seats | blue seats.002\",\n          \"bounds\": [\n            [\n              -111.75093078613281,\n              0.8851344735999245,\n              -71.58155241654914\n            ],\n            [\n              113.70182800292969,\n              10.744865402422414,\n              57.46877089189094\n            ]\n          ],\n          \"triangles\": 21752\n        },\n        {\n          \"name\": \"individual white bucket seats | white seats.002\",\n          \"bounds\": [\n            [\n              -108.8502426147461,\n              0.8856732518860602,\n              -71.57985673454401\n            ],\n            [\n              113.78138732910156,\n              10.744326624136278,\n              57.54064546135065\n            ]\n          ],\n          \"triangles\": 13036\n        },\n        {\n          \"name\": \"layered leaf canopy | leaf light.002\",\n          \"bounds\": [\n            [\n              -137.8376007080078,\n              1.3925145309205043,\n              -96.41630632223149\n            ],\n            [\n              138.62005615234375,\n              10.538304503655912,\n              96.7927253896143\n            ]\n          ],\n          \"triangles\": 1780\n        },\n        {\n          \"name\": \"layered leaf canopy | leaf shadow.002\",\n          \"bounds\": [\n            [\n              -138.8544921875,\n              3.699690359619665,\n              -97.30672587205154\n            ],\n            [\n              137.97853088378906,\n              8.599838477584314,\n              18.94506396104081\n            ]\n          ],\n          \"triangles\": 2700\n        },\n        {\n          \"name\": \"natural turf mowing strips | grass stripe.002\",\n          \"bounds\": [\n            [\n              -45,\n              -0.04600000008940697,\n              -34.00017548142949\n            ],\n            [\n              52.5,\n              -0.04600000008940697,\n              34.00017548142949\n            ]\n          ],\n          \"triangles\": 14\n        },\n        {\n          \"name\": \"natural turf mowing strips | grass.002\",\n          \"bounds\": [\n            [\n              -52.5,\n              -0.04600000008940697,\n              -34.00017548142949\n            ],\n            [\n              45,\n              -0.04600000008940697,\n              34.00017548142949\n            ]\n          ],\n          \"triangles\": 14\n        },\n        {\n          \"name\": \"open seaside perimeter fence mesh | silver metal.002\",\n          \"bounds\": [\n            [\n              -42.20000076293945,\n              0.12189228009558417,\n              49.98712118876829\n            ],\n            [\n              42.20000076293945,\n              1.9481077127518585,\n              50.01287881123171\n            ]\n          ],\n          \"triangles\": 936\n        },\n        {\n          \"name\": \"planting curbs | ivory metal.002\",\n          \"bounds\": [\n            [\n              -140.6894073486328,\n              -8.096538579318526,\n              -98.49115920037\n            ],\n            [\n              139.63755798339844,\n              0.3302951513266592,\n              98.4914262291786\n            ]\n          ],\n          \"triangles\": 18048\n        },\n        {\n          \"name\": \"radial white aisle stair treads | ivory metal.002\",\n          \"bounds\": [\n            [\n              -113.87405395507812,\n              -0.0655921508772428,\n              -71.67973136639912\n            ],\n            [\n              113.87405395507812,\n              10.165592115114457,\n              44.25515556073506\n            ]\n          ],\n          \"triangles\": 4016\n        },\n        {\n          \"name\": \"recessed central officials gallery | concrete.002\",\n          \"bounds\": [\n            [\n              -109.49998474074526,\n              4.845182071523911,\n              -12.5\n            ],\n            [\n              -106.50001525925474,\n              9.664817680520766,\n              12.5\n            ]\n          ],\n          \"triangles\": 12\n        },\n        {\n          \"name\": \"shaded gallery windows and doors | glass.002\",\n          \"bounds\": [\n            [\n              -106.4800033569336,\n              5.845102144312873,\n              -10.899999618530273\n            ],\n            [\n              -106.4800033569336,\n              7.1448976268052915,\n              11.899999618530273\n            ]\n          ],\n          \"triangles\": 16\n        },\n        {\n          \"name\": \"slender balustrades and fence posts | silver metal.002\",\n          \"bounds\": [\n            [\n              -117.51750183105469,\n              -0.06393819902855391,\n              -77.29983142094082\n            ],\n            [\n              115.29642486572266,\n              29.933937667355124,\n              57.299827606243554\n            ]\n          ],\n          \"triangles\": 10204\n        },\n        {\n          \"name\": \"terrain conforming perimeter paving | pale paving.002\",\n          \"bounds\": [\n            [\n              -118.19999694824219,\n              -1.7289645048665274,\n              -75.99833783091422\n            ],\n            [\n              118.19999694824219,\n              0.0458210567819346,\n              75.99833783091422\n            ]\n          ],\n          \"triangles\": 744\n        },\n        {\n          \"name\": \"track lane and staggered start markings | white line.002\",\n          \"bounds\": [\n            [\n              -88.48748779296875,\n              -0.07690860734619301,\n              -46.28667686304771\n            ],\n            [\n              88.48748779296875,\n              0.014908604634181678,\n              46.28667686304771\n            ]\n          ],\n          \"triangles\": 10656\n        },\n        {\n          \"name\": \"two tier seating terraces | concrete.002\",\n          \"bounds\": [\n            [\n              -111.79251098632812,\n              -0.06360286431207562,\n              -73.0792373979474\n            ],\n            [\n              113.87405395507812,\n              10.163602828549289,\n              58.26287692431458\n            ]\n          ],\n          \"triangles\": 9410\n        },\n        {\n          \"name\": \"white stand cheek walls and copings | ivory metal.002\",\n          \"bounds\": [\n            [\n              -115.27393341064453,\n              -0.18346459385906044,\n              -73.07847397675297\n            ],\n            [\n              115.27393341064453,\n              10.363465316267355,\n              58.26211350312016\n            ]\n          ],\n          \"triangles\": 15106\n        }\n      ]\n    }\n  ]\n}\n",
+    "dorm52": "using deprecated parameters for the initialization function; pass a single object instead\nRuntime coordinate regression: 4731 reflected colliders\n{\"status\":\"passed\",\"lods\":[{\"triangles\":585576},{\"triangles\":339960},{\"triangles\":130792}],\"routes\":[{\"name\":\"north south ring passage\",\"result\":\"continuous out and back\"},{\"name\":\"east west ring passage\",\"result\":\"continuous out and back\"},{\"name\":\"court-1\",\"result\":\"continuous out and back\"},{\"name\":\"court-2\",\"result\":\"continuous out and back\"},{\"name\":\"court-3\",\"result\":\"continuous out and back\"},{\"name\":\"court-4\",\"result\":\"continuous out and back\"}],\"maxDrapeError\":4.551914400963142e-15}\n",
+    "dorm56": "WebSocket server error: Port 24678 is already in use\nusing deprecated parameters for the initialization function; pass a single object instead\nRuntime coordinate regression: 1071 reflected colliders\nROUTE_COLLIDERS 1071\nROUTE_PASS 生活一区中央步道\nROUTE_PASS 生活一区北侧步道\nROUTE_PASS 生活一区南侧步道\nROUTE_PASS 生活一区西庭院步道\nROUTE_PASS 生活一区东庭院步道\nROUTE_PASS 生活一区北部横向步道\nROUTE_PASS 生活一区中部横向步道\nROUTE_PASS 生活一区8号楼庭院步道\nROUTE_PASS 生活一区6号楼庭院步道\nROUTE_PASS 生活一区3号楼庭院步道\nROUTE_PASS 生活一区配套楼外步道\nROUTE_PASS 生活一区西侧入口\nROUTE_PASS 生活一区东侧入口\nROUTE_PASS 生活一区南侧入口\nROUTE_PASS glass-link-1 ground underpass\nROUTE_PASS glass-link-2 ground underpass\nROUTE_PASS glass-link-3 ground underpass\nROUTE_PASS glass-link-4 ground underpass\nROUTE_PASS glass-link-5 ground underpass\nROUTE_PASS glass-link-6 ground underpass\nROUTE_PASS glass-link-7 ground underpass\nROUTE_PASS glass-link-8 ground underpass\nROUTE_PASS glass-link-9 ground underpass\nROUTE_PASS glass-link-10 ground underpass\n{\"status\":\"passed\",\"lods\":[682237,394885,186501],\"routes\":24,\"maxDrapeError\":4.829470157119431e-15}\n",
+    "materials": {
+      "materials": 78,
+      "families": {
+        "terrain": 1,
+        "water": 1,
+        "paving": 4,
+        "asphalt": 2,
+        "paint": 7,
+        "foliage": 7,
+        "plaster": 12,
+        "concrete": 7,
+        "glass": 10,
+        "metal": 12,
+        "ceramic": 3,
+        "roofMetal": 4,
+        "solar": 2,
+        "stone": 1,
+        "plastic": 1,
+        "rubber": 3,
+        "turf": 1
+      },
+      "upstreamFiles": 27,
+      "registeredHeightVertices": 78561,
+      "shoreField": "finite",
+      "status": "passed"
+    },
+    "typescript": "tsc --noEmit exit0",
+    "build": "Vite production build exit0; existing chunk-size warning"
+  },
+  "compiledFiles": [
+    {
+      "file": "assets/detail-ZPyDVwlb.js",
+      "sha256": "81a1f3a245eb6320365a0ee0aef3f9640262a2b70882b0b96b4fb4f2dcd64220"
+    },
+    {
+      "file": "assets/library-CbRIz1TN.js",
+      "sha256": "62a6c0620a9c070ca3b43044375d5519fc3a93e752c3d16434d563fa9407f2ee"
+    },
+    {
+      "file": "assets/library-review-CPzVStLH.js",
+      "sha256": "654ea231cd9a3f3743de7dd99ad611a5225611cf9354bd4b6441e25ede03b950"
+    },
+    {
+      "file": "assets/modulepreload-polyfill-P2Xu9kJm.js",
+      "sha256": "418c206484b89b68ef5f067277831e583fc9193a62aadf4de269acaaeb12a85f"
+    },
+    {
+      "file": "assets/overview-Dk5kzp7X.js",
+      "sha256": "6f8e3a7b613cd0c3e7876888df1c494ba3e68edbbb5acd0a9341930837c5891a"
+    },
+    {
+      "file": "assets/world-DSnJ67TP.js",
+      "sha256": "31afa7f47e5bac22421ef59b48cd72a1e29223a861348e3e19c7e38e2c223094"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "campus-activity.png",
+      "sha256": "396c36ccdf86ca188a123716718fcafa6ab5f9a3ad1f9e11dd4f1585cedb3bdd"
+    },
+    {
+      "file": "campus-bupt.png",
+      "sha256": "6986e194cc2c9393735826d3461a354602d89075461e65457d21d8506b0b26dc"
+    },
+    {
+      "file": "campus-canteen.png",
+      "sha256": "165fd7d5d913e8947da4f06b03c337a87a6d0f7a7fdc932a711ae45e9ccf595e"
+    },
+    {
+      "file": "campus-dorm52.png",
+      "sha256": "193667c9af344fa4c1822dfe83f054fa0a6520864413e126d4bd0d7f52eb1fad"
+    },
+    {
+      "file": "campus-dorm56.png",
+      "sha256": "53a82ca25a9db2a077357f19486fcb09738430083ad07200c5d6f8e7836fd12b"
+    },
+    {
+      "file": "campus-hall.png",
+      "sha256": "edb458485dc8e0234ab648807877c3f853331eb48f6d8a54485909e828a12e48"
+    },
+    {
+      "file": "campus-incubator.png",
+      "sha256": "c1f01575cea2897f974611efd76d2d748a323d8736ea07cfa87581f477dec883"
+    },
+    {
+      "file": "campus-library.png",
+      "sha256": "e09ff5992a62e2c81a8fa9dc9cc43ff515fe990120503204f660b0a0d90f2294"
+    },
+    {
+      "file": "campus-sports.png",
+      "sha256": "28d50bf9223c29b557f7b2de44fdc12c4cd0724fee2046e0aa34cd8a1c650c5f"
+    },
+    {
+      "file": "campus-stadium.png",
+      "sha256": "2edb70b1f3f0d26bb62718a737e56e7f0237fcdcc9dda7bfebb8ceeaed9eebca"
+    },
+    {
+      "file": "campus-uestc.png",
+      "sha256": "7bfdb108b987f0e83d803eebd0cb2dd82f2a8442af0cd74b1fec83b583567876"
+    },
+    {
+      "file": "detail-canteen-0.png",
+      "sha256": "26995fdd4b1702e48bbc7055ae163f3efd3ca7024da8b759e8db3654303d44f6"
+    },
+    {
+      "file": "detail-canteen-1.png",
+      "sha256": "811c0b4f30d8c7ebb88411f9ee6aa791b2567a4aeae6722da65f200c601fd5e5"
+    },
+    {
+      "file": "detail-canteen-2.png",
+      "sha256": "649e8d1586ab46c4ebecdfc39ee4a88b6f90247e17abfa88832af8313e6d3b9d"
+    },
+    {
+      "file": "detail-canteen-front.png",
+      "sha256": "9eb664975486424410f5616679559594265caf154a9f6344869aaa9ce9ac0ee0"
+    },
+    {
+      "file": "detail-dorm56-0.png",
+      "sha256": "0dad5adb2bd9c481f1c6664bad3b9e2bc9cbd8c8bd7d6a0172dfba6e81a7f243"
+    },
+    {
+      "file": "detail-dorm56-1.png",
+      "sha256": "511e1460a860e505120ee90399ec67109b7f764592641138c64480dbc2492400"
+    },
+    {
+      "file": "detail-dorm56-2.png",
+      "sha256": "23d508231b46c0b1d59dca2fb35a6974e30a06eb1e29a0cf89ee8a7bd6a04d13"
+    },
+    {
+      "file": "detail-dorm56-shared.png",
+      "sha256": "1b3a5db6bdd17eeddb8f523c5e374585e0cf5cf6ee31e521f8a5116cac3f79d3"
+    },
+    {
+      "file": "detail-incubator-0.png",
+      "sha256": "431a75ff6b0a0acc433ac72184b4eb0967ffbd7a30fce5bdc00518810b0fc7d5"
+    },
+    {
+      "file": "detail-incubator-1.png",
+      "sha256": "cd849c6864d723477476434cb509eded6f8b4dc61ac89d157b10d8e02cdf2cf7"
+    },
+    {
+      "file": "detail-incubator-2.png",
+      "sha256": "21a3906bd5e9619870964ca880f2800c4a85e00641d8763e9748cd34704c4bb4"
+    },
+    {
+      "file": "detail-incubator-roof.png",
+      "sha256": "29bc253cd2f9c95e3af80336b170270f614eb52020eb2edc837e65918c5bafb0"
+    },
+    {
+      "file": "detail-library-0.png",
+      "sha256": "6968da44607bedce5089c52b48c6e1c389bdef4efc8eadd8ef08aaadd6e068fa"
+    },
+    {
+      "file": "detail-library-1.png",
+      "sha256": "7d9b6ada955ffc51c5a1426e8942a4d0ddb63370681c15630be55411bea62f76"
+    },
+    {
+      "file": "detail-library-2.png",
+      "sha256": "dbd463676209a61e686d47c45454abfed896efe43a08636575b938431f2fc1b0"
+    },
+    {
+      "file": "detail-library-entrance.png",
+      "sha256": "446b5e98459b589aba8a2463fae353347bc07d9c5f3f6d2fb7ac5d767662839e"
+    },
+    {
+      "file": "detail-stadium-0.png",
+      "sha256": "5c591093889b9275aab35f3cb189eef39656a59a1db92e2dd4e81fe4e6e1e021"
+    },
+    {
+      "file": "detail-stadium-1.png",
+      "sha256": "035728337ef395d77e276746f2ccd2dcdaf3152323b52716cae23aed67fa53ca"
+    },
+    {
+      "file": "detail-stadium-2.png",
+      "sha256": "89cc21258ac468c03f0d19053f5c24df02cd33e7f29b46db5a2a211591d9e198"
+    },
+    {
+      "file": "detail-stadium-front.png",
+      "sha256": "e3a07b016bb4dab7484fafe6da64d3214bf64d757d656da7de741fa9dd86a206"
+    },
+    {
+      "file": "north-up.png",
+      "sha256": "2980453f1f4f0d6b2d581a536a8ba4959c0035ab5189afe050505d6452aef329"
+    },
+    {
+      "file": "terrain.png",
+      "sha256": "849b333c1f74d1d2177f4f17e818937d80ede41c0cebaba8d1b4a790724af845"
+    },
+    {
+      "file": "third-dorm56.png",
+      "sha256": "e76d73a74062cfaeb1172060e324bdf382e2508b29665e00155b790135ba2afb"
+    },
+    {
+      "file": "walk-dorm56.png",
+      "sha256": "59b986c95df38f986f35011f390cb448538e9b02a5f83966ff55b371228f59ab"
+    }
+  ],
+  "limits": [
+    "Global mirror corrected against source map; source map registration remains approximate.",
+    "No new survey DEM or building dimensions were introduced.",
+    "Browser smoke tests are functional checks, not a performance benchmark."
+  ],
+  "visualReview": [
+    "north-up overview and source minimap",
+    "terrain overview",
+    "library, stadium and living one campus placement",
+    "library entrance lettering",
+    "canteen frontage and incubator rooftop",
+    "GPU returned1124finite height/normal/shore samples; half-float elevation max error0.1094m"
+  ]
+}

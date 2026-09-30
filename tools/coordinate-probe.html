@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <link rel="icon" href="data:," />
+  <meta charset="UTF-8" /><title>Campus coordinate GPU verification</title
+  ><canvas id="probe"></canvas>
+  <pre id="result">Running…</pre>
+  <script type="module">
+    import * as THREE from "three/webgpu";
+    import { Fn, storage, instanceIndex, vec4 } from "three/tsl";
+    import { createRenderer } from "../src/webgpu/renderer.js";
+    import { createTerrainMaterialData } from "../src/webgpu/terrain-material-data.js";
+    import { reflectMesh } from "../src/webgpu/coordinates.js";
+    try {
+      const renderer = await createRenderer(document.querySelector("canvas"));
+      const meta = await (await fetch("/generated/campus.json")).json();
+      const res = await fetch("/generated/campus.meshpack");
+      const buffer = await new Response(
+        res.body.pipeThrough(new DecompressionStream("gzip")),
+      ).arrayBuffer();
+      const m = meta.meshes.find((m) => m.name === "continuous terrain");
+      const p = new Float32Array(buffer, m.position.offset, m.position.count),
+        ix = new Uint32Array(buffer, m.index.offset, m.index.count);
+      reflectMesh(p, null, ix);
+      const terrain = createTerrainMaterialData(p);
+      const points = [];
+      for (let z = 0; z < 300; z += 11)
+        for (let x = 0; x < 260; x += 13)
+          for (const [u, v] of [
+            [0.2, 0.3],
+            [0.7, 0.8],
+          ])
+            points.push([-1840 + (x + u) * 20, 2100 - (z + v) * 20]);
+      points.push([-1840, 2100], [3360, -3900], [-3000, -3000], [8000, 8000]);
+      const input = new THREE.StorageBufferAttribute(
+          new Float32Array(points.flat()),
+          2,
+        ),
+        output = new THREE.StorageBufferAttribute(points.length, 4);
+      const read = storage(input, "vec2", points.length).toReadOnly(),
+        write = storage(output, "vec4", points.length);
+      const compute = Fn(() => {
+        const q = read.element(instanceIndex);
+        write
+          .element(instanceIndex)
+          .assign(
+            vec4(
+              terrain.heightAt(q),
+              terrain.normalRock(q).xy,
+              terrain.shoreSample(q).r,
+            ),
+          );
+      })().compute(points.length);
+      renderer.backend.device.pushErrorScope("validation");
+      await renderer.computeAsync(compute);
+      const values = new Float32Array(
+          await renderer.getArrayBufferAsync(output),
+        ),
+        error = await renderer.backend.device.popErrorScope();
+      if (error) throw Error(error.message);
+      let maxHeightError = 0;
+      for (let i = 0; i < points.length; i++) {
+        maxHeightError = Math.max(
+          maxHeightError,
+          Math.abs(values[i * 4] - terrain.heightCPU(...points[i])),
+        );
+        for (let k = 0; k < 4; k++)
+          if (!Number.isFinite(values[i * 4 + k]))
+            throw Error("Non-finite terrain/shore sample");
+      }
+      // Half-float elevation textures have <=0.125m quantization at these heights.
+      if (maxHeightError > 0.13)
+        throw Error(
+          "GPU shoreline mirrored or sampler mismatch: " + maxHeightError,
+        );
+      window.probeResult = {
+        status: "passed",
+        samples: points.length,
+        maxHeightError,
+        adapter: renderer.backend.device.adapterInfo?.architecture || "WebGPU",
+        coordinates: "east-up-south",
+      };
+      document.querySelector("#result").textContent = JSON.stringify(
+        window.probeResult,
+        null,
+        2,
+      );
+      terrain.dispose();
+      const device = renderer.backend.device;
+      renderer.dispose();
+      device.destroy();
+    } catch (e) {
+      window.probeResult = { status: "failed", message: e.message };
+      document.querySelector("#result").textContent = e.stack;
+      console.error(e);
+    }
+  </script>
+</html>

@@ -90,8 +90,8 @@ try {
       }
     }
     const indices = new Uint32Array(mesh.getIndices());
-    // Authoring is left-handed; Three.js consumes CCW triangles. Preserve world X/Z and
-    // explicitly match triangle winding to the authored outward normals (including double sides).
+    // Store outward CCW triangles in the source east/up/north basis. The runtime
+    // adapter reflects Z and reverses winding together for Three.js and Rapier.
     for (let i = 0; i < indices.length; i += 3) {
       const a = indices[i] * 3,
         b = indices[i + 1] * 3,
@@ -139,6 +139,7 @@ try {
   }
   const manifest = {
     format: 1,
+    coordinates: "east-up-north",
     status: { ...detailStatus, ...partialDetailStatus },
     byteLength,
     materials,
