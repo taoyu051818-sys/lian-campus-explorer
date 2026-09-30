@@ -1,0 +1,295 @@
+{
+  "version": "0.41.0",
+  "date": "2026-09-30T07:51:10.668903+00:00",
+  "status": "passed",
+  "scope": "Student living one Blender asset, terrain registration and campus regression",
+  "review": {
+    "date": "2026-09-30T07:48:04.508Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "dorm56",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 68.2 万三角面 · 33 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 39.5 万三角面 · 60 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 18.7 万三角面 · 60 FPS",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "dorm56-lod0.png",
+          "dorm56-lod1.png",
+          "dorm56-lod2.png",
+          "dorm56-front.png",
+          "dorm56-entrance.png",
+          "dorm56-roof.png",
+          "dorm56-landscape.png",
+          "dorm56-shared.png"
+        ],
+        "title": "学生生活一区 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "dorm56",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm56&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":1}",
+        "note": "A-56 · Blender 生活一区 · 退台宿舍、玻璃连廊与院落绿化",
+        "screenshot": "campus-dorm56.png"
+      },
+      {
+        "asset": "dorm52",
+        "url": "http://127.0.0.1:4197/world.html?place=dorm52&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":1,\"dorm56\":0}",
+        "note": "A-52 · Blender 生活二区 · 六层庭院、共享环廊与玻璃锥体 · A52待核",
+        "screenshot": "campus-dorm52.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":1,\"dorm52\":2,\"dorm56\":1}",
+        "note": "A-88 · Blender 实景参考 · 四组裙楼、入口景观池与屋顶绿化",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "stadium",
+        "url": "http://127.0.0.1:4197/world.html?place=stadium&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1,\"dorm52\":2,\"dorm56\":1}",
+        "note": "A-89 · Blender 实景参考 · 双层蓝白看台、折线观景平台与滨海绿化",
+        "screenshot": "campus-stadium.png"
+      },
+      {
+        "asset": "dorm56",
+        "wheel": -3000,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":1,\"dorm56\":0}"
+      },
+      {
+        "asset": "dorm56",
+        "wheel": 2600,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2,\"dorm52\":1,\"dorm56\":1}"
+      },
+      {
+        "asset": "dorm56",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      },
+      {
+        "asset": "dorm56",
+        "wheel": 2200,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2,\"dorm52\":2,\"dorm56\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "gltfValidation": [
+    {
+      "file": "dorm56-lod0.glb",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/0"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "file": "dorm56-lod1.glb",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/0"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      }
+    },
+    {
+      "file": "dorm56-lod2.glb",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/0"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      }
+    }
+  ],
+  "assets": [
+    {
+      "file": "dorm56-lod0.glb",
+      "sha256": "e160d22ca0aa4ca8425688b5d8509370474a293a7f305e2eb9b866c3aec3587c",
+      "bytes": 6119208
+    },
+    {
+      "file": "dorm56-lod1.glb",
+      "sha256": "bb8f4cfb8c5d4d91e7f7cdb3c7442b518f3dce9d11b41d3a0128e9ab415e5e7e",
+      "bytes": 3556372
+    },
+    {
+      "file": "dorm56-lod2.glb",
+      "sha256": "0f416e1f84f3277e2ecaa3fc29f5a4d49c87438ff827eeb02da948dbfc919f94",
+      "bytes": 1705936
+    }
+  ],
+  "campusMeshpackSHA256": "bad709bc2c5a8189d671db2003480a6143fc51fbeab7e75768b035f73cd167cf",
+  "blenderSourceSHA256": "b2805c2ab707659217dc648ec6d6bbf1805fca39d621af06e5b0a938aa8493b9",
+  "checks": {
+    "geometry": "three LODs,33 roof steps,actual window recess,10 links and tree canopy bounds",
+    "routes": "24 continuous round trips; route-envelope1071colliders,full campus checked separately",
+    "terrain": "217 platform constraints and existing9legacy assets retained; triangle-centroid drape error below1e-6m",
+    "physics": "using deprecated parameters for the initialization function; pass a single object instead\nPASS: 33 destinations settle, jump, land and walk; 4475 invisible access surfaces preserved; 4731 collision meshes; six continuous teaching stair/bridge route legs and sports curved stair ascent/descent.\nPASS: activity throughRoute, 5 waypoints each direction, no teleport between legs.\nPASS: activity stairRoute, 27 waypoints each direction, no teleport between legs.\nPASS: hall stair 0, 10 waypoints each direction, no teleport between legs.\nPASS: hall stair 1, 10 waypoints each direction, no teleport between legs.\nPASS: UESTC A east approach 0, continuous ascent / balcony landing / descent.\nPASS: UESTC A courtyard stair 1, continuous ascent / balcony landing / descent.\nPASS: UESTC A courtyard stair 3, continuous ascent / balcony landing / descent.\nPASS: UESTC B public stair 0, continuous ascent / balcony landing / descent.\nPASS: UESTC B public stair 2, continuous ascent / balcony landing / descent.\nPASS: UESTC bridge deck middle span, both directions; distinct bridge/ground elevations.\nPASS: UESTC bridge underpass, both directions; distinct bridge/ground elevations.\nPASS: BUPT A court access, continuous ascent / garden landing / descent.\nPASS: BUPT B upper terrace, continuous ascent / garden landing / descent.\nPASS: BUPT B middle terrace, continuous ascent / garden landing / descent.\nPASS: BUPT B entry flight 1, continuous ascent / garden landing / descent.\nPASS: BUPT B entry flight 2, continuous ascent / garden landing / descent.\nPASS: BUPT B entry flight 3, continuous ascent / garden landing / descent.\nPASS: BUPT full five-flight garden promenade, continuous ascent / garden landing / descent.\nPASS: incubator stilt entrance 1, continuous approach / open stilt bay / return.\nPASS: incubator stilt entrance 2, continuous approach / open stilt bay / return.\nPASS: canteen front entrance, continuous stair ascent / terrace / descent.\nPASS: canteen side entrance, continuous stair ascent / terrace / descent.\nPASS: library left pond approach, continuous pond approach / entrance / return.\nPASS: library right pond approach, continuous pond approach / entrance / return.\n",
+    "materials": {
+      "materials": 78,
+      "families": {
+        "terrain": 1,
+        "water": 1,
+        "paving": 4,
+        "asphalt": 2,
+        "paint": 7,
+        "foliage": 7,
+        "plaster": 12,
+        "concrete": 7,
+        "glass": 10,
+        "metal": 12,
+        "ceramic": 3,
+        "roofMetal": 4,
+        "solar": 2,
+        "stone": 1,
+        "plastic": 1,
+        "rubber": 3,
+        "turf": 1
+      },
+      "upstreamFiles": 27,
+      "registeredHeightVertices": 78561,
+      "shoreField": "finite",
+      "status": "passed"
+    },
+    "typescript": "tsc --noEmit exit0",
+    "build": "Vite production build exit0; existing chunk-size warning",
+    "blender": "4.5.9 source reopened,3LOD collections and no external images/fonts;4Cycles views inspected"
+  },
+  "screenshots": [
+    {
+      "file": "campus-dorm52.png",
+      "sha256": "28e94233b01fbadde0c114e3c95551527ac20febe4210e1e8405b73ad410e989"
+    },
+    {
+      "file": "campus-dorm56.png",
+      "sha256": "b241a5d4c24bfcfa4086a55234a98e27991cb9cf6e0d8199065cc959a1d70412"
+    },
+    {
+      "file": "campus-library.png",
+      "sha256": "3c812552b6b9702b84509cd8fc330b85293f65acdff91db4e481613546674f61"
+    },
+    {
+      "file": "campus-stadium.png",
+      "sha256": "73a170a870b9b52302b072f8e917a4531f968c3bafd5671793342fcfc1876c65"
+    },
+    {
+      "file": "dorm56-entrance.png",
+      "sha256": "477dc7e9e92f0ac40fd45e832b59ac76918dc22e29e6927a16d361b2e75fd308"
+    },
+    {
+      "file": "dorm56-front.png",
+      "sha256": "745e0a16dfba6578e1b2cfdb0bfb6b98b5df3819a808ca85af024fa85e8fd37b"
+    },
+    {
+      "file": "dorm56-landscape.png",
+      "sha256": "d2537eaf480fc02e13ff8d282f73252a025ea034b3d8bee799fce7c798b640a8"
+    },
+    {
+      "file": "dorm56-lod0.png",
+      "sha256": "acca4ea2ac94a62cbb7f48069bb7f0396236ed4884c9f8c83736e507531f1db6"
+    },
+    {
+      "file": "dorm56-lod1.png",
+      "sha256": "b5bcf22926581ed639a74c0fc870bddb4c73f23fafeca34baa890ba4a60bcd1f"
+    },
+    {
+      "file": "dorm56-lod2.png",
+      "sha256": "cdda082a98d3fd5130bf486b7901b0868e335c35fc3e950b5027d998aa459c7e"
+    },
+    {
+      "file": "dorm56-roof.png",
+      "sha256": "3bba4705cfe50c9d47c7fc5510126ee1c25270107edc6bb729484f5e792a24ad"
+    },
+    {
+      "file": "dorm56-shared.png",
+      "sha256": "ac571974f697d540ca147d3feb9bd0196acb65eed4df61e8dfa82c5421b01606"
+    },
+    {
+      "file": "overview.png",
+      "sha256": "faa1dbf3f3d3738b233855c1dcf6b20e1028d84731c32a9e92cb468c1832630e"
+    }
+  ],
+  "limits": [
+    "Silhouettes and floor steps from planning roof plan; small as-built plan does not resolve every terrace",
+    "Metres/pixel from as-built parcel area54477.7m² and planning outline; heights and bay spacing estimated",
+    "A56 registration is inferred by parcel area/road context, not surveyed coordinates",
+    "Bridge network positions and levels inferred from aerial/ground views; hidden links may differ",
+    "Terrain preserves v0.40 simulation platform, not survey elevation; planting positions/species approximate",
+    "External reconstruction only; rooms, stairs and lift interiors are not reconstructed"
+  ],
+  "performanceNote": "Screenshot FPS was observed while offline tests/rendering ran; this is a functional WebGPU check, not a performance benchmark."
+}

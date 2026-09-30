@@ -34,7 +34,7 @@ with zipfile.ZipFile(source_zip, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as 
             z.write(file, str(file.relative_to(root)))
     for file in sorted((root/'authoring/common').glob('*.py')):
         z.write(file, str(file.relative_to(root)))
-    for file in [root/'authoring/library/compress.mjs', root/f'tools/prepare-{asset}.mjs']:
+    for file in [root/'authoring/library/compress.mjs', root/f'tools/prepare-{asset}.mjs', root/f'tools/prepare-{asset}-geometry.py']:
         if file.exists(): z.write(file, str(file.relative_to(root)))
     if asset == 'sports':
         z.write(root/'public/models/library/screen-baked.png', 'public/models/library/screen-baked.png')

@@ -27,7 +27,7 @@ export const detailStatus: Record<string, string> = {
   services: "规划总图与效果图 · 弧形合院、展馆与室外通道",
   industry: "规划总图与效果图 · 半环楼与开放庭院",
   community: "A-06范围图 · 住宅外观与场内步道",
-  dorm56: "面积/道路对应推断 · 退台外观与院落步道",
+  dorm56: "Blender 生活一区 · 退台宿舍、玻璃连廊与院落绿化",
   police: "实建图参考 · 蓝白楼翼与开放庭院",
   fire: "实建图参考 · 消防站与训练塔",
   hospital: "A-22界址核对 · 效果图参考外形",

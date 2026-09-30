@@ -7,7 +7,7 @@
     "cadence": "every 4 hours in this thread"
   },
   "referenceTour": "https://www.720yun.com/vr/5dejtgefzu6",
-  "referenceTourStatus": "2026-09-29–30: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 / entrance 27310152, and stadium 27335713. Remaining scenes require individual review. 2026-09-30: student living two 27335352 and living-area aerial 27335712 visually inspected in four directions each.",
+  "referenceTourStatus": "2026-09-29–30: normal Chrome rendered UESTC 27335715, BUPT 27335716, canteen 27335706, library exterior 27335703 / entrance 27310152, and stadium 27335713. Remaining scenes require individual review. 2026-09-30: student living two 27335352 and living-area aerial 27335712 visually inspected in four directions each. 2026-09-30: student living one27335351 and living-area aerial27335712 inspected in four directions; official DOCX rendered17pages.",
   "acceptance": [
     "每栋建筑有可追溯参考和单独状态，主体片段不等同真实楼栋",
     "先校准体量、朝向和高低关系，再细化立面、屋顶、入口、构件和 PBR 材质",
@@ -545,208 +545,76 @@
       "id": "dorm56",
       "name": "学生生活一区",
       "priority": 11,
-      "status": "queued",
-      "existingExterior": "面积/道路对应推断 · 退台外观与院落步道",
+      "status": "runtime-verified-estimates-remain",
+      "existingExterior": "Blender1—11号楼、退台和玻璃连廊；院落绿化与原台地衔接",
       "source": "https://wap.study-hn.cn/upload/file/2025/08/04/25debde2816b4d37a9c0f72000a7847c.docx",
-      "evidence": "生活一区核实DOCX实建图S=54477.7平方米，与2025控规A-56面积54478平方米及建二路/南湾路、地块形状交叉对应，属于有依据的对应推断。实建小图不够清晰，轮廓与退台主要描绘image1报建屋顶图，照片参考水平阳台带。按实建地块面积校准图上红线近似比例，北向约45度；层数简化、层高估算，全园仍为地块级定位，不是实建测绘模型。",
+      "evidence": "官方DOCX报建屋顶图描绘轮廓，实建照片校核灰白宿舍、架空层及红砖配套楼；720地面和生活区航拍核对连廊与院落。实建小图不能逐段校核，尺寸、层高、A56配准和植物位置仍有估算。",
       "units": [
         {
-          "name": "生活一区4号楼 · 退台段1",
+          "name": "生活一区1号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区4号楼 · 退台段2",
+          "name": "生活一区2号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区4号楼 · 退台段3",
+          "name": "生活一区3号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区4号楼 · 退台段4",
+          "name": "生活一区4号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区2号楼 · 退台段1",
+          "name": "生活一区5号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区2号楼 · 退台段2",
+          "name": "生活一区6号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区2号楼 · 退台段3",
+          "name": "生活一区7号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区2号楼 · 退台段4",
+          "name": "生活一区8号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区7号楼 · 退台段1",
+          "name": "生活一区9号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区7号楼 · 退台段2",
+          "name": "生活一区10号楼",
           "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         },
         {
-          "name": "生活一区7号楼 · 退台段3",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区5号楼 · 退台段1",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区5号楼 · 退台段2",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区5号楼 · 退台段3",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区3号楼 · 北楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区3号楼 · 东楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区3号楼 · 南楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区1号楼 · 北楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区1号楼 · 西楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区1号楼 · 东侧退台",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区1号楼 · 东南退台",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区8号楼 · 北楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区8号楼 · 西楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区8号楼 · 南楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区6号楼 · 北楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区6号楼 · 西楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区6号楼 · 南楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区10号楼 · 西低区",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区10号楼 · 主楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区9号楼 · 西低区",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区9号楼 · 主楼翼",
-          "kind": "dorm56",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区11号楼 · 配套主楼",
+          "name": "生活一区11号楼",
           "kind": "dorm56-service",
-          "model": "queued",
-          "landscape": "queued"
-        },
-        {
-          "name": "生活一区11号楼 · 配套东翼",
-          "kind": "dorm56-service",
-          "model": "queued",
-          "landscape": "queued"
+          "model": "runtime-verified-estimates-remain",
+          "landscape": "runtime-verified-estimates-remain"
         }
       ],
       "landscapeScope": [
@@ -756,8 +624,17 @@
         "planting beds",
         "entrance and walkway clearance"
       ],
-      "nextAction": "补齐单体清单与对应照片，逐栋建模并完成周边绿化",
-      "completedChecks": []
+      "nextAction": "球场设施、完整上层交通、实建轮廓和测绘配准继续待核；转入生活三区",
+      "completedChecks": [
+        "官方DOCX17页和720地面/航拍实景检查",
+        "三档压缩GLB校验与高度/玻璃凹进射线",
+        "铺地与草地按地形三角网裁切、树根与树冠净空检查",
+        "14条原步道与10条连廊下通道连续往返",
+        "Chrome原生WebGPU三档模型、细节视角、四处校园及自动LOD切换"
+      ],
+      "verification": "验证记录/dorm56-blender.json",
+      "authoring": "authoring/dorm56/README.md",
+      "browserVerification": "验证记录/webgpu-v0.41.0.json"
     },
     {
       "id": "dorm3",
@@ -1992,7 +1869,7 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "dorm56",
+  "nextSite": "dorm3",
   "terrain": {
     "version": "0.39.0",
     "status": "runtime-verified-estimates-remain",
@@ -2012,5 +1889,5 @@
     ],
     "validation": "验证记录/terrain-v0.39.0.json"
   },
-  "nextAction": "按官方实建图和生活区全景推进生活一区，继续将台地、入口和建筑高程作为共同约束。"
+  "nextAction": "按变更总平面和生活区全景推进生活三区，继续共同约束台地、入口及建筑高程。"
 }

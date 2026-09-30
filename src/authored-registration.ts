@@ -1,3 +1,4 @@
+import dorm56 from "../public/models/dorm56/dorm56.json";
 import dorm52 from "../public/models/dorm52/dorm52.json";
 import stadium from "../public/models/stadium/stadium.json";
 import canteen from "../public/models/canteen/canteen.json";
@@ -23,6 +24,7 @@ export function registerAuthoredSites(geo: any) {
     canteen,
     stadium,
     dorm52,
+    dorm56,
   ]) {
     const c = Math.cos(asset.yaw),
       s = Math.sin(asset.yaw);
@@ -34,8 +36,8 @@ export function registerAuthoredSites(geo: any) {
       "fixedTerrainBase" in asset
         ? asset.fixedTerrainBase
         : geo.height(...asset.anchor) + 0.12;
-    if (asset.asset === "dorm52") {
-      geo.walkways = geo.walkways.filter((p: any) => p.placeId !== "dorm52");
+    if (asset.asset === "dorm52" || asset.asset === "dorm56") {
+      geo.walkways = geo.walkways.filter((p: any) => p.placeId !== asset.asset);
       for (const p of asset.landscape.paths)
         geo.exteriorAccessAreas = [
           ...(geo.exteriorAccessAreas || []),
