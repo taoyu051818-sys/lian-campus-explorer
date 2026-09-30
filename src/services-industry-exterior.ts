@@ -51,6 +51,10 @@ export function addServicesIndustryExterior(
     const spawn = geo.spawns.find((s: any) => s.id === id);
     if (spawn) spawn.point = geo.nearestRoad(move(spawn.point)).point;
   }
+  geo.terrain.protect(
+    "services-industry",
+    plan.blocks.flatMap((b) => b.footprint.map(point)),
+  );
   const mainBase =
     Math.min(
       ...plan.blocks

@@ -1,0 +1,518 @@
+{
+  "schema": 1,
+  "version": "0.39.0",
+  "grid": {
+    "origin": [
+      -1840,
+      -2100
+    ],
+    "size": [
+      5200,
+      6000
+    ],
+    "step": 20
+  },
+  "verticalDatum": "Scene sea level -0.8m; map spot heights are used as approximate landform constraints. Not a survey DEM.",
+  "sources": [
+    {
+      "kind": "repository-map",
+      "path": "public/overall/parcels.png",
+      "use": "North-up plan, 1000m scale, coastal/forest/lake outlines and printed spot heights. Manual digitization."
+    },
+    {
+      "kind": "user-reference",
+      "url": "https://www.720yun.com/vr/5dejtgefzu6",
+      "scene": "高空鸟瞰",
+      "use": "Mountain behind living quarters, coastal lowland and tidal vegetation belt. Heights between controls estimated."
+    }
+  ],
+  "legacyLand": [
+    [
+      15,
+      815
+    ],
+    [
+      120,
+      858
+    ],
+    [
+      190,
+      882
+    ],
+    [
+      284,
+      842
+    ],
+    [
+      335,
+      819
+    ],
+    [
+      400,
+      769
+    ],
+    [
+      427,
+      697
+    ],
+    [
+      462,
+      674
+    ],
+    [
+      487,
+      688
+    ],
+    [
+      530,
+      623
+    ],
+    [
+      559,
+      579
+    ],
+    [
+      595,
+      528
+    ],
+    [
+      624,
+      454
+    ],
+    [
+      643,
+      400
+    ],
+    [
+      651,
+      335
+    ],
+    [
+      640,
+      308
+    ],
+    [
+      667,
+      278
+    ],
+    [
+      717,
+      231
+    ],
+    [
+      771,
+      214
+    ],
+    [
+      812,
+      151
+    ],
+    [
+      975,
+      151
+    ],
+    [
+      975,
+      1249
+    ],
+    [
+      15,
+      1249
+    ]
+  ],
+  "coast": [
+    [
+      -200,
+      785
+    ],
+    [
+      15,
+      805
+    ],
+    [
+      110,
+      838
+    ],
+    [
+      179,
+      857
+    ],
+    [
+      234,
+      852
+    ],
+    [
+      298,
+      828
+    ],
+    [
+      343,
+      799
+    ],
+    [
+      380,
+      764
+    ],
+    [
+      400,
+      716
+    ],
+    [
+      420,
+      686
+    ],
+    [
+      459,
+      654
+    ],
+    [
+      481,
+      653
+    ],
+    [
+      519,
+      607
+    ],
+    [
+      544,
+      568
+    ],
+    [
+      579,
+      519
+    ],
+    [
+      602,
+      460
+    ],
+    [
+      621,
+      404
+    ],
+    [
+      627,
+      352
+    ],
+    [
+      626,
+      310
+    ],
+    [
+      656,
+      271
+    ],
+    [
+      713,
+      226
+    ],
+    [
+      759,
+      204
+    ],
+    [
+      800,
+      150
+    ],
+    [
+      900,
+      0
+    ],
+    [
+      1500,
+      -1000
+    ],
+    [
+      4000,
+      -1000
+    ],
+    [
+      4000,
+      500
+    ],
+    [
+      2200,
+      950
+    ],
+    [
+      1600,
+      960
+    ],
+    [
+      1150,
+      990
+    ],
+    [
+      975,
+      1050
+    ],
+    [
+      921,
+      1060
+    ],
+    [
+      863,
+      1068
+    ],
+    [
+      823,
+      1085
+    ],
+    [
+      753,
+      1090
+    ],
+    [
+      671,
+      1085
+    ],
+    [
+      609,
+      1097
+    ],
+    [
+      555,
+      1129
+    ],
+    [
+      517,
+      1161
+    ],
+    [
+      482,
+      1190
+    ],
+    [
+      471,
+      1220
+    ],
+    [
+      446,
+      1265
+    ],
+    [
+      361,
+      1290
+    ],
+    [
+      270,
+      1310
+    ],
+    [
+      164,
+      1250
+    ],
+    [
+      125,
+      1200
+    ],
+    [
+      109,
+      1163
+    ],
+    [
+      67,
+      1120
+    ],
+    [
+      15,
+      1090
+    ],
+    [
+      -200,
+      1000
+    ]
+  ],
+  "lake": {
+    "name": "山中湖",
+    "outline": [
+      [
+        845,
+        450
+      ],
+      [
+        862,
+        453
+      ],
+      [
+        879,
+        472
+      ],
+      [
+        895,
+        499
+      ],
+      [
+        893,
+        530
+      ],
+      [
+        900,
+        553
+      ],
+      [
+        891,
+        583
+      ],
+      [
+        881,
+        609
+      ],
+      [
+        872,
+        636
+      ],
+      [
+        852,
+        663
+      ],
+      [
+        835,
+        698
+      ],
+      [
+        820,
+        733
+      ],
+      [
+        803,
+        727
+      ],
+      [
+        796,
+        700
+      ],
+      [
+        799,
+        669
+      ],
+      [
+        809,
+        641
+      ],
+      [
+        813,
+        615
+      ],
+      [
+        812,
+        582
+      ],
+      [
+        822,
+        552
+      ],
+      [
+        827,
+        520
+      ],
+      [
+        834,
+        489
+      ]
+    ],
+    "waterLevel": 8.4,
+    "bedLevel": 4.2,
+    "note": "Outline from plan; water level is a scene estimate, not a measured level."
+  },
+  "peaks": [
+    {
+      "name": "西侧图注山峰",
+      "map": [
+        39,
+        969
+      ],
+      "height": 223,
+      "radii": [
+        730,
+        960
+      ],
+      "angle": -0.25,
+      "evidence": "printed spot height; name too small to verify"
+    },
+    {
+      "name": "牛角山",
+      "map": [
+        742,
+        959
+      ],
+      "height": 210.2,
+      "radii": [
+        1150,
+        890
+      ],
+      "angle": 0.45,
+      "evidence": "printed spot height"
+    },
+    {
+      "name": "东南侧图注山峰",
+      "map": [
+        930,
+        1015
+      ],
+      "height": 189.1,
+      "radii": [
+        900,
+        770
+      ],
+      "angle": 0.3,
+      "evidence": "printed spot height"
+    },
+    {
+      "name": "尖岭",
+      "map": [
+        497,
+        1080
+      ],
+      "height": 190.4,
+      "radii": [
+        1000,
+        740
+      ],
+      "angle": -0.7,
+      "evidence": "printed spot height"
+    },
+    {
+      "name": "虎岭",
+      "map": [
+        337,
+        1222
+      ],
+      "height": 110.9,
+      "radii": [
+        870,
+        640
+      ],
+      "angle": -0.6,
+      "evidence": "printed spot height"
+    }
+  ],
+  "ridges": [
+    {
+      "map": [
+        599,
+        963
+      ],
+      "height": 141,
+      "radii": [
+        730,
+        620
+      ],
+      "angle": -0.5
+    },
+    {
+      "map": [
+        425,
+        1110
+      ],
+      "height": 118,
+      "radii": [
+        730,
+        540
+      ],
+      "angle": -0.6
+    }
+  ],
+  "authoredSites": "Existing validated local grades retained inside model + landscape footprints, including one full grid cell around their perimeter; new slopes blend outside.",
+  "terrainStatus": "Plan and panorama constrained reconstruction; parcel positions and unmeasured elevations remain estimates.",
+  "contextNote": "Outside the printed map, the mainland is continued as low-detail context; no extrapolated coastline is treated as surveyed."
+}

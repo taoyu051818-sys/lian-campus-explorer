@@ -1,3 +1,5 @@
+import { createCampusTerrain } from "./campus-terrain";
+import terrainConfig from "../public/terrain/landform.json";
 import type { AtlasData } from "./atlas";
 export type Point = [number, number];
 export const SCALE = 1000 / 190;
@@ -45,6 +47,7 @@ export type Building = {
 };
 export function geometry(data: AtlasData, campus: any) {
   const land = data.land.map(toWorld);
+  const legacyLand = terrainConfig.legacyLand.map((p) => toWorld(p as Point));
   const roads = data.roads.map((r) => ({
     ...r,
     points: r.points.map(toWorld),
@@ -205,15 +208,18 @@ export function geometry(data: AtlasData, campus: any) {
     radius: number;
     straightHalfLength: number;
   }[] = [];
-  // A continuous synthetic landform. No survey elevation is implied.
-  function rawHeight(x: number, z: number) {
+  // Retained only for the verified local grades of existing authored assets.
+  function legacyHeight(x: number, z: number) {
     const p: Point = [x, z];
-    if (!inside(p, land)) return -4;
+    if (!inside(p, legacyLand)) return -4;
     let edge = Infinity;
-    for (let i = 0; i < land.length; i++)
+    for (let i = 0; i < legacyLand.length; i++)
       edge = Math.min(
         edge,
-        distance(p, closest(p, land[i], land[(i + 1) % land.length])),
+        distance(
+          p,
+          closest(p, legacyLand[i], legacyLand[(i + 1) % legacyLand.length]),
+        ),
       );
     const t = Math.min(1, edge / 60),
       s = t * t * (3 - 2 * t);
@@ -245,6 +251,8 @@ export function geometry(data: AtlasData, campus: any) {
     }
     return -4 + (base + 4) * s;
   }
+  const terrain = createCampusTerrain(legacyHeight, roads);
+  const rawHeight = terrain.rawHeight;
   // Sample the exact same triangles as the rendered 20m ground grid.
   function height(x: number, z: number) {
     const x0 = Math.floor(x / 20) * 20,
@@ -265,6 +273,8 @@ export function geometry(data: AtlasData, campus: any) {
     return { id: p.id, point: r.point };
   });
   return {
+    terrain,
+    legacyHeight,
     grounds,
     transportSites,
     forecourts,

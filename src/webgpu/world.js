@@ -209,6 +209,7 @@ async function boot() {
     if (mode === "orbit") fitSelected();
     const url = new URL(location.href);
     url.searchParams.set("place", id);
+    if (mode === "orbit") url.searchParams.set("view", "orbit");
     history.replaceState(null, "", url);
     toast("已到达附近道路，可沿路继续探索");
   }
@@ -239,6 +240,16 @@ async function boot() {
         ? "拖动旋转 · 滚轮缩放 · 选择地点后点击前往聚焦"
         : "WASD 移动 · 拖动转向 · Shift 奔跑 · 空格跳跃 · V 切换视角";
   }
+  function showTerrain() {
+    setMode("orbit");
+    controls.target.set(750, 45, 700);
+    camera.position.set(-900, 1300, 2300);
+    controls.update();
+    const url = new URL(location.href);
+    url.searchParams.set("view", "terrain");
+    history.replaceState(null, "", url);
+  }
+  $("terrain-overview").onclick = showTerrain;
   select.onchange = () => {
     selected = select.value;
     updateDestination();
@@ -498,6 +509,7 @@ async function boot() {
     setMode("orbit");
     fitSelected();
   }
+  if (initialView === "terrain") showTerrain();
   function updateCamera() {
     const cp = player.position;
     avatar.position.set(cp.x, cp.y - 0.9, cp.z);

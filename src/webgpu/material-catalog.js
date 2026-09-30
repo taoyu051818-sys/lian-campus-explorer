@@ -2,6 +2,7 @@
 // New materials must be assigned here: silently falling back to flat grey hides omissions.
 const families = {
   terrain: ["terrain"],
+  water: ["inland lake water"],
   asphalt: ["roads", "transport yard asphalt"],
   paving: [
     "walkways",
@@ -102,6 +103,7 @@ const families = {
     "canteen dark solar modules",
   ],
   foliage: [
+    "terrain woodland canopy",
     "roof planting",
     "hospital planted terrace",
     "hospital low terrace foliage",

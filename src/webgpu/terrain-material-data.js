@@ -15,7 +15,7 @@ import {
 
 import { computeShoreField } from "../vendor/tidewater/world/ShoreField.js";
 
-// Adapter from the campus's unchanged 20 m authoring grid to Tidewater's material
+// Adapter from the campus's shared 20 m authoring grid to Tidewater's material
 // queries. Half-texel correction keeps the rendered shore on the collision grid.
 export function createTerrainMaterialData(positions) {
   const width = 261,
@@ -75,7 +75,27 @@ export function createTerrainMaterialData(positions) {
       .and(uv.x.lessThanEqual(1))
       .and(uv.y.greaterThanEqual(0))
       .and(uv.y.lessThanEqual(1));
-    return inside.select(hNode.sample(texUV(p)).level(0).r, float(-90));
+    const f = clamp(
+      uv.mul(vec2(width - 1, height - 1)),
+      vec2(0),
+      vec2(width - 1.001, height - 1.001),
+    );
+    const i = ivec2(floor(f)),
+      t = fract(f);
+    const a = textureLoad(heightTexture, i).r;
+    const b = textureLoad(heightTexture, i.add(ivec2(1, 0))).r;
+    const c = textureLoad(heightTexture, i.add(ivec2(0, 1))).r;
+    const d = textureLoad(heightTexture, i.add(ivec2(1, 1))).r;
+    const sampled = t.x
+      .add(t.y)
+      .lessThanEqual(1)
+      .select(
+        a.add(b.sub(a).mul(t.x)).add(c.sub(a).mul(t.y)),
+        d
+          .add(c.sub(d).mul(float(1).sub(t.x)))
+          .add(b.sub(d).mul(float(1).sub(t.y))),
+      );
+    return inside.select(sampled, float(-16.8));
   }).setLayout({
     name: "campusHeightAt",
     type: "float",
@@ -84,15 +104,18 @@ export function createTerrainMaterialData(positions) {
   function heightCPU(x, z) {
     const fx = (x - origin.x) / step,
       fz = (z - origin.y) / step;
-    if (fx < 0 || fx > width - 1 || fz < 0 || fz > height - 1) return -90;
-    const ix = Math.floor(fx),
-      iz = Math.floor(fz),
+    if (fx < 0 || fx > width - 1 || fz < 0 || fz > height - 1) return -16.8;
+    const ix = Math.min(width - 2, Math.floor(fx)),
+      iz = Math.min(height - 2, Math.floor(fz)),
       u = fx - ix,
       v = fz - iz;
-    return (
-      (at(ix, iz) * (1 - u) + at(ix + 1, iz) * u) * (1 - v) +
-      (at(ix, iz + 1) * (1 - u) + at(ix + 1, iz + 1) * u) * v
-    );
+    const a = at(ix, iz),
+      b = at(ix + 1, iz),
+      c = at(ix, iz + 1),
+      d = at(ix + 1, iz + 1);
+    return u + v <= 1
+      ? a + (b - a) * u + (c - a) * v
+      : d + (c - d) * (1 - u) + (b - d) * (1 - v);
   }
   // The upstream phase solver uses a square domain. Pad the rectangular campus
   // grid without moving its coordinates; the sampler below has its own domain.

@@ -23,7 +23,8 @@
     <nav class="glass modes" aria-label="视角">
       <button data-mode="third" aria-pressed="true">第三人称</button
       ><button data-mode="first" aria-pressed="false">第一人称</button
-      ><button data-mode="orbit" aria-pressed="false">鸟瞰总图</button>
+      ><button data-mode="orbit" aria-pressed="false">鸟瞰总图</button
+      ><button id="terrain-overview">山海地形</button>
     </nav>
     <section class="glass destination">
       <label for="destination">前往学校与设施</label>
@@ -34,7 +35,9 @@
       <p id="destination-note"></p>
       <a id="evidence" target="_blank" rel="noopener">查看该地块资料 ↗</a
       ><button id="orient">朝向此地</button>
-      <a id="library-review" href="./library.html" hidden>查看图书馆建筑细节 ↗</a>
+      <a id="library-review" href="./library.html" hidden
+        >查看图书馆建筑细节 ↗</a
+      >
     </section>
     <section class="glass visual-settings" aria-label="视觉设置">
       <span class="engine">TIDEWATER / WEBGPU</span>
@@ -126,8 +129,8 @@
           道路：沿现有总图示意中心线铺设连续路面，宽度为漫游原型设定，路口与入口未做工程级校准。
         </li>
         <li>
-          地形：连续的平缓模拟地面与岸线过渡，未接入 DEM
-          或实测高程。建筑位置保持原有配准。
+          地形：按总图山峰高程、岸线、山中湖与全景中的山海关系重建，建筑台地与道路共用碰撞地面。山坡曲线、湖面高程和地块配准仍含估算，尚非测绘
+          DEM。
         </li>
         <li>范围：当前为一期。二期尚未配准，仍在位置总图中单独查看。</li>
         <li>
