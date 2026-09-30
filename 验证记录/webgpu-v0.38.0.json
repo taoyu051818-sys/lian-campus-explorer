@@ -1,0 +1,283 @@
+{
+  "version": "0.38.0",
+  "date": "2026-09-30",
+  "renderer": "Three.js WebGPURenderer / native Metal",
+  "standalone": {
+    "date": "2026-09-29T16:23:46.328Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "stadium",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 80.8 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 27.0 万三角面 · 54 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 14.4 万三角面 · 60 FPS",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "stadium-lod0.png",
+          "stadium-lod1.png",
+          "stadium-lod2.png",
+          "stadium-front.png",
+          "stadium-stairs.png",
+          "stadium-rear.png",
+          "stadium-landscape.png"
+        ],
+        "title": "滨海体育场 · 建筑与环境",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "libraryPreviewRegression": {
+    "date": "2026-09-29T16:09:42.918Z",
+    "browser": "154.0.8037.58",
+    "pages": [
+      {
+        "asset": "library",
+        "errors": [],
+        "requests": [],
+        "lods": [
+          {
+            "lod": "0",
+            "status": "模型已载入 · 93.7 万三角面",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "1",
+            "status": "模型已载入 · 40.7 万三角面 · 51 FPS",
+            "gpuValidation": "passed"
+          },
+          {
+            "lod": "2",
+            "status": "模型已载入 · 12.2 万三角面 · 60 FPS",
+            "gpuValidation": "passed"
+          }
+        ],
+        "screenshots": [
+          "library-lod0.png",
+          "library-lod1.png",
+          "library-lod2.png",
+          "library-photo.png",
+          "library-heights.png",
+          "library-entrance.png",
+          "library-roof.png",
+          "library-landscape.png"
+        ],
+        "title": "图书馆 · 建筑模型",
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3"
+        }
+      }
+    ]
+  },
+  "campus": {
+    "pages": [
+      {
+        "asset": "stadium",
+        "url": "http://127.0.0.1:4197/world.html?place=stadium&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1}",
+        "note": "A-89 · Blender 实景参考 · 双层蓝白看台、折线观景平台与滨海绿化",
+        "screenshot": "campus-stadium.png"
+      },
+      {
+        "asset": "library",
+        "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":1}",
+        "note": "A-88 · Blender 实景参考 · 四组裙楼、入口景观池与屋顶绿化",
+        "screenshot": "campus-library.png"
+      },
+      {
+        "asset": "canteen",
+        "url": "http://127.0.0.1:4197/world.html?place=canteen&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":0,\"stadium\":1}",
+        "note": "A-38-02 · Blender 红砖遮阳 · 屋顶设备、入口与树荫广场",
+        "screenshot": "campus-canteen.png"
+      },
+      {
+        "asset": "incubator",
+        "url": "http://127.0.0.1:4197/world.html?place=incubator&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2,\"stadium\":2}",
+        "note": "A-59 · Blender 错层幕墙 · 屋顶构架、退台与入口绿化",
+        "screenshot": "campus-incubator.png"
+      },
+      {
+        "asset": "bupt",
+        "url": "http://127.0.0.1:4197/world.html?place=bupt&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":2,\"canteen\":2,\"stadium\":2}",
+        "note": "A-67 · Blender 双学院楼 · 横向遮阳、阶梯花园与周边绿化",
+        "screenshot": "campus-bupt.png"
+      },
+      {
+        "asset": "uestc",
+        "url": "http://127.0.0.1:4197/world.html?place=uestc&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":1,\"incubator\":1,\"canteen\":2,\"stadium\":2}",
+        "note": "A-64 · Blender 双学院楼 · 阳台带、连廊与庭院绿化",
+        "screenshot": "campus-uestc.png"
+      },
+      {
+        "asset": "hall",
+        "url": "http://127.0.0.1:4197/world.html?place=hall&view=orbit",
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":0,\"uestc\":1,\"bupt\":2,\"incubator\":0,\"canteen\":2,\"stadium\":2}",
+        "note": "A-60 · Blender 实建图参考 · 石材会堂、外楼梯与周边绿化",
+        "screenshot": "campus-hall.png"
+      },
+      {
+        "asset": "activity",
+        "url": "http://127.0.0.1:4197/world.html?place=activity&view=orbit",
+        "lods": "{\"library\":2,\"sports\":0,\"activity\":0,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1,\"stadium\":2}",
+        "note": "A-34 · Blender 实建图参考 · 弧形楼翼、架空外廊与庭院绿化",
+        "screenshot": "campus-activity.png"
+      },
+      {
+        "asset": "sports",
+        "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+        "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1,\"stadium\":2}",
+        "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+        "screenshot": "campus-sports.png"
+      },
+      {
+        "asset": "stadium",
+        "wheel": -3000,
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":0}"
+      },
+      {
+        "asset": "stadium",
+        "wheel": 2600,
+        "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1}"
+      },
+      {
+        "asset": "stadium",
+        "wheel": 1800,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}"
+      },
+      {
+        "asset": "stadium",
+        "wheel": 2200,
+        "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}"
+      }
+    ],
+    "browser": "154.0.8037.58",
+    "errors": [],
+    "failed": []
+  },
+  "screenshots": [
+    {
+      "file": "webgpu-v0.38.0-campus-activity.png",
+      "sha256": "dfe39d1b96963810c9495c6e997abfcd80de1f3d0ade9107c56ed375d54918ab"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-bupt.png",
+      "sha256": "03c38fdc2f6a36c11ad6e70a3f08f180f2bfd564b0c15be09ab0fbc13ca79aa6"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-canteen.png",
+      "sha256": "7c901340b8a941a5ac497ee72c6249ab42857c7f315527e1d852446f6c720ae2"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-hall.png",
+      "sha256": "c1fc663070983bb04287f3241264c3244a993aac1d8009c15833b85117b6b04d"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-incubator.png",
+      "sha256": "628e3b748173faf66a0ef20ebfe7a0fcdbe4f709337a1aa7aa645522a22134ec"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-library.png",
+      "sha256": "d19ee482c48356cda905e51a0453c63fc27b9ea8463d316e9c00eff56d1eeed1"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-sports.png",
+      "sha256": "13d2c488dbbada6938f7ba78507f21664b6c56f28828b577a8980eba3a101d95"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-stadium.png",
+      "sha256": "3860cc38c5a9dc85672e1aa10a57caa313df739806b1df7bf30551ecee9b573c"
+    },
+    {
+      "file": "webgpu-v0.38.0-campus-uestc.png",
+      "sha256": "4c6337a74f9439a3398c0186a3234202fa2ace0bc7b863d15bc21bf716e22651"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-front.png",
+      "sha256": "3147edc1def16d96d84ab6f0653f1e7e018fd8362f65827d29f9fe018b7bdc69"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-landscape.png",
+      "sha256": "046621198ec8dfe4f0e7e4b2f7045d7aa9d6307172626ae5a5e08091dba4b5d9"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-lod0.png",
+      "sha256": "ce1d130fed0ef8c80fc5e270c94bcdc7fa6c15fbe95c7557ce6f0c98261a886d"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-lod1.png",
+      "sha256": "a8936d86a5bfc239162a20c17cb9747089578605a587104816959f2d70241212"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-lod2.png",
+      "sha256": "58500df87d14ed3b33a067a53a3926002fe4d42bb3c6da002018fe86d6d4f560"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-rear.png",
+      "sha256": "5e6c23a231c10bf8cf1edb5cf926b0ba97d8e24bb6deee10fea8cc6abf299c78"
+    },
+    {
+      "file": "webgpu-v0.38.0-stadium-stairs.png",
+      "sha256": "9a88cfe99064aee82005cd8b69ff9d4d86328d6bb740ca3e812b019ae9fbe0ed"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-entrance.png",
+      "sha256": "2f496350b232a922f4ad5bbd0cdcb18f3c0a9cfc775038ad98d7b6249cf4198b"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-heights.png",
+      "sha256": "203efa260a470e33e30a01313715ab399969ff06b128403f3dcc9f0942e7ed3c"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-landscape.png",
+      "sha256": "5aeed36fa1932f56f4571e41ff209f38a7bc45e33f0633742c1a423eeb3f49ee"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-lod0.png",
+      "sha256": "209c26f0ac1504419dde6a36f2b59175f151173d163d2f4fd6730d7b36f3daf6"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-lod1.png",
+      "sha256": "635fc0d19b21d98dc29da9b3affa20c9782b51e64b9262fe9d861a03d6a36006"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-lod2.png",
+      "sha256": "10a4422e73a5964f49f91403fce3ee0a1610c71995c2c7c29a713c255dab182e"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-photo.png",
+      "sha256": "be604fcceba0fd6e5e52e6e29c294620df0d6a907f18463e39d4daebfdb30515"
+    },
+    {
+      "file": "webgpu-v0.38.0-library-roof.png",
+      "sha256": "91fb1a09073c79a08bcd9cb6dbcdc3519c943a28b53dd301c21306164796ce28"
+    }
+  ],
+  "scope": "Stadium three LODs and five views; library three LODs and five views after preview terrain-offset fix; nine authored campus destinations; stadium automatic LOD 0/1/2; no page errors or failed requests",
+  "limits": [
+    "Desktop Chrome / Apple Metal; no mobile performance claim",
+    "Outdoor entrances and aisles tested separately; complete interiors and elevated viewing-platform access not reconstructed"
+  ]
+}

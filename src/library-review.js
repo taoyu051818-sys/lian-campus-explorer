@@ -12,7 +12,16 @@ async function boot() {
     ? new URLSearchParams(location.search).get("asset") || "sports"
     : "library";
   const supportedAssets = document.body.dataset.genericModel
-    ? ["sports", "activity", "hall", "uestc", "bupt", "incubator", "canteen"]
+    ? [
+        "sports",
+        "activity",
+        "hall",
+        "uestc",
+        "bupt",
+        "incubator",
+        "canteen",
+        "stadium",
+      ]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))
     throw new Error("未找到该建筑模型");
@@ -40,6 +49,7 @@ async function boot() {
         manifest.review.description;
     }
     document.querySelector("#review-panel details p").textContent =
+      manifest.review?.evidenceText ||
       "依据官方实建图与建成照片细化。可见体量和结构有资料依据；构件尺寸、植物布置和校园配准仍含估算。";
     document.querySelector("#review-panel details a").href =
       manifest.sources[0].url;
@@ -48,7 +58,7 @@ async function boot() {
     antialias: true,
   });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.toneMappingExposure = 1.03;
+  renderer.toneMappingExposure = manifest.review?.exposure ?? 1.03;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#dce3e5");
   scene.fog = new THREE.Fog("#dce3e5", 600, 1100);
@@ -67,7 +77,7 @@ async function boot() {
   const room = new RoomEnvironment();
   const environment = pmrem.fromScene(room, 0.05);
   scene.environment = environment.texture;
-  scene.environmentIntensity = 0.8;
+  scene.environmentIntensity = manifest.review?.environmentIntensity ?? 0.8;
   room.dispose();
   pmrem.dispose();
   const sun = new THREE.DirectionalLight(0xfff2db, 3.6);
@@ -87,7 +97,10 @@ async function boot() {
   scene.add(sun);
   const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(1600, 1600),
-    new THREE.MeshStandardNodeMaterial({ color: "#c2c9c6", roughness: 0.95 }),
+    new THREE.MeshStandardNodeMaterial({
+      color: manifest.review?.groundColor || "#c2c9c6",
+      roughness: 0.95,
+    }),
   );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = manifest.review?.groundHeight ?? -0.12;
@@ -222,10 +235,9 @@ async function boot() {
     active = cache.get(index);
     active.visible = true;
     // Authored landscapes follow campus slopes and may extend below local zero.
-    ground.position.y = Math.min(
-      -0.12,
-      new THREE.Box3().setFromObject(active).min.y - 0.1,
-    );
+    ground.position.y = manifest.landscape?.terrain
+      ? 0
+      : Math.min(-0.12, new THREE.Box3().setFromObject(active).min.y - 0.1);
     triangles = manifest.lods[index].triangles;
     active.traverse((o) => {
       if (o.isMesh) {
