@@ -1,0 +1,104 @@
+{
+  "pages": [
+    {
+      "asset": "stadium",
+      "url": "http://127.0.0.1:4197/world.html?place=stadium&view=orbit",
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1}",
+      "note": "A-89 · Blender 实景参考 · 双层蓝白看台、折线观景平台与滨海绿化",
+      "screenshot": "campus-stadium.png"
+    },
+    {
+      "asset": "library",
+      "url": "http://127.0.0.1:4197/world.html?place=library&view=orbit",
+      "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":1}",
+      "note": "A-88 · Blender 实景参考 · 四组裙楼、入口景观池与屋顶绿化",
+      "screenshot": "campus-library.png"
+    },
+    {
+      "asset": "dorm52",
+      "url": "http://127.0.0.1:4197/world.html?place=dorm52&view=orbit",
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":1,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":2}",
+      "note": "A-52 · 生活二区实景立面 · 六层宿舍／三层外廊 · A52待核",
+      "screenshot": "campus-dorm52.png"
+    },
+    {
+      "asset": "dorm62",
+      "url": "http://127.0.0.1:4197/world.html?place=dorm62&view=orbit",
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}",
+      "note": "A-62 · 规划图四五区 · 分翼宿舍与食堂",
+      "screenshot": "campus-dorm62.png"
+    },
+    {
+      "asset": "teaching",
+      "url": "http://127.0.0.1:4197/world.html?place=teaching&view=orbit",
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}",
+      "note": "A-75 / A-79 · 规划参考外景 · 教学楼、体育场与可步行连廊",
+      "screenshot": "campus-teaching.png"
+    },
+    {
+      "asset": "school",
+      "url": "http://127.0.0.1:4197/world.html?place=school&view=orbit",
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}",
+      "note": "A-17 · 变更后总平面 · 校舍与运动场",
+      "screenshot": "campus-school.png"
+    },
+    {
+      "asset": "sports",
+      "url": "http://127.0.0.1:4197/world.html?place=sports&view=orbit",
+      "lods": "{\"library\":1,\"sports\":1,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":1,\"stadium\":2}",
+      "note": "A-33 / A-35 · Blender 实建图参考 · 双馆、附馆与周边绿化",
+      "screenshot": "campus-sports.png"
+    },
+    {
+      "asset": "stadium",
+      "wheel": -3000,
+      "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":0}"
+    },
+    {
+      "asset": "stadium",
+      "wheel": 2600,
+      "lods": "{\"library\":1,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":1,\"canteen\":2,\"stadium\":1}"
+    },
+    {
+      "asset": "stadium",
+      "wheel": 1800,
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":1,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}"
+    },
+    {
+      "asset": "stadium",
+      "wheel": 2200,
+      "lods": "{\"library\":2,\"sports\":2,\"activity\":2,\"hall\":2,\"uestc\":2,\"bupt\":2,\"incubator\":2,\"canteen\":2,\"stadium\":2}"
+    }
+  ],
+  "browser": "154.0.8037.58",
+  "errors": [],
+  "failed": [],
+  "version": "0.39.0",
+  "verifiedAt": "2026-09-30T06:05:06.420751+00:00",
+  "renderer": "Chrome native WebGPU / Metal",
+  "visualReview": [
+    "overview",
+    "stadium",
+    "library",
+    "dorm52",
+    "dorm62",
+    "teaching",
+    "school",
+    "sports"
+  ],
+  "limitations": [
+    "Terrain slopes, lake level and parcel registration include estimates; not a survey DEM.",
+    "Woodland and coastal shrubs are approximate canopy cover, not individual surveyed trees.",
+    "Desktop tested; no mobile performance claim."
+  ],
+  "checks": {
+    "terrain": "passed",
+    "materials": "passed",
+    "physics": "33 destinations and existing access routes passed",
+    "stadium": "passed",
+    "typescript": "passed",
+    "productionBuild": "passed; existing chunk-size warning"
+  },
+  "generatedMeshpackSha256": "bebd495db2df3120d396ff6b8e9a6738a768bb0d92ece7046a1658629cd8c6b8",
+  "generatedCampusSha256": "4e90add3fc1dd7f7902d2613ec05754c282e8789881044c6ad7b78e34304ab98"
+}

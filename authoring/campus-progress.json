@@ -2076,5 +2076,25 @@
       "completedChecks": []
     }
   ],
-  "nextSite": "dorm52"
+  "nextSite": "dorm52",
+  "terrain": {
+    "version": "0.39.0",
+    "status": "runtime-verified-estimates-remain",
+    "priority": "用户要求优先解决地形与建筑关系",
+    "scope": [
+      "山海关系",
+      "滨海低地",
+      "建筑台地与基础",
+      "道路贴地",
+      "山中湖",
+      "山坡林冠"
+    ],
+    "source": "authoring/terrain/README.md",
+    "remaining": [
+      "统一测绘配准与高程资料",
+      "结合生活二区精建核对山脚台地和挡土关系"
+    ],
+    "validation": "验证记录/terrain-v0.39.0.json"
+  },
+  "nextAction": "生活二区继续精建，同时核对山脚道路、台地边坡与建筑关系；延续全园地形的共同高程和碰撞约束。"
 }

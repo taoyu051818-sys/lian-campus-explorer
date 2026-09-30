@@ -140,7 +140,23 @@ export function createCampusMaterialSystem() {
         const ripple = sin(p.x.mul(49).add(mid.a.mul(7)))
           .mul(0.5)
           .add(0.5);
-        col.assign(mix(grass, sand, beach));
+        const forest = smoothstep(30, 80, p.y).mul(float(1).sub(beach));
+        const woodland = mix(
+          srgb(0.18, 0.31, 0.16),
+          srgb(0.3, 0.42, 0.22),
+          b.a,
+        ).mul(mid.a.mul(0.3).add(0.8));
+        const marsh = smoothstep(0.5, 1.7, h)
+          .mul(float(1).sub(smoothstep(4.5, 7.5, h)))
+          .mul(smoothstep(0.96, 0.995, N.y));
+        const tidalSoil = mix(
+          srgb(0.43, 0.4, 0.28),
+          srgb(0.4, 0.49, 0.29),
+          a.a,
+        );
+        col.assign(
+          mix(mix(mix(grass, woodland, forest), sand, beach), tidalSoil, marsh),
+        );
         hd.assign(
           mix(hd, fine.b.mul(0.004).add(ripple.mul(0.003).mul(near)), beach),
         );
@@ -206,7 +222,15 @@ export function createCampusMaterialSystem() {
       ao = float(1);
     let n = N;
 
-    if (isGlass) {
+    if (family === "water") {
+      m.ior = 1.333;
+      m.clearcoat = 1;
+      m.clearcoatRoughness = 0.13;
+      m.envMapIntensity = 0.7;
+      rough = float(0.19);
+      col = col.mul(macro.a.mul(0.12).add(0.88));
+      n = mappedNormal(T.paintN, p, N, 7, 0.035);
+    } else if (isGlass) {
       // Non-metallic dielectric glazing: Fresnel/IOR handles the reflection.
       // Alpha glass retains the authored see-through balcony panels; opaque panes
       // represent shaded interiors, so no fictional rooms are generated.

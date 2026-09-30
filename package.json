@@ -1,6 +1,6 @@
 {
   "name": "lian-campus-explorer",
-  "version": "0.38.0",
+  "version": "0.39.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,7 +21,8 @@
     "test:incubator": "node tools/test-incubator.mjs",
     "test:canteen": "node tools/test-canteen.mjs",
     "test:library-landscape": "node tools/test-library-landscape.mjs",
-    "test:stadium": "node tools/test-stadium.mjs"
+    "test:stadium": "node tools/test-stadium.mjs",
+    "test:terrain": "node tools/test-terrain.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.19.3",

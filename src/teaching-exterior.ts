@@ -37,6 +37,12 @@ export function addTeachingExterior(geo: any) {
     straightHalfLength: 46,
   });
   const podium = plan.podium.map(point);
+  geo.terrain.protect("teaching", [
+    ...podium,
+    ...footprint,
+    ...plan.hall.map(point),
+    ...plan.bridge.map(point),
+  ]);
   const buildingBase = Math.min(...podium.map((p) => geo.height(...p))) - 0.15;
   const add = (
     name: string,

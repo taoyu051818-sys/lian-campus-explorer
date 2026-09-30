@@ -10,6 +10,11 @@ import {
   Color3,
 } from "@babylonjs/core";
 import earcut from "earcut";
+import {
+  buildTerrainContext,
+  buildTerrainWoodland,
+} from "./build-terrain-context";
+import { drapePolygon } from "../src/terrain-drape";
 import { geometry, toWorld, distance, type Point } from "../src/world-geometry";
 import { refine, type RefinedBuilding } from "../src/refinement";
 import { createDetails } from "../src/architectural-details";
@@ -78,6 +83,23 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
   vd.applyToMesh(ground);
   ground.material = grass;
 
+  const lakeConfig = geo.terrain.config.lake;
+  const lake = MeshBuilder.CreatePolygon(
+    "山中湖 water",
+    {
+      shape: lakeConfig.outline.map((p) => {
+        const q = toWorld(p as Point);
+        return new Vector3(q[0], 0, q[1]);
+      }),
+      sideOrientation: Mesh.DOUBLESIDE,
+    },
+    scene,
+    earcut,
+  );
+  lake.position.y = lakeConfig.waterLevel;
+  lake.material = mat("inland lake water", "#477367");
+  lake.isPickable = false;
+
   function ribbon(
     name: string,
     path: Point[],
@@ -91,24 +113,23 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
     for (let j = 1; j < path.length; j++) {
       const a = path[j - 1],
         b = path[j],
-        len = distance(a, b),
-        n = Math.max(1, Math.ceil(len / subdivision)),
-        dx = (b[0] - a[0]) / len,
+        len = distance(a, b);
+      if (len < 1e-6) continue;
+      const dx = (b[0] - a[0]) / len,
         dz = (b[1] - a[1]) / len;
+      const patch = drapePolygon(
+        [
+          [a[0] - (dz * width) / 2, a[1] + (dx * width) / 2],
+          [b[0] - (dz * width) / 2, b[1] + (dx * width) / 2],
+          [b[0] + (dz * width) / 2, b[1] - (dx * width) / 2],
+          [a[0] + (dz * width) / 2, a[1] - (dx * width) / 2],
+        ],
+        height,
+        offset,
+      );
       const start = ps.length / 3;
-      for (let k = 0; k <= n; k++) {
-        const x = a[0] + ((b[0] - a[0]) * k) / n,
-          z = a[1] + ((b[1] - a[1]) * k) / n;
-        for (const sign of [-1, 1]) {
-          const px = x - ((dz * width) / 2) * sign,
-            pz = z + ((dx * width) / 2) * sign;
-          ps.push(px, height(px, pz) + offset, pz);
-        }
-      }
-      for (let k = 0; k < n; k++) {
-        const a = start + k * 2;
-        ix.push(a, a + 2, a + 1, a + 1, a + 2, a + 3);
-      }
+      ps.push(...patch.position);
+      ix.push(...patch.index.map((i) => i + start));
     }
     const m = new Mesh(name, scene),
       v = new VertexData(),
@@ -126,17 +147,19 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
     ribbon(r.name + "步道", r.points, r.width + 7, 0.12, shoulder);
     ribbon(r.name, r.points, r.width, 0.22, asphalt);
     for (const p of r.points) {
-      const m = MeshBuilder.CreateDisc(
-        "junction",
-        {
-          radius: r.width / 2,
-          tessellation: 20,
-          sideOrientation: Mesh.DOUBLESIDE,
-        },
-        scene,
-      );
-      m.rotation.x = Math.PI / 2;
-      m.position.set(p[0], height(...p) + 0.25, p[1]);
+      const outline: Point[] = Array.from({ length: 24 }, (_, i) => [
+        p[0] + (r.width / 2) * Math.cos((i * Math.PI) / 12),
+        p[1] + (r.width / 2) * Math.sin((i * Math.PI) / 12),
+      ]);
+      const patch = drapePolygon(outline, height, 0.25);
+      const m = new Mesh("junction", scene),
+        v = new VertexData(),
+        ns: number[] = [];
+      VertexData.ComputeNormals(patch.position, patch.index, ns);
+      v.positions = patch.position;
+      v.indices = patch.index;
+      v.normals = ns;
+      v.applyToMesh(m);
       m.material = asphalt;
       m.isPickable = false;
     }
@@ -181,7 +204,9 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
     m.material = material;
     return m;
   }
-  const physicalMeshes: Mesh[] = [ground];
+  const contextGround = buildTerrainContext(scene, geo, grass);
+  const woodland = buildTerrainWoodland(scene, geo);
+  const physicalMeshes: Mesh[] = [ground, contextGround];
   const details = createDetails(scene, height, volume);
   for (const p of data.places) {
     // Coarse parcel triangles bridge terrain transitions and can cover authored ground surfaces.
@@ -240,6 +265,17 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
       hull.isVisible = false;
       physicalMeshes.push(hull);
       continue;
+    }
+    if (b.foundationBottom !== undefined && base - b.foundationBottom > 0.55) {
+      const plinth = volume(
+        "foundation " + b.name,
+        b.footprint,
+        base - b.foundationBottom,
+        b.foundationBottom,
+        roof,
+      );
+      plinth.metadata = { placeId: b.placeId };
+      physicalMeshes.push(plinth);
     }
     const solid = volume(
       b.name,

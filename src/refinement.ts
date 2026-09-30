@@ -16,6 +16,7 @@ export type RefinedBuilding = Building & {
   floors?: number;
   baseOffset?: number;
   fixedBase?: number;
+  foundationBottom?: number;
 };
 export const partialDetailStatus: Record<string, string> = {
   dorm52: "生活二区实景立面 · 六层宿舍／三层外廊 · A52待核",
@@ -219,6 +220,7 @@ export function refine(geo: any, data: AtlasData, plans: any) {
     }
   addTeachingExterior(geo);
   addServicesIndustryExterior(geo, data);
+  geo.terrain.addBuildingPads(geo.buildings, geo.height, geo.grounds);
   addTeachingAccess(geo);
   return registrations;
 }

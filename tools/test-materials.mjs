@@ -62,7 +62,31 @@ for (let i = 0; i < positions.length; i += 3)
       terrain.heightCPU(positions[i], positions[i + 2]) - positions[i + 1],
     ) < 1e-5,
   );
-assert.equal(terrain.heightCPU(-3000, -3000), -90);
+// Interior samples catch a bilinear-vs-triangle mismatch that vertex-only tests miss.
+for (let z = 0; z < 300; z += 13)
+  for (let x = 0; x < 260; x += 11) {
+    const at = (i, j) => positions[(j * 261 + i) * 3 + 1];
+    for (const [u, v] of [
+      [0.2, 0.3],
+      [0.7, 0.8],
+    ]) {
+      const a = at(x, z),
+        b = at(x + 1, z),
+        c = at(x, z + 1),
+        d = at(x + 1, z + 1);
+      const expected =
+        u + v <= 1
+          ? a + (b - a) * u + (c - a) * v
+          : d + (c - d) * (1 - u) + (b - d) * (1 - v);
+      assert.ok(
+        Math.abs(
+          terrain.heightCPU(-1840 + (x + u) * 20, -2100 + (z + v) * 20) -
+            expected,
+        ) < 1e-5,
+      );
+    }
+  }
+assert.equal(terrain.heightCPU(-3000, -3000), -16.8);
 for (const v of terrain.shoreTexture.image.data) assert.ok(Number.isFinite(v));
 terrain.dispose();
 console.log(
