@@ -1,0 +1,182 @@
+{
+  "date": "2026-09-30",
+  "sources": [
+    {
+      "url": "https://wap.study-hn.cn/upload/file/2025/08/04/25debde2816b4d37a9c0f72000a7847c.docx",
+      "role": "Official planning verification: planning roof plan image1, as-built parcel image2, photos of buildings1–11 images13–23; rendered17pages and inspected."
+    },
+    {
+      "url": "https://www.720yun.com/vr/5dejtgefzu6",
+      "scenes": [
+        27335351,
+        27335712
+      ],
+      "role": "Student living one ground view and living-area aerial, four directions each, inspected2026-09-30"
+    }
+  ],
+  "selection": [
+    {
+      "label": "学生生活1区",
+      "scene": null,
+      "h": 0.027777777777777773,
+      "v": -5.554,
+      "fov": 111
+    },
+    {
+      "label": "生活区鸟瞰",
+      "scene": null,
+      "h": -42.05411111111121,
+      "v": 51.808,
+      "fov": 120
+    }
+  ],
+  "observations": {
+    "confirmed": [
+      "Ten stepped dormitory buildings and a three-storey brick service building",
+      "White projecting floor bands, recessed grey tile walls and blue window/door bays",
+      "Elevated glazed links across landscaped courts and open ground-floor colonnades",
+      "Roof terraces, collectors, palms, lawns and planted pedestrian streets"
+    ],
+    "estimated": [
+      "Silhouettes and floor steps from planning roof plan; small as-built plan does not resolve every terrace",
+      "Metres/pixel from as-built parcel area54477.7m² and planning outline; heights and bay spacing estimated",
+      "A56 registration is inferred by parcel area/road context, not surveyed coordinates",
+      "Bridge network positions and levels inferred from aerial/ground views; hidden links may differ",
+      "Terrain preserves v0.40 simulation platform, not survey elevation; planting positions/species approximate",
+      "External reconstruction only; rooms, stairs and lift interiors are not reconstructed"
+    ]
+  },
+  "document": {
+    "file": "source.docx",
+    "sha256": "5192abd6c397ed98aaeb7937859e4c49d1b5a86975d02d7ad31de8553a3e97b5",
+    "renderedPages": 17,
+    "images": [
+      {
+        "file": "image1.png",
+        "sha256": "9da773177107bbbeab5186ea82558ca94dea30c258e13fbc0f98ad65dc57b864"
+      },
+      {
+        "file": "image10.png",
+        "sha256": "72122e3dad53f275193adc8aef7db6abad9f140bf911c9c39f56732c4aef902a"
+      },
+      {
+        "file": "image11.png",
+        "sha256": "a010dffbd417dfc2983e435602deaf5cfdc29bd6ab2beb5fe77b31cd0ed1a53d"
+      },
+      {
+        "file": "image12.png",
+        "sha256": "db1641784af4330d202974668a1c566bbe7a0c143283e04f72e9ce97b86cb8d9"
+      },
+      {
+        "file": "image13.png",
+        "sha256": "60a6af6440b82b67d13cdd7da097c7f9ae827541e8713947e1a66d9c6fb87223"
+      },
+      {
+        "file": "image14.png",
+        "sha256": "4595173a8ec70f6451084d2942a3c7cedcd8f51c2643c9d2f653316bdf8ab3ae"
+      },
+      {
+        "file": "image15.png",
+        "sha256": "9a3f5fe2f40574495fef903b3ebb2ad457472917f2f862fd80a393c180d8f2f9"
+      },
+      {
+        "file": "image16.png",
+        "sha256": "64e69695fbccc5b343bcd156b82cbb2fed2548e71e6b46a24fcc5d967408237f"
+      },
+      {
+        "file": "image17.png",
+        "sha256": "0b4be8cf50046d92e998260b6e2b6e0277b7eebc11fda3acb4d39e6526cbba60"
+      },
+      {
+        "file": "image18.png",
+        "sha256": "60341282e1b2c99107bb86d02e9824720dfbc5a2cc6d6b9c0cc20e0284ad5189"
+      },
+      {
+        "file": "image19.png",
+        "sha256": "0b0647d997ca2f6453cd595d74fd7659c3f6b46cc8dcf1536536732b198623ad"
+      },
+      {
+        "file": "image2.png",
+        "sha256": "1e11bb8d74fcf5bb84c814ba0b6f44c6bab51a1d0449dd4dee91680746030d78"
+      },
+      {
+        "file": "image20.png",
+        "sha256": "2f391221b409293b1c295e3e411a2d146f70b52429cb09553925f94511d0ccce"
+      },
+      {
+        "file": "image21.png",
+        "sha256": "8118102ea9077785df5142284958c7f079fe08110a338772ef871b8b8ba8dabf"
+      },
+      {
+        "file": "image22.png",
+        "sha256": "724b1d61c2522599adb198c1cb6b3a28f52fd459c346c2681156e5d2cd49fead"
+      },
+      {
+        "file": "image23.png",
+        "sha256": "d769acf45a9225cddbbf8bdf1baa80b33f632eb7e920f85ac562e030c9598bfd"
+      },
+      {
+        "file": "image3.png",
+        "sha256": "b38888452b69d5272b458655c5685651356031aa79233feb8f6189760c8e65c4"
+      },
+      {
+        "file": "image4.png",
+        "sha256": "58f4ae5e8d82939d564b808f7dab1f31a8f64f1cb0ea7dcd51e06c0caa4e8dd7"
+      },
+      {
+        "file": "image5.png",
+        "sha256": "ef535c496ee8786d69c467d180735e280f9d2e429df703eec5021fb7c6788636"
+      },
+      {
+        "file": "image6.png",
+        "sha256": "f853cf9157810c3b33c7190d9d39bebb0e61b1d229b5fb02dece7fa9265226f2"
+      },
+      {
+        "file": "image7.png",
+        "sha256": "ddc6ff71601d86fdd9940bc509d3505507d5a22c3cbaa2f9dbe5082c91cc72e3"
+      },
+      {
+        "file": "image8.png",
+        "sha256": "8ba5bc1cd736ee624c71a673eb2508fa313d22617d439723695025e5b986be07"
+      },
+      {
+        "file": "image9.png",
+        "sha256": "1d00b1f79a703b056dbf23900f1f7a297aaa27d406c2829a0b5e6afe66487c2c"
+      }
+    ]
+  },
+  "captures": [
+    {
+      "file": "tour-dorm56-east.png",
+      "sha256": "83c25200063baaae54f5e39e56be8eef227446aebf12d2669129d94b8a37ed01"
+    },
+    {
+      "file": "tour-dorm56-overall.png",
+      "sha256": "fc474b3afbe592083e65b201487f7004535c060c1b5144ed5a8b304f42de5975"
+    },
+    {
+      "file": "tour-dorm56-south.png",
+      "sha256": "fae9f7364655a047e8fa5571cafbea4b9499ade52a7d839459b0140d12d60d33"
+    },
+    {
+      "file": "tour-dorm56-west.png",
+      "sha256": "3c5b020b2110383b2a0abfada4cf7479218a3b5b04840566bfe7d3d43a2c3738"
+    },
+    {
+      "file": "tour-living-aerial-east.png",
+      "sha256": "78a1178ef12687292b409202d0065f30aa419c7e001a1669a057b26fa9b08974"
+    },
+    {
+      "file": "tour-living-aerial-overall.png",
+      "sha256": "1ccab755b6aa9f76502e6b795ead0606a33aba4340294587057a11d2870f1ea1"
+    },
+    {
+      "file": "tour-living-aerial-south.png",
+      "sha256": "c496c28057a18755ef6ecd4b1676419bffdddb90f9f778f4712d95d1feaa0c1b"
+    },
+    {
+      "file": "tour-living-aerial-west.png",
+      "sha256": "449a549306f81e494b8a595930cee64dd6c9356cbd0096403b5e5229866b7416"
+    }
+  ]
+}

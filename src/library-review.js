@@ -22,6 +22,7 @@ async function boot() {
         "canteen",
         "stadium",
         "dorm52",
+        "dorm56",
       ]
     : ["library"];
   if (!supportedAssets.includes(requestedAsset))

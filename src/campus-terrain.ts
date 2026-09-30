@@ -1,3 +1,4 @@
+import dorm56Grading from "../authoring/dorm56/terrain-grading.json";
 import dorm52Grading from "../authoring/dorm52/terrain-grading.json";
 import config from "../public/terrain/landform.json";
 import library from "../public/models/library/library.json";
@@ -256,7 +257,7 @@ export function createCampusTerrain(
     const groups = new Map<string, any[]>();
     for (const b of buildings) {
       if (
-        b.placeId === dorm52Grading.asset ||
+        [dorm52Grading.asset, dorm56Grading.asset].includes(b.placeId) ||
         ["library-blender", "authored-blender"].includes(b.kind)
       )
         continue;
@@ -276,10 +277,9 @@ export function createCampusTerrain(
       }
     }
     // Keep the previously established platform independent of model/LOD replacement.
-    for (const footprint of dorm52Grading.footprints)
-      pads.push(
-        region(dorm52Grading.asset, footprint as Point[], dorm52Grading.level),
-      );
+    for (const grading of [dorm52Grading, dorm56Grading])
+      for (const footprint of grading.footprints)
+        pads.push(region(grading.asset, footprint as Point[], grading.level));
     for (const ground of grounds)
       pads.push(region(ground.placeId + "-field", ground.footprint, 20.2));
     revision++;

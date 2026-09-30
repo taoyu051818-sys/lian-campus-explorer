@@ -1,0 +1,112 @@
+{
+  "version": "0.41.0",
+  "date": "2026-09-30T07:42:28.379Z",
+  "grid": {
+    "vertices": 78561,
+    "minHeight": -16.799999237060547,
+    "maxHeight": 222.98724365234375,
+    "maxGridError": 0.000007627524468034608
+  },
+  "context": {
+    "seamVertices": 1120,
+    "maxHeightError": 0.000007482076568976481,
+    "canopyClusters": 14643
+  },
+  "peaks": [
+    {
+      "name": "西侧图注山峰",
+      "target": 223,
+      "actual": 222.94178221734
+    },
+    {
+      "name": "牛角山",
+      "target": 210.2,
+      "actual": 210.13143069310655
+    },
+    {
+      "name": "东南侧图注山峰",
+      "target": 189.1,
+      "actual": 189.03129952674635
+    },
+    {
+      "name": "尖岭",
+      "target": 190.4,
+      "actual": 190.34084913470383
+    },
+    {
+      "name": "虎岭",
+      "target": 110.9,
+      "actual": 110.84968124986206
+    }
+  ],
+  "authored": [
+    {
+      "id": "library",
+      "samples": 4449,
+      "maxGradeError": 0
+    },
+    {
+      "id": "stadium",
+      "samples": 3796,
+      "maxGradeError": 0
+    },
+    {
+      "id": "sports",
+      "samples": 1444,
+      "maxGradeError": 0
+    },
+    {
+      "id": "activity",
+      "samples": 4426,
+      "maxGradeError": 0
+    },
+    {
+      "id": "hall",
+      "samples": 1437,
+      "maxGradeError": 0
+    },
+    {
+      "id": "uestc",
+      "samples": 4928,
+      "maxGradeError": 0
+    },
+    {
+      "id": "bupt",
+      "samples": 1801,
+      "maxGradeError": 0
+    },
+    {
+      "id": "incubator",
+      "samples": 1077,
+      "maxGradeError": 0
+    },
+    {
+      "id": "canteen",
+      "samples": 534,
+      "maxGradeError": 0
+    }
+  ],
+  "roads": {
+    "triangles": 22138,
+    "maxDrapeError": 0.000003884740418125254,
+    "maxGrade": 0.07221621983820592,
+    "steep": []
+  },
+  "playingFields": [
+    {
+      "id": "school",
+      "min": 20.2,
+      "max": 20.2
+    },
+    {
+      "id": "teaching",
+      "min": 20.194791204396324,
+      "max": 20.2
+    }
+  ],
+  "platforms": {
+    "count": 217,
+    "buriedCorners": 0,
+    "worst": []
+  }
+}

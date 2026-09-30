@@ -214,7 +214,8 @@ export function buildCampus(data: AtlasData, campus: any, plans: any) {
       !p.polygon ||
       p.id === "teaching" ||
       p.id === "stadium" ||
-      p.id === "dorm52"
+      p.id === "dorm52" ||
+      p.id === "dorm56"
     )
       continue;
     const fp = p.polygon.map(toWorld);
